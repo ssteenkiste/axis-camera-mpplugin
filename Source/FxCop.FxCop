@@ -22,6 +22,7 @@
  </ProjectOptions>
  <Targets>
   <Target Name="$(ProjectDir)/AxisCameraMPPlugin.Configuration/bin/Debug/AxisCameraMPPlugin.Configuration.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/AxisCameraMPPlugin.Mvvm/bin/Debug/AxisCameraMPPlugin.Mvvm.dll" Analyze="True" AnalyzeAllChildren="True" />
   <Target Name="$(ProjectDir)/AxisCameraMPPlugin/bin/Debug/AxisCameraMPPlugin.dll" Analyze="True" AnalyzeAllChildren="True" />
  </Targets>
  <Rules>

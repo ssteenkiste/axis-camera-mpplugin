@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCameraMPPlugin", "AxisC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCameraMPPlugin.Configuration", "AxisCameraMPPlugin.Configuration\AxisCameraMPPlugin.Configuration.csproj", "{A9EB29F7-45D9-4528-AD57-98CCECFC5E51}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCameraMPPlugin.Mvvm", "AxisCameraMPPlugin.Mvvm\AxisCameraMPPlugin.Mvvm.csproj", "{442C117D-98D8-41A8-843B-716B66D60B97}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{A9EB29F7-45D9-4528-AD57-98CCECFC5E51}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9EB29F7-45D9-4528-AD57-98CCECFC5E51}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9EB29F7-45D9-4528-AD57-98CCECFC5E51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{442C117D-98D8-41A8-843B-716B66D60B97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{442C117D-98D8-41A8-843B-716B66D60B97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{442C117D-98D8-41A8-843B-716B66D60B97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{442C117D-98D8-41A8-843B-716B66D60B97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
