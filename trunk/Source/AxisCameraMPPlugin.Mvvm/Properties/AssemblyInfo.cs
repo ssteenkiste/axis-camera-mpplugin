@@ -19,14 +19,13 @@
 #endregion
 using System;
 using System.Reflection;
-using System.Resources;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Axis Camera MP Plugin Configuration")]
-[assembly: AssemblyDescription("Configures the Axis Camera MP Plugin.")]
+[assembly: AssemblyTitle("Axis Camera MPPlugin MVVM Framework")]
+[assembly: AssemblyDescription("Assembly containing the MVVM framework used by the plugin.")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -35,7 +34,6 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("79266455-1a48-4780-a21d-ae8afb949c5d")]
+[assembly: Guid("51a6872c-2b44-490e-a309-8ff28c3a0c1d")]
 
 [assembly: CLSCompliant(true)]
-[assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.MainAssembly)]

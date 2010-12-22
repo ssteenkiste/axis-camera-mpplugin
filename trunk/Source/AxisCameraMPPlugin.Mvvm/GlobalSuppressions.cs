@@ -17,15 +17,6 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System.Windows;
+using System.Diagnostics.CodeAnalysis;
 
-namespace AxisCameraMPPlugin.Configuration.View
-{
-	public partial class SetupDialog : Window
-	{
-		public SetupDialog()
-		{
-			InitializeComponent();
-		}
-	}
-}
+[module: SuppressMessage("Microsoft.Design", "CA2210:AssembliesShouldHaveValidStrongNames")]
