@@ -4,8 +4,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Axis Camera MP Plugin")]
-[assembly: AssemblyDescription("A Axis camera plugin for the MediaPortal media center application.")]
+[assembly: AssemblyTitle("Axis Camera MP Plugin Configuration")]
+[assembly: AssemblyDescription("Configures the Axis Camera MP Plugin.")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -14,4 +14,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("16cbf278-1df1-44ae-94f1-97b282718148")]
+[assembly: Guid("79266455-1a48-4780-a21d-ae8afb949c5d")]
