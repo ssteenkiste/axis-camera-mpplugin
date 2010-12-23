@@ -71,21 +71,25 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 		/// <typeparam name="T">The type of dialog to open.</typeparam>
 		/// <param name="viewModel">The ViewModel of the new dialog.</param>
 		/// <param name="ownerViewModel">
-		/// A ViewModel that represents the owner window of the dialog.
+		/// A ViewModel that represents the owner window of the dialog. Default value is null.
 		/// </param>
 		/// <returns>
 		/// A nullable value of type bool that signifies how a window was closed by the user.
 		/// </returns>
 		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
-		public bool? ShowDialog<T>(DialogViewModelBase viewModel, ViewModelBase ownerViewModel)
+		public bool? ShowDialog<T>(DialogViewModelBase viewModel, ViewModelBase ownerViewModel = null)
 			where T : Window
 		{
 			if (viewModel == null) throw new ArgumentNullException("viewModel");
-			if (ownerViewModel == null) throw new ArgumentNullException("ownerViewModel");
 			
 			// Create dialog and set properties
 			T dialog = Activator.CreateInstance<T>();
-			dialog.Owner = FindOwnerWindow(ownerViewModel);
+
+			if (ownerViewModel != null)
+			{
+				dialog.Owner = FindOwnerWindow(ownerViewModel);
+			}
+
 			dialog.DataContext = viewModel;
 
 			// Make OK command close dialog

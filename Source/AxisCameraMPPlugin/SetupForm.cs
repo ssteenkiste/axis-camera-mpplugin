@@ -18,8 +18,12 @@
 
 #endregion
 using System;
+using AxisCameraMPPlugin.Configuration.View;
+using AxisCameraMPPlugin.Configuration.ViewModel;
+using AxisCameraMPPlugin.Mvvm.Services;
 using AxisCameraMPPlugin.Properties;
 using MediaPortal.GUI.Library;
+using MediaPortal.Services;
 using PluginResources = AxisCameraMPPlugin.Properties.Resources;
 
 namespace AxisCameraMPPlugin
@@ -29,6 +33,18 @@ namespace AxisCameraMPPlugin
 	/// </summary>
 	public class SetupForm : GUIWindow, ISetupForm
 	{
+		private readonly IWindowService windowService;
+
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="SetupForm"/> class.
+		/// </summary>
+		public SetupForm()
+		{
+			windowService = new WindowService();
+		}
+
+
 		/// <summary>
 		/// Returns the author of the plugin which is shown in the plugin menu.
 		/// </summary>
@@ -66,13 +82,13 @@ namespace AxisCameraMPPlugin
 
 
 		/// <summary>
-		/// If the plugin should have its own button on the home menu of Mediaportal then it should
+		/// If the plugin should have its own button on the home menu of MediaPortal then it should
 		/// return true to this method, otherwise if it should not be on home it should return false.
 		/// </summary>
 		/// <param name="strButtonText">Text the button should have.</param>
 		/// <param name="strButtonImage">Image for the button, or empty for default.</param>
 		/// <param name="strButtonImageFocus">Image for the button, or empty for default.</param>
-		/// <param name="strPictureImage">Subpicture for the button or empty for none.</param>
+		/// <param name="strPictureImage">Sub-picture for the button or empty for none.</param>
 		/// <returns>true if plugin needs its own button on home; otherwise false.</returns>
 		public bool GetHome(
 			out string strButtonText,
@@ -90,7 +106,7 @@ namespace AxisCameraMPPlugin
 
 
 		/// <summary>
-		/// Gets ID of windowplugin belonging to this setup.
+		/// Gets ID of window plugin belonging to this setup.
 		/// </summary>
 		public int GetWindowId()
 		{
@@ -121,7 +137,10 @@ namespace AxisCameraMPPlugin
 		/// </summary>
 		public void ShowPlugin()
 		{
-			throw new NotImplementedException();
+			Log.Info("Show setup for {0}", PluginName());
+
+			SetupDialogViewModel viewModel = new SetupDialogViewModel();
+			windowService.ShowDialog<SetupDialog>(viewModel, null);
 		}
 
 
@@ -132,6 +151,28 @@ namespace AxisCameraMPPlugin
 		{
 			get { return Settings.Default.Plugin_ID; }
 			set { throw new InvalidOperationException("Setting the plugin ID is prohibited."); }
+		}
+
+
+		/// <summary>
+		/// Gets called by the runtime when a new window has been created. Every window window should
+		/// override this method and load itself by calling the Load() method.
+		/// </summary>
+		/// <returns>true if initialization was successful; otherwise false.</returns>
+		public override bool Init()
+		{
+			RegisterServices();
+
+			return true;
+		}
+
+
+		/// <summary>
+		/// Registers the services requested by this plugin.
+		/// </summary>
+		private void RegisterServices()
+		{
+			GlobalServiceProvider.Instance.Add<IWindowService>(windowService);
 		}
 	}
 }

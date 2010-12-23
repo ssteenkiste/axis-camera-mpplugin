@@ -49,6 +49,9 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Utils">
+      <HintPath>..\Externals\MediaPortal\Utils.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +93,10 @@
     <ProjectReference Include="..\AxisCameraMPPlugin.Configuration\AxisCameraMPPlugin.Configuration.csproj">
       <Project>{A9EB29F7-45D9-4528-AD57-98CCECFC5E51}</Project>
       <Name>AxisCameraMPPlugin.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AxisCameraMPPlugin.Mvvm\AxisCameraMPPlugin.Mvvm.csproj">
+      <Project>{442C117D-98D8-41A8-843B-716B66D60B97}</Project>
+      <Name>AxisCameraMPPlugin.Mvvm</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
