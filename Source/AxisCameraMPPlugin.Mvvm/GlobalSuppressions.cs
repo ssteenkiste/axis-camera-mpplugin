@@ -20,3 +20,9 @@
 using System.Diagnostics.CodeAnalysis;
 
 [module: SuppressMessage("Microsoft.Design", "CA2210:AssembliesShouldHaveValidStrongNames")]
+[module: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "AxisCameraMPPlugin.Mvvm")]
+[module: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "AxisCameraMPPlugin.Mvvm.Services")]
+[module: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "AxisCameraMPPlugin.Mvvm.Services.FrameworkDialogs")]
+[module: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "AxisCameraMPPlugin.Mvvm.Services.FrameworkDialogs.FolderBrowse")]
+[module: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "AxisCameraMPPlugin.Mvvm.Services.FrameworkDialogs.OpenFile")]
+[module: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "AxisCameraMPPlugin.Mvvm.Validation")]
