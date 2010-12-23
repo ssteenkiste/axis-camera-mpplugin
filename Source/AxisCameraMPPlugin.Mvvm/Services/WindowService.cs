@@ -35,62 +35,7 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 	/// </summary>
 	public class WindowService : IWindowService
 	{
-		private HashSet<FrameworkElement> views;
-
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="WindowService"/> class.
-		/// </summary>
-		public WindowService()
-		{
-			views = new HashSet<FrameworkElement>();
-		}
-
-
 		#region IWindowService Members
-
-		/// <summary>
-		/// Registers a View.
-		/// </summary>
-		/// <param name="view">The registered View.</param>
-		public void Register(FrameworkElement view)
-		{
-			if (view == null) throw new ArgumentNullException("view");
-			if (views.Contains(view))
-				throw new ArgumentException("View has already been registered.", "view");
-
-			// Get owner window
-			Window owner = view as Window;
-			if (owner == null)
-			{
-				owner = Window.GetWindow(view);
-			}
-
-			if (owner == null)
-			{
-				throw new InvalidOperationException("View is not contained within a Window.");
-			}
-
-			// Register for owner window closing, since we then should unregister View reference,
-			// preventing memory leaks
-			owner.Closed += OwnerClosed;
-
-			views.Add(view);
-		}
-
-
-		/// <summary>
-		/// Unregisters a View.
-		/// </summary>
-		/// <param name="view">The unregistered View.</param>
-		public void Unregister(FrameworkElement view)
-		{
-			if (view == null) throw new ArgumentNullException("view");
-			if (!views.Contains(view))
-				throw new ArgumentException("View has not been registered.", "view");
-
-			views.Remove(view);
-		}
 
 
 		/// <summary>
@@ -245,119 +190,20 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 		#endregion
 
 
-		#region Attached properties
-
-		/// <summary>
-		/// Attached property describing whether a FrameworkElement is acting as a View in MVVM.
-		/// </summary>
-		public static readonly DependencyProperty IsRegisteredViewProperty =
-			DependencyProperty.RegisterAttached(
-			"IsRegisteredView",
-			typeof(bool),
-			typeof(WindowService),
-			new UIPropertyMetadata(IsRegisteredViewPropertyChanged));
-
-
-		/// <summary>
-		/// Gets value describing whether FrameworkElement is acting as View in MVVM.
-		/// </summary>
-		public static bool GetIsRegisteredView(DependencyObject target)
-		{
-			return (bool)target.GetValue(IsRegisteredViewProperty);
-		}
-
-
-		/// <summary>
-		/// Sets value describing whether FrameworkElement is acting as View in MVVM.
-		/// </summary>
-		public static void SetIsRegisteredView(DependencyObject target, bool value)
-		{
-			target.SetValue(IsRegisteredViewProperty, value);
-		}
-
-
-		/// <summary>
-		/// Is responsible for handling IsRegisteredViewProperty changes, i.e. whether
-		/// FrameworkElement is acting as View in MVVM or not.
-		/// </summary>
-		private static void IsRegisteredViewPropertyChanged(
-			DependencyObject target,
-			DependencyPropertyChangedEventArgs e)
-		{
-			// The Visual Studio Designer or Blend will run this code when setting the attached
-			// property, however at that point there is no IWindowService registered
-			// in the ServiceLocator which will cause the Resolve method to throw a ArgumentException.
-			if (DesignerProperties.GetIsInDesignMode(target)) return;
-
-			FrameworkElement view = target as FrameworkElement;
-			if (view != null)
-			{
-				bool newValue = (bool)e.NewValue;
-
-				if (newValue)
-				{
-					ServiceLocator.Resolve<IWindowService>().Register(view);
-				}
-				else
-				{
-					ServiceLocator.Resolve<IWindowService>().Unregister(view);
-				}
-			}
-		}
-
-		#endregion
-
-
 		/// <summary>
 		/// Finds window corresponding to specified ViewModel.
 		/// </summary>
-		private Window FindOwnerWindow(ViewModelBase viewModel)
+		private static Window FindOwnerWindow(ViewModelBase viewModel)
 		{
-			FrameworkElement view = views.SingleOrDefault(
-				v => ReferenceEquals(v.DataContext, viewModel));
+			FrameworkElement view = WindowServiceBehaviors.FindView(viewModel);
+
+			// Check if view was not registered
 			if (view == null)
 			{
-				throw new ArgumentException("Viewmodel is not referenced by any registered View.");
+				return null;
 			}
 
-			// Get owner window
-			Window owner = view as Window;
-			if (owner == null)
-			{
-				owner = Window.GetWindow(view);
-			}
-
-			// Make sure owner window was found
-			if (owner == null)
-			{
-				throw new InvalidOperationException("View is not contained within a Window.");
-			}
-
-			return owner;
-		}
-
-
-		/// <summary>
-		/// Handles owner window closed, View service should then unregister all Views acting within
-		/// the closed window.
-		/// </summary>
-		private void OwnerClosed(object sender, EventArgs e)
-		{
-			Window owner = sender as Window;
-			if (owner != null)
-			{
-				// Find Views acting within closed window
-				IEnumerable<FrameworkElement> windowViews =
-					from view in views
-					where Window.GetWindow(view) == owner
-					select view;
-
-				// Unregister Views in window
-				foreach (FrameworkElement view in windowViews.ToArray())
-				{
-					Unregister(view);
-				}
-			}
+			return WindowServiceBehaviors.FindOwner(view);
 		}
 	}
 }
