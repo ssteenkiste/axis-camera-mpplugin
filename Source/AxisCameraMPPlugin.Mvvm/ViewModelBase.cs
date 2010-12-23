@@ -187,7 +187,7 @@ namespace AxisCameraMPPlugin.Mvvm
 					Value = value
 				};
 
-				// Add the new propery item
+				// Add the new property item
 				properties.Add(key, p);
 			}
 
