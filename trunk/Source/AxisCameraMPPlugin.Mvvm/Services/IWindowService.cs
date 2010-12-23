@@ -31,20 +31,6 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 	public interface IWindowService
 	{
 		/// <summary>
-		/// Registers a View.
-		/// </summary>
-		/// <param name="view">The registered View.</param>
-		void Register(FrameworkElement view);
-
-
-		/// <summary>
-		/// Unregisters a View.
-		/// </summary>
-		/// <param name="view">The unregistered View.</param>
-		void Unregister(FrameworkElement view);
-
-
-		/// <summary>
 		/// Opens a window and returns without waiting for the newly opened window to close.
 		/// </summary>
 		/// <typeparam name="T">The type of window to open.</typeparam>
