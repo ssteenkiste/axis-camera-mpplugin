@@ -18,10 +18,7 @@
 
 #endregion
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Windows;
 using AxisCameraMPPlugin.Mvvm.Services.FrameworkDialogs;
 using AxisCameraMPPlugin.Mvvm.Services.FrameworkDialogs.FolderBrowse;
@@ -77,6 +74,7 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 		/// A nullable value of type bool that signifies how a window was closed by the user.
 		/// </returns>
 		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
+		[SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
 		public bool? ShowDialog<T>(DialogViewModelBase viewModel, ViewModelBase ownerViewModel = null)
 			where T : Window
 		{
