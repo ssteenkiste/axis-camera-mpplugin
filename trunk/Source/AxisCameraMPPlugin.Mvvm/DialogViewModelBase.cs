@@ -45,7 +45,7 @@ namespace AxisCameraMPPlugin.Mvvm
 		#region Command methods
 
 		/// <summary>
-		/// Determins whether OK can execute.
+		/// Determines whether OK can execute.
 		/// </summary>
 		public bool CanOk(object parameter)
 		{
