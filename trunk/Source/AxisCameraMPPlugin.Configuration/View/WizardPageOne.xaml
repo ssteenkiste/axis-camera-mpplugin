@@ -74,7 +74,7 @@
 					Grid.Row="1"
 					Grid.Column="1"
 					MaxLength="64"
-					mvvm:BoundPasswordBox.BoundPassword="{Binding
+					mvvm:PasswordBoxBehaviors.Password="{Binding
 						Password,
 						Mode=TwoWay,
 						UpdateSourceTrigger=PropertyChanged}"/>
