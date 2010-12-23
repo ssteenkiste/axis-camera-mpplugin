@@ -22,14 +22,14 @@ using System.Windows.Controls;
 namespace AxisCameraMPPlugin.Configuration.View
 {
 	/// <summary>
-	/// The first page of the camera wizard.
+	/// The second page of the camera wizard.
 	/// </summary>
-	public partial class WizardPageOne : UserControl
+	public partial class WizardPageTwo : UserControl
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="WizardPageOne"/> class.
+		/// Initializes a new instance of the <see cref="WizardPageTwo"/> class.
 		/// </summary>
-		public WizardPageOne()
+		public WizardPageTwo()
 		{
 			InitializeComponent();
 		}
