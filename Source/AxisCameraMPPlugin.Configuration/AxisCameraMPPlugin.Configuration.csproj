@@ -52,6 +52,9 @@
     <Compile Include="View\SetupDialog.xaml.cs">
       <DependentUpon>SetupDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Wizard.xaml.cs">
+      <DependentUpon>Wizard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\WizardPageOne.xaml.cs">
       <DependentUpon>WizardPageOne.xaml</DependentUpon>
     </Compile>
@@ -61,6 +64,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="View\SetupDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Wizard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -22,14 +22,14 @@ using System.Windows;
 namespace AxisCameraMPPlugin.Configuration.View
 {
 	/// <summary>
-	/// Dialog displayed to the user when setting up the plugin.
+	/// Wizard used when adding or editing a camera.
 	/// </summary>
-	public partial class SetupDialog : Window
+	public partial class Wizard : Window
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="SetupDialog"/> class.
+		/// Initializes a new instance of the <see cref="Wizard"/> class.
 		/// </summary>
-		public SetupDialog()
+		public Wizard()
 		{
 			InitializeComponent();
 		}
