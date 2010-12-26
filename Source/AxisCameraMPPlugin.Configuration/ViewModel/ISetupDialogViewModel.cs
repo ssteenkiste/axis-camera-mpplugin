@@ -22,9 +22,9 @@ using AxisCameraMPPlugin.Mvvm;
 namespace AxisCameraMPPlugin.Configuration.ViewModel
 {
 	/// <summary>
-	/// View model capable of adding, editing and removing cameras.
+	/// Interface for SetupDialogViewModel.
 	/// </summary>
-	class SetupDialogViewModel : DialogViewModelBase
+	public interface ISetupDialogViewModel : IDialogViewModelBase
 	{
 	}
 }

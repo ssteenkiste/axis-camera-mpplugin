@@ -18,12 +18,10 @@
 
 #endregion
 using System;
-using AxisCameraMPPlugin.Configuration.View;
-using AxisCameraMPPlugin.Configuration.ViewModel;
-using AxisCameraMPPlugin.Mvvm.Services;
+using Autofac;
+using AxisCameraMPPlugin.Configuration;
 using AxisCameraMPPlugin.Properties;
 using MediaPortal.GUI.Library;
-using MediaPortal.Services;
 using PluginResources = AxisCameraMPPlugin.Properties.Resources;
 
 namespace AxisCameraMPPlugin
@@ -33,16 +31,7 @@ namespace AxisCameraMPPlugin
 	/// </summary>
 	public class SetupForm : GUIWindow, ISetupForm
 	{
-		private readonly IWindowService windowService;
-
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="SetupForm"/> class.
-		/// </summary>
-		public SetupForm()
-		{
-			windowService = new WindowService();
-		}
+		private IContainer container;
 
 
 		/// <summary>
@@ -139,8 +128,8 @@ namespace AxisCameraMPPlugin
 		{
 			Log.Info("Show setup for {0}", PluginName());
 
-			SetupDialogViewModel viewModel = new SetupDialogViewModel();
-			windowService.ShowDialog<SetupDialog>(viewModel, null);
+			IConfigurationStarter configuration = container.Resolve<IConfigurationStarter>();
+			configuration.Start();
 		}
 
 
@@ -161,18 +150,33 @@ namespace AxisCameraMPPlugin
 		/// <returns>true if initialization was successful; otherwise false.</returns>
 		public override bool Init()
 		{
-			RegisterServices();
+			ConfigureContainer();
 
 			return true;
 		}
 
 
 		/// <summary>
-		/// Registers the services requested by this plugin.
+		/// Gets called by the runtime when a  window will be destroyed. Every window should override
+		/// this method and cleanup any resources.
 		/// </summary>
-		private void RegisterServices()
+		/// <returns></returns>
+		public override void DeInit()
 		{
-			GlobalServiceProvider.Instance.Add<IWindowService>(windowService);
+			container.Dispose();
+			container = null;
+		}
+
+
+		/// <summary>
+		/// Configures the container.
+		/// </summary>
+		private void ConfigureContainer()
+		{
+			ContainerBuilder builder = new ContainerBuilder();
+			builder.RegisterModule(new PluginModule());
+
+			container = builder.Build();
 		}
 	}
 }
