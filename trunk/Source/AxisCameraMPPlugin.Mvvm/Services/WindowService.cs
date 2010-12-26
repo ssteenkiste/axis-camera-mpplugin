@@ -90,10 +90,8 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 			}
 
 			dialog.DataContext = viewModel;
-
-			// Make OK command close dialog
-			viewModel.OkCommand = new RelayCommand((o) => dialog.DialogResult = true, viewModel.CanOk);
-
+			viewModel.DialogResultCommand = new RelayCommand(result => dialog.DialogResult = (bool)result);
+			
 			// Show dialog
 			return dialog.ShowDialog();
 		}

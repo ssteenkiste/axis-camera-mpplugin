@@ -17,24 +17,26 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System.Windows.Input;
+using System;
+using System.Collections.Generic;
 
-namespace AxisCameraMPPlugin.Mvvm
+namespace AxisCameraMPPlugin.Data
 {
 	/// <summary>
-	/// Interface for all ViewModels representing a modal dialog.
+	/// Interface responsible for reading and saving settings.
 	/// </summary>
-	public interface IDialogViewModelBase
+	public interface IPluginSettings : IDisposable
 	{
 		/// <summary>
-		/// Gets or sets the command for setting the DialogResult of a dialog.
+		/// Gets the cameras.
 		/// </summary>
-		ICommand DialogResultCommand { get; set; }
+		IEnumerable<Camera> GetCameras();
 
 
 		/// <summary>
-		/// Gets the command responsible for OK click.
+		/// Sets the cameras.
 		/// </summary>
-		ICommand OkCommand { get; }
+		/// <param name="cameras">The cameras.</param>
+		void SetCameras(IEnumerable<Camera> cameras);
 	}
 }
