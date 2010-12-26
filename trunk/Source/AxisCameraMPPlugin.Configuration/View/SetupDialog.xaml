@@ -2,9 +2,12 @@
 	x:Class="AxisCameraMPPlugin.Configuration.View.SetupDialog"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:mvvm="clr-namespace:AxisCameraMPPlugin.Mvvm;assembly=AxisCameraMPPlugin.Mvvm"
+	xmlns:services="clr-namespace:AxisCameraMPPlugin.Mvvm.Services;assembly=AxisCameraMPPlugin.Mvvm"
 	Title="Axis Camera MPPlugin - Setup"
 	Style="{DynamicResource DialogWindow}"
-	WindowStartupLocation="CenterOwner">
+	WindowStartupLocation="CenterOwner"
+	services:WindowServiceBehaviors.IsRegisteredView="True">
 	
 	<!-- Resources -->
 	<Window.Resources>
@@ -33,6 +36,7 @@
 				<ListBox
 					Height="200"
 					ItemsSource="{StaticResource SortedCameras}"
+					mvvm:ListBoxBehaviors.SelectedItems="{Binding SelectedItems}"
 					DisplayMemberPath="Name"/>
 				
 				<!-- List buttons -->
