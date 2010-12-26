@@ -52,11 +52,17 @@ namespace AxisCameraMPPlugin.Data
 		{
 			string value = settings.GetValue(SettingNames.CameraSection, SettingNames.CamerasEntry);
 
-			using (StringReader reader = new StringReader(value))
+			if (value != string.Empty)
 			{
-				XmlSerializer serializer = new XmlSerializer(typeof(List<Camera>));
-				return (List<Camera>)serializer.Deserialize(reader);
+				using (StringReader reader = new StringReader(value))
+				{
+					XmlSerializer serializer = new XmlSerializer(typeof(List<Camera>));
+					return (List<Camera>)serializer.Deserialize(reader);
+				}
 			}
+
+			// No cameras have been saved before
+			return new Camera[0];
 		}
 
 
