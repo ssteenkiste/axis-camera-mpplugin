@@ -17,54 +17,38 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System.Collections.ObjectModel;
-using System.Windows.Input;
+using System;
+using AxisCameraMPPlugin.Data;
 using AxisCameraMPPlugin.Mvvm;
 
 namespace AxisCameraMPPlugin.Configuration.ViewModel
 {
 	/// <summary>
-	/// View model capable of adding, editing and removing cameras.
+	/// Class acting as view model when displaying a camera by its name.
 	/// </summary>
-	class SetupDialogViewModel : DialogViewModelBase
+	class CameraNameViewModel : ViewModelBase
 	{
+		private readonly Camera camera;
+
+
 		/// <summary>
-		/// Gets the cameras.
+		/// Initializes a new instance of the <see cref="CameraNameViewModel"/> class.
 		/// </summary>
-		public ObservableCollection<CameraNameViewModel> Cameras
+		/// <param name="camera">The camera.</param>
+		public CameraNameViewModel(Camera camera)
 		{
-			get { return Property(() => Cameras); }
-			private set { Property(() => Cameras, value); }
+			if (camera == null) throw new ArgumentNullException("camera");
+
+			this.camera = camera;
 		}
 
 
 		/// <summary>
-		/// Gets the command adding a camera.
+		/// Gets the name of the camera.
 		/// </summary>
-		public ICommand AddCommand
+		public string Name
 		{
-			get { return Property(() => AddCommand); }
-			private set { Property(() => AddCommand, value); }
-		}
-
-
-		/// <summary>
-		/// Gets the command editing a camera.
-		/// </summary>
-		public ICommand EditCommand
-		{
-			get { return Property(() => EditCommand); }
-			private set { Property(() => EditCommand, value); }
-		}
-
-
-		/// <summary>
-		/// Gets the command removing a camera.
-		/// </summary>
-		public ICommand RemoveCommand
-		{
-			get { return Property(() => RemoveCommand); }
-			private set { Property(() => RemoveCommand, value); }
+			get { return camera.Name; }
 		}
 	}
 }
