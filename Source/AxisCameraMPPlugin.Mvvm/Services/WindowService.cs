@@ -20,6 +20,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Windows;
+using System.Windows.Interop;
 using AxisCameraMPPlugin.Mvvm.Services.FrameworkDialogs;
 using AxisCameraMPPlugin.Mvvm.Services.FrameworkDialogs.FolderBrowse;
 using AxisCameraMPPlugin.Mvvm.Services.FrameworkDialogs.OpenFile;
@@ -76,22 +77,47 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 		/// </returns>
 		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
 		[SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
-		public bool? ShowDialog<T>(IDialogViewModelBase viewModel, IViewModelBase ownerViewModel = null)
+		public bool? ShowDialog<T>(IDialogViewModelBase viewModel, IViewModelBase ownerViewModel)
 			where T : Window
 		{
 			if (viewModel == null) throw new ArgumentNullException("viewModel");
+			if (ownerViewModel == null) throw new ArgumentNullException("ownerViewModel");
 			
 			// Create dialog and set properties
 			T dialog = Activator.CreateInstance<T>();
-
-			if (ownerViewModel != null)
-			{
-				dialog.Owner = FindOwnerWindow(ownerViewModel);
-			}
-
+			dialog.Owner = FindOwnerWindow(ownerViewModel);
 			dialog.DataContext = viewModel;
 			viewModel.DialogResultCommand = new RelayCommand(result => dialog.DialogResult = (bool)result);
 			
+			// Show dialog
+			return dialog.ShowDialog();
+		}
+
+
+		/// <summary>
+		/// Shows a dialog with a WinForms window as owner.
+		/// </summary>
+		/// <typeparam name="T">The type of dialog to open.</typeparam>
+		/// <param name="viewModel">The ViewModel of the new dialog.</param>
+		/// <param name="ownerHandle">
+		/// A handle that represents the owner WinForms window of the dialog.
+		/// </param>
+		/// <returns>
+		/// A nullable value of type bool that signifies how a window was closed by the user.
+		/// </returns>
+		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
+		public bool? ShowDialog<T>(IDialogViewModelBase viewModel, IntPtr ownerHandle)
+			where T : Window
+		{
+			if (viewModel == null) throw new ArgumentNullException("viewModel");
+			if (ownerHandle == null) throw new ArgumentNullException("ownerHandle");
+
+			// Create dialog and set properties
+			T dialog = Activator.CreateInstance<T>();
+			new WindowInteropHelper(dialog).Owner = ownerHandle;			
+			dialog.DataContext = viewModel;
+			viewModel.DialogResultCommand = new RelayCommand(result => dialog.DialogResult = (bool)result);
+
 			// Show dialog
 			return dialog.ShowDialog();
 		}

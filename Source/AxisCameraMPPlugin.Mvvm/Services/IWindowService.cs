@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 using AxisCameraMPPlugin.Mvvm.Services.FrameworkDialogs.FolderBrowse;
@@ -55,6 +56,22 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 		/// </returns>
 		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
 		bool? ShowDialog<T>(IDialogViewModelBase viewModel, IViewModelBase ownerViewModel)
+			where T : Window;
+
+
+		/// <summary>
+		/// Shows a dialog with a WinForms window as owner.
+		/// </summary>
+		/// <typeparam name="T">The type of dialog to open.</typeparam>
+		/// <param name="viewModel">The ViewModel of the new dialog.</param>
+		/// <param name="ownerHandle">
+		/// A handle that represents the owner WinForms window of the dialog.
+		/// </param>
+		/// <returns>
+		/// A nullable value of type bool that signifies how a window was closed by the user.
+		/// </returns>
+		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
+		bool? ShowDialog<T>(IDialogViewModelBase viewModel, IntPtr ownerHandle)
 			where T : Window;
 
 

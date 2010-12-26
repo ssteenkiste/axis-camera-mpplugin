@@ -18,6 +18,7 @@
 
 #endregion
 using System;
+using System.Diagnostics;
 using AxisCameraMPPlugin.Configuration.View;
 using AxisCameraMPPlugin.Configuration.ViewModel;
 using AxisCameraMPPlugin.Mvvm.Services;
@@ -55,8 +56,10 @@ namespace AxisCameraMPPlugin.Configuration
 		/// </summary>
 		public void Start()
 		{
-			ISetupDialogViewModel setupDialogViewModel = setupDialogViewModelProvider();
-			windowService.ShowDialog<SetupDialog>(setupDialogViewModel, null);
+			// This is a workaround since the owning window is WinForms and we wish to open a WPF window
+			windowService.ShowDialog<SetupDialog>(
+				setupDialogViewModelProvider(),
+				Process.GetCurrentProcess().MainWindowHandle);
 		}
 	}
 }
