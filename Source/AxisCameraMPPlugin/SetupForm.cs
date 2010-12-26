@@ -35,6 +35,15 @@ namespace AxisCameraMPPlugin
 
 
 		/// <summary>
+		/// Initializes a new instance of the <see cref="SetupForm"/> class.
+		/// </summary>
+		public SetupForm()
+		{
+			ConfigureContainer();
+		}
+
+
+		/// <summary>
 		/// Returns the author of the plugin which is shown in the plugin menu.
 		/// </summary>
 		public string Author()
@@ -144,25 +153,12 @@ namespace AxisCameraMPPlugin
 
 
 		/// <summary>
-		/// Gets called by the runtime when a new window has been created. Every window window should
-		/// override this method and load itself by calling the Load() method.
+		/// Gets called by the runtime when the window is not longer shown.
 		/// </summary>
-		/// <returns>true if initialization was successful; otherwise false.</returns>
-		public override bool Init()
+		public override void Dispose()
 		{
-			ConfigureContainer();
+			base.Dispose();
 
-			return true;
-		}
-
-
-		/// <summary>
-		/// Gets called by the runtime when a  window will be destroyed. Every window should override
-		/// this method and cleanup any resources.
-		/// </summary>
-		/// <returns></returns>
-		public override void DeInit()
-		{
 			container.Dispose();
 			container = null;
 		}

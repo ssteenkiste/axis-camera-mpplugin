@@ -86,7 +86,7 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 			MessageBoxButton button = MessageBoxButton.OK,
 			MessageBoxImage icon = MessageBoxImage.None,
 			MessageBoxResult defaultResult = MessageBoxResult.OK,
-			MessageBoxOptions options = MessageBoxOptions.None)
+			MessageBoxOptions options = MessageBoxOptions.None);
 
 
 		/// <summary>

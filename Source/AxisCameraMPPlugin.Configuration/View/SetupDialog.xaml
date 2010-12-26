@@ -35,7 +35,7 @@
 				<!-- List with cameras -->
 				<ListBox
 					Height="200"
-					ItemsSource="{StaticResource SortedCameras}"
+					ItemsSource="{Binding Source={StaticResource SortedCameras}}"
 					mvvm:ListBoxBehaviors.SelectedItems="{Binding SelectedItems}"
 					DisplayMemberPath="Name"/>
 				
