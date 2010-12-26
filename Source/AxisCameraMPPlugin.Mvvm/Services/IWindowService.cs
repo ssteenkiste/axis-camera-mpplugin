@@ -82,11 +82,11 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 		MessageBoxResult ShowMessageBox(
 			IViewModelBase ownerViewModel,
 			string messageBoxText,
-			string caption,
-			MessageBoxButton button,
-			MessageBoxImage icon,
-			MessageBoxResult defaultResult,
-			MessageBoxOptions options);
+			string caption = "",
+			MessageBoxButton button = MessageBoxButton.OK,
+			MessageBoxImage icon = MessageBoxImage.None,
+			MessageBoxResult defaultResult = MessageBoxResult.OK,
+			MessageBoxOptions options = MessageBoxOptions.None)
 
 
 		/// <summary>
