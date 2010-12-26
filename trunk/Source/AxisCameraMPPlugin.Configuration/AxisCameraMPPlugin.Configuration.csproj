@@ -50,6 +50,8 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IConfigurationStarter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Provider\CameraNameViewModelsProvider.cs" />
+    <Compile Include="Provider\ICameraNameViewModelsProvider.cs" />
     <Compile Include="ViewModel\CameraNameViewModel.cs" />
     <Compile Include="ViewModel\ISetupDialogViewModel.cs" />
     <Compile Include="ViewModel\SetupDialogViewModel.cs" />
