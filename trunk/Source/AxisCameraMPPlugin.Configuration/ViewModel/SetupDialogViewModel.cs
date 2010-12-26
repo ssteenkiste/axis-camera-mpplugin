@@ -32,7 +32,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 	/// <summary>
 	/// View model capable of adding, editing and removing cameras.
 	/// </summary>
-	class SetupDialogViewModel : DialogViewModelBase
+	class SetupDialogViewModel : DialogViewModelBase, ISetupDialogViewModel
 	{
 		private readonly IWindowService windowService;
 
