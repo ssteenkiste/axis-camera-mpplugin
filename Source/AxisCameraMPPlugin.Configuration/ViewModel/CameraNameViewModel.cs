@@ -28,9 +28,6 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 	/// </summary>
 	class CameraNameViewModel : ViewModelBase
 	{
-		private readonly Camera camera;
-
-
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CameraNameViewModel"/> class.
 		/// </summary>
@@ -39,7 +36,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		{
 			if (camera == null) throw new ArgumentNullException("camera");
 
-			this.camera = camera;
+			Camera = camera;
 		}
 
 
@@ -48,7 +45,13 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// </summary>
 		public string Name
 		{
-			get { return camera.Name; }
+			get { return Camera.Name; }
 		}
+
+
+		/// <summary>
+		/// Gets the camera.
+		/// </summary>
+		internal Camera Camera { get; private set; }
 	}
 }

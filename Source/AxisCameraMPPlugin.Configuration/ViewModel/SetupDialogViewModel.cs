@@ -24,6 +24,7 @@ using System.Windows;
 using System.Windows.Input;
 using AxisCameraMPPlugin.Configuration.Properties;
 using AxisCameraMPPlugin.Configuration.Provider;
+using AxisCameraMPPlugin.Data;
 using AxisCameraMPPlugin.Mvvm;
 using AxisCameraMPPlugin.Mvvm.Services;
 
@@ -35,6 +36,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 	class SetupDialogViewModel : DialogViewModelBase, ISetupDialogViewModel
 	{
 		private readonly IWindowService windowService;
+		private readonly Func<IPluginSettings> pluginSettingsProvider;
 
 
 		/// <summary>
@@ -42,14 +44,18 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// </summary>
 		/// <param name="windowService">The window service.</param>
 		/// <param name="cameraNameViewModelsProvider">The CameraNameViewModels provider.</param>
+		/// <param name="pluginSettingsProvider">The plugin settings provider.</param>
 		public SetupDialogViewModel(
 			IWindowService windowService,
-			ICameraNameViewModelsProvider cameraNameViewModelsProvider)
+			ICameraNameViewModelsProvider cameraNameViewModelsProvider,
+			Func<IPluginSettings> pluginSettingsProvider)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
 			if (cameraNameViewModelsProvider == null) throw new ArgumentNullException("cameraNameViewModelsProvider");
+			if (pluginSettingsProvider == null) throw new ArgumentNullException("pluginSettings");
 
 			this.windowService = windowService;
+			this.pluginSettingsProvider = pluginSettingsProvider;
 
 			Cameras = new ObservableCollection<CameraNameViewModel>(cameraNameViewModelsProvider.Provide());
 			SelectedItems = new ObservableCollection<object>();
@@ -58,7 +64,6 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 			EditCommand = new RelayCommand(Edit, CanEdit);
 			RemoveCommand = new RelayCommand(Remove, CanRemove);
 		}
-
 
 
 		/// <summary>
@@ -108,6 +113,23 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		{
 			get { return Property(() => RemoveCommand); }
 			private set { Property(() => RemoveCommand, value); }
+		}
+
+
+		/// <summary>
+		/// Method inheriting classes can override to apply custom logic to prevent the dialog from
+		/// closing when OK button is pressed.
+		/// </summary>
+		/// <returns>True if dialog should close;otherwise false.</returns>
+		protected override bool OnOk()
+		{
+			// Save the cameras
+			using (IPluginSettings pluginSettings = pluginSettingsProvider())
+			{
+				pluginSettings.SetCameras(Cameras.Select(camera => camera.Camera));
+			}
+
+			return true;
 		}
 
 

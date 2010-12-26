@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
 using MediaPortal.Configuration;
 using MediaPortal.Profile;
@@ -29,7 +30,7 @@ namespace AxisCameraMPPlugin.Data
 	/// <summary>
 	/// Class responsible for reading and saving settings.
 	/// </summary>
-	public class PluginSettings : IDisposable
+	public class PluginSettings : IPluginSettings
 	{
 		private static readonly string FileName = "axiscamerampplugin.xml";
 
@@ -77,7 +78,7 @@ namespace AxisCameraMPPlugin.Data
 			using (StringWriter writer = new StringWriter())
 			{
 				XmlSerializer serializer = new XmlSerializer(typeof(List<Camera>));
-				serializer.Serialize(writer, cameras);
+				serializer.Serialize(writer, cameras.ToList());
 
 				settings.SetValue(SettingNames.CameraSection, SettingNames.CamerasEntry, writer.ToString());
 			}

@@ -27,31 +27,47 @@ namespace AxisCameraMPPlugin.Mvvm
 	public abstract class DialogViewModelBase : ViewModelBase, IDialogViewModelBase
 	{
 		/// <summary>
-		/// Gets or sets the command responsible for OK click.
+		/// Initializes a new instance of the <see cref="DialogViewModelBase"/> class.
 		/// </summary>
-		public ICommand OkCommand { get; set; }
+		protected DialogViewModelBase()
+		{
+			OkCommand = new RelayCommand(Ok);
+		}
+
+
+		/// <summary>
+		/// Gets or sets the command for setting the DialogResult of a dialog.
+		/// </summary>
+		public ICommand DialogResultCommand { get; set; }
+
+
+		/// <summary>
+		/// Gets the command responsible for OK click.
+		/// </summary>
+		public ICommand OkCommand { get; private set; }
 
 
 		/// <summary>
 		/// Method inheriting classes can override to apply custom logic to prevent the dialog from
 		/// closing when OK button is pressed.
 		/// </summary>
-		protected virtual bool OnOk
+		/// <returns>True if dialog should close;otherwise false.</returns>
+		protected virtual bool OnOk()
 		{
-			get { return true; }
+			return true;
 		}
 
-
-		#region Command methods
 
 		/// <summary>
-		/// Determines whether OK can execute.
+		/// Ok method that executes when the OK button in a dialog is clicked.
 		/// </summary>
-		public bool CanOk(object parameter)
+		/// <param name="parameter">The command parameter</param>
+		private void Ok(object parameter)
 		{
-			return Validate() && OnOk;
+			if (Validate() && OnOk())
+			{
+				DialogResultCommand.Execute(true);
+			}
 		}
-
-		#endregion
 	}
 }
