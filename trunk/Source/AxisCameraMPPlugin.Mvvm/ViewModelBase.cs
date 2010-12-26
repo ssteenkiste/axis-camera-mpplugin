@@ -31,7 +31,7 @@ namespace AxisCameraMPPlugin.Mvvm
 	/// <summary>
 	/// Base class for all ViewModels.
 	/// </summary>
-	public abstract class ViewModelBase : INotifyPropertyChanged, IDataErrorInfo
+	public abstract class ViewModelBase : IViewModelBase, INotifyPropertyChanged, IDataErrorInfo
 	{
 		private readonly Dictionary<string, PropertyItem> properties;
 		private Validator validator;

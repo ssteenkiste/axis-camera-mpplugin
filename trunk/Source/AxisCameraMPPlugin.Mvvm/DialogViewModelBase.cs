@@ -24,7 +24,7 @@ namespace AxisCameraMPPlugin.Mvvm
 	/// <summary>
 	/// Base class for all ViewModels representing a modal dialog.
 	/// </summary>
-	public abstract class DialogViewModelBase : ViewModelBase
+	public abstract class DialogViewModelBase : ViewModelBase, IDialogViewModelBase
 	{
 		/// <summary>
 		/// Gets or sets the command responsible for OK click.

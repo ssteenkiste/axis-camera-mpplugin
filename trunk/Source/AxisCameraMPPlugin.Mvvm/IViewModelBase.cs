@@ -17,14 +17,14 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using AxisCameraMPPlugin.Mvvm;
+using System.ComponentModel;
 
-namespace AxisCameraMPPlugin.Configuration.ViewModel
+namespace AxisCameraMPPlugin.Mvvm
 {
 	/// <summary>
-	/// View model capable of adding, editing and removing cameras.
+	/// Interface for all ViewModels.
 	/// </summary>
-	class SetupDialogViewModel : DialogViewModelBase
+	public interface IViewModelBase : INotifyPropertyChanged
 	{
 	}
 }

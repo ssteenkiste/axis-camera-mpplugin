@@ -45,7 +45,8 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 		/// </param>
 		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
 		[SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
-		public void Show<T>(ViewModelBase viewModel, ViewModelBase ownerViewModel = null) where T : Window
+		public void Show<T>(IViewModelBase viewModel, IViewModelBase ownerViewModel = null)
+			where T : Window
 		{
 			if (viewModel == null) throw new ArgumentNullException("viewModel");
 			
@@ -75,7 +76,7 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 		/// </returns>
 		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
 		[SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
-		public bool? ShowDialog<T>(DialogViewModelBase viewModel, ViewModelBase ownerViewModel = null)
+		public bool? ShowDialog<T>(IDialogViewModelBase viewModel, IViewModelBase ownerViewModel = null)
 			where T : Window
 		{
 			if (viewModel == null) throw new ArgumentNullException("viewModel");
@@ -121,7 +122,7 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 		/// </returns>
 		[SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed")]
 		public MessageBoxResult ShowMessageBox(
-			ViewModelBase ownerViewModel,
+			IViewModelBase ownerViewModel,
 			string messageBoxText,
 			string caption = "",
 			MessageBoxButton button = MessageBoxButton.OK,
@@ -154,7 +155,7 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 		/// <returns>The DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
 		public WinFormsDialogResult ShowFolderBrowserDialog(
 			FolderBrowserDialogViewModel viewModel,
-			ViewModelBase ownerViewModel)
+			IViewModelBase ownerViewModel)
 		{
 			if (viewModel == null) throw new ArgumentNullException("viewModel");
 			if (ownerViewModel == null) throw new ArgumentNullException("ownerViewModel");
@@ -177,7 +178,7 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 		/// <returns>DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
 		public WinFormsDialogResult ShowOpenFileDialog(
 			OpenFileDialogViewModel viewModel,
-			ViewModelBase ownerViewModel)
+			IViewModelBase ownerViewModel)
 		{
 			if (viewModel == null) throw new ArgumentNullException("viewModel");
 			if (ownerViewModel == null) throw new ArgumentNullException("ownerViewModel");
@@ -195,7 +196,7 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 		/// <summary>
 		/// Finds window corresponding to specified ViewModel.
 		/// </summary>
-		private static Window FindOwnerWindow(ViewModelBase viewModel)
+		private static Window FindOwnerWindow(IViewModelBase viewModel)
 		{
 			FrameworkElement view = WindowServiceBehaviors.FindView(viewModel);
 

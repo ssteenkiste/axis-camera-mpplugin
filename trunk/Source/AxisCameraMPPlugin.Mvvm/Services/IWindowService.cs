@@ -39,7 +39,7 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 		/// A ViewModel that represents the owner window.
 		/// </param>
 		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
-		void Show<T>(ViewModelBase viewModel, ViewModelBase ownerViewModel) where T : Window;
+		void Show<T>(IViewModelBase viewModel, IViewModelBase ownerViewModel) where T : Window;
 
 
 		/// <summary>
@@ -54,7 +54,7 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 		/// A nullable value of type bool that signifies how a window was closed by the user.
 		/// </returns>
 		[SuppressMessage("Microsoft.Design", "CA1004:GenericMethodsShouldProvideTypeParameter")]
-		bool? ShowDialog<T>(DialogViewModelBase viewModel, ViewModelBase ownerViewModel)
+		bool? ShowDialog<T>(IDialogViewModelBase viewModel, IViewModelBase ownerViewModel)
 			where T : Window;
 
 
@@ -80,7 +80,7 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 		/// A MessageBoxResult value that specifies which message box button is clicked by the user.
 		/// </returns>
 		MessageBoxResult ShowMessageBox(
-			ViewModelBase ownerViewModel,
+			IViewModelBase ownerViewModel,
 			string messageBoxText,
 			string caption,
 			MessageBoxButton button,
@@ -99,7 +99,7 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 		/// <returns>The DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
 		WinFormsDialogResult ShowFolderBrowserDialog(
 			FolderBrowserDialogViewModel viewModel,
-			ViewModelBase ownerViewModel);
+			IViewModelBase ownerViewModel);
 
 
 		/// <summary>
@@ -112,6 +112,6 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 		/// <returns>DialogResult.OK if successful; otherwise DialogResult.Cancel.</returns>
 		WinFormsDialogResult ShowOpenFileDialog(
 			OpenFileDialogViewModel viewModel,
-			ViewModelBase ownerViewModel);
+			IViewModelBase ownerViewModel);
 	}
 }

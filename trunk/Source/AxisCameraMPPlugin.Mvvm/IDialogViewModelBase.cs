@@ -17,14 +17,24 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using AxisCameraMPPlugin.Mvvm;
+using System.Windows.Input;
 
-namespace AxisCameraMPPlugin.Configuration.ViewModel
+namespace AxisCameraMPPlugin.Mvvm
 {
 	/// <summary>
-	/// View model capable of adding, editing and removing cameras.
+	/// Interface for all ViewModels representing a modal dialog.
 	/// </summary>
-	class SetupDialogViewModel : DialogViewModelBase
+	public interface IDialogViewModelBase
 	{
+		/// <summary>
+		/// Gets or sets the command responsible for OK click.
+		/// </summary>
+		ICommand OkCommand { get; set; }
+
+
+		/// <summary>
+		/// Determines whether OK can execute.
+		/// </summary>
+		bool CanOk(object parameter);
 	}
 }
