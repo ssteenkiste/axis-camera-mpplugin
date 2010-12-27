@@ -29,6 +29,8 @@
 				<!-- Address -->
 				<TextBlock Text="Address:"/>
 				<TextBox
+					x:Name="addressTextBox"
+					x:FieldModifier="private"
 					Grid.Column="1"
 					MaxLength="64"
 					Text="{Binding
