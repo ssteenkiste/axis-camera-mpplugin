@@ -31,5 +31,11 @@ namespace AxisCameraMPPlugin.Mvvm
 		/// </summary>
 		/// <returns>true if validation succeeds; otherwise false.</returns>
 		bool Validate();
+
+
+		/// <summary>
+		/// Gets a value indicating whether the view model is valid.
+		/// </summary>
+		bool IsValid { get; }
 	}
 }

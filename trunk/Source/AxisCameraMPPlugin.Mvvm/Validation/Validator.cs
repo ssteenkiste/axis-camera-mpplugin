@@ -70,15 +70,32 @@ namespace AxisCameraMPPlugin.Mvvm.Validation
 			
 			IEnumerable<ValidationData> relevantRules = rules.Where(r => r.Name == propertyName);
 
+			// Default error message indicating valid property
+			string errorMessage = string.Empty;
+
 			foreach (ValidationData relevantRule in relevantRules)
 			{
-				if (!relevantRule.Rule.Validate(relevantRule.Property()))
+				// Prevent the first validation, it is triggered by the view when loaded
+				if (!relevantRule.IsFirstValidation)
 				{
-					return relevantRule.Rule.ErrorMessage;
+					relevantRule.IsValid = relevantRule.Rule.Validate(relevantRule.Property());
+
+					if (!relevantRule.IsValid)
+					{
+						errorMessage = relevantRule.Rule.ErrorMessage;
+						break;
+					}
 				}
 			}
 
-			return string.Empty;
+			// Mark the validators as having validated the property once, i.e. it is not the first
+			// validation anymore
+			foreach (ValidationData relevantRule in relevantRules)
+			{
+				relevantRule.IsFirstValidation = false;
+			}
+
+			return errorMessage;
 		}
 
 
@@ -91,6 +108,32 @@ namespace AxisCameraMPPlugin.Mvvm.Validation
 			return rules.Aggregate(
 				true,
 				(success, rule) => success && string.IsNullOrEmpty(Validate(rule.Name)));
+		}
+
+
+		/// <summary>
+		/// Gets a value indicating whether all added validation rules are valid.
+		/// </summary>
+		public bool IsValid
+		{
+			get { return rules.All(rule => rule.IsValid); }
+		}
+
+
+		/// <summary>
+		/// Gets an IEnumerable that contains all properties that are invalid.
+		/// </summary>
+		/// <returns>Property names that failed validation.</returns>
+		public IEnumerable<string> InvalidPropertyNames
+		{
+			get
+			{
+				return
+					(from rule in rules
+					 where !rule.IsValid
+					 select rule.Name)
+					.Distinct();
+			}
 		}
 
 
@@ -109,6 +152,7 @@ namespace AxisCameraMPPlugin.Mvvm.Validation
 				Name = nameExpression.GetName();
 				Property = nameExpression.Compile();
 				Rule = rule;
+				IsFirstValidation = true;
 			}
 
 
@@ -128,6 +172,18 @@ namespace AxisCameraMPPlugin.Mvvm.Validation
 			/// Gets the rule.
 			/// </summary>
 			public IValidationRule Rule { get; private set; }
+
+
+			/// <summary>
+			/// Gets or sets a value indicating whether this property has been validated before.
+			/// </summary>
+			public bool IsFirstValidation { get; set; }
+
+
+			/// <summary>
+			/// Gets or sets a value indicating whether this rule is valid.
+			/// </summary>
+			public bool IsValid { get; set; }
 		}
 	}
 }
