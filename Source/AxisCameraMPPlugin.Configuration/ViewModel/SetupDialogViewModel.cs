@@ -37,35 +37,28 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 	class SetupDialogViewModel : DialogViewModelBase, ISetupDialogViewModel
 	{
 		private readonly IWindowService windowService;
-		private readonly Func<string, IWizardDialogViewModel> wizardDialogViewModelProvider;
-		private readonly Func<IPluginSettings> pluginSettingsProvider;
-
+		private readonly Func<string, IWizardDialogViewModel> wizardProvider;
+		
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="SetupDialogViewModel"/> class.
 		/// </summary>
 		/// <param name="windowService">The window service.</param>
-		/// <param name="cameraNameViewModelsProvider">The CameraNameViewModels provider.</param>
-		/// <param name="wizardDialogViewModelProvider">
-		/// The wizard dialog view model provider.
-		/// </param>
-		/// <param name="pluginSettingsProvider">The plugin settings provider.</param>
+		/// <param name="camerasProvider">The camera view models provider.</param>
+		/// <param name="wizardProvider">The wizard view model provider.</param>
 		public SetupDialogViewModel(
 			IWindowService windowService,
-			ICameraNameViewModelsProvider cameraNameViewModelsProvider,
-			Func<string, IWizardDialogViewModel> wizardDialogViewModelProvider,
-			Func<IPluginSettings> pluginSettingsProvider)
+			ICameraNameViewModelsProvider camerasProvider,
+			Func<string, IWizardDialogViewModel> wizardProvider)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
-			if (cameraNameViewModelsProvider == null) throw new ArgumentNullException("cameraNameViewModelsProvider");
-			if (wizardDialogViewModelProvider == null) throw new ArgumentNullException("wizardDialogViewModelProvider");
-			if (pluginSettingsProvider == null) throw new ArgumentNullException("pluginSettings");
-
+			if (camerasProvider == null) throw new ArgumentNullException("camerasProvider");
+			if (wizardProvider == null) throw new ArgumentNullException("wizardProvider");
+			
 			this.windowService = windowService;
-			this.wizardDialogViewModelProvider = wizardDialogViewModelProvider;
-			this.pluginSettingsProvider = pluginSettingsProvider;
-
-			Cameras = new ObservableCollection<CameraNameViewModel>(cameraNameViewModelsProvider.Provide());
+			this.wizardProvider = wizardProvider;
+			
+			Cameras = new ObservableCollection<ICameraNameViewModel>(camerasProvider.Provide());
 			SelectedItems = new ObservableCollection<object>();
 
 			AddCommand = new RelayCommand(Add);
@@ -77,7 +70,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// <summary>
 		/// Gets the cameras.
 		/// </summary>
-		public ObservableCollection<CameraNameViewModel> Cameras
+		public ObservableCollection<ICameraNameViewModel> Cameras
 		{
 			get { return Property(() => Cameras); }
 			private set { Property(() => Cameras, value); }
@@ -125,28 +118,11 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 
 
 		/// <summary>
-		/// Method inheriting classes can override to apply custom logic to prevent the dialog from
-		/// closing when OK button is pressed.
-		/// </summary>
-		/// <returns>True if dialog should close;otherwise false.</returns>
-		protected override bool OnOk()
-		{
-			// Save the cameras
-			using (IPluginSettings pluginSettings = pluginSettingsProvider())
-			{
-				pluginSettings.SetCameras(Cameras.Select(camera => camera.Camera));
-			}
-
-			return true;
-		}
-
-
-		/// <summary>
 		/// Adds a new camera.
 		/// </summary>
 		private void Add(object parameter)
 		{
-			IWizardDialogViewModel viewModel = wizardDialogViewModelProvider(Resources.AddCamera_Title);
+			IWizardDialogViewModel viewModel = wizardProvider(Resources.AddCamera_Title);
 			windowService.ShowDialog<WizardDialog>(viewModel, this);
 		}
 
@@ -183,7 +159,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 
 			if (result == MessageBoxResult.Yes)
 			{
-				Cameras.Remove((CameraNameViewModel)SelectedItems.First());
+				Cameras.Remove((ICameraNameViewModel)SelectedItems.First());
 			}
 		}
 
