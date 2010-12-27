@@ -31,7 +31,11 @@
 				<TextBox
 					Grid.Column="1"
 					MaxLength="64"
-					Text="{Binding Address}"/>
+					Text="{Binding
+						Address,
+						Mode=TwoWay,
+						UpdateSourceTrigger=PropertyChanged,
+						ValidatesOnDataErrors=True}"/>
 
 				<!-- Port -->
 				<TextBlock
@@ -41,7 +45,11 @@
 					Grid.Row="1"
 					Grid.Column="1"
 					MaxLength="5"
-					Text="{Binding Port}"/>
+					Text="{Binding
+						Port,
+						Mode=TwoWay,
+						UpdateSourceTrigger=PropertyChanged,
+						ValidatesOnDataErrors=True}"/>
 			</Grid>
 		</GroupBox>
 		
@@ -64,7 +72,11 @@
 				<TextBox
 					Grid.Column="1"
 					MaxLength="64"
-					Text="{Binding Username}"/>
+					Text="{Binding
+						Username,
+						Mode=TwoWay,
+						UpdateSourceTrigger=PropertyChanged,
+						ValidatesOnDataErrors=True}"/>
 
 				<!-- Password -->
 				<TextBlock
@@ -77,7 +89,8 @@
 					mvvm:PasswordBoxBehaviors.Password="{Binding
 						Password,
 						Mode=TwoWay,
-						UpdateSourceTrigger=PropertyChanged}"/>
+						UpdateSourceTrigger=PropertyChanged,
+						ValidatesOnDataErrors=True}"/>
 
 			</Grid>
 		</GroupBox>

@@ -18,7 +18,6 @@
 
 #endregion
 using AxisCameraMPPlugin.Configuration.Properties;
-using AxisCameraMPPlugin.Mvvm;
 
 namespace AxisCameraMPPlugin.Configuration.ViewModel
 {
@@ -42,6 +41,46 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		public override string Description
 		{
 			get { return Resources.WizardPageOne_Description; }
+		}
+
+
+		/// <summary>
+		/// Gets or sets the address.
+		/// </summary>
+		public string Address
+		{
+			get { return Property(() => Address); }
+			set { Property(() => Address, value); }
+		}
+
+
+		/// <summary>
+		/// Gets or sets the HTTP port.
+		/// </summary>
+		public string Port
+		{
+			get { return Property(() => Port); }
+			set { Property(() => Port, value); }
+		}
+
+
+		/// <summary>
+		/// Gets or sets the username.
+		/// </summary>
+		public string Username
+		{
+			get { return Property(() => Username); }
+			set { Property(() => Username, value); }
+		}
+
+
+		/// <summary>
+		/// Gets or sets the password.
+		/// </summary>
+		public string Password
+		{
+			get { return Property(() => Password); }
+			set { Property(() => Password, value); }
 		}
 	}
 }
