@@ -66,6 +66,9 @@
     </Compile>
     <Compile Include="Provider\WizardPageViewModelsProvider.cs" />
     <Compile Include="ViewModel\CameraNameViewModel.cs" />
+    <Compile Include="ViewModel\ICameraNameViewModel.cs">
+      <DependentUpon>CameraNameViewModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\ISetupDialogViewModel.cs">
       <DependentUpon>SetupDialogViewModel.cs</DependentUpon>
     </Compile>

@@ -19,8 +19,10 @@
 #endregion
 using System;
 using System.Diagnostics;
+using System.Linq;
 using AxisCameraMPPlugin.Configuration.View;
 using AxisCameraMPPlugin.Configuration.ViewModel;
+using AxisCameraMPPlugin.Data;
 using AxisCameraMPPlugin.Mvvm.Services;
 
 namespace AxisCameraMPPlugin.Configuration
@@ -31,23 +33,28 @@ namespace AxisCameraMPPlugin.Configuration
 	public class ConfigurationStarter : IConfigurationStarter
 	{
 		private readonly IWindowService windowService;
-		private readonly Func<ISetupDialogViewModel> setupDialogViewModelProvider;
+		private readonly Func<ISetupDialogViewModel> setupProvider;
+		private readonly Func<IPluginSettings> pluginSettingsProvider;
 
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ConfigurationStarter"/> class.
 		/// </summary>
 		/// <param name="windowService">The window service.</param>
-		/// <param name="setupDialogViewModelProvider">The ISetupDialogViewModel provider.</param>
+		/// <param name="setupProvider">The setup view model provider.</param>
+		/// <param name="pluginSettingsProvider">The plugin settings provider.</param>
 		public ConfigurationStarter(
 			IWindowService windowService,
-			Func<ISetupDialogViewModel> setupDialogViewModelProvider)
+			Func<ISetupDialogViewModel> setupProvider,
+			Func<IPluginSettings> pluginSettingsProvider)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
-			if (setupDialogViewModelProvider == null) throw new ArgumentNullException("setupDialogViewModelProvider");
+			if (setupProvider == null) throw new ArgumentNullException("setupProvider");
+			if (pluginSettingsProvider == null) throw new ArgumentNullException("pluginSettingsProvider");
 
 			this.windowService = windowService;
-			this.setupDialogViewModelProvider = setupDialogViewModelProvider;
+			this.setupProvider = setupProvider;
+			this.pluginSettingsProvider = pluginSettingsProvider;
 		}
 
 
@@ -56,10 +63,18 @@ namespace AxisCameraMPPlugin.Configuration
 		/// </summary>
 		public void Start()
 		{
+			ISetupDialogViewModel setup = setupProvider();
+
 			// This is a workaround since the owning window is WinForms and we wish to open a WPF window
 			windowService.ShowDialog<SetupDialog>(
-				setupDialogViewModelProvider(),
+				setup,
 				Process.GetCurrentProcess().MainWindowHandle);
+			
+			// When the setup window has closed, save the cameras
+			using (IPluginSettings pluginSettings = pluginSettingsProvider())
+			{
+				pluginSettings.SetCameras(setup.Cameras.Select(camera => camera.Camera));
+			}
 		}
 	}
 }

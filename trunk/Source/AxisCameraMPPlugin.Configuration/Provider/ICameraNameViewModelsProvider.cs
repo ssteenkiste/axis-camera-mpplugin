@@ -30,6 +30,6 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 		/// <summary>
 		/// Returns a collection of CameraNameViewModels.
 		/// </summary>
-		IEnumerable<CameraNameViewModel> Provide();
+		IEnumerable<ICameraNameViewModel> Provide();
 	}
 }

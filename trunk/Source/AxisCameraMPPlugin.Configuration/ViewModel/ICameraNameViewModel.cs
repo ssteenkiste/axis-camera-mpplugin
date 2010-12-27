@@ -17,49 +17,19 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System;
 using AxisCameraMPPlugin.Data;
 using AxisCameraMPPlugin.Mvvm;
 
 namespace AxisCameraMPPlugin.Configuration.ViewModel
 {
 	/// <summary>
-	/// Class acting as view model when displaying a camera by its name.
+	/// Interface for CameraNameViewModel.
 	/// </summary>
-	class CameraNameViewModel : ViewModelBase, ICameraNameViewModel
+	public interface ICameraNameViewModel : IViewModelBase
 	{
-		/// <summary>
-		/// Initializes a new instance of the <see cref="CameraNameViewModel"/> class.
-		/// </summary>
-		/// <param name="camera">The camera.</param>
-		public CameraNameViewModel(Camera camera)
-		{
-			if (camera == null) throw new ArgumentNullException("camera");
-
-			Camera = camera;
-		}
-
-
-		/// <summary>
-		/// Gets the name of the camera.
-		/// </summary>
-		public string Name
-		{
-			get { return Camera.Name; }
-		}
-
-
 		/// <summary>
 		/// Gets the camera.
 		/// </summary>
-		public Camera Camera
-		{
-			get { return Property(() => Camera); }
-			private set
-			{
-				Property(() => Camera, value);
-				OnPropertyChanged(() => Name);
-			}
-		}
+		Camera Camera { get; }
 	}
 }

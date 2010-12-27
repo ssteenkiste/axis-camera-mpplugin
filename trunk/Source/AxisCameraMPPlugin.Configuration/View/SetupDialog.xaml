@@ -62,7 +62,6 @@
 			Grid.Row="1"
 			HorizontalAlignment="Right"
 			Content="Close"
-			Command="{Binding OkCommand}"
 			IsCancel="True"/>
 	</Grid>
 </Window>
