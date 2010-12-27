@@ -56,33 +56,40 @@
 	-->
 
 	<!-- Generic style for all buttons -->
-	<Style TargetType="Button" BasedOn="{StaticResource BaseStyle}">
+	<Style x:Key="ButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseStyle}">
 		<Setter Property="MinWidth" Value="75"/>
 		<Setter Property="HorizontalAlignment" Value="Center"/>
 		<Setter Property="VerticalAlignment" Value="Center"/>
 	</Style>
+	<Style TargetType="Button" BasedOn="{StaticResource ButtonStyle}"/>
 
 	<!-- Generic style for all group boxes -->
-	<Style TargetType="GroupBox" BasedOn="{StaticResource BaseStyle}"/>
+	<Style x:Key="GroupBoxStyle" TargetType="GroupBox" BasedOn="{StaticResource BaseStyle}"/>
+	<Style TargetType="GroupBox" BasedOn="{StaticResource GroupBoxStyle}"/>
 
 	<!-- Generic style for all items controls -->
-	<Style TargetType="ItemsControl" BasedOn="{StaticResource BaseStyle}"/>
+	<Style x:Key="ItemsControlStyle" TargetType="ItemsControl" BasedOn="{StaticResource BaseStyle}"/>
+	<Style TargetType="ItemsControl" BasedOn="{StaticResource ItemsControlStyle}"/>
 
 	<!-- Generic style for all list boxes -->
-	<Style TargetType="ListBox" BasedOn="{StaticResource BaseStyle}"/>
+	<Style x:Key="ListBoxStyle" TargetType="ListBox" BasedOn="{StaticResource BaseStyle}"/>
+	<Style TargetType="ListBox" BasedOn="{StaticResource ListBoxStyle}"/>
 	
 	<!-- Generic style for all password boxes -->
-	<Style TargetType="PasswordBox" BasedOn="{StaticResource BaseStyle}"/>
+	<Style x:Key="PasswordBoxStyle" TargetType="PasswordBox" BasedOn="{StaticResource BaseStyle}"/>
+	<Style TargetType="PasswordBox" BasedOn="{StaticResource PasswordBoxStyle}"/>
 
 	<!-- Generic style for all text blocks -->
-	<Style TargetType="TextBlock" BasedOn="{StaticResource BaseStyle}">
+	<Style x:Key="TextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseStyle}">
 		<Setter Property="TextTrimming" Value="CharacterEllipsis"/>
 		<Setter Property="VerticalAlignment" Value="Center"/>
 	</Style>
+	<Style TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}"/>
 
 	<!-- Generic style for all text boxes -->
-	<Style TargetType="TextBox" BasedOn="{StaticResource BaseStyle}">
+	<Style x:Key="TextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource BaseStyle}">
 		<Setter Property="VerticalAlignment" Value="Center"/>
 		<Setter Property="HorizontalAlignment" Value="Stretch"/>
 	</Style>
+	<Style TargetType="TextBox" BasedOn="{StaticResource TextBoxStyle}"/>
 </ResourceDictionary>
