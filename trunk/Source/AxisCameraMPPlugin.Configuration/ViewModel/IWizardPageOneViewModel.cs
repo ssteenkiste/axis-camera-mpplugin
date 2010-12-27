@@ -17,30 +17,13 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System.Collections.Generic;
-using System.Linq;
-using AxisCameraMPPlugin.Configuration.ViewModel;
-using AxisCameraMPPlugin.Data;
 
-namespace AxisCameraMPPlugin.Configuration.Provider
+namespace AxisCameraMPPlugin.Configuration.ViewModel
 {
 	/// <summary>
-	/// Class describing a provider that provides a sequence of CameraNameViewModels.
+	/// Interface for WizardPageOneViewModel.
 	/// </summary>
-	class CameraNameViewModelsProvider : ICameraNameViewModelsProvider
+	interface IWizardPageOneViewModel : IWizardPageViewModel
 	{
-		/// <summary>
-		/// Returns a collection of CameraNameViewModels.
-		/// </summary>
-		/// <returns></returns>
-		public IEnumerable<CameraNameViewModel> Provide()
-		{
-			using (IPluginSettings pluginSettings = new PluginSettings())
-			{
-				return pluginSettings
-					.GetCameras()
-					.Select(camera => new CameraNameViewModel(camera));
-			}
-		}
 	}
 }

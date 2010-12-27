@@ -24,6 +24,7 @@ using System.Windows;
 using System.Windows.Input;
 using AxisCameraMPPlugin.Configuration.Properties;
 using AxisCameraMPPlugin.Configuration.Provider;
+using AxisCameraMPPlugin.Configuration.View;
 using AxisCameraMPPlugin.Data;
 using AxisCameraMPPlugin.Mvvm;
 using AxisCameraMPPlugin.Mvvm.Services;
@@ -36,6 +37,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 	class SetupDialogViewModel : DialogViewModelBase, ISetupDialogViewModel
 	{
 		private readonly IWindowService windowService;
+		private readonly Func<string, IWizardDialogViewModel> wizardDialogViewModelProvider;
 		private readonly Func<IPluginSettings> pluginSettingsProvider;
 
 
@@ -44,17 +46,23 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// </summary>
 		/// <param name="windowService">The window service.</param>
 		/// <param name="cameraNameViewModelsProvider">The CameraNameViewModels provider.</param>
+		/// <param name="wizardDialogViewModelProvider">
+		/// The wizard dialog view model provider.
+		/// </param>
 		/// <param name="pluginSettingsProvider">The plugin settings provider.</param>
 		public SetupDialogViewModel(
 			IWindowService windowService,
 			ICameraNameViewModelsProvider cameraNameViewModelsProvider,
+			Func<string, IWizardDialogViewModel> wizardDialogViewModelProvider,
 			Func<IPluginSettings> pluginSettingsProvider)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
 			if (cameraNameViewModelsProvider == null) throw new ArgumentNullException("cameraNameViewModelsProvider");
+			if (wizardDialogViewModelProvider == null) throw new ArgumentNullException("wizardDialogViewModelProvider");
 			if (pluginSettingsProvider == null) throw new ArgumentNullException("pluginSettings");
 
 			this.windowService = windowService;
+			this.wizardDialogViewModelProvider = wizardDialogViewModelProvider;
 			this.pluginSettingsProvider = pluginSettingsProvider;
 
 			Cameras = new ObservableCollection<CameraNameViewModel>(cameraNameViewModelsProvider.Provide());
@@ -138,6 +146,8 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// </summary>
 		private void Add(object parameter)
 		{
+			IWizardDialogViewModel viewModel = wizardDialogViewModelProvider(Resources.AddCamera_Title);
+			windowService.ShowDialog<WizardDialog>(viewModel, this);
 		}
 
 

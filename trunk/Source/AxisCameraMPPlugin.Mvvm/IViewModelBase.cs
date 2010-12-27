@@ -26,5 +26,10 @@ namespace AxisCameraMPPlugin.Mvvm
 	/// </summary>
 	public interface IViewModelBase : INotifyPropertyChanged
 	{
+		/// <summary>
+		/// Validates all added validation rules.
+		/// </summary>
+		/// <returns>true if validation succeeds; otherwise false.</returns>
+		bool Validate();
 	}
 }

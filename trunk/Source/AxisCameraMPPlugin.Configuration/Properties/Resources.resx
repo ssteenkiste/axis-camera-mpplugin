@@ -117,10 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddCamera_Title" xml:space="preserve">
+    <value>Add Camera</value>
+  </data>
   <data name="RemoveCameraWarning" xml:space="preserve">
     <value>Are you sure you want to remove the selected camera.</value>
   </data>
   <data name="RemoveCameraWarning_Title" xml:space="preserve">
     <value>Remove Camera</value>
+  </data>
+  <data name="WizardPageOne_Description" xml:space="preserve">
+    <value>WizardPageOne Description</value>
+  </data>
+  <data name="WizardPageOne_Header" xml:space="preserve">
+    <value>WizardPageOne Header</value>
+  </data>
+  <data name="WizardPageTwo_Description" xml:space="preserve">
+    <value>WizardPageTwo Description</value>
+  </data>
+  <data name="WizardPageTwo_Header" xml:space="preserve">
+    <value>WizardPageTwo Header</value>
   </data>
 </root>
