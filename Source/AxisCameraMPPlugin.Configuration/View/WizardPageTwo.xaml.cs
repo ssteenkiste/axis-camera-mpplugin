@@ -18,6 +18,7 @@
 
 #endregion
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace AxisCameraMPPlugin.Configuration.View
 {
@@ -32,6 +33,9 @@ namespace AxisCameraMPPlugin.Configuration.View
 		public WizardPageTwo()
 		{
 			InitializeComponent();
+
+			// Set focus on the name text box
+			Loaded += (sender, e) => FocusManager.SetFocusedElement(this, nameTextBox);
 		}
 	}
 }

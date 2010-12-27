@@ -24,6 +24,8 @@
 		<!-- Name -->
 		<TextBlock Text="Name:"/>
 		<TextBox
+			x:Name="nameTextBox"
+			x:FieldModifier="private"
 			Grid.Column="1"
 			MaxLength="64"
 			Text="{Binding
