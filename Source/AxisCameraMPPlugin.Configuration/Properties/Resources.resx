@@ -126,6 +126,21 @@
   <data name="RemoveCameraWarning_Title" xml:space="preserve">
     <value>Remove Camera</value>
   </data>
+  <data name="Validation_Failed_Address" xml:space="preserve">
+    <value>Enter a network address.</value>
+  </data>
+  <data name="Validation_Failed_CameraName" xml:space="preserve">
+    <value>Enter a name of the camera.</value>
+  </data>
+  <data name="Validation_Failed_Password" xml:space="preserve">
+    <value>Enter a password that consist of one to eight characters. All characters are valid.</value>
+  </data>
+  <data name="Validation_Failed_Port" xml:space="preserve">
+    <value>Enter a port in range 1-65535.</value>
+  </data>
+  <data name="Validation_Failed_Username" xml:space="preserve">
+    <value>Enter a username that contains from one to fourteen characters. Valid characters are: A-Z, a-z, 0-9 and _ (underscore). Username must start with a letter.</value>
+  </data>
   <data name="WizardPageOne_Description" xml:space="preserve">
     <value>The camera is specified by entering network address and HTTP port. Credentials are used to validate you as a trusted user on the camera.</value>
   </data>

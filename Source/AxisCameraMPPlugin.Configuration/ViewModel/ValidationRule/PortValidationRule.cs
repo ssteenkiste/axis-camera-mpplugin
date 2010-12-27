@@ -17,25 +17,45 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+using AxisCameraMPPlugin.Configuration.Properties;
+using AxisCameraMPPlugin.Mvvm.Validation;
 
-namespace AxisCameraMPPlugin.Mvvm.Validation
+namespace AxisCameraMPPlugin.Configuration.ViewModel.ValidationRule
 {
 	/// <summary>
-	/// Interface describing a validation rule.
+	/// Validation rule that validates a HTTP port.
 	/// </summary>
-	public interface IValidationRule
+	class PortValidationRule : IValidationRule
 	{
 		/// <summary>
-		/// Validates a value.
+		/// Validates that specified value is a HTTP port.
 		/// </summary>
 		/// <param name="value">The value to validate.</param>
 		/// <returns>true if validation is successful; otherwise false.</returns>
-		bool Validate(object value);
+		public bool Validate(object value)
+		{
+			string portText = value as string;
+			if (string.IsNullOrEmpty(portText))
+			{
+				return false;
+			}
+
+			int port;
+			if (!int.TryParse(portText, out port))
+			{
+				return false;
+			}
+
+			return port > 0 && port < 65536;
+		}
 
 
 		/// <summary>
 		/// Gets the error message.
 		/// </summary>
-		string ErrorMessage { get; }
+		public string ErrorMessage
+		{
+			get { return Resources.Validation_Failed_Port; }
+		}
 	}
 }

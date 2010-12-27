@@ -18,7 +18,7 @@
 
 #endregion
 using AxisCameraMPPlugin.Configuration.Properties;
-using AxisCameraMPPlugin.Mvvm;
+using AxisCameraMPPlugin.Configuration.ViewModel.ValidationRule;
 
 namespace AxisCameraMPPlugin.Configuration.ViewModel
 {
@@ -27,6 +27,15 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 	/// </summary>
 	class WizardPageTwoViewModel : WizardPageViewModel, IWizardPageTwoViewModel
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="WizardPageTwoViewModel"/> class.
+		/// </summary>
+		public WizardPageTwoViewModel()
+		{
+			AddValidators();
+		}
+
+
 		/// <summary>
 		/// Gets the header of the wizard page.
 		/// </summary>
@@ -52,6 +61,17 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		{
 			get { return Property(() => Name); }
 			set { Property(() => Name, value); }
+		}
+
+
+		/// <summary>
+		/// Adds the validators.
+		/// </summary>
+		private void AddValidators()
+		{
+			AddValidator(
+				() => Name,
+				new NotEmptyStringValidationRule { ErrorMessage = Resources.Validation_Failed_CameraName });
 		}
 	}
 }

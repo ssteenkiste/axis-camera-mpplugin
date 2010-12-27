@@ -85,6 +85,9 @@
       <DependentUpon>WizardPageViewModel.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\SetupDialogViewModel.cs" />
+    <Compile Include="ViewModel\ValidationRule\NotEmptyStringValidationRule.cs" />
+    <Compile Include="ViewModel\ValidationRule\PortValidationRule.cs" />
+    <Compile Include="ViewModel\ValidationRule\UsernameValidationRule.cs" />
     <Compile Include="ViewModel\WizardDialogViewModel.cs" />
     <Compile Include="ViewModel\WizardPageOneViewModel.cs" />
     <Compile Include="ViewModel\WizardPageTwoViewModel.cs" />
@@ -155,6 +158,7 @@
   <ItemGroup>
     <Resource Include="Resources\surveillance-camera_32x32.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
