@@ -68,10 +68,9 @@
 			Grid.Row="1"
 			Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
 
-			<Frame
+			<ContentControl
 				Margin="9,9,9,3"
-				Content="{Binding CurrentWizardPage}"
-				NavigationUIVisibility="Hidden"/>
+				Content="{Binding CurrentWizardPage}"/>
 		</Grid>
 		
 		<!-- Wizard buttons -->
