@@ -6,7 +6,7 @@
 	
 	<!-- Resources -->
 	<UserControl.Resources>
-		<ResourceDictionary Source="/AxisCameraMPPlugin.Configuration;Component/VisualStyle/Styles.xaml"/>
+		<ResourceDictionary Source="WizardPageResources.xaml"/>
 	</UserControl.Resources>
 	
 	<!-- Root element -->
