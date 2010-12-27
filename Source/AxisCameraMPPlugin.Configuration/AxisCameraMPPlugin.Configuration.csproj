@@ -57,14 +57,24 @@
     </Compile>
     <Compile Include="Provider\CameraNameViewModelsProvider.cs" />
     <Compile Include="Provider\ICameraNameViewModelsProvider.cs" />
+    <Compile Include="Provider\IWizardPageViewModelsProvider.cs" />
+    <Compile Include="Provider\WizardPageViewModelsProvider.cs" />
     <Compile Include="ViewModel\CameraNameViewModel.cs" />
     <Compile Include="ViewModel\ISetupDialogViewModel.cs" />
+    <Compile Include="ViewModel\IWizardDialogViewModel.cs" />
+    <Compile Include="ViewModel\IWizardPageOneViewModel.cs" />
+    <Compile Include="ViewModel\IWizardPageTwoViewModel.cs" />
+    <Compile Include="ViewModel\IWizardPageViewModel.cs" />
     <Compile Include="ViewModel\SetupDialogViewModel.cs" />
+    <Compile Include="ViewModel\WizardDialogViewModel.cs" />
+    <Compile Include="ViewModel\WizardPageOneViewModel.cs" />
+    <Compile Include="ViewModel\WizardPageTwoViewModel.cs" />
+    <Compile Include="ViewModel\WizardPageViewModel.cs" />
     <Compile Include="View\SetupDialog.xaml.cs">
       <DependentUpon>SetupDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Wizard.xaml.cs">
-      <DependentUpon>Wizard.xaml</DependentUpon>
+    <Compile Include="View\WizardDialog.xaml.cs">
+      <DependentUpon>WizardDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WizardPageOne.xaml.cs">
       <DependentUpon>WizardPageOne.xaml</DependentUpon>
@@ -82,9 +92,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\Wizard.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="View\WizardDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\WizardDialogResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\WizardPageOne.xaml">
       <SubType>Designer</SubType>
@@ -114,6 +128,9 @@
       <Project>{442C117D-98D8-41A8-843B-716B66D60B97}</Project>
       <Name>AxisCameraMPPlugin.Mvvm</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\surveillance-camera_32x32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

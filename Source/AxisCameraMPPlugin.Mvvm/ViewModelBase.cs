@@ -77,6 +77,16 @@ namespace AxisCameraMPPlugin.Mvvm
 
 
 		/// <summary>
+		/// Validates all added validation rules.
+		/// </summary>
+		/// <returns>true if validation succeeds; otherwise false.</returns>
+		public bool Validate()
+		{
+			return validator != null ? validator.ValidateAll() : true;
+		}
+
+
+		/// <summary>
 		/// Adds a validation rule.
 		/// </summary>
 		/// <param name="nameExpression">The expression pointing to the property.</param>
@@ -92,16 +102,6 @@ namespace AxisCameraMPPlugin.Mvvm
 			}
 
 			validator.Add(nameExpression, validationRule);
-		}
-
-
-		/// <summary>
-		/// Validates all added validation rules.
-		/// </summary>
-		/// <returns>true if validation succeeds; otherwise false.</returns>
-		protected bool Validate()
-		{
-			return validator != null ? validator.ValidateAll() : true;
 		}
 
 

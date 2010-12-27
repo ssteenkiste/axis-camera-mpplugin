@@ -17,21 +17,31 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System.Windows;
+using AxisCameraMPPlugin.Configuration.Properties;
+using AxisCameraMPPlugin.Mvvm;
 
-namespace AxisCameraMPPlugin.Configuration.View
+namespace AxisCameraMPPlugin.Configuration.ViewModel
 {
 	/// <summary>
-	/// Wizard used when adding or editing a camera.
+	/// View model where camera network endpoint is entered.
 	/// </summary>
-	public partial class Wizard : Window
+	class WizardPageOneViewModel : ViewModelBase, IWizardPageOneViewModel
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Wizard"/> class.
+		/// Gets the header of the wizard page.
 		/// </summary>
-		public Wizard()
+		public string Header
 		{
-			InitializeComponent();
+			get { return Resources.WizardPageOne_Header; }
+		}
+
+
+		/// <summary>
+		/// Gets the description of the wizard page.
+		/// </summary>
+		public string Description
+		{
+			get { return Resources.WizardPageOne_Description; }
 		}
 	}
 }
