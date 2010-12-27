@@ -17,25 +17,30 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+using AxisCameraMPPlugin.Mvvm.Validation;
 
-namespace AxisCameraMPPlugin.Mvvm.Validation
+namespace AxisCameraMPPlugin.Configuration.ViewModel.ValidationRule
 {
 	/// <summary>
-	/// Interface describing a validation rule.
+	/// Validation rule that validates that a string isn't null or empty.
 	/// </summary>
-	public interface IValidationRule
+	class NotEmptyStringValidationRule : IValidationRule
 	{
 		/// <summary>
-		/// Validates a value.
+		/// Validates that specified value is a string, not being null or empty.
 		/// </summary>
 		/// <param name="value">The value to validate.</param>
 		/// <returns>true if validation is successful; otherwise false.</returns>
-		bool Validate(object value);
+		public bool Validate(object value)
+		{
+			string text = value as string;
+			return !string.IsNullOrEmpty(text);
+		}
 
 
 		/// <summary>
-		/// Gets the error message.
+		/// Gets or sets the error message.
 		/// </summary>
-		string ErrorMessage { get; }
+		public string ErrorMessage { get; set; }
 	}
 }

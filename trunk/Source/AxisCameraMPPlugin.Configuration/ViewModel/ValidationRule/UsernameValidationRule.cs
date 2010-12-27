@@ -17,25 +17,58 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+using System.Text.RegularExpressions;
+using AxisCameraMPPlugin.Configuration.Properties;
+using AxisCameraMPPlugin.Mvvm.Validation;
 
-namespace AxisCameraMPPlugin.Mvvm.Validation
+namespace AxisCameraMPPlugin.Configuration.ViewModel.ValidationRule
 {
 	/// <summary>
-	/// Interface describing a validation rule.
+	/// Validation rule that validates the username of a camera.
 	/// </summary>
-	public interface IValidationRule
+	class UsernameValidationRule : IValidationRule
 	{
+		private readonly Regex usernameRegex;
+
+
 		/// <summary>
-		/// Validates a value.
+		/// Initializes a new instance of the <see cref="UsernameValidationRule"/> class.
+		/// </summary>
+		public UsernameValidationRule()
+		{
+			usernameRegex = new Regex("^[A-Za-z]+[A-Za-z0-9]*$");
+		}
+
+		
+		/// <summary>
+		/// Validates the specified username.
 		/// </summary>
 		/// <param name="value">The value to validate.</param>
 		/// <returns>true if validation is successful; otherwise false.</returns>
-		bool Validate(object value);
+		public bool Validate(object value)
+		{
+			string username = value as string;
+			if (string.IsNullOrEmpty(username))
+			{
+				return false;
+			}
+
+			if (username.Length > 14)
+			{
+				return false;
+			}
+
+			// Make sure a user name starts with a letter and only contains letters and digits
+			return usernameRegex.IsMatch(username);
+		}
 
 
 		/// <summary>
 		/// Gets the error message.
 		/// </summary>
-		string ErrorMessage { get; }
+			public string ErrorMessage
+		{
+			get { return Resources.Validation_Failed_Username; }
+		}
 	}
 }

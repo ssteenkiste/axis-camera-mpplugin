@@ -88,6 +88,51 @@ namespace AxisCameraMPPlugin.Configuration.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter a network address..
+        /// </summary>
+        internal static string Validation_Failed_Address {
+            get {
+                return ResourceManager.GetString("Validation_Failed_Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter a name of the camera..
+        /// </summary>
+        internal static string Validation_Failed_CameraName {
+            get {
+                return ResourceManager.GetString("Validation_Failed_CameraName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter a password that consist of one to eight characters. All characters are valid..
+        /// </summary>
+        internal static string Validation_Failed_Password {
+            get {
+                return ResourceManager.GetString("Validation_Failed_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter a port in range 1-65535..
+        /// </summary>
+        internal static string Validation_Failed_Port {
+            get {
+                return ResourceManager.GetString("Validation_Failed_Port", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter a username that contains from one to fourteen characters. Valid characters are: A-Z, a-z, 0-9 and _ (underscore). Username must start with a letter..
+        /// </summary>
+        internal static string Validation_Failed_Username {
+            get {
+                return ResourceManager.GetString("Validation_Failed_Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The camera is specified by entering network address and HTTP port. Credentials are used to validate you as a trusted user on the camera..
         /// </summary>
         internal static string WizardPageOne_Description {
