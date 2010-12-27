@@ -24,7 +24,7 @@ namespace AxisCameraMPPlugin.Mvvm
 	/// <summary>
 	/// Interface for all ViewModels representing a modal dialog.
 	/// </summary>
-	public interface IDialogViewModelBase
+	public interface IDialogViewModelBase : IViewModelBase
 	{
 		/// <summary>
 		/// Gets or sets the command for setting the DialogResult of a dialog.

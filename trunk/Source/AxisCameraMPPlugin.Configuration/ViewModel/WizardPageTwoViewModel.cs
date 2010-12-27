@@ -25,12 +25,12 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 	/// <summary>
 	/// View model where camera name is entered and snapshot displayed.
 	/// </summary>
-	class WizardPageTwoViewModel : ViewModelBase, IWizardPageTwoViewModel
+	class WizardPageTwoViewModel : WizardPageViewModel, IWizardPageTwoViewModel
 	{
 		/// <summary>
 		/// Gets the header of the wizard page.
 		/// </summary>
-		public string Header
+		public override string Header
 		{
 			get { return Resources.WizardPageTwo_Header; }
 		}
@@ -39,7 +39,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// <summary>
 		/// Gets the description of the wizard page.
 		/// </summary>
-		public string Description
+		public override string Description
 		{
 			get { return Resources.WizardPageTwo_Description; }
 		}

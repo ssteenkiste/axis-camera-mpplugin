@@ -25,12 +25,12 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 	/// <summary>
 	/// View model where camera network endpoint is entered.
 	/// </summary>
-	class WizardPageOneViewModel : ViewModelBase, IWizardPageOneViewModel
+	class WizardPageOneViewModel : WizardPageViewModel, IWizardPageOneViewModel
 	{
 		/// <summary>
 		/// Gets the header of the wizard page.
 		/// </summary>
-		public string Header
+		public override string Header
 		{
 			get { return Resources.WizardPageOne_Header; }
 		}
@@ -39,7 +39,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// <summary>
 		/// Gets the description of the wizard page.
 		/// </summary>
-		public string Description
+		public override string Description
 		{
 			get { return Resources.WizardPageOne_Description; }
 		}

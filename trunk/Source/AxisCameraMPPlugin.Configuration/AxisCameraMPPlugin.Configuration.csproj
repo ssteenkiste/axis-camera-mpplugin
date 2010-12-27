@@ -48,7 +48,9 @@
     </Compile>
     <Compile Include="ConfigurationStarter.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="IConfigurationStarter.cs" />
+    <Compile Include="IConfigurationStarter.cs">
+      <DependentUpon>ConfigurationStarter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -56,15 +58,29 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Provider\CameraNameViewModelsProvider.cs" />
-    <Compile Include="Provider\ICameraNameViewModelsProvider.cs" />
-    <Compile Include="Provider\IWizardPageViewModelsProvider.cs" />
+    <Compile Include="Provider\ICameraNameViewModelsProvider.cs">
+      <DependentUpon>CameraNameViewModelsProvider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Provider\IWizardPageViewModelsProvider.cs">
+      <DependentUpon>WizardPageViewModelsProvider.cs</DependentUpon>
+    </Compile>
     <Compile Include="Provider\WizardPageViewModelsProvider.cs" />
     <Compile Include="ViewModel\CameraNameViewModel.cs" />
-    <Compile Include="ViewModel\ISetupDialogViewModel.cs" />
-    <Compile Include="ViewModel\IWizardDialogViewModel.cs" />
-    <Compile Include="ViewModel\IWizardPageOneViewModel.cs" />
-    <Compile Include="ViewModel\IWizardPageTwoViewModel.cs" />
-    <Compile Include="ViewModel\IWizardPageViewModel.cs" />
+    <Compile Include="ViewModel\ISetupDialogViewModel.cs">
+      <DependentUpon>SetupDialogViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\IWizardDialogViewModel.cs">
+      <DependentUpon>WizardDialogViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\IWizardPageOneViewModel.cs">
+      <DependentUpon>WizardPageOneViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\IWizardPageTwoViewModel.cs">
+      <DependentUpon>WizardPageTwoViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\IWizardPageViewModel.cs">
+      <DependentUpon>WizardPageViewModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\SetupDialogViewModel.cs" />
     <Compile Include="ViewModel\WizardDialogViewModel.cs" />
     <Compile Include="ViewModel\WizardPageOneViewModel.cs" />

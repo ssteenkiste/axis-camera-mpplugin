@@ -24,7 +24,17 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 	/// <summary>
 	/// View model acting as wizard page.
 	/// </summary>
-	abstract class WizardPageViewModel : ViewModelBase
+	abstract class WizardPageViewModel : ViewModelBase, IWizardPageViewModel
 	{
+		/// <summary>
+		/// Gets the header of the wizard page.
+		/// </summary>
+		public abstract string Header { get; }
+
+
+		/// <summary>
+		/// Gets the description of the wizard page.
+		/// </summary>
+		public abstract string Description { get; }
 	}
 }
