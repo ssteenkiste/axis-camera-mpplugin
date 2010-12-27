@@ -33,6 +33,10 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		public WizardPageOneViewModel()
 		{
 			AddValidators();
+
+			// Default values
+			Port = "80";
+			Username = "root";
 		}
 
 
