@@ -154,18 +154,22 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// </summary>
 		private void Next(object parameter)
 		{
-			int currentPageIndex = pages.IndexOf(CurrentWizardPage);
-			CurrentWizardPage = pages[currentPageIndex + 1];
+			// Validate current page before moving to next page
+			if (CurrentWizardPage.Validate())
+			{
+				int currentPageIndex = pages.IndexOf(CurrentWizardPage);
+				CurrentWizardPage = pages[currentPageIndex + 1];
+			}
 		}
 
 
 		/// <summary>
 		/// Determines whether the next page in the wizard can be shown. It can be shown if the current
-		/// page is valid, and it isn't the last.
+		/// page isn't the last.
 		/// </summary>
 		private bool CanNext(object parameter)
 		{
-			return CurrentWizardPage.Validate() && CurrentWizardPage != pages.Last();
+			return CurrentWizardPage != pages.Last();
 		}
 
 
@@ -174,17 +178,20 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// </summary>
 		private void Finish(object parameter)
 		{
-			DialogResultCommand.Execute(true);
+			// Validate last page page before finishing
+			if (CurrentWizardPage.Validate())
+			{
+				DialogResultCommand.Execute(true);
+			}
 		}
 
 
 		/// <summary>
-		/// Determines whether the wizard can be finished. Can be shown if current page is the last,
-		/// and it is valid.
+		/// Determines whether the wizard can be finished. Can be shown if current page is the last.
 		/// </summary>
 		private bool CanFinish(object parameter)
 		{
-			return CurrentWizardPage == pages.Last() && CurrentWizardPage.Validate();
+			return CurrentWizardPage == pages.Last();
 		}
 	}
 }

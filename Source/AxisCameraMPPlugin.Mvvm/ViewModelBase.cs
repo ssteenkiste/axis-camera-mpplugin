@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Linq.Expressions;
 using AxisCameraMPPlugin.Mvvm.Extensions.System.Linq.Expressions;
 using AxisCameraMPPlugin.Mvvm.Validation;
@@ -82,7 +83,27 @@ namespace AxisCameraMPPlugin.Mvvm
 		/// <returns>true if validation succeeds; otherwise false.</returns>
 		public bool Validate()
 		{
-			return validator != null ? validator.ValidateAll() : true;
+			if (validator == null)
+			{
+				return true;
+			}
+
+			// Get invalid properties
+			IEnumerable<string> propertyNamesWithErrors = validator.InvalidPropertyNames;
+			
+			// Send events about invalid properties
+			OnPropertiesChanged(propertyNamesWithErrors);
+
+			return !propertyNamesWithErrors.Any();
+		}
+
+
+		/// <summary>
+		/// Gets a value indicating whether the view model is valid.
+		/// </summary>
+		public bool IsValid
+		{
+			get { return validator != null ? validator.IsValid : true; }
 		}
 
 
@@ -132,6 +153,20 @@ namespace AxisCameraMPPlugin.Mvvm
 		protected void OnPropertyChanged<T>(Expression<Func<T>> nameExpression)
 		{
 			OnPropertyChanged(new PropertyChangedEventArgs(nameExpression.GetName()));
+		}
+
+
+		/// <summary>
+		/// Represents the method that will handle the PropertyChanged event raised when a property is
+		/// changed on a component.
+		/// </summary>
+		/// <param name="propertyNames"></param>
+		protected void OnPropertiesChanged(IEnumerable<string> propertyNames)
+		{
+			foreach (string propertyName in propertyNames)
+			{
+				OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
+			}
 		}
 
 
