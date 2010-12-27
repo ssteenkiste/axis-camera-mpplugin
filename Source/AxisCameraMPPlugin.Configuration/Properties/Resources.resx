@@ -127,15 +127,15 @@
     <value>Remove Camera</value>
   </data>
   <data name="WizardPageOne_Description" xml:space="preserve">
-    <value>WizardPageOne Description</value>
+    <value>The camera is specified by entering network address and HTTP port. Credentials are used to validate you as a trusted user on the camera.</value>
   </data>
   <data name="WizardPageOne_Header" xml:space="preserve">
-    <value>WizardPageOne Header</value>
+    <value>Select Camera</value>
   </data>
   <data name="WizardPageTwo_Description" xml:space="preserve">
-    <value>WizardPageTwo Description</value>
+    <value>Finish the operation by specifying a name and snapshot identifying the camera inside MediaPortal.</value>
   </data>
   <data name="WizardPageTwo_Header" xml:space="preserve">
-    <value>WizardPageTwo Header</value>
+    <value>Finish Operation</value>
   </data>
 </root>
