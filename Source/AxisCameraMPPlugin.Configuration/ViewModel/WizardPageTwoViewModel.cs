@@ -43,5 +43,15 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		{
 			get { return Resources.WizardPageTwo_Description; }
 		}
+
+
+		/// <summary>
+		/// Gets or sets the name.
+		/// </summary>
+		public string Name
+		{
+			get { return Property(() => Name); }
+			set { Property(() => Name, value); }
+		}
 	}
 }
