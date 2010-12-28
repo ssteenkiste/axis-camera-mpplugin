@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+using System;
 
 namespace AxisCameraMPPlugin.Data
 {
@@ -25,6 +26,12 @@ namespace AxisCameraMPPlugin.Data
 	/// </summary>
 	public class Camera
 	{
+		/// <summary>
+		/// Gets or sets the Id.
+		/// </summary>
+		public Guid Id { get; set; }
+
+
 		/// <summary>
 		/// Gets or sets the name.
 		/// </summary>
@@ -59,5 +66,26 @@ namespace AxisCameraMPPlugin.Data
 		/// Gets or sets the snapshot.
 		/// </summary>
 		public string SnapshotPath { get; set; }
+
+
+		/// <summary>
+		/// Creates a new object that is a deep copy of the current instance.
+		/// </summary>
+		/// <returns>
+		/// A new object that is a deep copy of this instance.
+		/// </returns>
+		public Camera Clone()
+		{
+			return new Camera
+			{
+				Id = Id,
+				Name = Name,
+				Address = Address,
+				Port = Port,
+				UserName = UserName,
+				Password = Password,
+				SnapshotPath = SnapshotPath
+			};
+		}
 	}
 }

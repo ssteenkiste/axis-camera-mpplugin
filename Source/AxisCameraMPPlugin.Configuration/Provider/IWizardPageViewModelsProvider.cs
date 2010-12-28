@@ -19,6 +19,7 @@
 #endregion
 using System.Collections.Generic;
 using AxisCameraMPPlugin.Configuration.ViewModel;
+using AxisCameraMPPlugin.Data;
 
 namespace AxisCameraMPPlugin.Configuration.Provider
 {
@@ -30,6 +31,7 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 		/// <summary>
 		/// Returns a collection of WizardPageViewModels.
 		/// </summary>
-		IEnumerable<IWizardPageViewModel> Provide();
+		/// <param name="camera">The camera configured by the wizard pages.</param>
+		IEnumerable<IWizardPageViewModel> Provide(Camera camera);
 	}
 }

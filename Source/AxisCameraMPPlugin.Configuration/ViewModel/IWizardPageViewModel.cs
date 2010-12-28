@@ -38,6 +38,14 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// </summary>
 		string Description { get; }
 
+
+		/// <summary>
+		/// Loads page properties from specified camera.
+		/// </summary>
+		/// <param name="camera">The camera to load page properties from.</param>
+		void Load(Camera camera);
+
+
 		/// <summary>
 		/// Saves page properties to specified camera.
 		/// </summary>

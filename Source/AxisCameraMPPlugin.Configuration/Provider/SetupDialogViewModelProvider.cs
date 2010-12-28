@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using AxisCameraMPPlugin.Configuration.ViewModel;
+using AxisCameraMPPlugin.Data;
 using AxisCameraMPPlugin.Mvvm.Services;
 
 namespace AxisCameraMPPlugin.Configuration.Provider
@@ -31,7 +32,7 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 	{
 		private readonly IWindowService windowService;
 		private readonly ICameraNameViewModelProvider cameraProvider;
-		private readonly Func<string, IWizardDialogViewModel> wizardProvider;
+		private readonly Func<string, Camera, IWizardDialogViewModel> wizardProvider;
 
 
 		/// <summary>
@@ -43,7 +44,7 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 		public SetupDialogViewModelProvider(
 			IWindowService windowService,
 			ICameraNameViewModelProvider cameraProvider,
-			Func<string, IWizardDialogViewModel> wizardProvider)
+			Func<string, Camera, IWizardDialogViewModel> wizardProvider)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
 			if (cameraProvider == null) throw new ArgumentNullException("cameraProvider");

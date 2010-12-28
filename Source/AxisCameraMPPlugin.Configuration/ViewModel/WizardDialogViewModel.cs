@@ -39,22 +39,25 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// Initializes a new instance of the <see cref="WizardDialogViewModel"/> class.
 		/// </summary>
 		/// <param name="title">The title of the dialog.</param>
+		/// <param name="camera">The camera configured by the wizard.</param>
 		/// <param name="wizardPagesProvider">The wizard page view models provider.</param>
 		public WizardDialogViewModel(
 			string title,
+			Camera camera,
 			IWizardPageViewModelsProvider wizardPagesProvider)
 		{
 			if (title == null) throw new ArgumentNullException("title");
+			if (camera == null) throw new ArgumentNullException("camera");
 			if (wizardPagesProvider == null) throw new ArgumentNullException("wizardPagesProvider");
 
-			pages = new List<IWizardPageViewModel>(wizardPagesProvider.Provide());
+			pages = new List<IWizardPageViewModel>(wizardPagesProvider.Provide(camera));
 
 			Title = title;
 			CurrentWizardPage = pages.First();
+			Camera = camera;
 			PreviousCommand = new RelayCommand(Previous, CanPrevious);
 			NextCommand = new RelayCommand(Next, CanNext);
 			FinishCommand = new RelayCommand(Finish, CanFinish);
-			Camera = new Camera();
 		}
 
 
