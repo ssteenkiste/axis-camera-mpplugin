@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+using System.Collections;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -87,6 +88,7 @@ namespace AxisCameraMPPlugin.Mvvm
 
 			if (e.NewValue != null)
 			{
+				Add(listBox, listBox.SelectedItems);
 				listBox.SelectionChanged += ListBox_SelectionChanged;
 			}
 			else
@@ -109,24 +111,48 @@ namespace AxisCameraMPPlugin.Mvvm
 				return;
 			}
 
-			ObservableCollection<object> selectedItems = GetSelectedItems(target);
-			if (selectedItems == null)
-			{
-				return;
-			}
-
 			// The default value for properties e.AddedItems and e.RemovedItems is an empty array, thus
 			// there is no need to check for null
-			foreach (object addedItem in e.AddedItems)
-			{
-				selectedItems.Add(addedItem);
-			}
-			foreach (object removedItem in e.RemovedItems)
-			{
-				selectedItems.Remove(removedItem);
-			}
+			Add(target, e.AddedItems);
+			Remove(target, e.RemovedItems);
 		}
 
 		#endregion
+
+
+		/// <summary>
+		/// Add items to the list of selected items.
+		/// </summary>
+		/// <param name="target">The object with the attached property.</param>
+		/// <param name="addedItems">The items to add.</param>
+		private static void Add(DependencyObject target, IList addedItems)
+		{
+			ObservableCollection<object> selectedItems = GetSelectedItems(target);
+			if (selectedItems != null)
+			{
+				foreach (object addedItem in addedItems)
+				{
+					selectedItems.Add(addedItem);
+				}
+			}
+		}
+
+
+		/// <summary>
+		/// Remove items from the list of selected items.
+		/// </summary>
+		/// <param name="target">The object with the attached property.</param>
+		/// <param name="removedItems">The items to remove.</param>
+		private static void Remove(DependencyObject target, IList removedItems)
+		{
+			ObservableCollection<object> selectedItems = GetSelectedItems(target);
+			if (selectedItems != null)
+			{
+				foreach (object removedItem in removedItems)
+				{
+					selectedItems.Remove(removedItem);
+				}
+			}
+		}
 	}
 }
