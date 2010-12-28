@@ -69,8 +69,8 @@
 					<ColumnDefinition/>
 				</Grid.ColumnDefinitions>
 
-				<!-- Username -->
-				<TextBlock Text="Username:"/>
+				<!-- User name -->
+				<TextBlock Text="User name:"/>
 				<TextBox
 					Grid.Column="1"
 					MaxLength="64"

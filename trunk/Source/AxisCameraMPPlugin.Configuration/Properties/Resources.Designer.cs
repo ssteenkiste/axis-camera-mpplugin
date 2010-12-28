@@ -124,7 +124,7 @@ namespace AxisCameraMPPlugin.Configuration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter a username that contains from one to fourteen characters. Valid characters are: A-Z, a-z, 0-9 and _ (underscore). Username must start with a letter..
+        ///   Looks up a localized string similar to Enter a user name that contains from one to fourteen characters. Valid characters are: A-Z, a-z, 0-9 and _ (underscore). User name must start with a letter..
         /// </summary>
         internal static string Validation_Failed_UserName {
             get {

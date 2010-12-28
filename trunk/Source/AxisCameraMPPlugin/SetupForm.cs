@@ -128,7 +128,7 @@ namespace AxisCameraMPPlugin
 		{
 			return PluginResources.Plugin_Name;
 		}
-		
+
 
 		/// <summary>
 		/// Show the setup dialog
@@ -153,18 +153,6 @@ namespace AxisCameraMPPlugin
 
 
 		/// <summary>
-		/// Gets called by the runtime when the window is not longer shown.
-		/// </summary>
-		public override void Dispose()
-		{
-			base.Dispose();
-
-			container.Dispose();
-			container = null;
-		}
-
-
-		/// <summary>
 		/// Configures the container.
 		/// </summary>
 		private void ConfigureContainer()
@@ -174,5 +162,52 @@ namespace AxisCameraMPPlugin
 
 			container = builder.Build();
 		}
+
+
+		#region IDisposable Members
+
+		/// <summary>
+		/// Gets called by the runtime when the window is not longer shown.
+		/// </summary>
+		public sealed override void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the SetupForm is
+		/// reclaimed by garbage collection.
+		/// </summary>
+		~SetupForm()
+		{
+			Dispose(false);
+		}
+
+
+		/// <summary>
+		/// Releases unmanaged and optionally managed resources.
+		/// </summary>
+		/// <param name="disposing">
+		/// true to release both managed and unmanaged resources; false to release only unmanaged
+		/// resources.
+		/// </param>
+		protected virtual void Dispose(bool disposing)
+		{
+			base.Dispose();
+
+			if (disposing)
+			{
+				// Free managed resources
+				if (container != null)
+				{
+					container.Dispose();
+					container = null;
+				}
+			}
+		}
+
+		#endregion
 	}
 }

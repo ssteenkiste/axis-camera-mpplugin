@@ -19,6 +19,7 @@
 #endregion
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
@@ -32,7 +33,7 @@ namespace AxisCameraMPPlugin.Data
 	/// </summary>
 	public class PluginSettings : IPluginSettings
 	{
-		private static readonly string FileName = "axiscamerampplugin.xml";
+		private const string FileName = "axiscamerampplugin.xml";
 
 		private Settings settings;
 
@@ -53,7 +54,7 @@ namespace AxisCameraMPPlugin.Data
 		{
 			string value = settings.GetValue(SettingNames.CameraSection, SettingNames.CamerasEntry);
 
-			if (value != string.Empty)
+			if (!string.IsNullOrEmpty(value))
 			{
 				using (StringReader reader = new StringReader(value))
 				{
@@ -74,8 +75,8 @@ namespace AxisCameraMPPlugin.Data
 		public void SetCameras(IEnumerable<Camera> cameras)
 		{
 			if (cameras == null) throw new ArgumentNullException("cameras");
-			
-			using (StringWriter writer = new StringWriter())
+
+			using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
 			{
 				XmlSerializer serializer = new XmlSerializer(typeof(List<Camera>));
 				serializer.Serialize(writer, cameras.ToList());

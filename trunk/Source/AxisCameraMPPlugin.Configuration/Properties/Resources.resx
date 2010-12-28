@@ -139,7 +139,7 @@
     <value>Enter a port in range 1-65535.</value>
   </data>
   <data name="Validation_Failed_UserName" xml:space="preserve">
-    <value>Enter a username that contains from one to fourteen characters. Valid characters are: A-Z, a-z, 0-9 and _ (underscore). Username must start with a letter.</value>
+    <value>Enter a user name that contains from one to fourteen characters. Valid characters are: A-Z, a-z, 0-9 and _ (underscore). User name must start with a letter.</value>
   </data>
   <data name="WizardPageOne_Description" xml:space="preserve">
     <value>The camera is specified by entering network address and HTTP port. Credentials are used to validate you as a trusted user on the camera.</value>
