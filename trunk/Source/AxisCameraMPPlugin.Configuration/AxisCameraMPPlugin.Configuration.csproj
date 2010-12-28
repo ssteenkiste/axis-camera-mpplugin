@@ -61,10 +61,18 @@
     <Compile Include="Provider\ICameraNameViewModelProvider.cs">
       <DependentUpon>CameraNameViewModelProvider.cs</DependentUpon>
     </Compile>
+    <Compile Include="Provider\ISetupDialogViewModelProvider.cs">
+      <DependentUpon>SetupDialogViewModelProvider.cs</DependentUpon>
+    </Compile>
     <Compile Include="Provider\IWizardPageViewModelsProvider.cs">
       <DependentUpon>WizardPageViewModelsProvider.cs</DependentUpon>
     </Compile>
+    <Compile Include="Provider\SetupDialogViewModelProvider.cs" />
     <Compile Include="Provider\WizardPageViewModelsProvider.cs" />
+    <Compile Include="Service\CurrentProcessService.cs" />
+    <Compile Include="Service\ICurrentProcessService.cs">
+      <DependentUpon>CurrentProcessService.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\CameraNameViewModel.cs" />
     <Compile Include="ViewModel\ICameraNameViewModel.cs">
       <DependentUpon>CameraNameViewModel.cs</DependentUpon>

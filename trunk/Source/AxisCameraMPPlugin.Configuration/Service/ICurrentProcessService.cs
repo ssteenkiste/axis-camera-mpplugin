@@ -17,20 +17,18 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using AxisCameraMPPlugin.Configuration.ViewModel;
-using AxisCameraMPPlugin.Data;
+using System;
 
-namespace AxisCameraMPPlugin.Configuration.Provider
+namespace AxisCameraMPPlugin.Configuration.Service
 {
 	/// <summary>
-	/// Interface describing a provider that provides a ICameraNameViewModel.
+	/// Interface providing information about the current process.
 	/// </summary>
-	public interface ICameraNameViewModelProvider
+	public interface ICurrentProcessService
 	{
 		/// <summary>
-		/// Returns a ICameraNameViewModel created from a Camera.
+		/// Gets the window handle of the main window of the associated process.
 		/// </summary>
-		/// <param name="camera">The camera to turn into a ICameraNameViewModel.</param>
-		ICameraNameViewModel Provide(Camera camera);
+		IntPtr MainWindowHandle { get; }
 	}
 }

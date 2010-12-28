@@ -18,8 +18,10 @@
 
 #endregion
 using System;
-using System.Diagnostics;
+using System.Collections.Generic;
 using System.Linq;
+using AxisCameraMPPlugin.Configuration.Provider;
+using AxisCameraMPPlugin.Configuration.Service;
 using AxisCameraMPPlugin.Configuration.View;
 using AxisCameraMPPlugin.Configuration.ViewModel;
 using AxisCameraMPPlugin.Data;
@@ -33,28 +35,38 @@ namespace AxisCameraMPPlugin.Configuration
 	public class ConfigurationStarter : IConfigurationStarter
 	{
 		private readonly IWindowService windowService;
-		private readonly Func<ISetupDialogViewModel> setupProvider;
-		private readonly Func<IPluginSettings> pluginSettingsProvider;
+		private readonly IPluginSettings pluginSettings;
+		private readonly ICurrentProcessService currentProcessService;
+		private readonly ISetupDialogViewModelProvider setupProvider;
+		private readonly ICameraNameViewModelProvider cameraProvider;
 
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="ConfigurationStarter"/> class.
 		/// </summary>
 		/// <param name="windowService">The window service.</param>
+		/// <param name="pluginSettings">The plugin settings.</param>
+		/// <param name="currentProcessService">The current process service.</param>
 		/// <param name="setupProvider">The setup view model provider.</param>
-		/// <param name="pluginSettingsProvider">The plugin settings provider.</param>
+		/// <param name="cameraProvider">The camera name view model provider.</param>
 		public ConfigurationStarter(
 			IWindowService windowService,
-			Func<ISetupDialogViewModel> setupProvider,
-			Func<IPluginSettings> pluginSettingsProvider)
+			IPluginSettings pluginSettings,
+			ICurrentProcessService currentProcessService,
+			ISetupDialogViewModelProvider setupProvider,
+			ICameraNameViewModelProvider cameraProvider)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
+			if (pluginSettings == null) throw new ArgumentNullException("pluginSettings");
+			if (currentProcessService == null) throw new ArgumentNullException("currentProcessService");
 			if (setupProvider == null) throw new ArgumentNullException("setupProvider");
-			if (pluginSettingsProvider == null) throw new ArgumentNullException("pluginSettingsProvider");
+			if (cameraProvider == null) throw new ArgumentNullException("cameraProvider");
 
 			this.windowService = windowService;
+			this.pluginSettings = pluginSettings;
+			this.currentProcessService = currentProcessService;
 			this.setupProvider = setupProvider;
-			this.pluginSettingsProvider = pluginSettingsProvider;
+			this.cameraProvider = cameraProvider;
 		}
 
 
@@ -63,18 +75,20 @@ namespace AxisCameraMPPlugin.Configuration
 		/// </summary>
 		public void Start()
 		{
-			ISetupDialogViewModel setup = setupProvider();
+			IEnumerable<ICameraNameViewModel> cameras = pluginSettings
+				.GetCameras()
+				.Select(camera => cameraProvider.Provide(camera));
 
-			// This is a workaround since the owning window is WinForms and we wish to open a WPF window
+			ISetupDialogViewModel setup = setupProvider.Provide(cameras);
+
+			// Getting the window handle of the current process is a workaround since the owning window
+			// is WinForms and we wish to open a WPF window
 			windowService.ShowDialog<SetupDialog>(
 				setup,
-				Process.GetCurrentProcess().MainWindowHandle);
-			
+				currentProcessService.MainWindowHandle);
+
 			// When the setup window has closed, save the cameras
-			using (IPluginSettings pluginSettings = pluginSettingsProvider())
-			{
-				pluginSettings.SetCameras(setup.Cameras.Select(camera => camera.Camera));
-			}
+			pluginSettings.SetCameras(setup.Cameras.Select(camera => camera.Camera));
 		}
 	}
 }
