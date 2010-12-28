@@ -26,7 +26,6 @@ using System.Windows.Input;
 using AxisCameraMPPlugin.Configuration.Properties;
 using AxisCameraMPPlugin.Configuration.Provider;
 using AxisCameraMPPlugin.Configuration.View;
-using AxisCameraMPPlugin.Data;
 using AxisCameraMPPlugin.Mvvm;
 using AxisCameraMPPlugin.Mvvm.Services;
 

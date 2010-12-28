@@ -17,8 +17,8 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using AxisCameraMPPlugin.Mvvm;
 using AxisCameraMPPlugin.Data;
+using AxisCameraMPPlugin.Mvvm;
 
 namespace AxisCameraMPPlugin.Configuration.ViewModel
 {
