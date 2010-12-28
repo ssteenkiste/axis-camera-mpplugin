@@ -26,15 +26,15 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel.ValidationRule
 	/// <summary>
 	/// Validation rule that validates the username of a camera.
 	/// </summary>
-	class UsernameValidationRule : IValidationRule
+	class UserNameValidationRule : IValidationRule
 	{
 		private readonly Regex usernameRegex;
 
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="UsernameValidationRule"/> class.
+		/// Initializes a new instance of the <see cref="UserNameValidationRule"/> class.
 		/// </summary>
-		public UsernameValidationRule()
+		public UserNameValidationRule()
 		{
 			usernameRegex = new Regex("^[A-Za-z]+[A-Za-z0-9]*$");
 		}
@@ -68,7 +68,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel.ValidationRule
 		/// </summary>
 			public string ErrorMessage
 		{
-			get { return Resources.Validation_Failed_Username; }
+			get { return Resources.Validation_Failed_UserName; }
 		}
 	}
 }

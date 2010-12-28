@@ -75,7 +75,7 @@
 					Grid.Column="1"
 					MaxLength="64"
 					Text="{Binding
-						Username,
+						UserName,
 						Mode=TwoWay,
 						UpdateSourceTrigger=PropertyChanged,
 						ValidatesOnDataErrors=True}"/>
