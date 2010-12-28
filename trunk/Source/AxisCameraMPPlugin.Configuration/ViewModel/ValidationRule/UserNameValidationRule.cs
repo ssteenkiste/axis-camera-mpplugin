@@ -24,11 +24,11 @@ using AxisCameraMPPlugin.Mvvm.Validation;
 namespace AxisCameraMPPlugin.Configuration.ViewModel.ValidationRule
 {
 	/// <summary>
-	/// Validation rule that validates the username of a camera.
+	/// Validation rule that validates the user name of a camera.
 	/// </summary>
 	class UserNameValidationRule : IValidationRule
 	{
-		private readonly Regex usernameRegex;
+		private readonly Regex userNameRegex;
 
 
 		/// <summary>
@@ -36,30 +36,30 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel.ValidationRule
 		/// </summary>
 		public UserNameValidationRule()
 		{
-			usernameRegex = new Regex("^[A-Za-z]+[A-Za-z0-9_]*$");
+			userNameRegex = new Regex("^[A-Za-z]+[A-Za-z0-9_]*$");
 		}
 
 
 		/// <summary>
-		/// Validates the specified username.
+		/// Validates the specified user name.
 		/// </summary>
 		/// <param name="value">The value to validate.</param>
 		/// <returns>true if validation is successful; otherwise false.</returns>
 		public bool Validate(object value)
 		{
-			string username = value as string;
-			if (string.IsNullOrEmpty(username))
+			string userName = value as string;
+			if (string.IsNullOrEmpty(userName))
 			{
 				return false;
 			}
 
-			if (username.Length > 14)
+			if (userName.Length > 14)
 			{
 				return false;
 			}
 
 			// Make sure a user name starts with a letter and only contains letters and digits
-			return usernameRegex.IsMatch(username);
+			return userNameRegex.IsMatch(userName);
 		}
 
 

@@ -63,7 +63,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 
 
 		/// <summary>
-		/// Gets or sets the username.
+		/// Gets or sets the user name.
 		/// </summary>
 		public string UserName
 		{
