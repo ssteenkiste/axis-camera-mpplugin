@@ -36,10 +36,10 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel.ValidationRule
 		/// </summary>
 		public UserNameValidationRule()
 		{
-			usernameRegex = new Regex("^[A-Za-z]+[A-Za-z0-9]*$");
+			usernameRegex = new Regex("^[A-Za-z]+[A-Za-z0-9_]*$");
 		}
 
-		
+
 		/// <summary>
 		/// Validates the specified username.
 		/// </summary>
@@ -66,7 +66,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel.ValidationRule
 		/// <summary>
 		/// Gets the error message.
 		/// </summary>
-			public string ErrorMessage
+		public string ErrorMessage
 		{
 			get { return Resources.Validation_Failed_UserName; }
 		}
