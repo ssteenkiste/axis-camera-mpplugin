@@ -46,33 +46,25 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// Initializes a new instance of the <see cref="SetupDialogViewModel"/> class.
 		/// </summary>
 		/// <param name="windowService">The window service.</param>
-		/// <param name="pluginSettingsProvider">The plugin settings provider.</param>
 		/// <param name="cameraProvider">The camera name view model provider.</param>
 		/// <param name="wizardProvider">The wizard view model provider.</param>
+		/// <param name="cameras">The cameras.</param>
 		public SetupDialogViewModel(
 			IWindowService windowService,
-			Func<IPluginSettings> pluginSettingsProvider,
 			ICameraNameViewModelProvider cameraProvider,
-			Func<string, IWizardDialogViewModel> wizardProvider)
+			Func<string, IWizardDialogViewModel> wizardProvider,
+			IEnumerable<ICameraNameViewModel> cameras)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
-			if (pluginSettingsProvider == null) throw new ArgumentNullException("pluginSettingsProvider");
 			if (cameraProvider == null) throw new ArgumentNullException("cameraProvider");
 			if (wizardProvider == null) throw new ArgumentNullException("wizardProvider");
+			if (cameras == null) throw new ArgumentNullException("cameras");
 
 			this.windowService = windowService;
 			this.cameraProvider = cameraProvider;
 			this.wizardProvider = wizardProvider;
 
-			using (IPluginSettings pluginSettings = pluginSettingsProvider())
-			{
-				IEnumerable<ICameraNameViewModel> cameras = pluginSettings
-					.GetCameras()
-					.Select(camera => cameraProvider.Provide(camera));
-
-				Cameras = new ObservableCollection<ICameraNameViewModel>(cameras);
-			}
-
+			Cameras = new ObservableCollection<ICameraNameViewModel>(cameras);
 			SelectedItems = new ObservableCollection<object>();
 
 			AddCommand = new RelayCommand(Add);

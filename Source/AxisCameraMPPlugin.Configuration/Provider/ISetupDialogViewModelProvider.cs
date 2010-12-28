@@ -17,20 +17,20 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+using System.Collections.Generic;
 using AxisCameraMPPlugin.Configuration.ViewModel;
-using AxisCameraMPPlugin.Data;
 
 namespace AxisCameraMPPlugin.Configuration.Provider
 {
 	/// <summary>
-	/// Interface describing a provider that provides a ICameraNameViewModel.
+	/// Interface describing a provider that provides a ISetupDialogViewModel.
 	/// </summary>
-	public interface ICameraNameViewModelProvider
+	public interface ISetupDialogViewModelProvider
 	{
 		/// <summary>
-		/// Returns a ICameraNameViewModel created from a Camera.
+		/// Returns a ISetupDialogViewModel.
 		/// </summary>
-		/// <param name="camera">The camera to turn into a ICameraNameViewModel.</param>
-		ICameraNameViewModel Provide(Camera camera);
+		/// <param name="cameras">The cameras.</param>
+		ISetupDialogViewModel Provide(IEnumerable<ICameraNameViewModel> cameras);
 	}
 }
