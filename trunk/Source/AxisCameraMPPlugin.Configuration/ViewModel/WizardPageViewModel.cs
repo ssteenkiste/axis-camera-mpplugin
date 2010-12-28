@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+using AxisCameraMPPlugin.Data;
 using AxisCameraMPPlugin.Mvvm;
 
 namespace AxisCameraMPPlugin.Configuration.ViewModel
@@ -36,5 +37,12 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// Gets the description of the wizard page.
 		/// </summary>
 		public abstract string Description { get; }
+
+
+		/// <summary>
+		/// Saves page properties to specified camera.
+		/// </summary>
+		/// <param name="camera">The camera to save page properties to.</param>
+		public abstract void Save(Camera camera);
 	}
 }

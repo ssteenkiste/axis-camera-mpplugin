@@ -23,12 +23,12 @@ using AxisCameraMPPlugin.Configuration.ViewModel;
 namespace AxisCameraMPPlugin.Configuration.Provider
 {
 	/// <summary>
-	/// Class describing a provider that provides a sequence of WizardPageViewModels.
+	/// Class describing a provider that provides a sequence of IWizardPageViewModels.
 	/// </summary>
 	class WizardPageViewModelsProvider : IWizardPageViewModelsProvider
 	{
 		/// <summary>
-		/// Returns a collection of WizardPageViewModels.
+		/// Returns a collection of IWizardPageViewModels.
 		/// </summary>
 		public IEnumerable<IWizardPageViewModel> Provide()
 		{

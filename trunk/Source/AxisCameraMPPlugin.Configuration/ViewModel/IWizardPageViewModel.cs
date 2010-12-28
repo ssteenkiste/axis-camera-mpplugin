@@ -18,6 +18,7 @@
 
 #endregion
 using AxisCameraMPPlugin.Mvvm;
+using AxisCameraMPPlugin.Data;
 
 namespace AxisCameraMPPlugin.Configuration.ViewModel
 {
@@ -36,5 +37,11 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// Gets the description of the wizard page.
 		/// </summary>
 		string Description { get; }
+
+		/// <summary>
+		/// Saves page properties to specified camera.
+		/// </summary>
+		/// <param name="camera">The camera to save page properties to.</param>
+		void Save(Camera camera);
 	}
 }

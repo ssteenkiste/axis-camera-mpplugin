@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using AxisCameraMPPlugin.Configuration.Provider;
+using AxisCameraMPPlugin.Data;
 using AxisCameraMPPlugin.Mvvm;
 
 namespace AxisCameraMPPlugin.Configuration.ViewModel
@@ -47,12 +48,13 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 			if (wizardPagesProvider == null) throw new ArgumentNullException("wizardPagesProvider");
 
 			pages = new List<IWizardPageViewModel>(wizardPagesProvider.Provide());
-			
+
 			Title = title;
 			CurrentWizardPage = pages.First();
 			PreviousCommand = new RelayCommand(Previous, CanPrevious);
 			NextCommand = new RelayCommand(Next, CanNext);
 			FinishCommand = new RelayCommand(Finish, CanFinish);
+			Camera = new Camera();
 		}
 
 
@@ -130,6 +132,16 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 
 
 		/// <summary>
+		/// Gets the camera.
+		/// </summary>
+		public Camera Camera
+		{
+			get { return Property(() => Camera); }
+			private set { Property(() => Camera, value); }
+		}
+
+
+		/// <summary>
 		/// Moving to the previous page in the wizard.
 		/// </summary>
 		private void Previous(object parameter)
@@ -157,6 +169,9 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 			// Validate current page before moving to next page
 			if (CurrentWizardPage.Validate())
 			{
+				// Save page properties to camera
+				CurrentWizardPage.Save(Camera);
+
 				int currentPageIndex = pages.IndexOf(CurrentWizardPage);
 				CurrentWizardPage = pages[currentPageIndex + 1];
 			}
@@ -181,6 +196,9 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 			// Validate last page page before finishing
 			if (CurrentWizardPage.Validate())
 			{
+				// Save page properties to camera
+				CurrentWizardPage.Save(Camera);
+
 				DialogResultCommand.Execute(true);
 			}
 		}

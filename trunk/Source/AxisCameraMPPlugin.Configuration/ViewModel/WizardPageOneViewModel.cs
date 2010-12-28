@@ -19,6 +19,7 @@
 #endregion
 using AxisCameraMPPlugin.Configuration.Properties;
 using AxisCameraMPPlugin.Configuration.ViewModel.ValidationRule;
+using AxisCameraMPPlugin.Data;
 
 namespace AxisCameraMPPlugin.Configuration.ViewModel
 {
@@ -37,24 +38,6 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 			// Default values
 			Port = "80";
 			Username = "root";
-		}
-
-
-		/// <summary>
-		/// Gets the header of the wizard page.
-		/// </summary>
-		public override string Header
-		{
-			get { return Resources.WizardPageOne_Header; }
-		}
-
-
-		/// <summary>
-		/// Gets the description of the wizard page.
-		/// </summary>
-		public override string Description
-		{
-			get { return Resources.WizardPageOne_Description; }
 		}
 
 
@@ -95,6 +78,37 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		{
 			get { return Property(() => Password); }
 			set { Property(() => Password, value); }
+		}
+
+
+		/// <summary>
+		/// Gets the header of the wizard page.
+		/// </summary>
+		public override string Header
+		{
+			get { return Resources.WizardPageOne_Header; }
+		}
+
+
+		/// <summary>
+		/// Gets the description of the wizard page.
+		/// </summary>
+		public override string Description
+		{
+			get { return Resources.WizardPageOne_Description; }
+		}
+
+
+		/// <summary>
+		/// Saves page properties to specified camera.
+		/// </summary>
+		/// <param name="camera">The camera to save page properties to.</param>
+		public override void Save(Camera camera)
+		{
+			camera.Address = Address;
+			camera.Port = int.Parse(Port);
+			camera.UserName = Username;
+			camera.Password = Password;
 		}
 
 
