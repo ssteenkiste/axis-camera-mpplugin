@@ -50,12 +50,12 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 
 
 		/// <summary>
-		/// Gets the camera.
+		/// Gets or sets the camera.
 		/// </summary>
 		public Camera Camera
 		{
 			get { return Property(() => Camera); }
-			private set
+			set
 			{
 				Property(() => Camera, value);
 				OnPropertyChanged(() => Name);

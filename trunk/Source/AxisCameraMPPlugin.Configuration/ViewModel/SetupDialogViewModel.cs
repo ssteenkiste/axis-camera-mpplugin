@@ -26,6 +26,7 @@ using System.Windows.Input;
 using AxisCameraMPPlugin.Configuration.Properties;
 using AxisCameraMPPlugin.Configuration.Provider;
 using AxisCameraMPPlugin.Configuration.View;
+using AxisCameraMPPlugin.Data;
 using AxisCameraMPPlugin.Mvvm;
 using AxisCameraMPPlugin.Mvvm.Services;
 
@@ -38,7 +39,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 	{
 		private readonly IWindowService windowService;
 		private readonly ICameraNameViewModelProvider cameraProvider;
-		private readonly Func<string, IWizardDialogViewModel> wizardProvider;
+		private readonly Func<string, Camera, IWizardDialogViewModel> wizardProvider;
 
 
 		/// <summary>
@@ -51,7 +52,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		public SetupDialogViewModel(
 			IWindowService windowService,
 			ICameraNameViewModelProvider cameraProvider,
-			Func<string, IWizardDialogViewModel> wizardProvider,
+			Func<string, Camera, IWizardDialogViewModel> wizardProvider,
 			IEnumerable<ICameraNameViewModel> cameras)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
@@ -127,7 +128,17 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// </summary>
 		private void Add(object parameter)
 		{
-			IWizardDialogViewModel wizard = wizardProvider(Resources.AddCamera_Title);
+			Camera camera = new Camera
+			{
+				Id = Guid.NewGuid(),
+				Port = 80,
+				UserName = "root"
+			};
+
+			IWizardDialogViewModel wizard = wizardProvider(
+				Resources.AddCamera_Title,
+				camera);
+
 			if (windowService.ShowDialog<WizardDialog>(wizard, this) == true)
 			{
 				Cameras.Add(cameraProvider.Provide(wizard.Camera));
@@ -140,6 +151,16 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// </summary>
 		private void Edit(object parameter)
 		{
+			CameraNameViewModel selectedViewModel = (CameraNameViewModel)SelectedItems.Single();
+
+			IWizardDialogViewModel wizard = wizardProvider(
+				Resources.EditCamera_Title,
+				selectedViewModel.Camera.Clone());
+
+			if (windowService.ShowDialog<WizardDialog>(wizard, this) == true)
+			{
+				selectedViewModel.Camera = wizard.Camera;
+			}
 		}
 
 
@@ -167,7 +188,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 
 			if (result == MessageBoxResult.Yes)
 			{
-				Cameras.Remove((ICameraNameViewModel)SelectedItems.First());
+				Cameras.Remove((ICameraNameViewModel)SelectedItems.Single());
 			}
 		}
 

@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+using System;
 using System.Globalization;
 using AxisCameraMPPlugin.Configuration.Properties;
 using AxisCameraMPPlugin.Configuration.ViewModel.ValidationRule;
@@ -35,10 +36,6 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		public WizardPageOneViewModel()
 		{
 			AddValidators();
-
-			// Default values
-			Port = "80";
-			UserName = "root";
 		}
 
 
@@ -101,11 +98,28 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 
 
 		/// <summary>
+		/// Loads page properties from specified camera.
+		/// </summary>
+		/// <param name="camera">The camera to load page properties from.</param>
+		public override void Load(Camera camera)
+		{
+			if (camera == null) throw new ArgumentNullException("camera");
+
+			Address = camera.Address;
+			Port = camera.Port.ToString(CultureInfo.CurrentCulture);
+			UserName = camera.UserName;
+			Password = camera.Password;
+		}
+
+
+		/// <summary>
 		/// Saves page properties to specified camera.
 		/// </summary>
 		/// <param name="camera">The camera to save page properties to.</param>
 		public override void Save(Camera camera)
 		{
+			if (camera == null) throw new ArgumentNullException("camera");
+
 			camera.Address = Address;
 			camera.Port = int.Parse(Port, CultureInfo.CurrentCulture);
 			camera.UserName = UserName;
