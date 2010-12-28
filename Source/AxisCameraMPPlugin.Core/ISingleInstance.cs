@@ -17,27 +17,14 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System;
-using System.Collections.Generic;
-using AxisCameraMPPlugin.Core;
 
-namespace AxisCameraMPPlugin.Data
+namespace AxisCameraMPPlugin.Core
 {
 	/// <summary>
-	/// Interface responsible for reading and saving settings.
+	/// Interface describing that inheriting classes or interfaces are to be treated as single
+	/// instances, i.e. Singleton.
 	/// </summary>
-	public interface IPluginSettings : ISingleInstance, IDisposable
+	public interface ISingleInstance
 	{
-		/// <summary>
-		/// Gets the cameras.
-		/// </summary>
-		IEnumerable<Camera> GetCameras();
-
-
-		/// <summary>
-		/// Sets the cameras.
-		/// </summary>
-		/// <param name="cameras">The cameras.</param>
-		void SetCameras(IEnumerable<Camera> cameras);
 	}
 }

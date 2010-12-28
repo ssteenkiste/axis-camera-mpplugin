@@ -98,6 +98,10 @@
       <Project>{A9EB29F7-45D9-4528-AD57-98CCECFC5E51}</Project>
       <Name>AxisCameraMPPlugin.Configuration</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AxisCameraMPPlugin.Core\AxisCameraMPPlugin.Core.csproj">
+      <Project>{BA65EA0C-E460-437E-A56C-CCF118D3DBE0}</Project>
+      <Name>AxisCameraMPPlugin.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AxisCameraMPPlugin.Mvvm\AxisCameraMPPlugin.Mvvm.csproj">
       <Project>{442C117D-98D8-41A8-843B-716B66D60B97}</Project>
       <Name>AxisCameraMPPlugin.Mvvm</Name>

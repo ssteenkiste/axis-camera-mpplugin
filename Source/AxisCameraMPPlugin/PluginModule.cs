@@ -19,6 +19,7 @@
 #endregion
 using System.Reflection;
 using Autofac;
+using AxisCameraMPPlugin.Core;
 using AutofacModule = Autofac.Module;
 
 namespace AxisCameraMPPlugin
@@ -63,6 +64,13 @@ namespace AxisCameraMPPlugin
 			builder
 				.RegisterAssemblyTypes(assemblies)
 				.AsImplementedInterfaces();
+
+			// Register all classes that implement ISingleInstance as SingleInstance.
+			builder
+				.RegisterAssemblyTypes(assemblies)
+				.AssignableTo<ISingleInstance>()
+				.AsImplementedInterfaces()
+				.SingleInstance();
 		}
 	}
 }

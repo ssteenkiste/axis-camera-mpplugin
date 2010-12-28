@@ -53,6 +53,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingNames.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AxisCameraMPPlugin.Core\AxisCameraMPPlugin.Core.csproj">
+      <Project>{BA65EA0C-E460-437E-A56C-CCF118D3DBE0}</Project>
+      <Name>AxisCameraMPPlugin.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
