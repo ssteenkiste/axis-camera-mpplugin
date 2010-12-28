@@ -107,6 +107,10 @@
       <Name>AxisCameraMPPlugin.Mvvm</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Setup_icon.png" />
+    <EmbeddedResource Include="Resources\Setup_icon_disabled.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

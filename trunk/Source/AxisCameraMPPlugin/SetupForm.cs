@@ -21,6 +21,7 @@ using System;
 using Autofac;
 using AxisCameraMPPlugin.Configuration;
 using AxisCameraMPPlugin.Properties;
+using MediaPortal.Configuration;
 using MediaPortal.GUI.Library;
 using PluginResources = AxisCameraMPPlugin.Properties.Resources;
 
@@ -29,6 +30,9 @@ namespace AxisCameraMPPlugin
 	/// <summary>
 	/// Class acting as setup form for the plugin.
 	/// </summary>
+	[PluginIcons(
+		"AxisCameraMPPlugin.Resources.Setup_icon.png",
+		"AxisCameraMPPlugin.Resources.Setup_icon_disabled.png")]
 	public class SetupForm : GUIWindow, ISetupForm
 	{
 		private IContainer container;
