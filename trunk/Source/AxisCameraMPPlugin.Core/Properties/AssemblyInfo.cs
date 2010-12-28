@@ -24,8 +24,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AxisCameraMPPlugin.Data")]
-[assembly: AssemblyDescription("Assembly containing the data used by the plugin.")]
+[assembly: AssemblyTitle("AxisCameraMPPlugin.Core")]
+[assembly: AssemblyDescription("Core assembly of the plugin.")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -34,6 +34,6 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("a4f632fe-0277-48a5-ae38-500eda0f4632")]
+[assembly: Guid("fc3287af-871c-47e0-9b7f-f3e77e28db8f")]
 
 [assembly: CLSCompliant(true)]
