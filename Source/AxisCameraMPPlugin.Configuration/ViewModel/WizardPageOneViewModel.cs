@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+using System.Globalization;
 using AxisCameraMPPlugin.Configuration.Properties;
 using AxisCameraMPPlugin.Configuration.ViewModel.ValidationRule;
 using AxisCameraMPPlugin.Data;
@@ -106,7 +107,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		public override void Save(Camera camera)
 		{
 			camera.Address = Address;
-			camera.Port = int.Parse(Port);
+			camera.Port = int.Parse(Port, CultureInfo.CurrentCulture);
 			camera.UserName = UserName;
 			camera.Password = Password;
 		}

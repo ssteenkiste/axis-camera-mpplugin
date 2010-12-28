@@ -6,12 +6,12 @@ namespace AxisCameraMPPlugin.Data
 		/// <summary>
 		/// The camera settings section name.
 		/// </summary>
-		internal static readonly string CameraSection = "camera";
+		internal const string CameraSection = "camera";
 
 
 		/// <summary>
 		/// The cameras entry name.
 		/// </summary>
-		internal static readonly string CamerasEntry = "cameras";
+		internal const string CamerasEntry = "cameras";
 	}
 }
