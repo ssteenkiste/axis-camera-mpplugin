@@ -37,7 +37,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 
 			// Default values
 			Port = "80";
-			Username = "root";
+			UserName = "root";
 		}
 
 
@@ -64,10 +64,10 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// <summary>
 		/// Gets or sets the username.
 		/// </summary>
-		public string Username
+		public string UserName
 		{
-			get { return Property(() => Username); }
-			set { Property(() => Username, value); }
+			get { return Property(() => UserName); }
+			set { Property(() => UserName, value); }
 		}
 
 
@@ -107,7 +107,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		{
 			camera.Address = Address;
 			camera.Port = int.Parse(Port);
-			camera.UserName = Username;
+			camera.UserName = UserName;
 			camera.Password = Password;
 		}
 
@@ -124,8 +124,8 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 				() => Port,
 				new PortValidationRule());
 			AddValidator(
-				() => Username,
-				new UsernameValidationRule());
+				() => UserName,
+				new UserNameValidationRule());
 			AddValidator(
 				() => Password,
 				new NotEmptyStringValidationRule { ErrorMessage = Resources.Validation_Failed_Password });
