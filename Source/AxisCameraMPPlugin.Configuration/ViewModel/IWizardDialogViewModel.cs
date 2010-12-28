@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+using AxisCameraMPPlugin.Data;
 using AxisCameraMPPlugin.Mvvm;
 
 namespace AxisCameraMPPlugin.Configuration.ViewModel
@@ -26,5 +27,9 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 	/// </summary>
 	interface IWizardDialogViewModel : IDialogViewModelBase
 	{
+		/// <summary>
+		/// Gets the camera.
+		/// </summary>
+		Camera Camera { get; }
 	}
 }

@@ -19,6 +19,7 @@
 #endregion
 using AxisCameraMPPlugin.Configuration.Properties;
 using AxisCameraMPPlugin.Configuration.ViewModel.ValidationRule;
+using AxisCameraMPPlugin.Data;
 
 namespace AxisCameraMPPlugin.Configuration.ViewModel
 {
@@ -33,6 +34,16 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		public WizardPageTwoViewModel()
 		{
 			AddValidators();
+		}
+
+
+		/// <summary>
+		/// Gets or sets the name.
+		/// </summary>
+		public string Name
+		{
+			get { return Property(() => Name); }
+			set { Property(() => Name, value); }
 		}
 
 
@@ -55,12 +66,13 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 
 
 		/// <summary>
-		/// Gets or sets the name.
+		/// Saves page properties to specified camera.
 		/// </summary>
-		public string Name
+		/// <param name="camera">The camera to save page properties to.</param>
+		public override void Save(Camera camera)
 		{
-			get { return Property(() => Name); }
-			set { Property(() => Name, value); }
+			camera.Name = Name;
+			// TODO: Save snapshot
 		}
 
 
