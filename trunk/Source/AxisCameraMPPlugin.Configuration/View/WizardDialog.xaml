@@ -89,11 +89,13 @@
 					Command="{Binding PreviousCommand}"/>
 				<Button
 					Content="Next >"
-					Command="{Binding NextCommand}"/>
+					Command="{Binding NextCommand}"
+					IsDefault="True"/>
 				<Button
 					Margin="9,3,6,3"
 					Content="Finish"
-					Command="{Binding FinishCommand}"/>
+					Command="{Binding FinishCommand}"
+					IsDefault="True"/>
 				<Button
 					Margin="6,3,3,3"
 					Content="Cancel"
