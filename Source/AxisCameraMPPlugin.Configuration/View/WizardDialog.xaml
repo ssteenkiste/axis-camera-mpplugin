@@ -70,6 +70,7 @@
 
 			<ContentControl
 				Margin="9,9,9,3"
+				Focusable="False"
 				Content="{Binding CurrentWizardPage}"/>
 		</Grid>
 		
