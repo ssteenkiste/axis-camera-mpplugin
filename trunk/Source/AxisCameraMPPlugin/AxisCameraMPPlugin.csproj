@@ -102,6 +102,10 @@
       <Project>{BA65EA0C-E460-437E-A56C-CCF118D3DBE0}</Project>
       <Name>AxisCameraMPPlugin.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AxisCameraMPPlugin.Data\AxisCameraMPPlugin.Data.csproj">
+      <Project>{CCBED050-F912-4D87-8702-0CE8864293E3}</Project>
+      <Name>AxisCameraMPPlugin.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AxisCameraMPPlugin.Mvvm\AxisCameraMPPlugin.Mvvm.csproj">
       <Project>{442C117D-98D8-41A8-843B-716B66D60B97}</Project>
       <Name>AxisCameraMPPlugin.Mvvm</Name>
@@ -111,6 +115,13 @@
     <EmbeddedResource Include="Resources\Setup_icon.png" />
     <EmbeddedResource Include="Resources\Setup_icon_disabled.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Skins\Blue3\axiscamerampplugin.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
