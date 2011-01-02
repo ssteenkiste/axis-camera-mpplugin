@@ -63,7 +63,7 @@ namespace AxisCameraMPPlugin.Data
 
 
 		/// <summary>
-		/// Gets or sets the snapshot.
+		/// Gets or sets the snapshot path.
 		/// </summary>
 		public string SnapshotPath { get; set; }
 

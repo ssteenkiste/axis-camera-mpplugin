@@ -19,6 +19,7 @@
 #endregion
 using System;
 using System.Collections.Generic;
+using AxisCameraMPPlugin.Configuration.Service;
 using AxisCameraMPPlugin.Configuration.ViewModel;
 using AxisCameraMPPlugin.Data;
 using AxisCameraMPPlugin.Mvvm.Services;
@@ -31,6 +32,7 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 	class SetupDialogViewModelProvider : ISetupDialogViewModelProvider
 	{
 		private readonly IWindowService windowService;
+		private readonly IIOService ioService;
 		private readonly ICameraNameViewModelProvider cameraProvider;
 		private readonly Func<string, Camera, IWizardDialogViewModel> wizardProvider;
 
@@ -39,18 +41,22 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 		/// Initializes a new instance of the <see cref="SetupDialogViewModelProvider"/> class.
 		/// </summary>
 		/// <param name="windowService">The window service.</param>
+		/// <param name="ioService">The I/O service.</param>
 		/// <param name="cameraProvider">The camera name view model provider.</param>
 		/// <param name="wizardProvider">The wizard view model provider.</param>
 		public SetupDialogViewModelProvider(
 			IWindowService windowService,
+			IIOService ioService,
 			ICameraNameViewModelProvider cameraProvider,
 			Func<string, Camera, IWizardDialogViewModel> wizardProvider)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
+			if (ioService == null) throw new ArgumentNullException("ioService");
 			if (cameraProvider == null) throw new ArgumentNullException("cameraProvider");
 			if (wizardProvider == null) throw new ArgumentNullException("wizardProvider");
 
 			this.windowService = windowService;
+			this.ioService = ioService;
 			this.cameraProvider = cameraProvider;
 			this.wizardProvider = wizardProvider;
 		}
@@ -66,6 +72,7 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 
 			return new SetupDialogViewModel(
 				windowService,
+				ioService,
 				cameraProvider,
 				wizardProvider,
 				cameras);
