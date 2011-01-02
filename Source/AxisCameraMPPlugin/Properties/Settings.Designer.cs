@@ -31,5 +31,14 @@ namespace AxisCameraMPPlugin.Properties {
                 return ((int)(this["Plugin_ID"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("axiscamerampplugin.xml")]
+        public string Plugin_Skin {
+            get {
+                return ((string)(this["Plugin_Skin"]));
+            }
+        }
     }
 }

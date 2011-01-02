@@ -18,8 +18,11 @@
 
 #endregion
 using System;
+using System.Collections.Generic;
+using System.IO;
 using Autofac;
 using AxisCameraMPPlugin.Configuration;
+using AxisCameraMPPlugin.Data;
 using AxisCameraMPPlugin.Properties;
 using MediaPortal.Configuration;
 using MediaPortal.GUI.Library;
@@ -35,7 +38,15 @@ namespace AxisCameraMPPlugin
 		"AxisCameraMPPlugin.Resources.Setup_icon_disabled.png")]
 	public class SetupForm : GUIWindow, ISetupForm
 	{
+		private readonly IEnumerable<Camera> cameras;
 		private IContainer container;
+
+
+		/// <summary>
+		/// The facade layout containing cameras.
+		/// </summary>
+		[SkinControl(50)]
+		protected GUIFacadeControl facadeLayout;
 
 
 		/// <summary>
@@ -43,7 +54,8 @@ namespace AxisCameraMPPlugin
 		/// </summary>
 		public SetupForm()
 		{
-			ConfigureContainer();
+			container = CreateContainer();
+			cameras = container.Resolve<IPluginSettings>().GetCameras();
 		}
 
 
@@ -157,14 +169,54 @@ namespace AxisCameraMPPlugin
 
 
 		/// <summary>
-		/// Configures the container.
+		/// Gets called by the runtime when a new window has been created.
 		/// </summary>
-		private void ConfigureContainer()
+		/// <returns>true if initialization was successful; otherwise false.</returns>
+		public override bool Init()
+		{
+			return Load(Path.Combine(GUIGraphicsContext.Skin, Settings.Default.Plugin_Skin));
+		}
+
+
+		/// <summary>
+		/// Gets called just before the plugin is shown.
+		/// </summary>
+		protected override void OnPageLoad()
+		{
+			foreach (Camera camera in cameras)
+			{
+				facadeLayout.Add(CreateListItemFrom(camera));
+			}
+
+			base.OnPageLoad();
+		}
+
+
+		/// <summary>
+		/// Creates a list item representing a camera.
+		/// </summary>
+		/// <param name="camera">The camera.</param>
+		/// <returns>A list item representing a camera.</returns>
+		private static GUIListItem CreateListItemFrom(Camera camera)
+		{
+			return new GUIListItem
+			{
+				Label = camera.Name,
+				// Store camera id in album info tag
+				AlbumInfoTag = camera.Id
+			};
+		}
+
+
+		/// <summary>
+		/// Creates a configured container.
+		/// </summary>
+		private IContainer CreateContainer()
 		{
 			ContainerBuilder builder = new ContainerBuilder();
 			builder.RegisterModule(new PluginModule());
 
-			container = builder.Build();
+			return builder.Build();
 		}
 
 
