@@ -25,6 +25,7 @@ using System.Windows;
 using System.Windows.Input;
 using AxisCameraMPPlugin.Configuration.Properties;
 using AxisCameraMPPlugin.Configuration.Provider;
+using AxisCameraMPPlugin.Configuration.Service;
 using AxisCameraMPPlugin.Configuration.View;
 using AxisCameraMPPlugin.Data;
 using AxisCameraMPPlugin.Mvvm;
@@ -38,6 +39,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 	class SetupDialogViewModel : DialogViewModelBase, ISetupDialogViewModel
 	{
 		private readonly IWindowService windowService;
+		private readonly IIOService ioService;
 		private readonly ICameraNameViewModelProvider cameraProvider;
 		private readonly Func<string, Camera, IWizardDialogViewModel> wizardProvider;
 
@@ -46,21 +48,25 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// Initializes a new instance of the <see cref="SetupDialogViewModel"/> class.
 		/// </summary>
 		/// <param name="windowService">The window service.</param>
+		/// <param name="ioService">The I/O service.</param>
 		/// <param name="cameraProvider">The camera name view model provider.</param>
 		/// <param name="wizardProvider">The wizard view model provider.</param>
 		/// <param name="cameras">The cameras.</param>
 		public SetupDialogViewModel(
 			IWindowService windowService,
+			IIOService ioService,
 			ICameraNameViewModelProvider cameraProvider,
 			Func<string, Camera, IWizardDialogViewModel> wizardProvider,
 			IEnumerable<ICameraNameViewModel> cameras)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
+			if (ioService == null) throw new ArgumentNullException("ioService");
 			if (cameraProvider == null) throw new ArgumentNullException("cameraProvider");
 			if (wizardProvider == null) throw new ArgumentNullException("wizardProvider");
 			if (cameras == null) throw new ArgumentNullException("cameras");
 
 			this.windowService = windowService;
+			this.ioService = ioService;
 			this.cameraProvider = cameraProvider;
 			this.wizardProvider = wizardProvider;
 
@@ -188,7 +194,9 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 
 			if (result == MessageBoxResult.Yes)
 			{
-				Cameras.Remove((ICameraNameViewModel)SelectedItems.Single());
+				ICameraNameViewModel camera = (ICameraNameViewModel)SelectedItems.Single();
+				Cameras.Remove(camera);
+				ioService.Delete(camera.Camera.SnapshotPath);
 			}
 		}
 

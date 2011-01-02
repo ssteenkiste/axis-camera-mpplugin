@@ -73,6 +73,10 @@
     <Compile Include="Service\ICurrentProcessService.cs">
       <DependentUpon>CurrentProcessService.cs</DependentUpon>
     </Compile>
+    <Compile Include="Service\IIOService.cs">
+      <DependentUpon>IOService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service\IOService.cs" />
     <Compile Include="ViewModel\CameraNameViewModel.cs" />
     <Compile Include="ViewModel\ICameraNameViewModel.cs">
       <DependentUpon>CameraNameViewModel.cs</DependentUpon>
