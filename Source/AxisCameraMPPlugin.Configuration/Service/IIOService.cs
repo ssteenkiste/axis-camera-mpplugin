@@ -23,7 +23,7 @@ namespace AxisCameraMPPlugin.Configuration.Service
 	/// <summary>
 	/// Interface responsible for I/O related operations.
 	/// </summary>
-	interface IIOService
+	public interface IIOService
 	{
 		/// <summary>
 		/// Deletes the specified file.
@@ -31,5 +31,13 @@ namespace AxisCameraMPPlugin.Configuration.Service
 		/// <param name="filePath">The name of the file to be deleted.</param>
 		/// <returns>true if file was deleted; otherwise false.</returns>
 		bool Delete(string filePath);
+
+
+		/// <summary>
+		/// Gets the path of a plugin thumb.
+		/// </summary>
+		/// <param name="thumbFileName">Name of the thumb file.</param>
+		/// <returns>The path of a plugin thumb.</returns>
+		string GetThumbPath(string thumbFileName);
 	}
 }

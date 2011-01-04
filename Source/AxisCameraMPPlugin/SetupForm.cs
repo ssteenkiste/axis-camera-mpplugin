@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.IO;
 using Autofac;
 using AxisCameraMPPlugin.Configuration;
+using AxisCameraMPPlugin.Configuration.Service;
 using AxisCameraMPPlugin.Data;
 using AxisCameraMPPlugin.Properties;
 using MediaPortal.Configuration;
@@ -39,6 +40,7 @@ namespace AxisCameraMPPlugin
 	public class SetupForm : GUIWindow, ISetupForm
 	{
 		private readonly IEnumerable<Camera> cameras;
+		private readonly IIOService ioService;
 		private IContainer container;
 
 
@@ -56,6 +58,7 @@ namespace AxisCameraMPPlugin
 		{
 			container = CreateContainer();
 			cameras = container.Resolve<IPluginSettings>().GetCameras();
+			ioService = container.Resolve<IIOService>();
 		}
 
 
@@ -197,11 +200,14 @@ namespace AxisCameraMPPlugin
 		/// </summary>
 		/// <param name="camera">The camera.</param>
 		/// <returns>A list item representing a camera.</returns>
-		private static GUIListItem CreateListItemFrom(Camera camera)
+		private GUIListItem CreateListItemFrom(Camera camera)
 		{
 			return new GUIListItem
 			{
 				Label = camera.Name,
+				IconImage = ioService.GetThumbPath("CameraPortrait.png"),
+				ThumbnailImage = camera.SnapshotPath,
+
 				// Store camera id in album info tag
 				AlbumInfoTag = camera.Id
 			};
