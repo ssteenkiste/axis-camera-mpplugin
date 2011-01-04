@@ -18,6 +18,7 @@
 
 #endregion
 using System.IO;
+using MediaPortal.Configuration;
 
 namespace AxisCameraMPPlugin.Configuration.Service
 {
@@ -42,6 +43,17 @@ namespace AxisCameraMPPlugin.Configuration.Service
 			{
 				return false;
 			}
+		}
+
+
+		/// <summary>
+		/// Gets the path of a plugin thumb.
+		/// </summary>
+		/// <param name="thumbFileName">Name of the thumb file.</param>
+		/// <returns>The path of a plugin thumb.</returns>
+		public string GetThumbPath(string thumbFileName)
+		{
+			return Config.GetFile(Config.Dir.Thumbs, "AxisCameraMPPlugin", thumbFileName);
 		}
 	}
 }
