@@ -27,6 +27,7 @@ using AxisCameraMPPlugin.Data;
 using AxisCameraMPPlugin.Properties;
 using MediaPortal.Configuration;
 using MediaPortal.GUI.Library;
+using ActionType = MediaPortal.GUI.Library.Action.ActionType;
 using PluginResources = AxisCameraMPPlugin.Properties.Resources;
 
 namespace AxisCameraMPPlugin
@@ -40,6 +41,7 @@ namespace AxisCameraMPPlugin
 	public class SetupForm : GUIWindow, ISetupForm
 	{
 		private readonly IEnumerable<Camera> cameras;
+		private readonly IPlayer player;
 		private readonly IIOService ioService;
 		private IContainer container;
 
@@ -58,6 +60,7 @@ namespace AxisCameraMPPlugin
 		{
 			container = CreateContainer();
 			cameras = container.Resolve<IPluginSettings>().GetCameras();
+			player = container.Resolve<IPlayer>();
 			ioService = container.Resolve<IIOService>();
 		}
 
@@ -196,6 +199,28 @@ namespace AxisCameraMPPlugin
 
 
 		/// <summary>
+		/// Called when control was clicked.
+		/// </summary>
+		/// <param name="controlId">The control id.</param>
+		/// <param name="control">The control.</param>
+		/// <param name="actionType">Type of the action.</param>
+		protected override void OnClicked(int controlId, GUIControl control, ActionType actionType)
+		{
+			base.OnClicked(controlId, control, actionType);
+
+			if (control == facadeLayout && actionType == ActionType.ACTION_SELECT_ITEM)
+			{
+				GUIListItem selectedItem = facadeLayout.SelectedListItem;
+				if (selectedItem != null)
+				{
+					Camera camera = (Camera)selectedItem.MusicTag;
+					player.PlayLiveVideo(camera);
+				}
+			}
+		}
+
+
+		/// <summary>
 		/// Creates a list item representing a camera.
 		/// </summary>
 		/// <param name="camera">The camera.</param>
@@ -208,8 +233,8 @@ namespace AxisCameraMPPlugin
 				IconImage = ioService.GetThumbPath("CameraPortrait.png"),
 				ThumbnailImage = camera.SnapshotPath,
 
-				// Store camera id in album info tag
-				AlbumInfoTag = camera.Id
+				// Store camera in music tag
+				MusicTag = camera
 			};
 		}
 
