@@ -254,7 +254,8 @@ namespace AxisCameraMPPlugin
 		#region IDisposable Members
 
 		/// <summary>
-		/// Gets called by the runtime when the window is not longer shown.
+		/// Performs application-defined tasks associated with freeing, releasing, or resetting
+		/// unmanaged resources.
 		/// </summary>
 		public sealed override void Dispose()
 		{
