@@ -39,7 +39,7 @@ namespace AxisCameraMPPlugin.Mvvm.Services.FrameworkDialogs.FolderBrowse
 		public FolderBrowserDialog(FolderBrowserDialogViewModel viewModel)
 		{
 			if (viewModel == null) throw new ArgumentNullException("viewModel");
-			
+
 			this.viewModel = viewModel;
 
 			// Create FolderBrowserDialog
@@ -66,7 +66,7 @@ namespace AxisCameraMPPlugin.Mvvm.Services.FrameworkDialogs.FolderBrowse
 		public DialogResult ShowDialog(IWin32Window owner)
 		{
 			if (owner == null) throw new ArgumentNullException("owner");
-			
+
 			DialogResult result = folderBrowserDialog.ShowDialog(owner);
 
 			// Update ViewModel
@@ -89,12 +89,23 @@ namespace AxisCameraMPPlugin.Mvvm.Services.FrameworkDialogs.FolderBrowse
 		}
 
 
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// FolderBrowserDialog is reclaimed by garbage collection.
+		/// </summary>
 		~FolderBrowserDialog()
 		{
 			Dispose(false);
 		}
 
 
+		/// <summary>
+		/// Releases unmanaged and optionally managed resources.
+		/// </summary>
+		/// <param name="disposing">
+		/// true to release both managed and unmanaged resources; false to release only unmanaged
+		/// resources.
+		/// </param>
 		protected virtual void Dispose(bool disposing)
 		{
 			if (disposing)

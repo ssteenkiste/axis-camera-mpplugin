@@ -99,12 +99,23 @@ namespace AxisCameraMPPlugin.Data
 		}
 
 
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// PluginSettings is reclaimed by garbage collection.
+		/// </summary>
 		~PluginSettings()
 		{
 			Dispose(false);
 		}
 
 
+		/// <summary>
+		/// Releases unmanaged and optionally managed resources.
+		/// </summary>
+		/// <param name="disposing">
+		/// true to release both managed and unmanaged resources; false to release only unmanaged
+		/// resources.
+		/// </param>
 		protected virtual void Dispose(bool disposing)
 		{
 			if (disposing)

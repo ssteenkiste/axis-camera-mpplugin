@@ -39,7 +39,7 @@ namespace AxisCameraMPPlugin.Mvvm.Services.FrameworkDialogs.OpenFile
 		public OpenFileDialog(OpenFileDialogViewModel viewModel)
 		{
 			if (viewModel == null) throw new ArgumentNullException("viewModel");
-			
+
 			this.viewModel = viewModel;
 
 			// Create OpenFileDialog
@@ -92,12 +92,23 @@ namespace AxisCameraMPPlugin.Mvvm.Services.FrameworkDialogs.OpenFile
 		}
 
 
+		/// <summary>
+		/// Releases unmanaged resources and performs other cleanup operations before the
+		/// OpenFileDialog is reclaimed by garbage collection.
+		/// </summary>
 		~OpenFileDialog()
 		{
 			Dispose(false);
 		}
 
 
+		/// <summary>
+		/// Releases unmanaged and optionally managed resources.
+		/// </summary>
+		/// <param name="disposing">
+		/// true to release both managed and unmanaged resources; false to release only unmanaged
+		/// resources.
+		/// </param>
 		protected virtual void Dispose(bool disposing)
 		{
 			if (disposing)
