@@ -72,7 +72,12 @@
     </Compile>
     <Compile Include="Provider\SetupDialogViewModelProvider.cs" />
     <Compile Include="Provider\WizardPageViewModelsProvider.cs" />
+    <Compile Include="Service\CameraCommunicationService.cs" />
     <Compile Include="Service\CurrentProcessService.cs" />
+    <Compile Include="Service\GetInformationFromCameraCompletedEventArgs.cs" />
+    <Compile Include="Service\ICameraCommunicationService.cs">
+      <DependentUpon>CameraCommunicationService.cs</DependentUpon>
+    </Compile>
     <Compile Include="Service\ICurrentProcessService.cs">
       <DependentUpon>CurrentProcessService.cs</DependentUpon>
     </Compile>
