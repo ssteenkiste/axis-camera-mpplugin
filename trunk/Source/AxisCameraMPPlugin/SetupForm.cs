@@ -230,7 +230,7 @@ namespace AxisCameraMPPlugin
 			return new GUIListItem
 			{
 				Label = camera.Name,
-				IconImage = ioService.GetThumbPath("CameraPortrait.png"),
+				IconImage = ioService.CameraIconPath,
 				ThumbnailImage = camera.SnapshotPath,
 
 				// Store camera in music tag

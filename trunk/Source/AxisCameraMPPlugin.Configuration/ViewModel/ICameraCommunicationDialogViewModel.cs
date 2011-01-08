@@ -26,15 +26,5 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 	/// </summary>
 	public interface ICameraCommunicationDialogViewModel : IDialogViewModelBase
 	{
-		/// <summary>
-		/// Gets the camera name.
-		/// </summary>
-		string Name { get; }
-
-
-		/// <summary>
-		/// Gets the snapshot path.
-		/// </summary>
-		string SnapshotPath { get; }
 	}
 }
