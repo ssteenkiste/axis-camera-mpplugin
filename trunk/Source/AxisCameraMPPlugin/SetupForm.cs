@@ -242,7 +242,7 @@ namespace AxisCameraMPPlugin
 		/// <summary>
 		/// Creates a configured container.
 		/// </summary>
-		private IContainer CreateContainer()
+		private static IContainer CreateContainer()
 		{
 			ContainerBuilder builder = new ContainerBuilder();
 			builder.RegisterModule(new PluginModule());
