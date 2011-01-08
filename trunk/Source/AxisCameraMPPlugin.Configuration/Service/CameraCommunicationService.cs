@@ -68,13 +68,13 @@ namespace AxisCameraMPPlugin.Configuration.Service
 			// Download parameters
 			parameterState.Client.DownloadStringCompleted += DownloadParametersCompleted;
 			parameterState.Client.Credentials = new NetworkCredential(camera.UserName, camera.Password);
-			Uri parameterUri = new Uri(string.Format(ParameterCgi, camera.Address, camera.Port));
+			Uri parameterUri = new Uri(ParameterCgi.InvariantFormat(camera.Address, camera.Port));
 			parameterState.Client.DownloadStringAsync(parameterUri);
 
 			// Download snapshot
 			snapshotState.Client.DownloadDataCompleted += DownloadSnapshotCompleted;
 			snapshotState.Client.Credentials = new NetworkCredential(camera.UserName, camera.Password);
-			Uri snapshotUri = new Uri(string.Format(SnapshotCgi, camera.Address, camera.Port));
+			Uri snapshotUri = new Uri(SnapshotCgi.InvariantFormat(camera.Address, camera.Port));
 			snapshotState.Client.DownloadDataAsync(snapshotUri);
 		}
 

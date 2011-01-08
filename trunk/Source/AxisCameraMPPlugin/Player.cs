@@ -41,9 +41,7 @@ namespace AxisCameraMPPlugin
 		{
 			if (camera == null) throw new ArgumentNullException("camera");
 
-			string url = string.Format(
-				CultureInfo.InvariantCulture,
-				LiveVideoUrl,
+			string url = LiveVideoUrl.InvariantFormat(
 				HttpUtility.UrlEncode(camera.UserName),
 				HttpUtility.UrlEncode(camera.Password),
 				camera.Address,
