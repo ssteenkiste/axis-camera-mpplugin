@@ -81,7 +81,7 @@ namespace AxisCameraMPPlugin.Mvvm
 		/// Validates all added validation rules.
 		/// </summary>
 		/// <returns>true if validation succeeds; otherwise false.</returns>
-		public bool Validate()
+		public virtual bool Validate()
 		{
 			if (validator == null)
 			{
