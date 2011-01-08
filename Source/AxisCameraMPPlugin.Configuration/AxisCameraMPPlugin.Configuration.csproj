@@ -109,6 +109,7 @@
     <Compile Include="ViewModel\IWizardPageViewModel.cs">
       <DependentUpon>WizardPageViewModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Service\NetworkEndpoint.cs" />
     <Compile Include="ViewModel\SetupDialogViewModel.cs" />
     <Compile Include="ViewModel\ValidationRule\NotEmptyStringValidationRule.cs" />
     <Compile Include="ViewModel\ValidationRule\PortValidationRule.cs" />

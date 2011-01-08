@@ -32,7 +32,8 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 	{
 		private readonly ICameraCommunicationService cameraCommunicationService;
 		private readonly IIOService ioService;
-		private readonly Camera camera;
+		private readonly Guid cameraId;
+		private readonly NetworkEndpoint cameraEndpoint;
 
 
 		/// <summary>
@@ -40,19 +41,23 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// </summary>
 		/// <param name="cameraCommunicationService">The camera communication service.</param>
 		/// <param name="ioService">The I/O service.</param>
-		/// <param name="camera">The camera.</param>
+		/// <param name="cameraId">The camera ID.</param>
+		/// <param name="cameraEndpoint">The camera network endpoint.</param>
 		public CameraCommunicationDialogViewModel(
 			ICameraCommunicationService cameraCommunicationService,
 			IIOService ioService,
-			Camera camera)
+			Guid cameraId,
+			NetworkEndpoint cameraEndpoint)
 		{
 			if (cameraCommunicationService == null) throw new ArgumentNullException("cameraCommunicationService");
 			if (ioService == null) throw new ArgumentNullException("ioService");
-			if (camera == null) throw new ArgumentNullException("camera");
+			if (cameraId == null) throw new ArgumentNullException("cameraId");
+			if (cameraEndpoint == null) throw new ArgumentNullException("cameraEndpoint");
 
 			this.cameraCommunicationService = cameraCommunicationService;
 			this.ioService = ioService;
-			this.camera = camera;
+			this.cameraId = cameraId;
+			this.cameraEndpoint = cameraEndpoint;
 
 			LoadedCommand = new RelayCommand(Loaded);
 		}
@@ -65,6 +70,26 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		{
 			get { return Property(() => LoadedCommand); }
 			private set { Property(() => LoadedCommand, value); }
+		}
+
+
+		/// <summary>
+		/// Gets the friendly name of the camera.
+		/// </summary>
+		public string FriendlyName
+		{
+			get { return Property(() => FriendlyName); }
+			private set { Property(() => FriendlyName, value); }
+		}
+
+
+		/// <summary>
+		/// Gets the path of the camera snapshot.
+		/// </summary>
+		public string SnapshotPath
+		{
+			get { return Property(() => SnapshotPath); }
+			private set { Property(() => SnapshotPath, value); }
 		}
 
 
@@ -85,8 +110,8 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 				}
 				else
 				{
-					camera.Name = e.FriendlyName;
-					camera.SnapshotPath = ioService.SaveThumb(camera.Id, e.Snapshot);
+					FriendlyName = e.FriendlyName;
+					SnapshotPath = ioService.SaveThumb(cameraId, e.Snapshot);
 
 					// Close dialog successfully
 					DialogResultCommand.Execute(true);
@@ -94,7 +119,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 			};
 
 			cameraCommunicationService.GetInformationFromCameraCompleted += completedHandler;
-			cameraCommunicationService.GetInformationFromCameraAsync(camera);
+			cameraCommunicationService.GetInformationFromCameraAsync(cameraEndpoint);
 		}
 	}
 }

@@ -35,10 +35,10 @@ namespace AxisCameraMPPlugin.Configuration.Service
 
 
 		/// <summary>
-		/// Gets information from specified camera asynchronously.
+		/// Gets information from specified camera network endpoint asynchronously.
 		/// </summary>
-		/// <param name="camera">The camera.</param>
-		void GetInformationFromCameraAsync(Camera camera);
+		/// <param name="networkEndpoint">The network endpoint.</param>
+		void GetInformationFromCameraAsync(NetworkEndpoint networkEndpoint);
 
 
 		/// <summary>

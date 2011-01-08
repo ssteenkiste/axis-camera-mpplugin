@@ -90,7 +90,7 @@ namespace AxisCameraMPPlugin.Mvvm
 
 			// Get invalid properties
 			IEnumerable<string> propertyNamesWithErrors = validator.InvalidPropertyNames;
-			
+
 			// Send events about invalid properties
 			OnPropertiesChanged(propertyNamesWithErrors);
 

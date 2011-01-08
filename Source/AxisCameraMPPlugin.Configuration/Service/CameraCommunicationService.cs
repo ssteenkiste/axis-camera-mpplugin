@@ -55,26 +55,34 @@ namespace AxisCameraMPPlugin.Configuration.Service
 
 
 		/// <summary>
-		/// Gets information from specified camera asynchronously.
+		/// Gets information from specified camera network endpoint asynchronously.
 		/// </summary>
-		/// <param name="camera">The camera.</param>
-		public void GetInformationFromCameraAsync(Camera camera)
+		/// <param name="networkEndpoint">The network endpoint.</param>
+		public void GetInformationFromCameraAsync(NetworkEndpoint networkEndpoint)
 		{
-			if (camera == null) throw new ArgumentNullException("camera");
+			if (networkEndpoint == null) throw new ArgumentNullException("networkEndpoint");
 			if (IsBusy) throw new InvalidOperationException("Cannot start a second operation before first finishes.");
 
 			IsBusy = true;
 
 			// Download parameters
 			parameterState.Client.DownloadStringCompleted += DownloadParametersCompleted;
-			parameterState.Client.Credentials = new NetworkCredential(camera.UserName, camera.Password);
-			Uri parameterUri = new Uri(ParameterCgi.InvariantFormat(camera.Address, camera.Port));
+			parameterState.Client.Credentials = new NetworkCredential(
+				networkEndpoint.UserName,
+				networkEndpoint.Password);
+			Uri parameterUri = new Uri(ParameterCgi.InvariantFormat(
+				networkEndpoint.Address,
+				networkEndpoint.Port));
 			parameterState.Client.DownloadStringAsync(parameterUri);
 
 			// Download snapshot
 			snapshotState.Client.DownloadDataCompleted += DownloadSnapshotCompleted;
-			snapshotState.Client.Credentials = new NetworkCredential(camera.UserName, camera.Password);
-			Uri snapshotUri = new Uri(SnapshotCgi.InvariantFormat(camera.Address, camera.Port));
+			snapshotState.Client.Credentials = new NetworkCredential(
+				networkEndpoint.UserName,
+				networkEndpoint.Password);
+			Uri snapshotUri = new Uri(SnapshotCgi.InvariantFormat(
+				networkEndpoint.Address,
+				networkEndpoint.Port));
 			snapshotState.Client.DownloadDataAsync(snapshotUri);
 		}
 
@@ -146,6 +154,8 @@ namespace AxisCameraMPPlugin.Configuration.Service
 		/// </summary>
 		private void SendEventIfCompleted()
 		{
+			GetInformationFromCameraCompletedEventArgs e = null;
+
 			lock (syncRoot)
 			{
 				if (parameterState.IsCompleted && snapshotState.IsCompleted)
@@ -153,29 +163,34 @@ namespace AxisCameraMPPlugin.Configuration.Service
 					// Cancelled has first priority
 					if (parameterState.IsCancelled || snapshotState.IsCancelled)
 					{
-						OnGetInformationFromCameraCompleted(new GetInformationFromCameraCompletedEventArgs(
-							null,
-							null,
-							cancelled: true));
+						e = new GetInformationFromCameraCompletedEventArgs(null, null, cancelled: true);
 					}
 
 					// Errors has second priority
-					if (parameterState.Error != null || snapshotState.Error != null)
+					else if (parameterState.Error != null || snapshotState.Error != null)
 					{
-						OnGetInformationFromCameraCompleted(new GetInformationFromCameraCompletedEventArgs(
+						e = new GetInformationFromCameraCompletedEventArgs(
 							null,
 							null,
-							error: parameterState.Error ?? snapshotState.Error));
+							error: parameterState.Error ?? snapshotState.Error);
 					}
 
 					// Operation was successful
-					OnGetInformationFromCameraCompleted(new GetInformationFromCameraCompletedEventArgs(
-						parameterState.Result,
-						snapshotState.Result));
+					else
+					{
+						e = new GetInformationFromCameraCompletedEventArgs(
+							parameterState.Result,
+							snapshotState.Result);
+					}
 
 					// Reset busy state
 					IsBusy = false;
 				}
+			}
+
+			if (e != null)
+			{
+				OnGetInformationFromCameraCompleted(e);
 			}
 		}
 
