@@ -86,7 +86,11 @@
       <DependentUpon>IOService.cs</DependentUpon>
     </Compile>
     <Compile Include="Service\IOService.cs" />
+    <Compile Include="ViewModel\CameraCommunicationDialogViewModel.cs" />
     <Compile Include="ViewModel\CameraNameViewModel.cs" />
+    <Compile Include="ViewModel\ICameraCommunicationDialogViewModel.cs">
+      <DependentUpon>CameraCommunicationDialogViewModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\ICameraNameViewModel.cs">
       <DependentUpon>CameraNameViewModel.cs</DependentUpon>
     </Compile>
@@ -114,6 +118,9 @@
     <Compile Include="ViewModel\WizardPageOneViewModel.cs" />
     <Compile Include="ViewModel\WizardPageTwoViewModel.cs" />
     <Compile Include="ViewModel\WizardPageViewModel.cs" />
+    <Compile Include="View\CameraCommunicationDialog.xaml.cs">
+      <DependentUpon>CameraCommunicationDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SetupDialog.xaml.cs">
       <DependentUpon>SetupDialog.xaml</DependentUpon>
     </Compile>
@@ -128,6 +135,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\CameraCommunicationDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\CameraCommunicationDialogResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\SetupDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

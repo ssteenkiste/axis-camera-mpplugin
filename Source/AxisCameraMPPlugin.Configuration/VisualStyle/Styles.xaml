@@ -79,6 +79,12 @@
 	<Style x:Key="PasswordBoxStyle" TargetType="PasswordBox" BasedOn="{StaticResource BaseStyle}"/>
 	<Style TargetType="PasswordBox" BasedOn="{StaticResource PasswordBoxStyle}"/>
 
+	<!-- Generic style for all progress bars -->
+	<Style x:Key="ProgressBarStyle" TargetType="ProgressBar" BasedOn="{StaticResource BaseStyle}">
+		<Setter Property="Height" Value="20"/>
+	</Style>
+	<Style TargetType="ProgressBar" BasedOn="{StaticResource ProgressBarStyle}"/>
+
 	<!-- Generic style for all text blocks -->
 	<Style x:Key="TextBlockStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseStyle}">
 		<Setter Property="TextTrimming" Value="CharacterEllipsis"/>

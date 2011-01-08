@@ -1,0 +1,24 @@
+﻿<Window
+	x:Class="AxisCameraMPPlugin.Configuration.View.CameraCommunicationDialog"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	Title="Camera Communication"
+	Style="{DynamicResource DialogWindow}"
+	WindowStartupLocation="CenterOwner">
+	
+	<!-- Resources -->
+	<Window.Resources>
+		<ResourceDictionary Source="CameraCommunicationDialogResources.xaml"/>
+	</Window.Resources>
+	
+	<!-- Root element -->
+	<StackPanel Style="{StaticResource RootElementStyle}">
+		
+		<!-- Description -->
+		<TextBlock Text="Communicating with camera..."/>
+		
+		<!-- Progress -->
+		<ProgressBar IsIndeterminate="True"/>
+		
+	</StackPanel>
+</Window>
