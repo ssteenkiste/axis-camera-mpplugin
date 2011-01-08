@@ -20,7 +20,6 @@
 using System;
 using System.Windows.Input;
 using AxisCameraMPPlugin.Configuration.Service;
-using AxisCameraMPPlugin.Data;
 using AxisCameraMPPlugin.Mvvm;
 
 namespace AxisCameraMPPlugin.Configuration.ViewModel
