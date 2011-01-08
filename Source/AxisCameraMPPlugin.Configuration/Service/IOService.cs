@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+using System;
 using System.IO;
 using MediaPortal.Configuration;
 
@@ -27,6 +28,38 @@ namespace AxisCameraMPPlugin.Configuration.Service
 	/// </summary>
 	class IOService : IIOService
 	{
+		private const string PluginFolderName = "AxisCameraMPPlugin";
+
+
+		/// <summary>
+		/// Gets the path of the camera icon.
+		/// </summary>
+		/// <returns>The path of the camera icon.</returns>
+		public string CameraIconPath
+		{
+			get { return Config.GetFile(Config.Dir.Thumbs, PluginFolderName, "CameraPortrait.png"); }
+		}
+
+
+		/// <summary>
+		/// Saves a thumb for specified camera.
+		/// </summary>
+		/// <param name="cameraId">The camera id.</param>
+		/// <param name="image">The image thumb.</param>
+		/// <returns>The path where the thumb is saved.</returns>
+		public string SaveThumb(Guid cameraId, byte[] image)
+		{
+			string thumbPath = Config.GetFile(
+				Config.Dir.Thumbs,
+				PluginFolderName,
+				cameraId + ".jpg");
+
+			File.WriteAllBytes(thumbPath, image);
+
+			return thumbPath;
+		}
+
+
 		/// <summary>
 		/// Deletes the specified file.
 		/// </summary>
@@ -43,17 +76,6 @@ namespace AxisCameraMPPlugin.Configuration.Service
 			{
 				return false;
 			}
-		}
-
-
-		/// <summary>
-		/// Gets the path of a plugin thumb.
-		/// </summary>
-		/// <param name="thumbFileName">Name of the thumb file.</param>
-		/// <returns>The path of a plugin thumb.</returns>
-		public string GetThumbPath(string thumbFileName)
-		{
-			return Config.GetFile(Config.Dir.Thumbs, "AxisCameraMPPlugin", thumbFileName);
 		}
 	}
 }
