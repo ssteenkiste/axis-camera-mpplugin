@@ -61,7 +61,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Provider\CameraCommunicationDialogViewModelProvider.cs" />
     <Compile Include="Provider\CameraNameViewModelProvider.cs" />
+    <Compile Include="Provider\ICameraCommunicationDialogViewModelProvider.cs">
+      <DependentUpon>CameraCommunicationDialogViewModelProvider.cs</DependentUpon>
+    </Compile>
     <Compile Include="Provider\ICameraNameViewModelProvider.cs">
       <DependentUpon>CameraNameViewModelProvider.cs</DependentUpon>
     </Compile>
