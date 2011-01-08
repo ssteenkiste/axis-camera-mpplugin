@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using AxisCameraMPPlugin.Configuration.ViewModel;
 using AxisCameraMPPlugin.Data;
+using AxisCameraMPPlugin.Mvvm.Services;
 
 namespace AxisCameraMPPlugin.Configuration.Provider
 {
@@ -29,6 +30,28 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 	/// </summary>
 	class WizardPageViewModelsProvider : IWizardPageViewModelsProvider
 	{
+		private readonly IWindowService windowService;
+		private readonly ICameraCommunicationDialogViewModelProvider cameraCommunicationProvider;
+
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="WizardPageViewModelsProvider"/> class.
+		/// </summary>
+		/// <param name="windowService">The window service.</param>
+		public WizardPageViewModelsProvider(
+			IWindowService windowService,
+			ICameraCommunicationDialogViewModelProvider cameraCommunicationProvider)
+		{
+			if (windowService == null) throw new ArgumentNullException("windowService");
+			if (cameraCommunicationProvider == null) throw new ArgumentNullException("cameraCommunicationProvider");
+
+			this.windowService = windowService;
+			this.cameraCommunicationProvider = cameraCommunicationProvider;
+		}
+
+
+
+
 		/// <summary>
 		/// Returns a collection of IWizardPageViewModels.
 		/// </summary>
@@ -37,7 +60,9 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 		{
 			if (camera == null) throw new ArgumentNullException("camera");
 
-			IWizardPageViewModel pageOne = new WizardPageOneViewModel();
+			IWizardPageViewModel pageOne = new WizardPageOneViewModel(
+				windowService,
+				cameraCommunicationProvider);
 			pageOne.Load(camera);
 
 			IWizardPageViewModel pageTwo = new WizardPageTwoViewModel();

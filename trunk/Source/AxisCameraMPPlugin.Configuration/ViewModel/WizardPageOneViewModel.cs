@@ -20,8 +20,12 @@
 using System;
 using System.Globalization;
 using AxisCameraMPPlugin.Configuration.Properties;
+using AxisCameraMPPlugin.Configuration.Provider;
+using AxisCameraMPPlugin.Configuration.Service;
+using AxisCameraMPPlugin.Configuration.View;
 using AxisCameraMPPlugin.Configuration.ViewModel.ValidationRule;
 using AxisCameraMPPlugin.Data;
+using AxisCameraMPPlugin.Mvvm.Services;
 
 namespace AxisCameraMPPlugin.Configuration.ViewModel
 {
@@ -30,11 +34,31 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 	/// </summary>
 	class WizardPageOneViewModel : WizardPageViewModel, IWizardPageOneViewModel
 	{
+		private readonly IWindowService windowService;
+		private readonly ICameraCommunicationDialogViewModelProvider cameraCommunicationProvider;
+
+		private Guid cameraId;
+		private string friendlyName;
+		private string snapshotPath;
+
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="WizardPageOneViewModel"/> class.
 		/// </summary>
-		public WizardPageOneViewModel()
+		/// <param name="windowService">The window service.</param>
+		/// <param name="cameraCommunicationProvider">
+		/// The camera communication dialog view model provider.
+		/// </param>
+		public WizardPageOneViewModel(
+			IWindowService windowService,
+			ICameraCommunicationDialogViewModelProvider cameraCommunicationProvider)
 		{
+			if (windowService == null) throw new ArgumentNullException("windowService");
+			if (cameraCommunicationProvider == null) throw new ArgumentNullException("cameraCommunicationProvider");
+
+			this.windowService = windowService;
+			this.cameraCommunicationProvider = cameraCommunicationProvider;
+
 			AddValidators();
 		}
 
@@ -105,6 +129,8 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		{
 			if (camera == null) throw new ArgumentNullException("camera");
 
+			cameraId = camera.Id;
+
 			Address = camera.Address;
 			Port = camera.Port.ToString(CultureInfo.CurrentCulture);
 			UserName = camera.UserName;
@@ -124,6 +150,49 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 			camera.Port = int.Parse(Port, CultureInfo.CurrentCulture);
 			camera.UserName = UserName;
 			camera.Password = Password;
+
+			camera.Name = friendlyName;
+			camera.SnapshotPath = snapshotPath;
+		}
+
+
+		/// <summary>
+		/// Validates all added validation rules.
+		/// </summary>
+		/// <returns>true if validation succeeds; otherwise false.</returns>
+		public override bool Validate()
+		{
+			bool isValid = base.Validate();
+
+			if (isValid)
+			{
+				NetworkEndpoint cameraEndpoint = new NetworkEndpoint(
+					Address,
+					int.Parse(Port, CultureInfo.CurrentCulture),
+					UserName,
+					Password);
+
+				ICameraCommunicationDialogViewModel cameraCommunicationViewModel =
+					cameraCommunicationProvider.Provide(cameraId, cameraEndpoint);
+
+				// Communicate with camera
+				bool? success = windowService.ShowDialog<CameraCommunicationDialog>(
+					cameraCommunicationViewModel,
+					this);
+
+				if (success == true)
+				{
+					friendlyName = cameraCommunicationViewModel.FriendlyName;
+					snapshotPath = cameraCommunicationViewModel.SnapshotPath;
+				}
+				else
+				{
+					friendlyName = null;
+					snapshotPath = null;
+				}
+			}
+
+			return isValid;
 		}
 
 
