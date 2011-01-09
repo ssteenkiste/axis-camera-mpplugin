@@ -94,6 +94,10 @@
       <DependentUpon>IOService.cs</DependentUpon>
     </Compile>
     <Compile Include="Service\IOService.cs" />
+    <Compile Include="Service\IParameterParser.cs">
+      <DependentUpon>ParameterParser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service\ParameterParser.cs" />
     <Compile Include="ViewModel\CameraCommunicationDialogViewModel.cs" />
     <Compile Include="ViewModel\CameraNameViewModel.cs" />
     <Compile Include="ViewModel\ICameraCommunicationDialogViewModel.cs">
