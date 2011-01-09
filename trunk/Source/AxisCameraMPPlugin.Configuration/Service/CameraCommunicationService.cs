@@ -18,8 +18,8 @@
 
 #endregion
 using System;
+using System.Collections.Generic;
 using System.Net;
-using AxisCameraMPPlugin.Data;
 
 namespace AxisCameraMPPlugin.Configuration.Service
 {
@@ -28,8 +28,11 @@ namespace AxisCameraMPPlugin.Configuration.Service
 	/// </summary>
 	class CameraCommunicationService : ICameraCommunicationService, IDisposable
 	{
-		private const string ParameterCgi = "http://{0}:{1}/axis-cgi/admin/param.cgi?action=list&group=Network.UPnP.FriendlyName";
+		private const string Parameter = "Network.UPnP.FriendlyName";
+		private const string ParameterCgi = "http://{0}:{1}/axis-cgi/admin/param.cgi?action=list&group=" + Parameter;
 		private const string SnapshotCgi = "http://{0}:{1}/axis-cgi/jpg/image.cgi";
+
+		private readonly IParameterParser parameterParser;
 
 		private ClientState<string> parameterState;
 		private ClientState<byte[]> snapshotState;
@@ -47,8 +50,13 @@ namespace AxisCameraMPPlugin.Configuration.Service
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CameraCommunicationService"/> class.
 		/// </summary>
-		public CameraCommunicationService()
+		/// <param name="parameterParser">The parameter parser.</param>
+		public CameraCommunicationService(IParameterParser parameterParser)
 		{
+			if (parameterParser == null) throw new ArgumentNullException("parameterParser");
+
+			this.parameterParser = parameterParser;
+
 			parameterState = new ClientState<string>();
 			snapshotState = new ClientState<byte[]>();
 		}
@@ -128,7 +136,11 @@ namespace AxisCameraMPPlugin.Configuration.Service
 
 			parameterState.IsCancelled = e.Cancelled;
 			parameterState.Error = e.Error;
-			parameterState.Result = e.Error == null ? e.Result : null;
+			if (!e.Cancelled && e.Error == null)
+			{
+				IDictionary<string, string> parameters = parameterParser.Parse(e.Result);
+				parameterState.Result = parameters[Parameter];
+			}
 
 			SendEventIfCompleted();
 		}
