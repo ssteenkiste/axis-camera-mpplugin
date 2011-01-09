@@ -70,7 +70,7 @@ namespace AxisCameraMPPlugin.Configuration.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed when trying to communicate with camera!.
+        ///   Looks up a localized string similar to Error occurred while communicating with camera!.
         /// </summary>
         internal static string CameraCommunicationError {
             get {

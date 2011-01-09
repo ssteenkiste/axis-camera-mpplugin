@@ -121,7 +121,7 @@
     <value>Add Camera</value>
   </data>
   <data name="CameraCommunicationError" xml:space="preserve">
-    <value>Failed when trying to communicate with camera!</value>
+    <value>Error occurred while communicating with camera!</value>
   </data>
   <data name="CameraCommunicationError_Title" xml:space="preserve">
     <value>Communication Error</value>
