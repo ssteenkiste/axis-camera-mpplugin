@@ -38,6 +38,8 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		private readonly IWindowService windowService;
 		private readonly ICameraCommunicationDialogViewModelProvider communicationProvider;
 
+		private DirtyState dirtyState;
+
 		private Guid cameraId;
 		private string friendlyName;
 		private string snapshotPath;
@@ -138,6 +140,12 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 			Port = camera.Port.ToString(CultureInfo.CurrentCulture);
 			UserName = camera.UserName;
 			Password = camera.Password;
+
+			dirtyState = new DirtyState(
+				Address,
+				Port,
+				UserName,
+				Password);
 		}
 
 
@@ -168,8 +176,8 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 			// Determine if view model is valid
 			bool isValid = base.Validate();
 
-			// If view model is valid and friendly name and snapshot is unknown, get them from camera
-			if (isValid && friendlyName == null && snapshotPath == null)
+			// If view model is valid and camera properties are dirty, communicate with camera
+			if (isValid && dirtyState.IsDirty(Address, Port, UserName, Password))
 			{
 				NetworkEndpoint cameraEndpoint = new NetworkEndpoint(
 					Address,
@@ -185,11 +193,13 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 					communicationViewModel,
 					this);
 
-				friendlyName = communicationViewModel.FriendlyName;
-				snapshotPath = communicationViewModel.SnapshotPath;
-
-				// Was communication with camera unsuccessful?
-				if (success != true)
+				// Was communication with camera successful?
+				if (success == true)
+				{
+					friendlyName = communicationViewModel.FriendlyName;
+					snapshotPath = communicationViewModel.SnapshotPath;
+				}
+				else
 				{
 					isValid = false;
 
@@ -222,6 +232,52 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 			AddValidator(
 				() => Password,
 				new NotEmptyStringValidationRule { ErrorMessage = Resources.Validation_Failed_Password });
+		}
+
+
+		/// <summary>
+		/// Class determining whether properties are dirty, i.e. a user has changed them.
+		/// </summary>
+		class DirtyState
+		{
+			private readonly string oldAddress;
+			private readonly string oldPort;
+			private readonly string oldUserName;
+			private readonly string oldPassword;
+
+
+			/// <summary>
+			/// Initializes a new instance of the <see cref="DirtyState"/> class.
+			/// </summary>
+			/// <param name="oldAddress">The old address.</param>
+			/// <param name="oldPort">The old port.</param>
+			/// <param name="oldUserName">The old user name.</param>
+			/// <param name="oldPassword">The old password.</param>
+			public DirtyState(string oldAddress, string oldPort, string oldUserName, string oldPassword)
+			{
+				this.oldAddress = oldAddress;
+				this.oldPort = oldPort;
+				this.oldUserName = oldUserName;
+				this.oldPassword = oldPassword;
+			}
+
+
+			/// <summary>
+			/// Determines whether any of the properties are dirty.
+			/// </summary>
+			/// <param name="newAddress">The new address.</param>
+			/// <param name="newPort">The new port.</param>
+			/// <param name="newUserName">The new user name.</param>
+			/// <param name="newPassword">The new password.</param>
+			/// <returns>true if any of the properties are dirty; otherwise false.</returns>
+			public bool IsDirty(string newAddress, string newPort, string newUserName, string newPassword)
+			{
+				return
+					oldAddress != newAddress ||
+					oldPort != newPort ||
+					oldUserName != newUserName ||
+					oldPassword != newPassword;
+			}
 		}
 	}
 }
