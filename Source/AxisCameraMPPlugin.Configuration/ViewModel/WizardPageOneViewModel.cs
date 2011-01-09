@@ -19,6 +19,7 @@
 #endregion
 using System;
 using System.Globalization;
+using System.Windows;
 using AxisCameraMPPlugin.Configuration.Properties;
 using AxisCameraMPPlugin.Configuration.Provider;
 using AxisCameraMPPlugin.Configuration.Service;
@@ -162,9 +163,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// <returns>true if validation succeeds; otherwise false.</returns>
 		public override bool Validate()
 		{
-			bool isValid = base.Validate();
-
-			if (isValid)
+			if (base.Validate())
 			{
 				NetworkEndpoint cameraEndpoint = new NetworkEndpoint(
 					Address,
@@ -180,19 +179,24 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 					cameraCommunicationViewModel,
 					this);
 
+				friendlyName = cameraCommunicationViewModel.FriendlyName;
+				snapshotPath = cameraCommunicationViewModel.SnapshotPath;
+
+				// Was communication with camera successful?
 				if (success == true)
 				{
-					friendlyName = cameraCommunicationViewModel.FriendlyName;
-					snapshotPath = cameraCommunicationViewModel.SnapshotPath;
+					return true;
 				}
-				else
-				{
-					friendlyName = null;
-					snapshotPath = null;
-				}
+
+				// Failed to communicate with camera
+				windowService.ShowMessageBox(
+					this,
+					Resources.CameraCommunicationError,
+					Resources.CameraCommunicationError_Title,
+					icon: MessageBoxImage.Error);
 			}
 
-			return isValid;
+			return false;
 		}
 
 

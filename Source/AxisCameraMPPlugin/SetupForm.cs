@@ -59,9 +59,12 @@ namespace AxisCameraMPPlugin
 		public SetupForm()
 		{
 			container = CreateContainer();
+
 			cameras = container.Resolve<IPluginSettings>().GetCameras();
 			player = container.Resolve<IPlayer>();
 			ioService = container.Resolve<IIOService>();
+
+			NetworkConfiguration.SetAllowUnsafeHeaderParsing20();
 		}
 
 

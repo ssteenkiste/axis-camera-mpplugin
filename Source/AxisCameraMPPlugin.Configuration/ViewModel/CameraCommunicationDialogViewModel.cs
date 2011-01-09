@@ -59,6 +59,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 			this.cameraEndpoint = cameraEndpoint;
 
 			LoadedCommand = new RelayCommand(Loaded);
+			CancelCommand = new RelayCommand(Cancel);
 		}
 
 
@@ -69,6 +70,16 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		{
 			get { return Property(() => LoadedCommand); }
 			private set { Property(() => LoadedCommand, value); }
+		}
+
+
+		/// <summary>
+		/// Gets the command canceling the dialog.
+		/// </summary>
+		public ICommand CancelCommand
+		{
+			get { return Property(() => CancelCommand); }
+			private set { Property(() => CancelCommand, value); }
 		}
 
 
@@ -93,7 +104,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 
 
 		/// <summary>
-		/// Method called when dialog is loaded.
+		/// Executes the Loaded command.
 		/// </summary>
 		private void Loaded(object parameter)
 		{
@@ -119,6 +130,15 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 
 			cameraCommunicationService.GetInformationFromCameraCompleted += completedHandler;
 			cameraCommunicationService.GetInformationFromCameraAsync(cameraEndpoint);
+		}
+
+
+		/// <summary>
+		/// Executes the Cancel command.
+		/// </summary>
+		private void Cancel(object parameter)
+		{
+			cameraCommunicationService.CancelAsync();
 		}
 	}
 }

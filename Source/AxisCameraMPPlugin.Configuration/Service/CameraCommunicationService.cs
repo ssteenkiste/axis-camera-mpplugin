@@ -128,7 +128,7 @@ namespace AxisCameraMPPlugin.Configuration.Service
 
 			parameterState.IsCancelled = e.Cancelled;
 			parameterState.Error = e.Error;
-			parameterState.Result = e.Result;
+			parameterState.Result = e.Error == null ? e.Result : null;
 
 			SendEventIfCompleted();
 		}
@@ -143,7 +143,7 @@ namespace AxisCameraMPPlugin.Configuration.Service
 
 			snapshotState.IsCancelled = e.Cancelled;
 			snapshotState.Error = e.Error;
-			snapshotState.Result = e.Result;
+			snapshotState.Result = e.Error == null ? e.Result : null;
 
 			SendEventIfCompleted();
 		}
@@ -163,15 +163,13 @@ namespace AxisCameraMPPlugin.Configuration.Service
 					// Cancelled has first priority
 					if (parameterState.IsCancelled || snapshotState.IsCancelled)
 					{
-						e = new GetInformationFromCameraCompletedEventArgs(null, null, cancelled: true);
+						e = new GetInformationFromCameraCompletedEventArgs(cancelled: true);
 					}
 
 					// Errors has second priority
 					else if (parameterState.Error != null || snapshotState.Error != null)
 					{
 						e = new GetInformationFromCameraCompletedEventArgs(
-							null,
-							null,
 							error: parameterState.Error ?? snapshotState.Error);
 					}
 
@@ -179,8 +177,8 @@ namespace AxisCameraMPPlugin.Configuration.Service
 					else
 					{
 						e = new GetInformationFromCameraCompletedEventArgs(
-							parameterState.Result,
-							snapshotState.Result);
+							friendlyName: parameterState.Result,
+							snapshot: snapshotState.Result);
 					}
 
 					// Reset busy state
