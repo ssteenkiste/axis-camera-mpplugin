@@ -120,6 +120,12 @@
   <data name="AddCamera_Title" xml:space="preserve">
     <value>Add Camera</value>
   </data>
+  <data name="CameraCommunicationError" xml:space="preserve">
+    <value>Failed when trying to communicate with camera!</value>
+  </data>
+  <data name="CameraCommunicationError_Title" xml:space="preserve">
+    <value>Communication Error</value>
+  </data>
   <data name="EditCamera_Title" xml:space="preserve">
     <value>Edit Camera</value>
   </data>

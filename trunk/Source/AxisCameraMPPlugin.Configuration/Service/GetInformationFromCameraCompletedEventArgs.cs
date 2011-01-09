@@ -31,8 +31,8 @@ namespace AxisCameraMPPlugin.Configuration.Service
 		/// Initializes a new instance of the <see cref="GetInformationFromCameraCompletedEventArgs"/>
 		/// class.
 		/// </summary>
-		/// <param name="friendlyName">The friendly name.</param>
-		/// <param name="snapshot">The camera snapshot.</param>
+		/// <param name="friendlyName">The friendly name. Default value is null.</param>
+		/// <param name="snapshot">The camera snapshot. Default value is null.</param>
 		/// <param name="error">
 		/// Any error that occurred during the asynchronous operation. Default value is null.
 		/// </param>
@@ -40,15 +40,12 @@ namespace AxisCameraMPPlugin.Configuration.Service
 		/// A value indicating whether the asynchronous operation was canceled. Default value is false.
 		/// </param>
 		public GetInformationFromCameraCompletedEventArgs(
-			string friendlyName,
-			byte[] snapshot,
+			string friendlyName = null,
+			byte[] snapshot = null,
 			Exception error = null,
 			bool cancelled = false) :
 			base(error, cancelled, null)
 		{
-			if (friendlyName == null) throw new ArgumentNullException("friendlyName");
-			if (snapshot == null) throw new ArgumentNullException("snapshot");
-
 			FriendlyName = friendlyName;
 			Snapshot = snapshot;
 		}

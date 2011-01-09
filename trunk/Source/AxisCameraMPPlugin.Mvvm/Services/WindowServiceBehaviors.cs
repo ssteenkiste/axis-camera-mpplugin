@@ -45,7 +45,7 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 			typeof(bool),
 			typeof(WindowServiceBehaviors),
 			new UIPropertyMetadata(IsRegisteredViewPropertyChanged));
-		
+
 
 		/// <summary>
 		/// Gets value describing whether FrameworkElement is acting as View in MVVM.
@@ -137,15 +137,14 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 				throw new ArgumentException("View has already been registered.", "view");
 
 			// Get owner window
-			Window owner = view as Window;
-			if (owner == null)
-			{
-				owner = Window.GetWindow(view);
-			}
+			Window owner = view as Window ?? Window.GetWindow(view);
 
 			if (owner == null)
 			{
-				throw new InvalidOperationException("View is not contained within a Window.");
+				// Perform a late register when the View hasn't been loaded yet.
+				// This will happen if e.g. the View is contained in a Frame.
+				view.Loaded += LateRegister;
+				return;
 			}
 
 			// Register for owner window closing, since we then should unregister View reference,
@@ -167,6 +166,24 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 				throw new ArgumentException("View has not been registered.", "view");
 
 			views.Remove(view);
+		}
+
+
+		/// <summary>
+		/// Callback for late View register. It wasn't possible to do a instant register since the
+		/// View wasn't at that point part of the logical nor visual tree.
+		/// </summary>
+		private static void LateRegister(object sender, RoutedEventArgs e)
+		{
+			FrameworkElement view = sender as FrameworkElement;
+			if (view != null)
+			{
+				// Unregister loaded event
+				view.Loaded -= LateRegister;
+
+				// Register the view
+				Register(view);
+			}
 		}
 
 
