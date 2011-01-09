@@ -50,7 +50,7 @@
 				
 				<!-- Snapshot image -->
 				<Image
-					Source="{Binding Snapshot}"/>
+					Source="{Binding SnapshotPath}"/>
 				
 				<!-- Refresh button -->
 				<Button
