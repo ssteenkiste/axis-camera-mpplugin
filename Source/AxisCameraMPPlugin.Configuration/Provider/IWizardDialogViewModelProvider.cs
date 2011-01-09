@@ -17,19 +17,21 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System.Collections.Generic;
 using AxisCameraMPPlugin.Configuration.ViewModel;
+using AxisCameraMPPlugin.Data;
 
 namespace AxisCameraMPPlugin.Configuration.Provider
 {
 	/// <summary>
-	/// Interface describing a provider that provides a sequence of WizardPageViewModels.
+	/// Interface describing a provider that provides a IWizardDialogViewModel.
 	/// </summary>
-	interface IWizardPageViewModelsProvider
+	interface IWizardDialogViewModelProvider
 	{
 		/// <summary>
-		/// Returns a collection of WizardPageViewModels.
+		/// Returns a IWizardDialogViewModel.
 		/// </summary>
-		IEnumerable<IWizardPageViewModel> Provide();
+		/// <param name="title">The title of the dialog.</param>
+		/// <param name="camera">The camera configured by the wizard.</param>
+		IWizardDialogViewModel Provide(string title, Camera camera);
 	}
 }

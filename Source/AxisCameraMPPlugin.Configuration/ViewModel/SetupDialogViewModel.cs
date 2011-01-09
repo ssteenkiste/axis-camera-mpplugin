@@ -41,7 +41,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		private readonly IWindowService windowService;
 		private readonly IIOService ioService;
 		private readonly ICameraNameViewModelProvider cameraProvider;
-		private readonly Func<string, Camera, IWizardDialogViewModel> wizardProvider;
+		private readonly IWizardDialogViewModelProvider wizardProvider;
 
 
 		/// <summary>
@@ -56,7 +56,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 			IWindowService windowService,
 			IIOService ioService,
 			ICameraNameViewModelProvider cameraProvider,
-			Func<string, Camera, IWizardDialogViewModel> wizardProvider,
+			IWizardDialogViewModelProvider wizardProvider,
 			IEnumerable<ICameraNameViewModel> cameras)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
@@ -141,7 +141,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 				UserName = "root"
 			};
 
-			IWizardDialogViewModel wizard = wizardProvider(
+			IWizardDialogViewModel wizard = wizardProvider.Provide(
 				Resources.AddCamera_Title,
 				camera);
 
@@ -159,7 +159,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		{
 			CameraNameViewModel selectedViewModel = (CameraNameViewModel)SelectedItems.Single();
 
-			IWizardDialogViewModel wizard = wizardProvider(
+			IWizardDialogViewModel wizard = wizardProvider.Provide(
 				Resources.EditCamera_Title,
 				selectedViewModel.Camera.Clone());
 

@@ -50,11 +50,11 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 			if (camera == null) throw new ArgumentNullException("camera");
 			if (wizardPagesProvider == null) throw new ArgumentNullException("wizardPagesProvider");
 
-			pages = new List<IWizardPageViewModel>(wizardPagesProvider.Provide(camera));
+			pages = new List<IWizardPageViewModel>(wizardPagesProvider.Provide());
 
 			Title = title;
-			CurrentWizardPage = pages.First();
 			Camera = camera;
+			CurrentWizardPage = pages.First();
 			PreviousCommand = new RelayCommand(Previous, CanPrevious);
 			NextCommand = new RelayCommand(Next, CanNext);
 			FinishCommand = new RelayCommand(Finish, CanFinish);
@@ -79,6 +79,18 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 			get { return Property(() => CurrentWizardPage); }
 			private set
 			{
+				// Save properties from old page
+				if (CurrentWizardPage != null)
+				{
+					CurrentWizardPage.Save(Camera);
+				}
+
+				// Load properties to new page
+				if (value != null)
+				{
+					value.Load(Camera);
+				}
+
 				Property(() => CurrentWizardPage, value);
 				OnPropertyChanged(() => Header);
 				OnPropertyChanged(() => Description);
@@ -172,9 +184,6 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 			// Validate current page before moving to next page
 			if (CurrentWizardPage.Validate())
 			{
-				// Save page properties to camera
-				CurrentWizardPage.Save(Camera);
-
 				int currentPageIndex = pages.IndexOf(CurrentWizardPage);
 				CurrentWizardPage = pages[currentPageIndex + 1];
 			}
