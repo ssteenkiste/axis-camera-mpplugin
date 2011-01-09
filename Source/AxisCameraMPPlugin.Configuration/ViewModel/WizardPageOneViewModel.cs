@@ -36,7 +36,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 	class WizardPageOneViewModel : WizardPageViewModel, IWizardPageOneViewModel
 	{
 		private readonly IWindowService windowService;
-		private readonly ICameraCommunicationDialogViewModelProvider cameraCommunicationProvider;
+		private readonly ICameraCommunicationDialogViewModelProvider communicationProvider;
 
 		private Guid cameraId;
 		private string friendlyName;
@@ -47,18 +47,18 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// Initializes a new instance of the <see cref="WizardPageOneViewModel"/> class.
 		/// </summary>
 		/// <param name="windowService">The window service.</param>
-		/// <param name="cameraCommunicationProvider">
+		/// <param name="communicationProvider">
 		/// The camera communication dialog view model provider.
 		/// </param>
 		public WizardPageOneViewModel(
 			IWindowService windowService,
-			ICameraCommunicationDialogViewModelProvider cameraCommunicationProvider)
+			ICameraCommunicationDialogViewModelProvider communicationProvider)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
-			if (cameraCommunicationProvider == null) throw new ArgumentNullException("cameraCommunicationProvider");
+			if (communicationProvider == null) throw new ArgumentNullException("communicationProvider");
 
 			this.windowService = windowService;
-			this.cameraCommunicationProvider = cameraCommunicationProvider;
+			this.communicationProvider = communicationProvider;
 
 			AddValidators();
 		}
@@ -131,6 +131,8 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 			if (camera == null) throw new ArgumentNullException("camera");
 
 			cameraId = camera.Id;
+			friendlyName = camera.Name;
+			snapshotPath = camera.SnapshotPath;
 
 			Address = camera.Address;
 			Port = camera.Port.ToString(CultureInfo.CurrentCulture);
@@ -147,13 +149,13 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		{
 			if (camera == null) throw new ArgumentNullException("camera");
 
+			camera.Name = friendlyName;
+			camera.SnapshotPath = snapshotPath;
+
 			camera.Address = Address;
 			camera.Port = int.Parse(Port, CultureInfo.CurrentCulture);
 			camera.UserName = UserName;
 			camera.Password = Password;
-
-			camera.Name = friendlyName;
-			camera.SnapshotPath = snapshotPath;
 		}
 
 
@@ -163,7 +165,11 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// <returns>true if validation succeeds; otherwise false.</returns>
 		public override bool Validate()
 		{
-			if (base.Validate())
+			// Determine if view model is valid
+			bool isValid = base.Validate();
+
+			// If view model is valid and friendly name and snapshot is unknown, get them from camera
+			if (isValid && friendlyName == null && snapshotPath == null)
 			{
 				NetworkEndpoint cameraEndpoint = new NetworkEndpoint(
 					Address,
@@ -171,32 +177,31 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 					UserName,
 					Password);
 
-				ICameraCommunicationDialogViewModel cameraCommunicationViewModel =
-					cameraCommunicationProvider.Provide(cameraId, cameraEndpoint);
+				ICameraCommunicationDialogViewModel communicationViewModel =
+					communicationProvider.Provide(cameraId, cameraEndpoint);
 
 				// Communicate with camera
 				bool? success = windowService.ShowDialog<CameraCommunicationDialog>(
-					cameraCommunicationViewModel,
+					communicationViewModel,
 					this);
 
-				friendlyName = cameraCommunicationViewModel.FriendlyName;
-				snapshotPath = cameraCommunicationViewModel.SnapshotPath;
+				friendlyName = communicationViewModel.FriendlyName;
+				snapshotPath = communicationViewModel.SnapshotPath;
 
-				// Was communication with camera successful?
-				if (success == true)
+				// Was communication with camera unsuccessful?
+				if (success != true)
 				{
-					return true;
-				}
+					isValid = false;
 
-				// Failed to communicate with camera
-				windowService.ShowMessageBox(
-					this,
-					Resources.CameraCommunicationError,
-					Resources.CameraCommunicationError_Title,
-					icon: MessageBoxImage.Error);
+					windowService.ShowMessageBox(
+						this,
+						Resources.CameraCommunicationError,
+						Resources.CameraCommunicationError_Title,
+						icon: MessageBoxImage.Error);
+				}
 			}
 
-			return false;
+			return isValid;
 		}
 
 
