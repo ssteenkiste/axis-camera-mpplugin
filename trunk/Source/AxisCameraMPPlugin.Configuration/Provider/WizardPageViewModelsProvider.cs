@@ -58,18 +58,13 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 		/// <summary>
 		/// Returns a collection of IWizardPageViewModels.
 		/// </summary>
-		/// <param name="camera">The camera configured by the wizard pages.</param>
-		public IEnumerable<IWizardPageViewModel> Provide(Camera camera)
+		public IEnumerable<IWizardPageViewModel> Provide()
 		{
-			if (camera == null) throw new ArgumentNullException("camera");
-
 			IWizardPageViewModel pageOne = new WizardPageOneViewModel(
 				windowService,
 				communicationProvider);
-			pageOne.Load(camera);
 
 			IWizardPageViewModel pageTwo = new WizardPageTwoViewModel();
-			pageTwo.Load(camera);
 
 			return new IWizardPageViewModel[]
 			{

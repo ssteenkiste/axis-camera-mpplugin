@@ -34,7 +34,7 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 		private readonly IWindowService windowService;
 		private readonly IIOService ioService;
 		private readonly ICameraNameViewModelProvider cameraProvider;
-		private readonly Func<string, Camera, IWizardDialogViewModel> wizardProvider;
+		private readonly WizardDialogViewModelProvider wizardProvider;
 
 
 		/// <summary>
@@ -48,7 +48,7 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 			IWindowService windowService,
 			IIOService ioService,
 			ICameraNameViewModelProvider cameraProvider,
-			Func<string, Camera, IWizardDialogViewModel> wizardProvider)
+			WizardDialogViewModelProvider wizardProvider)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
 			if (ioService == null) throw new ArgumentNullException("ioService");
