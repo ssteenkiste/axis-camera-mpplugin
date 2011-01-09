@@ -64,6 +64,7 @@ namespace AxisCameraMPPlugin
 			player = container.Resolve<IPlayer>();
 			ioService = container.Resolve<IIOService>();
 
+			// Allow unsafe header parsing due to backward compatibility with VAPIX
 			NetworkConfiguration.SetAllowUnsafeHeaderParsing20();
 		}
 
