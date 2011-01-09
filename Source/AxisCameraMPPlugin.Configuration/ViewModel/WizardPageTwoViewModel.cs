@@ -49,6 +49,16 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 
 
 		/// <summary>
+		/// Gets the snapshot path.
+		/// </summary>
+		public string SnapshotPath
+		{
+			get { return Property(() => SnapshotPath); }
+			private set { Property(() => SnapshotPath, value); }
+		}
+
+
+		/// <summary>
 		/// Gets the header of the wizard page.
 		/// </summary>
 		public override string Header
@@ -75,6 +85,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 			if (camera == null) throw new ArgumentNullException("camera");
 
 			Name = camera.Name;
+			SnapshotPath = camera.SnapshotPath;
 		}
 
 
@@ -87,7 +98,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 			if (camera == null) throw new ArgumentNullException("camera");
 
 			camera.Name = Name;
-			// TODO: Save snapshot
+			camera.SnapshotPath = SnapshotPath;
 		}
 
 
