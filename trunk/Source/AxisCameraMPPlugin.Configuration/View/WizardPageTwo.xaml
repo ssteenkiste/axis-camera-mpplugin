@@ -50,16 +50,13 @@
 				<Button
 					VerticalAlignment="Bottom"
 					HorizontalAlignment="Right"
+					Style="{x:Null}"
+					ToolTip="Refresh snapshot"
 					Command="{Binding RefreshCommand}">
 					<Button.Content>
-						<StackPanel Orientation="Horizontal">
-							<Image
-								Height="16"
-								Source="/AxisCameraMPPlugin.Configuration;Component/Resources/RefreshArrow_Green_16x16.png"/>
-							<TextBlock
-								Margin="3,0,0,0"
-								Text="Refresh"/>
-						</StackPanel>
+						<Image
+							Height="16"
+							Source="/AxisCameraMPPlugin.Configuration;Component/Resources/RefreshArrow_Green_16x16.png"/>
 					</Button.Content>
 				</Button>
 			</Grid>
