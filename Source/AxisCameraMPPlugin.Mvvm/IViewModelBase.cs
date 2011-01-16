@@ -37,5 +37,16 @@ namespace AxisCameraMPPlugin.Mvvm
 		/// Gets a value indicating whether the view model is valid.
 		/// </summary>
 		bool IsValid { get; }
+
+
+		/// <summary>
+		/// Registers a property observer on the view model.
+		/// </summary>
+		/// <typeparam name="T">
+		/// The type the property observer is targeting, usually the view model itself.
+		/// </typeparam>
+		/// <param name="propertyObserver">The property observer.</param>
+		void RegisterPropertyObserver<T>(PropertyObserver<T> propertyObserver)
+			where T : INotifyPropertyChanged;
 	}
 }
