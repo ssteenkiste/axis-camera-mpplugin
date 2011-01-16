@@ -19,7 +19,7 @@
 #endregion
 using System;
 using AxisCameraMPPlugin.Configuration.ViewModel;
-using AxisCameraMPPlugin.Data;
+using AxisCameraMPPlugin.Configuration.ViewModel.Data;
 
 namespace AxisCameraMPPlugin.Configuration.Provider
 {
@@ -29,10 +29,10 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 	class CameraNameViewModelProvider : ICameraNameViewModelProvider
 	{
 		/// <summary>
-		/// Returns a ICameraNameViewModel created from a Camera.
+		/// Returns a ICameraNameViewModel created from a ConfigurableCamera.
 		/// </summary>
 		/// <param name="camera">The camera to turn into a ICameraNameViewModel.</param>
-		public ICameraNameViewModel Provide(Camera camera)
+		public ICameraNameViewModel Provide(ConfigurableCamera camera)
 		{
 			if (camera == null) throw new ArgumentNullException("camera");
 

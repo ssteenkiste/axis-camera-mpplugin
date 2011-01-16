@@ -50,7 +50,7 @@
 				
 				<!-- Snapshot image -->
 				<Image
-					Source="{Binding SnapshotPath}"/>
+					Source="{Binding Snapshot, Converter={StaticResource ImageBytesConverter}}"/>
 				
 				<!-- Refresh button -->
 				<Button

@@ -27,7 +27,7 @@ using AxisCameraMPPlugin.Configuration.Properties;
 using AxisCameraMPPlugin.Configuration.Provider;
 using AxisCameraMPPlugin.Configuration.Service;
 using AxisCameraMPPlugin.Configuration.View;
-using AxisCameraMPPlugin.Data;
+using AxisCameraMPPlugin.Configuration.ViewModel.Data;
 using AxisCameraMPPlugin.Mvvm;
 using AxisCameraMPPlugin.Mvvm.Services;
 
@@ -134,9 +134,8 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// </summary>
 		private void Add(object parameter)
 		{
-			Camera camera = new Camera
+			ConfigurableCamera camera = new ConfigurableCamera(Guid.NewGuid())
 			{
-				Id = Guid.NewGuid(),
 				Port = 80,
 				UserName = "root"
 			};
@@ -196,7 +195,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 			{
 				ICameraNameViewModel camera = (ICameraNameViewModel)SelectedItems.Single();
 				Cameras.Remove(camera);
-				ioService.Delete(camera.Camera.SnapshotPath);
+				ioService.DeleteThumb(camera.Camera.Id);
 			}
 		}
 

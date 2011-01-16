@@ -22,7 +22,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using AxisCameraMPPlugin.Configuration.Provider;
-using AxisCameraMPPlugin.Data;
+using AxisCameraMPPlugin.Configuration.ViewModel.Data;
 using AxisCameraMPPlugin.Mvvm;
 
 namespace AxisCameraMPPlugin.Configuration.ViewModel
@@ -43,7 +43,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// <param name="wizardPagesProvider">The wizard page view models provider.</param>
 		public WizardDialogViewModel(
 			string title,
-			Camera camera,
+			ConfigurableCamera camera,
 			IWizardPageViewModelsProvider wizardPagesProvider)
 		{
 			if (title == null) throw new ArgumentNullException("title");
@@ -149,7 +149,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// <summary>
 		/// Gets the camera.
 		/// </summary>
-		public Camera Camera
+		public ConfigurableCamera Camera
 		{
 			get { return Property(() => Camera); }
 			private set { Property(() => Camera, value); }

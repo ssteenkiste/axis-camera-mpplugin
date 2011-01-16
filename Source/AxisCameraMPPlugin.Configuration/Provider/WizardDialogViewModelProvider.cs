@@ -19,7 +19,7 @@
 #endregion
 using System;
 using AxisCameraMPPlugin.Configuration.ViewModel;
-using AxisCameraMPPlugin.Data;
+using AxisCameraMPPlugin.Configuration.ViewModel.Data;
 
 namespace AxisCameraMPPlugin.Configuration.Provider
 {
@@ -50,7 +50,7 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 		/// <param name="camera">The camera configured by the wizard.</param>
 		public IWizardDialogViewModel Provide(
 			string title,
-			Camera camera)
+			ConfigurableCamera camera)
 		{
 			if (title == null) throw new ArgumentNullException("title");
 			if (camera == null) throw new ArgumentNullException("camera");

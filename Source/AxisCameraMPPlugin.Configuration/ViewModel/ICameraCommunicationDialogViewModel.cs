@@ -33,8 +33,8 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 
 
 		/// <summary>
-		/// Gets the path of the camera snapshot.
+		/// Gets the camera snapshot.
 		/// </summary>
-		string SnapshotPath { get; }
+		byte[] Snapshot { get; }
 	}
 }

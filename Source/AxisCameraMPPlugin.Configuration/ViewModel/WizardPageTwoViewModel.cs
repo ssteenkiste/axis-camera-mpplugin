@@ -19,8 +19,8 @@
 #endregion
 using System;
 using AxisCameraMPPlugin.Configuration.Properties;
+using AxisCameraMPPlugin.Configuration.ViewModel.Data;
 using AxisCameraMPPlugin.Configuration.ViewModel.ValidationRule;
-using AxisCameraMPPlugin.Data;
 
 namespace AxisCameraMPPlugin.Configuration.ViewModel
 {
@@ -49,12 +49,12 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 
 
 		/// <summary>
-		/// Gets the snapshot path.
+		/// Gets the snapshot.
 		/// </summary>
-		public string SnapshotPath
+		public byte[] Snapshot
 		{
-			get { return Property(() => SnapshotPath); }
-			private set { Property(() => SnapshotPath, value); }
+			get { return Property(() => Snapshot); }
+			private set { Property(() => Snapshot, value); }
 		}
 
 
@@ -80,12 +80,12 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// Loads page properties from specified camera.
 		/// </summary>
 		/// <param name="camera">The camera to load page properties from.</param>
-		public override void Load(Camera camera)
+		public override void Load(ConfigurableCamera camera)
 		{
 			if (camera == null) throw new ArgumentNullException("camera");
 
 			Name = camera.Name;
-			SnapshotPath = camera.SnapshotPath;
+			Snapshot = camera.Snapshot;
 		}
 
 
@@ -93,12 +93,12 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// Saves page properties to specified camera.
 		/// </summary>
 		/// <param name="camera">The camera to save page properties to.</param>
-		public override void Save(Camera camera)
+		public override void Save(ConfigurableCamera camera)
 		{
 			if (camera == null) throw new ArgumentNullException("camera");
 
 			camera.Name = Name;
-			camera.SnapshotPath = SnapshotPath;
+			camera.Snapshot = Snapshot;
 		}
 
 

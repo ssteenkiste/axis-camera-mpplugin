@@ -24,8 +24,8 @@ using AxisCameraMPPlugin.Configuration.Properties;
 using AxisCameraMPPlugin.Configuration.Provider;
 using AxisCameraMPPlugin.Configuration.Service;
 using AxisCameraMPPlugin.Configuration.View;
+using AxisCameraMPPlugin.Configuration.ViewModel.Data;
 using AxisCameraMPPlugin.Configuration.ViewModel.ValidationRule;
-using AxisCameraMPPlugin.Data;
 using AxisCameraMPPlugin.Mvvm.Services;
 
 namespace AxisCameraMPPlugin.Configuration.ViewModel
@@ -39,10 +39,8 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		private readonly ICameraCommunicationDialogViewModelProvider communicationProvider;
 
 		private DirtyState dirtyState;
-
-		private Guid cameraId;
 		private string friendlyName;
-		private string snapshotPath;
+		private byte[] snapshot;
 
 
 		/// <summary>
@@ -128,13 +126,12 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// Loads page properties from specified camera.
 		/// </summary>
 		/// <param name="camera">The camera to load page properties from.</param>
-		public override void Load(Camera camera)
+		public override void Load(ConfigurableCamera camera)
 		{
 			if (camera == null) throw new ArgumentNullException("camera");
 
-			cameraId = camera.Id;
 			friendlyName = camera.Name;
-			snapshotPath = camera.SnapshotPath;
+			snapshot = camera.Snapshot;
 
 			Address = camera.Address;
 			Port = camera.Port.ToString(CultureInfo.CurrentCulture);
@@ -153,12 +150,12 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// Saves page properties to specified camera.
 		/// </summary>
 		/// <param name="camera">The camera to save page properties to.</param>
-		public override void Save(Camera camera)
+		public override void Save(ConfigurableCamera camera)
 		{
 			if (camera == null) throw new ArgumentNullException("camera");
 
 			camera.Name = friendlyName;
-			camera.SnapshotPath = snapshotPath;
+			camera.Snapshot = snapshot;
 
 			camera.Address = Address;
 			camera.Port = int.Parse(Port, CultureInfo.CurrentCulture);
@@ -186,7 +183,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 					Password);
 
 				ICameraCommunicationDialogViewModel communicationViewModel =
-					communicationProvider.Provide(cameraId, cameraEndpoint);
+					communicationProvider.Provide(cameraEndpoint);
 
 				// Communicate with camera
 				bool? success = windowService.ShowDialog<CameraCommunicationDialog>(
@@ -197,7 +194,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 				if (success == true)
 				{
 					friendlyName = communicationViewModel.FriendlyName;
-					snapshotPath = communicationViewModel.SnapshotPath;
+					snapshot = communicationViewModel.Snapshot;
 				}
 				else
 				{

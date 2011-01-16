@@ -29,7 +29,6 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 	class CameraCommunicationDialogViewModelProvider : ICameraCommunicationDialogViewModelProvider
 	{
 		private readonly ICameraCommunicationService cameraCommunicationService;
-		private readonly IIOService ioService;
 
 
 		/// <summary>
@@ -37,36 +36,25 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 		/// class.
 		/// </summary>
 		/// <param name="cameraCommunicationService">The camera communication service.</param>
-		/// <param name="ioService">The I/O service.</param>
 		public CameraCommunicationDialogViewModelProvider(
-			ICameraCommunicationService cameraCommunicationService,
-			IIOService ioService)
+			ICameraCommunicationService cameraCommunicationService)
 		{
 			if (cameraCommunicationService == null) throw new ArgumentNullException("cameraCommunicationService");
-			if (ioService == null) throw new ArgumentNullException("ioService");
 
 			this.cameraCommunicationService = cameraCommunicationService;
-			this.ioService = ioService;
 		}
 
 
 		/// <summary>
-		/// Returns a ICameraCommunicationDialogViewModel from specified camera ID and network
-		/// endpoint.
+		/// Returns a ICameraCommunicationDialogViewModel from specified network endpoint.
 		/// </summary>
-		/// <param name="cameraId">The camera ID.</param>
 		/// <param name="cameraEndpoint">The camera network endpoint.</param>
-		public ICameraCommunicationDialogViewModel Provide(
-			Guid cameraId,
-			NetworkEndpoint cameraEndpoint)
+		public ICameraCommunicationDialogViewModel Provide(NetworkEndpoint cameraEndpoint)
 		{
-			if (cameraId == null) throw new ArgumentNullException("cameraId");
 			if (cameraEndpoint == null) throw new ArgumentNullException("cameraEndpoint");
 
 			return new CameraCommunicationDialogViewModel(
 				cameraCommunicationService,
-				ioService,
-				cameraId,
 				cameraEndpoint);
 		}
 	}
