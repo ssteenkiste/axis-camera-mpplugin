@@ -63,7 +63,7 @@
     </Compile>
     <Compile Include="Provider\CameraCommunicationDialogViewModelProvider.cs" />
     <Compile Include="Provider\CameraNameViewModelProvider.cs" />
-    <Compile Include="Provider\CameraConverter.cs"/>
+    <Compile Include="Provider\CameraConverter.cs" />
     <Compile Include="Provider\ICameraConverter.cs">
       <DependentUpon>CameraConverter.cs</DependentUpon>
     </Compile>
@@ -218,7 +218,9 @@
   <ItemGroup>
     <Resource Include="Resources\surveillance-camera_32x32.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\RefreshArrow_Green_16x16.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

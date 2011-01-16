@@ -40,24 +40,28 @@
 			Grid.ColumnSpan="2"
 			Header="Snapshot">
 			
-			<Grid>
+			<Grid HorizontalAlignment="Center">
 
-				<!-- Row definitions -->
-				<Grid.RowDefinitions>
-					<RowDefinition/>
-					<RowDefinition Height="Auto"/>
-				</Grid.RowDefinitions>
-				
 				<!-- Snapshot image -->
 				<Image
 					Source="{Binding Snapshot, Converter={StaticResource ImageBytesConverter}}"/>
 				
 				<!-- Refresh button -->
 				<Button
-					Grid.Row="1"
+					VerticalAlignment="Bottom"
 					HorizontalAlignment="Right"
-					Content="Refresh"
-					Command="{Binding RefreshCommand}"/>
+					Command="{Binding RefreshCommand}">
+					<Button.Content>
+						<StackPanel Orientation="Horizontal">
+							<Image
+								Height="16"
+								Source="/AxisCameraMPPlugin.Configuration;Component/Resources/RefreshArrow_Green_16x16.png"/>
+							<TextBlock
+								Margin="3,0,0,0"
+								Text="Refresh"/>
+						</StackPanel>
+					</Button.Content>
+				</Button>
 			</Grid>
 		</GroupBox>
 	</Grid>
