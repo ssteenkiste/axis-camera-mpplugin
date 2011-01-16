@@ -17,7 +17,6 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System;
 using AxisCameraMPPlugin.Configuration.Service;
 using AxisCameraMPPlugin.Configuration.ViewModel;
 
@@ -29,11 +28,9 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 	interface ICameraCommunicationDialogViewModelProvider
 	{
 		/// <summary>
-		/// Returns a ICameraCommunicationDialogViewModel from specified camera ID and network
-		/// endpoint.
+		/// Returns a ICameraCommunicationDialogViewModel from specified network endpoint.
 		/// </summary>
-		/// <param name="cameraId">The camera ID.</param>
 		/// <param name="cameraEndpoint">The camera network endpoint.</param>
-		ICameraCommunicationDialogViewModel Provide(Guid cameraId, NetworkEndpoint cameraEndpoint);
+		ICameraCommunicationDialogViewModel Provide(NetworkEndpoint cameraEndpoint);
 	}
 }

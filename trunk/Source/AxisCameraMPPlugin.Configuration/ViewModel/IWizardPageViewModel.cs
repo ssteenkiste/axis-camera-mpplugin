@@ -17,7 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using AxisCameraMPPlugin.Data;
+using AxisCameraMPPlugin.Configuration.ViewModel.Data;
 using AxisCameraMPPlugin.Mvvm;
 
 namespace AxisCameraMPPlugin.Configuration.ViewModel
@@ -43,13 +43,13 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// Loads page properties from specified camera.
 		/// </summary>
 		/// <param name="camera">The camera to load page properties from.</param>
-		void Load(Camera camera);
+		void Load(ConfigurableCamera camera);
 
 
 		/// <summary>
 		/// Saves page properties to specified camera.
 		/// </summary>
 		/// <param name="camera">The camera to save page properties to.</param>
-		void Save(Camera camera);
+		void Save(ConfigurableCamera camera);
 	}
 }

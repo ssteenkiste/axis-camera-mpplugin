@@ -18,6 +18,7 @@
 
 #endregion
 using System;
+using AxisCameraMPPlugin.Configuration.ViewModel.Data;
 using AxisCameraMPPlugin.Data;
 using AxisCameraMPPlugin.Mvvm;
 
@@ -32,7 +33,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// Initializes a new instance of the <see cref="CameraNameViewModel"/> class.
 		/// </summary>
 		/// <param name="camera">The camera.</param>
-		public CameraNameViewModel(Camera camera)
+		public CameraNameViewModel(ConfigurableCamera camera)
 		{
 			if (camera == null) throw new ArgumentNullException("camera");
 
@@ -52,7 +53,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// <summary>
 		/// Gets or sets the camera.
 		/// </summary>
-		public Camera Camera
+		public ConfigurableCamera Camera
 		{
 			get { return Property(() => Camera); }
 			set

@@ -63,6 +63,10 @@
     </Compile>
     <Compile Include="Provider\CameraCommunicationDialogViewModelProvider.cs" />
     <Compile Include="Provider\CameraNameViewModelProvider.cs" />
+    <Compile Include="Provider\CameraConverter.cs"/>
+    <Compile Include="Provider\ICameraConverter.cs">
+      <DependentUpon>CameraConverter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Provider\ICameraCommunicationDialogViewModelProvider.cs">
       <DependentUpon>CameraCommunicationDialogViewModelProvider.cs</DependentUpon>
     </Compile>
@@ -100,6 +104,7 @@
     <Compile Include="Service\ParameterParser.cs" />
     <Compile Include="ViewModel\CameraCommunicationDialogViewModel.cs" />
     <Compile Include="ViewModel\CameraNameViewModel.cs" />
+    <Compile Include="ViewModel\Data\ConfigurableCamera.cs" />
     <Compile Include="ViewModel\ICameraCommunicationDialogViewModel.cs">
       <DependentUpon>CameraCommunicationDialogViewModel.cs</DependentUpon>
     </Compile>
@@ -134,6 +139,7 @@
     <Compile Include="View\CameraCommunicationDialog.xaml.cs">
       <DependentUpon>CameraCommunicationDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ImageBytesConverter.cs" />
     <Compile Include="View\SetupDialog.xaml.cs">
       <DependentUpon>SetupDialog.xaml</DependentUpon>
     </Compile>

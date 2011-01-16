@@ -20,7 +20,6 @@
 using System;
 using System.Collections.Generic;
 using AxisCameraMPPlugin.Configuration.ViewModel;
-using AxisCameraMPPlugin.Data;
 using AxisCameraMPPlugin.Mvvm.Services;
 
 namespace AxisCameraMPPlugin.Configuration.Provider
@@ -51,8 +50,6 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 			this.windowService = windowService;
 			this.communicationProvider = communicationProvider;
 		}
-
-
 
 
 		/// <summary>

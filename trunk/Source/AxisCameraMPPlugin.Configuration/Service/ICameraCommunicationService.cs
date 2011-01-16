@@ -18,7 +18,6 @@
 
 #endregion
 using System;
-using AxisCameraMPPlugin.Data;
 
 namespace AxisCameraMPPlugin.Configuration.Service
 {

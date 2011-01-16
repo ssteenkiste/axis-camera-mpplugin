@@ -42,6 +42,20 @@ namespace AxisCameraMPPlugin.Configuration.Service
 
 
 		/// <summary>
+		/// Gets the thumb for specified camera.
+		/// </summary>
+		/// <param name="cameraId">The camera id.</param>
+		/// <returns>The thumb.</returns>
+		public byte[] GetThumb(Guid cameraId)
+		{
+			if (cameraId == null) throw new ArgumentNullException("id");
+			if (cameraId == Guid.Empty) throw new ArgumentException("ID cannot be Guid.Empty");
+
+			return File.ReadAllBytes(GetThumbFileName(cameraId));
+		}
+
+
+		/// <summary>
 		/// Saves a thumb for specified camera.
 		/// </summary>
 		/// <param name="cameraId">The camera id.</param>
@@ -49,33 +63,44 @@ namespace AxisCameraMPPlugin.Configuration.Service
 		/// <returns>The path where the thumb is saved.</returns>
 		public string SaveThumb(Guid cameraId, byte[] image)
 		{
-			string thumbPath = Config.GetFile(
-				Config.Dir.Thumbs,
-				PluginFolderName,
-				cameraId + ".jpg");
+			string thumbFileName = GetThumbFileName(cameraId);
 
-			File.WriteAllBytes(thumbPath, image);
+			File.WriteAllBytes(thumbFileName, image);
 
-			return thumbPath;
+			return thumbFileName;
 		}
 
 
 		/// <summary>
-		/// Deletes the specified file.
+		/// Deletes the thumb belonging to specified camera.
 		/// </summary>
-		/// <param name="filePath">The name of the file to be deleted.</param>
+		/// <param name="cameraId">The camera id.</param>
 		/// <returns>true if file was deleted; otherwise false.</returns>
-		public bool Delete(string filePath)
+		public bool DeleteThumb(Guid cameraId)
 		{
 			try
 			{
-				File.Delete(filePath);
+				File.Delete(GetThumbFileName(cameraId));
 				return true;
 			}
 			catch
 			{
 				return false;
 			}
+		}
+
+
+		/// <summary>
+		/// Gets the file name of the thumb based on specified camera id.
+		/// </summary>
+		/// <param name="cameraId">The camera id.</param>
+		/// <returns>The file name of the thumb.</returns>
+		private static string GetThumbFileName(Guid cameraId)
+		{
+			return Config.GetFile(
+				Config.Dir.Thumbs,
+				PluginFolderName,
+				cameraId + ".jpg");
 		}
 	}
 }

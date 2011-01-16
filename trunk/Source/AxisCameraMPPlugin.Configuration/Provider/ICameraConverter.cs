@@ -18,38 +18,26 @@
 
 #endregion
 using AxisCameraMPPlugin.Configuration.ViewModel.Data;
-using AxisCameraMPPlugin.Mvvm;
+using AxisCameraMPPlugin.Data;
 
-namespace AxisCameraMPPlugin.Configuration.ViewModel
+namespace AxisCameraMPPlugin.Configuration.Provider
 {
 	/// <summary>
-	/// View model acting as wizard page.
+	/// Interface describing a converter that converts between a Camera and a ConfigurableCamera.
 	/// </summary>
-	abstract class WizardPageViewModel : ViewModelBase, IWizardPageViewModel
+	public interface ICameraConverter
 	{
 		/// <summary>
-		/// Gets the header of the wizard page.
+		/// Returns a ConfigurableCamera created from a Camera.
 		/// </summary>
-		public abstract string Header { get; }
+		/// <param name="camera">The camera to turn into a ConfigurableCamera.</param>
+		ConfigurableCamera ToConfigurableCamera(Camera camera);
 
 
 		/// <summary>
-		/// Gets the description of the wizard page.
+		/// Returns a Camera created from a ConfigurableCamera.
 		/// </summary>
-		public abstract string Description { get; }
-
-
-		/// <summary>
-		/// Loads page properties from specified camera.
-		/// </summary>
-		/// <param name="camera">The camera to load page properties from.</param>
-		public abstract void Load(ConfigurableCamera camera);
-
-
-		/// <summary>
-		/// Saves page properties to specified camera.
-		/// </summary>
-		/// <param name="camera">The camera to save page properties to.</param>
-		public abstract void Save(ConfigurableCamera camera);
+		/// <param name="configurableCamera">The configurable camera to turn into a Camera.</param>
+		Camera ToCamera(ConfigurableCamera configurableCamera);
 	}
 }

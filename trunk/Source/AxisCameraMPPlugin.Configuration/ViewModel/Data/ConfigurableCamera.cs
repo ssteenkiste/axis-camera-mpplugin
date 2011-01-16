@@ -19,17 +19,30 @@
 #endregion
 using System;
 
-namespace AxisCameraMPPlugin.Data
+namespace AxisCameraMPPlugin.Configuration.ViewModel.Data
 {
 	/// <summary>
-	/// Class describing the properties of a camera.
+	/// Class describing a configurable camera.
 	/// </summary>
-	public class Camera
+	public class ConfigurableCamera
 	{
 		/// <summary>
-		/// Gets or sets the Id.
+		/// Initializes a new instance of the <see cref="ConfigurableCamera"/> class.
 		/// </summary>
-		public Guid Id { get; set; }
+		/// <param name="id">The camera id.</param>
+		public ConfigurableCamera(Guid id)
+		{
+			if (id == null) throw new ArgumentNullException("id");
+			if (id == Guid.Empty) throw new ArgumentException("ID cannot be Guid.Empty");
+
+			Id = id;
+		}
+
+
+		/// <summary>
+		/// Gets the Id.
+		/// </summary>
+		public Guid Id { get; private set; }
 
 
 		/// <summary>
@@ -63,8 +76,28 @@ namespace AxisCameraMPPlugin.Data
 
 
 		/// <summary>
-		/// Gets or sets the snapshot path.
+		/// Gets or sets the snapshot.
 		/// </summary>
-		public string SnapshotPath { get; set; }
+		public byte[] Snapshot { get; set; }
+
+
+		/// <summary>
+		/// Creates a new object that is a deep copy of the current instance.
+		/// </summary>
+		/// <returns>
+		/// A new object that is a deep copy of this instance.
+		/// </returns>
+		public ConfigurableCamera Clone()
+		{
+			return new ConfigurableCamera(Id)
+			{
+				Name = Name,
+				Address = Address,
+				Port = Port,
+				UserName = UserName,
+				Password = Password,
+				Snapshot = (byte[])Snapshot.Clone()
+			};
+		}
 	}
 }

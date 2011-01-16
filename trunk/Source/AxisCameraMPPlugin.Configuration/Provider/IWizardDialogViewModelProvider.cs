@@ -18,7 +18,7 @@
 
 #endregion
 using AxisCameraMPPlugin.Configuration.ViewModel;
-using AxisCameraMPPlugin.Data;
+using AxisCameraMPPlugin.Configuration.ViewModel.Data;
 
 namespace AxisCameraMPPlugin.Configuration.Provider
 {
@@ -32,6 +32,6 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 		/// </summary>
 		/// <param name="title">The title of the dialog.</param>
 		/// <param name="camera">The camera configured by the wizard.</param>
-		IWizardDialogViewModel Provide(string title, Camera camera);
+		IWizardDialogViewModel Provide(string title, ConfigurableCamera camera);
 	}
 }
