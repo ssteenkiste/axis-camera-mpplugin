@@ -39,10 +39,12 @@ namespace AxisCameraMPPlugin.Configuration.View
 		/// <returns>A bitmap image.</returns>
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			if (!(value is byte[])) return Binding.DoNothing;
+			byte[] imageBytes = value as byte[];
+
+			if (imageBytes == null) return Binding.DoNothing;
 			if (targetType != typeof(ImageSource)) return Binding.DoNothing;
 
-			MemoryStream stream = new MemoryStream((byte[])value);
+			MemoryStream stream = new MemoryStream(imageBytes);
 
 			BitmapImage image = new BitmapImage();
 			image.BeginInit();

@@ -75,18 +75,9 @@ namespace AxisCameraMPPlugin.Configuration.Service
 		/// Deletes the thumb belonging to specified camera.
 		/// </summary>
 		/// <param name="cameraId">The camera id.</param>
-		/// <returns>true if file was deleted; otherwise false.</returns>
-		public bool DeleteThumb(Guid cameraId)
+		public void DeleteThumb(Guid cameraId)
 		{
-			try
-			{
-				File.Delete(GetThumbFileName(cameraId));
-				return true;
-			}
-			catch
-			{
-				return false;
-			}
+			File.Delete(GetThumbFileName(cameraId));
 		}
 
 
