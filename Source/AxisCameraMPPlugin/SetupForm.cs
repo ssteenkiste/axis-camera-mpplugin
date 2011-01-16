@@ -23,6 +23,7 @@ using System.IO;
 using Autofac;
 using AxisCameraMPPlugin.Configuration;
 using AxisCameraMPPlugin.Configuration.Service;
+using AxisCameraMPPlugin.Core;
 using AxisCameraMPPlugin.Data;
 using AxisCameraMPPlugin.Properties;
 using MediaPortal.Configuration;
@@ -40,9 +41,9 @@ namespace AxisCameraMPPlugin
 		"AxisCameraMPPlugin.Resources.Setup_icon_disabled.png")]
 	public class SetupForm : GUIWindow, ISetupForm
 	{
-		private readonly IEnumerable<Camera> cameras;
-		private readonly IPlayer player;
-		private readonly IIOService ioService;
+		private readonly Lazy<IEnumerable<Camera>> cameras;
+		private readonly Lazy<IPlayer> player;
+		private readonly Lazy<IIOService> ioService;
 		private IContainer container;
 
 
@@ -60,9 +61,9 @@ namespace AxisCameraMPPlugin
 		{
 			container = CreateContainer();
 
-			cameras = container.Resolve<IPluginSettings>().GetCameras();
-			player = container.Resolve<IPlayer>();
-			ioService = container.Resolve<IIOService>();
+			cameras = new Lazy<IEnumerable<Camera>>(() => container.Resolve<IPluginSettings>().GetCameras());
+			player = new Lazy<IPlayer>(() => container.Resolve<IPlayer>());
+			ioService = new Lazy<IIOService>(() => container.Resolve<IIOService>());
 
 			// Allow unsafe header parsing due to backward compatibility with VAPIX
 			NetworkConfiguration.SetAllowUnsafeHeaderParsing20();
@@ -193,7 +194,7 @@ namespace AxisCameraMPPlugin
 		/// </summary>
 		protected override void OnPageLoad()
 		{
-			foreach (Camera camera in cameras)
+			foreach (Camera camera in cameras.Value)
 			{
 				facadeLayout.Add(CreateListItemFrom(camera));
 			}
@@ -218,7 +219,7 @@ namespace AxisCameraMPPlugin
 				if (selectedItem != null)
 				{
 					Camera camera = (Camera)selectedItem.MusicTag;
-					player.PlayLiveVideo(camera);
+					player.Value.PlayLiveVideo(camera);
 				}
 			}
 		}
@@ -234,7 +235,7 @@ namespace AxisCameraMPPlugin
 			return new GUIListItem
 			{
 				Label = camera.Name,
-				IconImage = ioService.CameraIconPath,
+				IconImage = ioService.Value.CameraIconPath,
 				ThumbnailImage = camera.SnapshotPath,
 
 				// Store camera in music tag
