@@ -36,6 +36,7 @@ namespace AxisCameraMPPlugin.Mvvm
 	{
 		private readonly Dictionary<string, PropertyItem> properties;
 		private Validator validator;
+		private List<object> propertyObservers;
 
 
 		/// <summary>
@@ -104,6 +105,27 @@ namespace AxisCameraMPPlugin.Mvvm
 		public bool IsValid
 		{
 			get { return validator != null ? validator.IsValid : true; }
+		}
+
+
+		/// <summary>
+		/// Registers a property observer on the view model.
+		/// </summary>
+		/// <typeparam name="T">
+		/// The type the property observer is targeting, usually the view model itself.
+		/// </typeparam>
+		/// <param name="propertyObserver">The property observer.</param>
+		public void RegisterPropertyObserver<T>(PropertyObserver<T> propertyObserver)
+			where T : INotifyPropertyChanged
+		{
+			if (propertyObserver == null) throw new ArgumentNullException("propertyObserver");
+
+			if (propertyObservers == null)
+			{
+				propertyObservers = new List<object>();
+			}
+
+			propertyObservers.Add(propertyObserver);
 		}
 
 
