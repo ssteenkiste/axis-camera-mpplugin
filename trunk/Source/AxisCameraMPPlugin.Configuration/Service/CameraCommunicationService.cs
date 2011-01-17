@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
+using AxisCameraMPPlugin.Core;
 
 namespace AxisCameraMPPlugin.Configuration.Service
 {
@@ -71,6 +72,11 @@ namespace AxisCameraMPPlugin.Configuration.Service
 			if (networkEndpoint == null) throw new ArgumentNullException("networkEndpoint");
 			if (IsBusy) throw new InvalidOperationException("Cannot start a second operation before first finishes.");
 
+			Log.Debug(
+				"Getting camera information from {0}:{1}",
+				networkEndpoint.Address,
+				networkEndpoint.Port);
+
 			IsBusy = true;
 
 			// Download parameters
@@ -100,6 +106,7 @@ namespace AxisCameraMPPlugin.Configuration.Service
 		/// </summary>
 		public void CancelAsync()
 		{
+			Log.Debug("Cancel getting camera information");
 			parameterState.Client.CancelAsync();
 			snapshotState.Client.CancelAsync();
 		}
@@ -122,6 +129,7 @@ namespace AxisCameraMPPlugin.Configuration.Service
 
 			if (handler != null)
 			{
+				Log.Debug("Get information from camera completed");
 				handler(this, e);
 			}
 		}
@@ -132,6 +140,8 @@ namespace AxisCameraMPPlugin.Configuration.Service
 		/// </summary>
 		private void DownloadParametersCompleted(object sender, DownloadStringCompletedEventArgs e)
 		{
+			Log.Debug("Getting parameters completed");
+
 			parameterState.Client.DownloadStringCompleted -= DownloadParametersCompleted;
 
 			parameterState.IsCancelled = e.Cancelled;
@@ -151,6 +161,8 @@ namespace AxisCameraMPPlugin.Configuration.Service
 		/// </summary>
 		private void DownloadSnapshotCompleted(object sender, DownloadDataCompletedEventArgs e)
 		{
+			Log.Debug("Getting snapshot completed");
+
 			snapshotState.Client.DownloadDataCompleted -= DownloadSnapshotCompleted;
 
 			snapshotState.IsCancelled = e.Cancelled;

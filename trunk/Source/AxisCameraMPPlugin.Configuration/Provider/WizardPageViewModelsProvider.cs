@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using AxisCameraMPPlugin.Configuration.ViewModel;
+using AxisCameraMPPlugin.Core;
 using AxisCameraMPPlugin.Mvvm.Services;
 
 namespace AxisCameraMPPlugin.Configuration.Provider
@@ -64,6 +65,8 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 			IWizardPageViewModel pageTwo = new WizardPageTwoViewModel(
 				windowService,
 				communicationProvider);
+
+			Log.Debug("Provide a sequence of IWizardPageViewModels");
 
 			return new IWizardPageViewModel[]
 			{

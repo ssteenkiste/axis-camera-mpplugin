@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using AxisCameraMPPlugin.Configuration.Service;
 using AxisCameraMPPlugin.Configuration.ViewModel;
+using AxisCameraMPPlugin.Core;
 using AxisCameraMPPlugin.Mvvm.Services;
 
 namespace AxisCameraMPPlugin.Configuration.Provider
@@ -68,6 +69,8 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 		public ISetupDialogViewModel Provide(IEnumerable<ICameraNameViewModel> cameras)
 		{
 			if (cameras == null) throw new ArgumentNullException("cameras");
+
+			Log.Debug("Provide a ISetupDialogViewModel");
 
 			return new SetupDialogViewModel(
 				windowService,

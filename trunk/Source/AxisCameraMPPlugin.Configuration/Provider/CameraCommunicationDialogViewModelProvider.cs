@@ -20,6 +20,7 @@
 using System;
 using AxisCameraMPPlugin.Configuration.Service;
 using AxisCameraMPPlugin.Configuration.ViewModel;
+using AxisCameraMPPlugin.Core;
 
 namespace AxisCameraMPPlugin.Configuration.Provider
 {
@@ -52,6 +53,8 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 		public ICameraCommunicationDialogViewModel Provide(NetworkEndpoint cameraEndpoint)
 		{
 			if (cameraEndpoint == null) throw new ArgumentNullException("cameraEndpoint");
+
+			Log.Debug("Provide a ICameraCommunicationDialogViewModel");
 
 			return new CameraCommunicationDialogViewModel(
 				cameraCommunicationService,

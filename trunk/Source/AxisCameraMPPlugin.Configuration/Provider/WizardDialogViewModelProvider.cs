@@ -20,6 +20,7 @@
 using System;
 using AxisCameraMPPlugin.Configuration.ViewModel;
 using AxisCameraMPPlugin.Configuration.ViewModel.Data;
+using AxisCameraMPPlugin.Core;
 
 namespace AxisCameraMPPlugin.Configuration.Provider
 {
@@ -54,6 +55,8 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 		{
 			if (title == null) throw new ArgumentNullException("title");
 			if (camera == null) throw new ArgumentNullException("camera");
+
+			Log.Debug("Provide a IWizardDialogViewModel");
 
 			return new WizardDialogViewModel(
 				title,

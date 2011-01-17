@@ -20,6 +20,7 @@
 using System;
 using AxisCameraMPPlugin.Configuration.ViewModel;
 using AxisCameraMPPlugin.Configuration.ViewModel.Data;
+using AxisCameraMPPlugin.Core;
 
 namespace AxisCameraMPPlugin.Configuration.Provider
 {
@@ -35,6 +36,8 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 		public ICameraNameViewModel Provide(ConfigurableCamera camera)
 		{
 			if (camera == null) throw new ArgumentNullException("camera");
+
+			Log.Debug("Provide a ICameraNameViewModel");
 
 			return new CameraNameViewModel(camera);
 		}

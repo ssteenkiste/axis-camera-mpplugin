@@ -24,6 +24,7 @@ using AxisCameraMPPlugin.Configuration.Provider;
 using AxisCameraMPPlugin.Configuration.Service;
 using AxisCameraMPPlugin.Configuration.View;
 using AxisCameraMPPlugin.Configuration.ViewModel;
+using AxisCameraMPPlugin.Core;
 using AxisCameraMPPlugin.Data;
 using AxisCameraMPPlugin.Mvvm.Services;
 
@@ -80,6 +81,8 @@ namespace AxisCameraMPPlugin.Configuration
 		/// </summary>
 		public void Start()
 		{
+			Log.Debug("Starting configuration");
+
 			IEnumerable<ICameraNameViewModel> cameraViewModels =
 				from camera in pluginSettings.GetCameras()
 				let configurableCamera = cameraConverter.ToConfigurableCamera(camera)

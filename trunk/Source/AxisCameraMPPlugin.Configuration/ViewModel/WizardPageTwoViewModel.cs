@@ -26,6 +26,7 @@ using AxisCameraMPPlugin.Configuration.Service;
 using AxisCameraMPPlugin.Configuration.View;
 using AxisCameraMPPlugin.Configuration.ViewModel.Data;
 using AxisCameraMPPlugin.Configuration.ViewModel.ValidationRule;
+using AxisCameraMPPlugin.Core;
 using AxisCameraMPPlugin.Mvvm;
 using AxisCameraMPPlugin.Mvvm.Services;
 
@@ -150,6 +151,8 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// </summary>
 		private void Refresh(object parameter)
 		{
+			Log.Debug("Refreshing snapshot");
+
 			ICameraCommunicationDialogViewModel communicationViewModel =
 				communicationProvider.Provide(cameraEndpoint);
 
