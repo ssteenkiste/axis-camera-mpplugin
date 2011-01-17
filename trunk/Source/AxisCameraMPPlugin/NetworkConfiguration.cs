@@ -73,20 +73,5 @@ namespace AxisCameraMPPlugin
 
 			return false;
 		}
-
-
-		/// <summary>
-		/// Sets the maximum number of concurrent connections allowed by a System.Net.ServicePoint
-		/// object.
-		/// </summary>
-		/// <param name="limit">
-		/// The maximum number of concurrent connections allowed by a System.Net.ServicePoint object.
-		/// </param>
-		internal static void SetDefaultConnectionLimit(int defaultConnectionLimit)
-		{
-			Log.Debug("Setting maximum number of concurrent connections to {0}", defaultConnectionLimit);
-
-			ServicePointManager.DefaultConnectionLimit = defaultConnectionLimit;
-		}
 	}
 }
