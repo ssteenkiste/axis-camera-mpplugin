@@ -187,6 +187,8 @@ namespace AxisCameraMPPlugin
 		/// <returns>true if initialization was successful; otherwise false.</returns>
 		public override bool Init()
 		{
+			Log.Info("Init {0}", PluginName());
+
 			return Load(Path.Combine(GUIGraphicsContext.Skin, Settings.Default.Plugin_Skin));
 		}
 
@@ -196,6 +198,8 @@ namespace AxisCameraMPPlugin
 		/// </summary>
 		protected override void OnPageLoad()
 		{
+			Log.Info("{0} page loaded", PluginName());
+
 			foreach (Camera camera in cameras.Value)
 			{
 				facadeLayout.Add(CreateListItemFrom(camera));
