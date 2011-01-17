@@ -61,7 +61,9 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 				windowService,
 				communicationProvider);
 
-			IWizardPageViewModel pageTwo = new WizardPageTwoViewModel();
+			IWizardPageViewModel pageTwo = new WizardPageTwoViewModel(
+				windowService,
+				communicationProvider);
 
 			return new IWizardPageViewModel[]
 			{
