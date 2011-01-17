@@ -62,7 +62,7 @@ namespace AxisCameraMPPlugin
 		{
 			container = CreateContainer();
 
-			cameras = new Lazy<IEnumerable<Camera>>(() => container.Resolve<IPluginSettings>().GetCameras());
+			cameras = new Lazy<IEnumerable<Camera>>(() => container.Resolve<IPluginSettings>().Cameras);
 			player = new Lazy<IPlayer>(() => container.Resolve<IPlayer>());
 			ioService = new Lazy<IIOService>(() => container.Resolve<IIOService>());
 

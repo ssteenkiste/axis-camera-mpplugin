@@ -29,15 +29,8 @@ namespace AxisCameraMPPlugin.Data
 	public interface IPluginSettings : ISingleInstance, IDisposable
 	{
 		/// <summary>
-		/// Gets the cameras.
+		/// Gets or sets the cameras.
 		/// </summary>
-		IEnumerable<Camera> GetCameras();
-
-
-		/// <summary>
-		/// Sets the cameras.
-		/// </summary>
-		/// <param name="cameras">The cameras.</param>
-		void SetCameras(IEnumerable<Camera> cameras);
+		IEnumerable<Camera> Cameras { get; set; }
 	}
 }
