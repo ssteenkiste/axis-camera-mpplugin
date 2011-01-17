@@ -29,6 +29,7 @@ using AxisCameraMPPlugin.Properties;
 using MediaPortal.Configuration;
 using MediaPortal.GUI.Library;
 using ActionType = MediaPortal.GUI.Library.Action.ActionType;
+using Log = AxisCameraMPPlugin.Core.Log;
 using PluginResources = AxisCameraMPPlugin.Properties.Resources;
 
 namespace AxisCameraMPPlugin
