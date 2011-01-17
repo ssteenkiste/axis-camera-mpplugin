@@ -18,6 +18,7 @@
 
 #endregion
 using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 using AxisCameraMPPlugin.Configuration.Properties;
@@ -79,7 +80,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// <summary>
 		/// Gets the snapshot.
 		/// </summary>
-		public byte[] Snapshot
+		public IEnumerable<byte> Snapshot
 		{
 			get { return Property(() => Snapshot); }
 			private set { Property(() => Snapshot, value); }

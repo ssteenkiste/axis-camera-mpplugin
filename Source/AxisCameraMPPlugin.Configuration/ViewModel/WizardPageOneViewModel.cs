@@ -18,6 +18,7 @@
 
 #endregion
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Windows;
 using AxisCameraMPPlugin.Configuration.Properties;
@@ -40,7 +41,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 
 		private DirtyState dirtyState;
 		private string friendlyName;
-		private byte[] snapshot;
+		private IEnumerable<byte> snapshot;
 
 
 		/// <summary>

@@ -18,6 +18,7 @@
 
 #endregion
 using System;
+using System.Linq;
 using AxisCameraMPPlugin.Configuration.Service;
 using AxisCameraMPPlugin.Configuration.ViewModel.Data;
 using AxisCameraMPPlugin.Core;
@@ -85,7 +86,7 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 				Port = configurableCamera.Port,
 				UserName = configurableCamera.UserName,
 				Password = configurableCamera.Password,
-				SnapshotPath = ioService.SaveThumb(configurableCamera.Id, configurableCamera.Snapshot)
+				SnapshotPath = ioService.SaveThumb(configurableCamera.Id, configurableCamera.Snapshot.ToArray())
 			};
 		}
 	}
