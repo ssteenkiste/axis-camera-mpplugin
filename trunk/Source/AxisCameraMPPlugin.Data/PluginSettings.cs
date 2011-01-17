@@ -23,6 +23,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+using AxisCameraMPPlugin.Core;
 using MediaPortal.Configuration;
 using MediaPortal.Profile;
 
@@ -34,6 +35,8 @@ namespace AxisCameraMPPlugin.Data
 	public class PluginSettings : IPluginSettings
 	{
 		private const string FileName = "axiscamerampplugin.xml";
+		private const string CameraSection = "camera";
+		private const string CamerasEntry = "cameras";
 
 		private Settings settings;
 
@@ -52,7 +55,9 @@ namespace AxisCameraMPPlugin.Data
 		/// </summary>
 		public IEnumerable<Camera> GetCameras()
 		{
-			string value = settings.GetValue(SettingNames.CameraSection, SettingNames.CamerasEntry);
+			Log.Debug("Getting cameras from disk");
+
+			string value = settings.GetValue(CameraSection, CamerasEntry);
 
 			if (!string.IsNullOrEmpty(value))
 			{
@@ -76,12 +81,14 @@ namespace AxisCameraMPPlugin.Data
 		{
 			if (cameras == null) throw new ArgumentNullException("cameras");
 
+			Log.Debug("Saving cameras to disk");
+
 			using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
 			{
 				XmlSerializer serializer = new XmlSerializer(typeof(List<Camera>));
 				serializer.Serialize(writer, cameras.ToList());
 
-				settings.SetValue(SettingNames.CameraSection, SettingNames.CamerasEntry, writer.ToString());
+				settings.SetValue(CameraSection, CamerasEntry, writer.ToString());
 			}
 		}
 
