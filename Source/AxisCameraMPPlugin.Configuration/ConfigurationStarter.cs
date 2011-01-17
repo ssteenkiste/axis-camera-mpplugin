@@ -84,7 +84,7 @@ namespace AxisCameraMPPlugin.Configuration
 			Log.Debug("Starting configuration");
 
 			IEnumerable<ICameraNameViewModel> cameraViewModels =
-				from camera in pluginSettings.GetCameras()
+				from camera in pluginSettings.Cameras
 				let configurableCamera = cameraConverter.ToConfigurableCamera(camera)
 				select cameraViewModelProvider.Provide(configurableCamera);
 
@@ -101,7 +101,7 @@ namespace AxisCameraMPPlugin.Configuration
 				from camera in setup.Cameras
 				select cameraConverter.ToCamera(camera.Camera);
 
-			pluginSettings.SetCameras(cameras);
+			pluginSettings.Cameras = cameras;
 		}
 	}
 }

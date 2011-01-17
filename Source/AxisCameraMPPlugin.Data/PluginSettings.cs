@@ -51,9 +51,19 @@ namespace AxisCameraMPPlugin.Data
 
 
 		/// <summary>
+		/// Gets or sets the cameras.
+		/// </summary>
+		public IEnumerable<Camera> Cameras
+		{
+			get { return GetCameras(); }
+			set { SetCameras(value); }
+		}
+
+
+		/// <summary>
 		/// Gets the cameras.
 		/// </summary>
-		public IEnumerable<Camera> GetCameras()
+		private IEnumerable<Camera> GetCameras()
 		{
 			Log.Debug("Getting cameras from disk");
 
@@ -77,7 +87,7 @@ namespace AxisCameraMPPlugin.Data
 		/// Sets the cameras.
 		/// </summary>
 		/// <param name="cameras">The cameras.</param>
-		public void SetCameras(IEnumerable<Camera> cameras)
+		private void SetCameras(IEnumerable<Camera> cameras)
 		{
 			if (cameras == null) throw new ArgumentNullException("cameras");
 

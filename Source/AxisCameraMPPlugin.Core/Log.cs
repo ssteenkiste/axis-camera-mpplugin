@@ -66,9 +66,9 @@ namespace AxisCameraMPPlugin.Core
 		/// <summary>
 		/// Is logging a exception.
 		/// </summary>
-		public static void Error(Exception e)
+		public static void Error(Exception exception)
 		{
-			MediaPortalLog.Error(e);
+			MediaPortalLog.Error(exception);
 		}
 	}
 }
