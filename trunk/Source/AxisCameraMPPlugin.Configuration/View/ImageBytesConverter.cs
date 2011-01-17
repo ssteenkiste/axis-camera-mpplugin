@@ -18,8 +18,10 @@
 
 #endregion
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -27,24 +29,24 @@ using System.Windows.Media.Imaging;
 namespace AxisCameraMPPlugin.Configuration.View
 {
 	/// <summary>
-	/// Converts from a byte array to a bitmap image.
+	/// Converts from a byte sequence to a bitmap image.
 	/// </summary>
-	[ValueConversion(typeof(byte[]), typeof(BitmapImage))]
+	[ValueConversion(typeof(IEnumerable<byte>), typeof(BitmapImage))]
 	class ImageBytesConverter : IValueConverter
 	{
 		/// <summary>
-		/// Converts a byte array to a bitmap image.
+		/// Converts a sequence of bytes to a bitmap image.
 		/// </summary>
-		/// <param name="value">The byte array.</param>
+		/// <param name="value">The sequence of bytes.</param>
 		/// <returns>A bitmap image.</returns>
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			byte[] imageBytes = value as byte[];
+			IEnumerable<byte> imageBytes = value as IEnumerable<byte>;
 
 			if (imageBytes == null) return Binding.DoNothing;
 			if (targetType != typeof(ImageSource)) return Binding.DoNothing;
 
-			MemoryStream stream = new MemoryStream(imageBytes);
+			MemoryStream stream = new MemoryStream(imageBytes.ToArray());
 
 			BitmapImage image = new BitmapImage();
 			image.BeginInit();

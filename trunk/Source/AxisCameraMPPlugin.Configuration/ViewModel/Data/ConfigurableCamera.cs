@@ -18,6 +18,8 @@
 
 #endregion
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AxisCameraMPPlugin.Configuration.ViewModel.Data
 {
@@ -78,7 +80,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel.Data
 		/// <summary>
 		/// Gets or sets the snapshot.
 		/// </summary>
-		public byte[] Snapshot { get; set; }
+		public IEnumerable<byte> Snapshot { get; set; }
 
 
 		/// <summary>
@@ -96,7 +98,10 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel.Data
 				Port = Port,
 				UserName = UserName,
 				Password = Password,
-				Snapshot = (byte[])Snapshot.Clone()
+				// Use ToList() to evaluate the Linq expression now, rather than when it is used for the
+				// first time. One expects the clone method to clone the data when the method is executed,
+				// not anytime later.
+				Snapshot = Snapshot.Select(data => data).ToList()
 			};
 		}
 	}

@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+using System.Collections.Generic;
 using AxisCameraMPPlugin.Mvvm;
 
 namespace AxisCameraMPPlugin.Configuration.ViewModel
@@ -35,6 +36,6 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// <summary>
 		/// Gets the camera snapshot.
 		/// </summary>
-		byte[] Snapshot { get; }
+		IEnumerable<byte> Snapshot { get; }
 	}
 }
