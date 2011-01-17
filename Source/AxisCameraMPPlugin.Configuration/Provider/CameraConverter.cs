@@ -20,6 +20,7 @@
 using System;
 using AxisCameraMPPlugin.Configuration.Service;
 using AxisCameraMPPlugin.Configuration.ViewModel.Data;
+using AxisCameraMPPlugin.Core;
 using AxisCameraMPPlugin.Data;
 
 namespace AxisCameraMPPlugin.Configuration.Provider
@@ -52,6 +53,8 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 		{
 			if (camera == null) throw new ArgumentNullException("camera");
 
+			Log.Debug("Convert a Camera to a ConfigurableCamera");
+
 			return new ConfigurableCamera(camera.Id)
 			{
 				Name = camera.Name,
@@ -71,6 +74,8 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 		public Camera ToCamera(ConfigurableCamera configurableCamera)
 		{
 			if (configurableCamera == null) throw new ArgumentNullException("configurableCamera");
+
+			Log.Debug("Convert a ConfigurableCamera to a Camera");
 
 			return new Camera
 			{

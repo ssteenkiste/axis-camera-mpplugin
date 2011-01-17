@@ -19,6 +19,7 @@
 #endregion
 using System;
 using System.IO;
+using AxisCameraMPPlugin.Core;
 using MediaPortal.Configuration;
 
 namespace AxisCameraMPPlugin.Configuration.Service
@@ -51,6 +52,8 @@ namespace AxisCameraMPPlugin.Configuration.Service
 			if (cameraId == null) throw new ArgumentNullException("id");
 			if (cameraId == Guid.Empty) throw new ArgumentException("ID cannot be Guid.Empty");
 
+			Log.Debug("Get thumb from camera with id {0}", cameraId);
+
 			return File.ReadAllBytes(GetThumbFileName(cameraId));
 		}
 
@@ -63,6 +66,8 @@ namespace AxisCameraMPPlugin.Configuration.Service
 		/// <returns>The path where the thumb is saved.</returns>
 		public string SaveThumb(Guid cameraId, byte[] image)
 		{
+			Log.Debug("Save thumb of camera with id {0}", cameraId);
+
 			string thumbFileName = GetThumbFileName(cameraId);
 
 			File.WriteAllBytes(thumbFileName, image);
@@ -77,6 +82,8 @@ namespace AxisCameraMPPlugin.Configuration.Service
 		/// <param name="cameraId">The camera id.</param>
 		public void DeleteThumb(Guid cameraId)
 		{
+			Log.Debug("Delete thumb of camera with id {0}", cameraId);
+
 			File.Delete(GetThumbFileName(cameraId));
 		}
 

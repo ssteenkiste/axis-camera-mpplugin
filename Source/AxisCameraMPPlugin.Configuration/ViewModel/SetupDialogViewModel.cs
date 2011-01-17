@@ -28,6 +28,7 @@ using AxisCameraMPPlugin.Configuration.Provider;
 using AxisCameraMPPlugin.Configuration.Service;
 using AxisCameraMPPlugin.Configuration.View;
 using AxisCameraMPPlugin.Configuration.ViewModel.Data;
+using AxisCameraMPPlugin.Core;
 using AxisCameraMPPlugin.Mvvm;
 using AxisCameraMPPlugin.Mvvm.Services;
 
@@ -146,6 +147,8 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 
 			if (windowService.ShowDialog<WizardDialog>(wizard, this) == true)
 			{
+				Log.Debug("Added camera {0}", wizard.Camera.Name);
+
 				Cameras.Add(cameraProvider.Provide(wizard.Camera));
 			}
 		}
@@ -164,6 +167,8 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 
 			if (windowService.ShowDialog<WizardDialog>(wizard, this) == true)
 			{
+				Log.Debug("Edited camera {0}", wizard.Camera.Name);
+
 				selectedViewModel.Camera = wizard.Camera;
 			}
 		}
@@ -194,6 +199,9 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 			if (result == MessageBoxResult.Yes)
 			{
 				ICameraNameViewModel camera = (ICameraNameViewModel)SelectedItems.Single();
+
+				Log.Debug("Removed camera {0}", camera.Camera.Name);
+
 				Cameras.Remove(camera);
 				ioService.DeleteThumb(camera.Camera.Id);
 			}
