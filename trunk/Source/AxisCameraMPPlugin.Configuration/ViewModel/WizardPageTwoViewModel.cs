@@ -18,9 +18,16 @@
 
 #endregion
 using System;
+using System.Windows;
+using System.Windows.Input;
 using AxisCameraMPPlugin.Configuration.Properties;
+using AxisCameraMPPlugin.Configuration.Provider;
+using AxisCameraMPPlugin.Configuration.Service;
+using AxisCameraMPPlugin.Configuration.View;
 using AxisCameraMPPlugin.Configuration.ViewModel.Data;
 using AxisCameraMPPlugin.Configuration.ViewModel.ValidationRule;
+using AxisCameraMPPlugin.Mvvm;
+using AxisCameraMPPlugin.Mvvm.Services;
 
 namespace AxisCameraMPPlugin.Configuration.ViewModel
 {
@@ -29,11 +36,31 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 	/// </summary>
 	class WizardPageTwoViewModel : WizardPageViewModel, IWizardPageTwoViewModel
 	{
+		private readonly IWindowService windowService;
+		private readonly ICameraCommunicationDialogViewModelProvider communicationProvider;
+
+		private NetworkEndpoint cameraEndpoint;
+
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="WizardPageTwoViewModel"/> class.
 		/// </summary>
-		public WizardPageTwoViewModel()
+		/// <param name="windowService">The window service.</param>
+		/// <param name="communicationProvider">
+		/// The camera communication dialog view model provider.
+		/// </param>
+		public WizardPageTwoViewModel(
+			IWindowService windowService,
+			ICameraCommunicationDialogViewModelProvider communicationProvider)
 		{
+			if (windowService == null) throw new ArgumentNullException("windowService");
+			if (communicationProvider == null) throw new ArgumentNullException("communicationProvider");
+
+			this.windowService = windowService;
+			this.communicationProvider = communicationProvider;
+
+			RefreshCommand = new RelayCommand(Refresh);
+
 			AddValidators();
 		}
 
@@ -55,6 +82,16 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		{
 			get { return Property(() => Snapshot); }
 			private set { Property(() => Snapshot, value); }
+		}
+
+
+		/// <summary>
+		/// Gets the command refreshing the snapshot.
+		/// </summary>
+		public ICommand RefreshCommand
+		{
+			get { return Property(() => RefreshCommand); }
+			private set { Property(() => RefreshCommand, value); }
 		}
 
 
@@ -84,6 +121,12 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		{
 			if (camera == null) throw new ArgumentNullException("camera");
 
+			cameraEndpoint = new NetworkEndpoint(
+				camera.Address,
+				camera.Port,
+				camera.UserName,
+				camera.Password);
+
 			Name = camera.Name;
 			Snapshot = camera.Snapshot;
 		}
@@ -99,6 +142,35 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 
 			camera.Name = Name;
 			camera.Snapshot = Snapshot;
+		}
+
+
+		/// <summary>
+		/// Refreshes the snapshot.
+		/// </summary>
+		private void Refresh(object parameter)
+		{
+			ICameraCommunicationDialogViewModel communicationViewModel =
+				communicationProvider.Provide(cameraEndpoint);
+
+			// Communicate with camera
+			bool? success = windowService.ShowDialog<CameraCommunicationDialog>(
+				communicationViewModel,
+				this);
+
+			// Was communication with camera successful?
+			if (success == true)
+			{
+				Snapshot = communicationViewModel.Snapshot;
+			}
+			else
+			{
+				windowService.ShowMessageBox(
+					this,
+					Resources.CameraCommunicationError,
+					Resources.CameraCommunicationError_Title,
+					icon: MessageBoxImage.Error);
+			}
 		}
 
 
