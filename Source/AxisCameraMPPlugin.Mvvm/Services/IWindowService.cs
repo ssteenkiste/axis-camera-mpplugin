@@ -96,6 +96,8 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 		/// <returns>
 		/// A MessageBoxResult value that specifies which message box button is clicked by the user.
 		/// </returns>
+		[SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed",
+			Justification = "Default parameters provide value for developers.")]
 		MessageBoxResult ShowMessageBox(
 			IViewModelBase ownerViewModel,
 			string messageBoxText,
