@@ -18,8 +18,8 @@
 
 #endregion
 using System;
-using System.Globalization;
 using System.Web;
+using AxisCameraMPPlugin.Core;
 using AxisCameraMPPlugin.Data;
 using MediaPortal.Player;
 
@@ -40,6 +40,8 @@ namespace AxisCameraMPPlugin
 		public void PlayLiveVideo(Camera camera)
 		{
 			if (camera == null) throw new ArgumentNullException("camera");
+
+			Log.Info("Play live view from {0}", camera.Name);
 
 			string url = LiveVideoUrl.InvariantFormat(
 				HttpUtility.UrlEncode(camera.UserName),

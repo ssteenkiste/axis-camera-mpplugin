@@ -22,6 +22,7 @@ using System.Globalization;
 using System.Net;
 using System.Net.Configuration;
 using System.Reflection;
+using AxisCameraMPPlugin.Core;
 
 namespace AxisCameraMPPlugin
 {
@@ -34,6 +35,8 @@ namespace AxisCameraMPPlugin
 		/// </summary>
 		internal static bool SetAllowUnsafeHeaderParsing20()
 		{
+			Log.Debug("Disabling safe header parsing");
+
 			Assembly netAssembly = Assembly.GetAssembly(typeof(SettingsSection));
 			if (netAssembly != null)
 			{
@@ -81,6 +84,8 @@ namespace AxisCameraMPPlugin
 		/// </param>
 		internal static void SetDefaultConnectionLimit(int defaultConnectionLimit)
 		{
+			Log.Debug("Setting maximum number of concurrent connections to {0}", defaultConnectionLimit);
+
 			ServicePointManager.DefaultConnectionLimit = defaultConnectionLimit;
 		}
 	}
