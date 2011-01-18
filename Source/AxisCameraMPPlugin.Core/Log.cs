@@ -27,12 +27,15 @@ namespace AxisCameraMPPlugin.Core
 	/// </summary>
 	public static class Log
 	{
+		private static readonly string PluginName = "AxisCameraMPPlugin";
+
+
 		/// <summary>
 		/// Is logging with debug level.
 		/// </summary>
 		public static void Debug(string format, params object[] arg)
 		{
-			MediaPortalLog.Debug(format, arg);
+			MediaPortalLog.Debug(Prefix(format), arg);
 		}
 
 
@@ -41,7 +44,7 @@ namespace AxisCameraMPPlugin.Core
 		/// </summary>
 		public static void Info(string format, params object[] arg)
 		{
-			MediaPortalLog.Info(format, arg);
+			MediaPortalLog.Info(Prefix(format), arg);
 		}
 
 
@@ -50,7 +53,7 @@ namespace AxisCameraMPPlugin.Core
 		/// </summary>
 		public static void Warn(string format, params object[] arg)
 		{
-			MediaPortalLog.Warn(format, arg);
+			MediaPortalLog.Warn(Prefix(format), arg);
 		}
 
 
@@ -59,7 +62,7 @@ namespace AxisCameraMPPlugin.Core
 		/// </summary>
 		public static void Error(string format, params object[] arg)
 		{
-			MediaPortalLog.Error(format, arg);
+			MediaPortalLog.Error(Prefix(format), arg);
 		}
 
 
@@ -69,6 +72,16 @@ namespace AxisCameraMPPlugin.Core
 		public static void Error(Exception exception)
 		{
 			MediaPortalLog.Error(exception);
+		}
+
+
+		/// <summary>
+		/// Adds the plugin name as prefix to the format text.
+		/// </summary>
+		/// <param name="format">The format.</param>
+		private static string Prefix(string format)
+		{
+			return PluginName + ": " + format;
 		}
 	}
 }
