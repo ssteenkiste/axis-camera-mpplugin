@@ -194,6 +194,23 @@ namespace AxisCameraMPPlugin
 
 
 		/// <summary>
+		/// Gets called by the runtime when a  window will be destroyed.
+		/// </summary>
+		public override void DeInit()
+		{
+			Log.Info("DeInit");
+
+			base.DeInit();
+
+			if (container != null)
+			{
+				container.Dispose();
+				container = null;
+			}
+		}
+
+
+		/// <summary>
 		/// Gets called just before the plugin is shown.
 		/// </summary>
 		protected override void OnPageLoad()
@@ -260,53 +277,5 @@ namespace AxisCameraMPPlugin
 
 			return builder.Build();
 		}
-
-
-		#region IDisposable Members
-
-		/// <summary>
-		/// Performs application-defined tasks associated with freeing, releasing, or resetting
-		/// unmanaged resources.
-		/// </summary>
-		public sealed override void Dispose()
-		{
-			Dispose(true);
-			GC.SuppressFinalize(this);
-		}
-
-
-		/// <summary>
-		/// Releases unmanaged resources and performs other cleanup operations before the SetupForm is
-		/// reclaimed by garbage collection.
-		/// </summary>
-		~SetupForm()
-		{
-			Dispose(false);
-		}
-
-
-		/// <summary>
-		/// Releases unmanaged and optionally managed resources.
-		/// </summary>
-		/// <param name="disposing">
-		/// true to release both managed and unmanaged resources; false to release only unmanaged
-		/// resources.
-		/// </param>
-		protected virtual void Dispose(bool disposing)
-		{
-			base.Dispose();
-
-			if (disposing)
-			{
-				// Free managed resources
-				if (container != null)
-				{
-					container.Dispose();
-					container = null;
-				}
-			}
-		}
-
-		#endregion
 	}
 }
