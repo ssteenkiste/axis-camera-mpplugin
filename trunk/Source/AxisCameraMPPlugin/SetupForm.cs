@@ -42,10 +42,10 @@ namespace AxisCameraMPPlugin
 		"AxisCameraMPPlugin.Resources.Setup_icon_disabled.png")]
 	public class SetupForm : GUIWindow, ISetupForm
 	{
-		private readonly Lazy<IEnumerable<Camera>> cameras;
-		private readonly Lazy<IPlayer> player;
-		private readonly Lazy<IIOService> ioService;
 		private IContainer container;
+		private Lazy<IEnumerable<Camera>> cameras;
+		private Lazy<IPlayer> player;
+		private Lazy<IIOService> ioService;
 
 
 		/// <summary>
@@ -53,22 +53,6 @@ namespace AxisCameraMPPlugin
 		/// </summary>
 		[SkinControl(50)]
 		protected GUIFacadeControl facadeLayout;
-
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="SetupForm"/> class.
-		/// </summary>
-		public SetupForm()
-		{
-			container = CreateContainer();
-
-			cameras = new Lazy<IEnumerable<Camera>>(() => container.Resolve<IPluginSettings>().Cameras);
-			player = new Lazy<IPlayer>(() => container.Resolve<IPlayer>());
-			ioService = new Lazy<IIOService>(() => container.Resolve<IIOService>());
-
-			// Allow unsafe header parsing due to backward compatibility with VAPIX
-			NetworkConfiguration.SetAllowUnsafeHeaderParsing20();
-		}
 
 
 		/// <summary>
@@ -166,8 +150,18 @@ namespace AxisCameraMPPlugin
 		{
 			Log.Info("Show setup");
 
+			// Allow unsafe header parsing due to backward compatibility with VAPIX
+			NetworkConfiguration.SetAllowUnsafeHeaderParsing20();
+
+			// Create container
+			CreateContainer();
+
+			// Start configuring the plugin
 			IConfigurationStarter configuration = container.Resolve<IConfigurationStarter>();
 			configuration.Start();
+
+			// Dispose the container
+			DisposeContainer();
 		}
 
 
@@ -189,6 +183,12 @@ namespace AxisCameraMPPlugin
 		{
 			Log.Info("Init");
 
+			CreateContainer();
+
+			cameras = new Lazy<IEnumerable<Camera>>(() => container.Resolve<IPluginSettings>().Cameras);
+			player = new Lazy<IPlayer>(() => container.Resolve<IPlayer>());
+			ioService = new Lazy<IIOService>(() => container.Resolve<IIOService>());
+
 			return Load(Path.Combine(GUIGraphicsContext.Skin, Settings.Default.Plugin_Skin));
 		}
 
@@ -202,11 +202,8 @@ namespace AxisCameraMPPlugin
 
 			base.DeInit();
 
-			if (container != null)
-			{
-				container.Dispose();
-				container = null;
-			}
+			// Dispose the container
+			DisposeContainer();
 		}
 
 
@@ -270,12 +267,25 @@ namespace AxisCameraMPPlugin
 		/// <summary>
 		/// Creates a configured container.
 		/// </summary>
-		private static IContainer CreateContainer()
+		private void CreateContainer()
 		{
 			ContainerBuilder builder = new ContainerBuilder();
 			builder.RegisterModule(new PluginModule());
 
-			return builder.Build();
+			container = builder.Build();
+		}
+
+
+		/// <summary>
+		/// Disposes the container.
+		/// </summary>
+		private void DisposeContainer()
+		{
+			if (container != null)
+			{
+				container.Dispose();
+				container = null;
+			}
 		}
 	}
 }
