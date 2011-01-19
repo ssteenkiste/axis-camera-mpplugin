@@ -123,6 +123,7 @@
     <EmbeddedResource Include="Resources\Setup_icon_disabled.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images on disk.txt" />
     <Resource Include="Resources\CameraPortrait.png" />
     <Content Include="Skins\Blue3\axiscamerampplugin.xml">
       <SubType>Designer</SubType>
