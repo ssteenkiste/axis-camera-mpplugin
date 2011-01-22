@@ -126,17 +126,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images on disk.txt" />
+    <Content Include="Skin\Blue3\axiscamerampplugin.xml" />
+    <Content Include="Skin\Blue3\Media\hover_axiscamerampplugin.png" />
     <None Include="Thumbs\AxisCameraMPPlugin\CameraPortrait.png" />
     <None Include="Resources\BoxShot\Axis M1054.png" />
     <None Include="Resources\BoxShot\background.jpg" />
     <None Include="Resources\BoxShot\front.png" />
     <None Include="Resources\BoxShot\side.png" />
     <None Include="Resources\BoxShot\swoosh.png" />
-    <None Include="Skins\Blue3\Media\hover_axiscamerampplugin.png" />
-    <None Include="Skins\Blue3\axiscamerampplugin.xml">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
