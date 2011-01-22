@@ -129,6 +129,7 @@
     <Content Include="Skin\Blue3\axiscamerampplugin.xml" />
     <Content Include="Skin\Blue3\Media\hover_axiscamerampplugin.png" />
     <Content Include="Skin\readme.txt" />
+    <Content Include="Thumbs\readme.txt" />
     <None Include="Thumbs\AxisCameraMPPlugin\CameraPortrait.png" />
     <None Include="Resources\BoxShot\Axis M1054.png" />
     <None Include="Resources\BoxShot\background.jpg" />
