@@ -89,10 +89,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\BoxShot\front.pspimage" />
+    <None Include="Resources\BoxShot\side.pspimage" />
     <None Include="Resources\surveillance-camera.ico" />
-    <Resource Include="Resources\surveillance-camera_24x24.png" />
+    <None Include="Resources\surveillance-camera_24x24.png" />
     <Resource Include="Resources\surveillance-camera_32x32.png" />
-    <Resource Include="Resources\surveillance-camera_48x48.png" />
+    <None Include="Resources\surveillance-camera_48x48.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -124,11 +126,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images on disk.txt" />
+    <None Include="Resources\BoxShot\Axis M1054.png" />
+    <None Include="Resources\BoxShot\background.jpg" />
+    <None Include="Resources\BoxShot\front.png" />
+    <None Include="Resources\BoxShot\side.png" />
+    <None Include="Resources\BoxShot\swoosh.png" />
+    <None Include="Skins\Blue3\Media\hover_axiscamerampplugin.png" />
     <Resource Include="Resources\CameraPortrait.png" />
-    <Content Include="Skins\Blue3\axiscamerampplugin.xml">
+    <None Include="Skins\Blue3\axiscamerampplugin.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

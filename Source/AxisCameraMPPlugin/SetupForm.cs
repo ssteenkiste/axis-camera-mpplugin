@@ -106,11 +106,10 @@ namespace AxisCameraMPPlugin
 			out string strButtonImageFocus,
 			out string strPictureImage)
 		{
-			// TODO: Set properties
 			strButtonText = PluginName();
-			strButtonImage = String.Empty;
-			strButtonImageFocus = String.Empty;
-			strPictureImage = String.Empty;
+			strButtonImage = string.Empty;
+			strButtonImageFocus = string.Empty;
+			strPictureImage = "hover_axiscamerampplugin.png";
 
 			return true;
 		}
