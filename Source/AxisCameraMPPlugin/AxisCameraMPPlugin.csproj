@@ -125,7 +125,6 @@
     <EmbeddedResource Include="Resources\Setup_icon_disabled.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images on disk.txt" />
     <Content Include="Skin\Blue3\axiscamerampplugin.xml" />
     <Content Include="Skin\Blue3\Media\hover_axiscamerampplugin.png" />
     <Content Include="Skin\readme.txt" />

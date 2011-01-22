@@ -1,5 +1,0 @@
-﻿ProgramData\Team MediaPortal\MediaPortal\thumbs\AxisCameraMPPlugin
-	CameraPortrait.png
-
-ProgramData\Team MediaPortal\MediaPortal\skin\[SKIN]\Media
-	hover_axiscamerampplugin.png
