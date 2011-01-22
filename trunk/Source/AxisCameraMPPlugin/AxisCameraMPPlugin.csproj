@@ -89,6 +89,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\axiscamerampplugin_logo.pspimage" />
     <None Include="Resources\BoxShot\front.pspimage" />
     <None Include="Resources\BoxShot\side.pspimage" />
     <None Include="Resources\surveillance-camera.ico" />
@@ -126,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Skin\Blue3\axiscamerampplugin.xml" />
+    <None Include="Skin\Blue3\Media\axiscamerampplugin_logo.png" />
     <Content Include="Skin\Blue3\Media\hover_axiscamerampplugin.png" />
     <Content Include="Skin\readme.txt" />
     <Content Include="Thumbs\readme.txt" />
