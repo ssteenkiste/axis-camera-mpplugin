@@ -121,9 +121,9 @@
     <value>Mattias Kindborg</value>
   </data>
   <data name="Plugin_Description" xml:space="preserve">
-    <value>With Axis Camera MPPlugin you can watch live video from you Axis network camera.</value>
+    <value>With Axis Cameras you can watch live video from you Axis network camera.</value>
   </data>
   <data name="Plugin_Name" xml:space="preserve">
-    <value>Axis Camera MPPlugin</value>
+    <value>Axis Cameras</value>
   </data>
 </root>
