@@ -70,7 +70,7 @@ namespace AxisCameraMPPlugin.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to With Axis Camera MPPlugin you can watch live video from you Axis network camera..
+        ///   Looks up a localized string similar to With Axis Cameras you can watch live video from you Axis network camera..
         /// </summary>
         internal static string Plugin_Description {
             get {
@@ -79,7 +79,7 @@ namespace AxisCameraMPPlugin.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Axis Camera MPPlugin.
+        ///   Looks up a localized string similar to Axis Cameras.
         /// </summary>
         internal static string Plugin_Name {
             get {

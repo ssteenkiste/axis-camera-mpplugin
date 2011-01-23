@@ -4,7 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:mvvm="clr-namespace:AxisCameraMPPlugin.Mvvm;assembly=AxisCameraMPPlugin.Mvvm"
 	xmlns:services="clr-namespace:AxisCameraMPPlugin.Mvvm.Services;assembly=AxisCameraMPPlugin.Mvvm"
-	Title="Axis Camera MPPlugin - Setup"
+	Title="Axis Cameras - Setup"
 	Style="{DynamicResource DialogWindow}"
 	WindowStartupLocation="CenterOwner"
 	services:WindowServiceBehaviors.IsRegisteredView="True">
