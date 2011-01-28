@@ -18,6 +18,7 @@
 
 #endregion
 using System;
+using Autofac.Features.OwnedInstances;
 using AxisCameraMPPlugin.Configuration.Service;
 using AxisCameraMPPlugin.Configuration.ViewModel;
 using AxisCameraMPPlugin.Core;
@@ -29,7 +30,7 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 	/// </summary>
 	class CameraCommunicationDialogViewModelProvider : ICameraCommunicationDialogViewModelProvider
 	{
-		private readonly ICameraCommunicationService cameraCommunicationService;
+		private readonly Owned<ICameraCommunicationService> cameraCommunicationService;
 
 
 		/// <summary>
@@ -38,7 +39,7 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 		/// </summary>
 		/// <param name="cameraCommunicationService">The camera communication service.</param>
 		public CameraCommunicationDialogViewModelProvider(
-			ICameraCommunicationService cameraCommunicationService)
+			Owned<ICameraCommunicationService> cameraCommunicationService)
 		{
 			if (cameraCommunicationService == null) throw new ArgumentNullException("cameraCommunicationService");
 

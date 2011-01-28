@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Autofac.Features.OwnedInstances;
 using AxisCameraMPPlugin.Configuration.Provider;
 using AxisCameraMPPlugin.Configuration.Service;
 using AxisCameraMPPlugin.Configuration.View;
@@ -36,8 +37,8 @@ namespace AxisCameraMPPlugin.Configuration
 	public class ConfigurationStarter : IConfigurationStarter
 	{
 		private readonly IWindowService windowService;
-		private readonly IPluginSettings pluginSettings;
 		private readonly ICurrentProcessService currentProcessService;
+		private readonly Func<Owned<IPluginSettings>> pluginSettingsProvider;
 		private readonly ISetupDialogViewModelProvider setupProvider;
 		private readonly ICameraConverter cameraConverter;
 		private readonly ICameraNameViewModelProvider cameraViewModelProvider;
@@ -47,28 +48,28 @@ namespace AxisCameraMPPlugin.Configuration
 		/// Initializes a new instance of the <see cref="ConfigurationStarter"/> class.
 		/// </summary>
 		/// <param name="windowService">The window service.</param>
-		/// <param name="pluginSettings">The plugin settings.</param>
 		/// <param name="currentProcessService">The current process service.</param>
+		/// <param name="pluginSettingsProvider">A provider providing the plugin settings.</param>
 		/// <param name="setupProvider">The setup view model provider.</param>
 		/// <param name="cameraConverter">The camera converter.</param>
 		/// <param name="cameraViewModelProvider">The camera name view model provider.</param>
 		public ConfigurationStarter(
 			IWindowService windowService,
-			IPluginSettings pluginSettings,
 			ICurrentProcessService currentProcessService,
+			Func<Owned<IPluginSettings>> pluginSettingsProvider,
 			ISetupDialogViewModelProvider setupProvider,
 			ICameraConverter cameraConverter,
 			ICameraNameViewModelProvider cameraViewModelProvider)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
-			if (pluginSettings == null) throw new ArgumentNullException("pluginSettings");
+			if (pluginSettingsProvider == null) throw new ArgumentNullException("pluginSettingsProvider");
 			if (currentProcessService == null) throw new ArgumentNullException("currentProcessService");
 			if (setupProvider == null) throw new ArgumentNullException("setupProvider");
 			if (cameraConverter == null) throw new ArgumentNullException("cameraConverter");
 			if (cameraViewModelProvider == null) throw new ArgumentNullException("cameraViewModelProvider");
 
 			this.windowService = windowService;
-			this.pluginSettings = pluginSettings;
+			this.pluginSettingsProvider = pluginSettingsProvider;
 			this.currentProcessService = currentProcessService;
 			this.setupProvider = setupProvider;
 			this.cameraConverter = cameraConverter;
@@ -83,25 +84,28 @@ namespace AxisCameraMPPlugin.Configuration
 		{
 			Log.Debug("Starting configuration");
 
-			IEnumerable<ICameraNameViewModel> cameraViewModels =
-				from camera in pluginSettings.Cameras
-				let configurableCamera = cameraConverter.ToConfigurableCamera(camera)
-				select cameraViewModelProvider.Provide(configurableCamera);
+			using (Owned<IPluginSettings> pluginSettings = pluginSettingsProvider())
+			{
+				IEnumerable<ICameraNameViewModel> cameraViewModels =
+					from camera in pluginSettings.Value.Cameras
+					let configurableCamera = cameraConverter.ToConfigurableCamera(camera)
+					select cameraViewModelProvider.Provide(configurableCamera);
 
-			ISetupDialogViewModel setup = setupProvider.Provide(cameraViewModels);
+				ISetupDialogViewModel setup = setupProvider.Provide(cameraViewModels);
 
-			// Getting the window handle of the current process is a workaround since the owning window
-			// is WinForms and we wish to open a WPF window
-			windowService.ShowDialog<SetupDialog>(
-				setup,
-				currentProcessService.MainWindowHandle);
+				// Getting the window handle of the current process is a workaround since the owning window
+				// is WinForms and we wish to open a WPF window
+				windowService.ShowDialog<SetupDialog>(
+					setup,
+					currentProcessService.MainWindowHandle);
 
-			// When the setup window has closed, save the cameras
-			IEnumerable<Camera> cameras =
-				from camera in setup.Cameras
-				select cameraConverter.ToCamera(camera.Camera);
+				// When the setup window has closed, save the cameras
+				IEnumerable<Camera> cameras =
+					from camera in setup.Cameras
+					select cameraConverter.ToCamera(camera.Camera);
 
-			pluginSettings.Cameras = cameras;
+				pluginSettings.Value.Cameras = cameras;
+			}
 		}
 	}
 }
