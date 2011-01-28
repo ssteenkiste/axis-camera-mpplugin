@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;
+using Autofac.Features.OwnedInstances;
 using AxisCameraMPPlugin.Configuration.Service;
 using AxisCameraMPPlugin.Mvvm;
 
@@ -30,7 +31,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 	/// </summary>
 	class CameraCommunicationDialogViewModel : DialogViewModelBase, ICameraCommunicationDialogViewModel
 	{
-		private readonly ICameraCommunicationService cameraCommunicationService;
+		private readonly Owned<ICameraCommunicationService> cameraCommunicationService;
 		private readonly NetworkEndpoint cameraEndpoint;
 
 
@@ -40,7 +41,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// <param name="cameraCommunicationService">The camera communication service.</param>
 		/// <param name="cameraEndpoint">The camera network endpoint.</param>
 		public CameraCommunicationDialogViewModel(
-			ICameraCommunicationService cameraCommunicationService,
+			Owned<ICameraCommunicationService> cameraCommunicationService,
 			NetworkEndpoint cameraEndpoint)
 		{
 			if (cameraCommunicationService == null) throw new ArgumentNullException("cameraCommunicationService");
@@ -102,7 +103,8 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 			EventHandler<GetInformationFromCameraCompletedEventArgs> completedHandler = null;
 			completedHandler = (sender, e) =>
 			{
-				cameraCommunicationService.GetInformationFromCameraCompleted -= completedHandler;
+				cameraCommunicationService.Value.GetInformationFromCameraCompleted -= completedHandler;
+				cameraCommunicationService.Dispose();
 
 				if (e.Cancelled || e.Error != null)
 				{
@@ -119,8 +121,8 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 				}
 			};
 
-			cameraCommunicationService.GetInformationFromCameraCompleted += completedHandler;
-			cameraCommunicationService.GetInformationFromCameraAsync(cameraEndpoint);
+			cameraCommunicationService.Value.GetInformationFromCameraCompleted += completedHandler;
+			cameraCommunicationService.Value.GetInformationFromCameraAsync(cameraEndpoint);
 		}
 
 
@@ -129,7 +131,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 		/// </summary>
 		private void Cancel(object parameter)
 		{
-			cameraCommunicationService.CancelAsync();
+			cameraCommunicationService.Value.CancelAsync();
 		}
 	}
 }

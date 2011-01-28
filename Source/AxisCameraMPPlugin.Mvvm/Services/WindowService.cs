@@ -50,7 +50,7 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 			where T : Window
 		{
 			if (viewModel == null) throw new ArgumentNullException("viewModel");
-			
+
 			// Create window and set properties
 			T dialog = Activator.CreateInstance<T>();
 			if (ownerViewModel != null)
@@ -82,13 +82,13 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 		{
 			if (viewModel == null) throw new ArgumentNullException("viewModel");
 			if (ownerViewModel == null) throw new ArgumentNullException("ownerViewModel");
-			
+
 			// Create dialog and set properties
 			T dialog = Activator.CreateInstance<T>();
 			dialog.Owner = FindOwnerWindow(ownerViewModel);
 			dialog.DataContext = viewModel;
 			viewModel.DialogResultCommand = new RelayCommand(result => dialog.DialogResult = (bool)result);
-			
+
 			// Show dialog
 			return dialog.ShowDialog();
 		}
@@ -114,7 +114,7 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 
 			// Create dialog and set properties
 			T dialog = Activator.CreateInstance<T>();
-			new WindowInteropHelper(dialog).Owner = ownerHandle;			
+			new WindowInteropHelper(dialog).Owner = ownerHandle;
 			dialog.DataContext = viewModel;
 			viewModel.DialogResultCommand = new RelayCommand(result => dialog.DialogResult = (bool)result);
 
@@ -183,12 +183,13 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 		{
 			if (viewModel == null) throw new ArgumentNullException("viewModel");
 			if (ownerViewModel == null) throw new ArgumentNullException("ownerViewModel");
-			
-			// Create FolderBrowserDialog with specified ViewModel
-			FolderBrowserDialog dialog = new FolderBrowserDialog(viewModel);
 
-			// Show dialog
-			return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));
+			// Create FolderBrowserDialog with specified ViewModel
+			using (FolderBrowserDialog dialog = new FolderBrowserDialog(viewModel))
+			{
+				// Show dialog
+				return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));
+			}
 		}
 
 
@@ -206,12 +207,13 @@ namespace AxisCameraMPPlugin.Mvvm.Services
 		{
 			if (viewModel == null) throw new ArgumentNullException("viewModel");
 			if (ownerViewModel == null) throw new ArgumentNullException("ownerViewModel");
-			
-			// Create OpenFileDialog with specified ViewModel
-			OpenFileDialog dialog = new OpenFileDialog(viewModel);
 
-			// Show dialog
-			return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));
+			// Create OpenFileDialog with specified ViewModel
+			using (OpenFileDialog dialog = new OpenFileDialog(viewModel))
+			{
+				// Show dialog
+				return dialog.ShowDialog(new WindowWrapper(FindOwnerWindow(ownerViewModel)));
+			}
 		}
 
 		#endregion
