@@ -46,6 +46,7 @@ namespace AxisCameraMPPlugin
 		private Lazy<IEnumerable<Camera>> cameras;
 		private Lazy<IPlayer> player;
 		private Lazy<IIOService> ioService;
+		private Guid selectedCameraGuid;
 
 
 		/// <summary>
@@ -219,12 +220,17 @@ namespace AxisCameraMPPlugin
 		{
 			Log.Info("Page loaded");
 
+			// Add cameras
 			foreach (Camera camera in cameras.Value)
 			{
 				facadeLayout.Add(CreateListItemFrom(camera));
 			}
 
+			// Sort list of cameras
 			facadeLayout.Sort(new CameraComparer());
+
+			// Set selected camera
+			SetSelectedCamera();
 
 			base.OnPageLoad();
 		}
@@ -259,7 +265,7 @@ namespace AxisCameraMPPlugin
 		/// <returns>A list item representing a camera.</returns>
 		private GUIListItem CreateListItemFrom(Camera camera)
 		{
-			return new GUIListItem
+			GUIListItem listItem = new GUIListItem
 			{
 				Label = camera.Name,
 				IconImage = ioService.Value.CameraIconPath,
@@ -268,6 +274,43 @@ namespace AxisCameraMPPlugin
 				// Store camera in music tag
 				MusicTag = camera
 			};
+
+			// Register for selected item changes
+			listItem.OnItemSelected += (item, parent) =>
+			{
+				Camera selectedCamera = (Camera)item.MusicTag;
+				selectedCameraGuid = selectedCamera.Id;
+			};
+
+			return listItem;
+		}
+
+
+		/// <summary>
+		/// Sets the selected camera.
+		/// </summary>
+		private void SetSelectedCamera()
+		{
+			// Rather ugly way of setting the selected camera
+			if (selectedCameraGuid == Guid.Empty && facadeLayout.Count > 0)
+			{
+				// Select first camera
+				GUIControl.SelectItemControl(GetID, facadeLayout.GetID, 0);
+			}
+			else
+			{
+				for (int index = 0; index < facadeLayout.Count; index++)
+				{
+					Camera camera = (Camera)facadeLayout[index].MusicTag;
+
+					if (camera.Id == selectedCameraGuid)
+					{
+						// Set the last selected camera
+						GUIControl.SelectItemControl(GetID, facadeLayout.GetID, index);
+						break;
+					}
+				}
+			}
 		}
 
 
