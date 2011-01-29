@@ -61,6 +61,15 @@ namespace AxisCameraMPPlugin.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Axis cameras.
+        /// </summary>
+        internal static string Module_Name {
+            get {
+                return ResourceManager.GetString("Module_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mattias Kindborg.
         /// </summary>
         internal static string Plugin_Author {

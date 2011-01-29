@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Autofac;
 using AxisCameraMPPlugin.Configuration;
 using AxisCameraMPPlugin.Configuration.Service;
@@ -31,6 +32,8 @@ using MediaPortal.GUI.Library;
 using ActionType = MediaPortal.GUI.Library.Action.ActionType;
 using Log = AxisCameraMPPlugin.Core.Log;
 using PluginResources = AxisCameraMPPlugin.Properties.Resources;
+using Utils = MediaPortal.Util.Utils;
+
 
 namespace AxisCameraMPPlugin
 {
@@ -144,6 +147,15 @@ namespace AxisCameraMPPlugin
 
 
 		/// <summary>
+		/// Returns the name of the module which is shown at the bottom of the plugin.
+		/// </summary>
+		public override string GetModuleName()
+		{
+			return PluginResources.Module_Name;
+		}
+
+
+		/// <summary>
 		/// Show the setup dialog.
 		/// </summary>
 		public void ShowPlugin()
@@ -228,6 +240,9 @@ namespace AxisCameraMPPlugin
 
 			// Sort list of cameras
 			facadeLayout.Sort(new CameraComparer());
+
+			// Set item count property
+			GUIPropertyManager.SetProperty("#itemcount", Utils.GetObjectCountLabel(cameras.Value.Count()));
 
 			// Set selected camera
 			SetSelectedCamera();
