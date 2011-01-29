@@ -224,6 +224,8 @@ namespace AxisCameraMPPlugin
 				facadeLayout.Add(CreateListItemFrom(camera));
 			}
 
+			facadeLayout.Sort(new CameraComparer());
+
 			base.OnPageLoad();
 		}
 
@@ -290,6 +292,40 @@ namespace AxisCameraMPPlugin
 			{
 				container.Dispose();
 				container = null;
+			}
+		}
+
+
+		/// <summary>
+		/// Class comparing cameras, used when sorting the list of cameras.
+		/// </summary>
+		class CameraComparer : IComparer<GUIListItem>
+		{
+			/// <summary>
+			/// Compares two GUIListItems and returns a value indicating whether one is less than, equal
+			/// to, or greater than the other.
+			/// </summary>
+			/// <returns>
+			/// Less than zero: x is less than y.
+			/// Zero: x equals y.
+			/// Greater than zero: x is greater than y.
+			/// </returns>
+			public int Compare(GUIListItem x, GUIListItem y)
+			{
+				if (x == y)
+				{
+					return 0;
+				}
+				if (x == null)
+				{
+					return -1;
+				}
+				if (y == null)
+				{
+					return -1;
+				}
+
+				return string.Compare(x.Label, y.Label);
 			}
 		}
 	}
