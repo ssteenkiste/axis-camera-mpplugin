@@ -143,7 +143,7 @@ namespace AxisCameraMPPlugin
 
 
 		/// <summary>
-		/// Show the setup dialog
+		/// Show the setup dialog.
 		/// </summary>
 		public void ShowPlugin()
 		{
