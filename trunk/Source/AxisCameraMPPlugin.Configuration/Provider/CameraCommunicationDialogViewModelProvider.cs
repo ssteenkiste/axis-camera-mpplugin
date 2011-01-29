@@ -30,7 +30,7 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 	/// </summary>
 	class CameraCommunicationDialogViewModelProvider : ICameraCommunicationDialogViewModelProvider
 	{
-		private readonly Owned<ICameraCommunicationService> cameraCommunicationService;
+		private readonly Func<Owned<ICameraCommunicationService>> cameraCommunicationService;
 
 
 		/// <summary>
@@ -39,7 +39,7 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 		/// </summary>
 		/// <param name="cameraCommunicationService">The camera communication service.</param>
 		public CameraCommunicationDialogViewModelProvider(
-			Owned<ICameraCommunicationService> cameraCommunicationService)
+			Func<Owned<ICameraCommunicationService>> cameraCommunicationService)
 		{
 			if (cameraCommunicationService == null) throw new ArgumentNullException("cameraCommunicationService");
 
@@ -58,7 +58,7 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 			Log.Debug("Provide a ICameraCommunicationDialogViewModel");
 
 			return new CameraCommunicationDialogViewModel(
-				cameraCommunicationService,
+				cameraCommunicationService(),
 				cameraEndpoint);
 		}
 	}
