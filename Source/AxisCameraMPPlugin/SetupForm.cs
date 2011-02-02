@@ -19,6 +19,7 @@
 #endregion
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using Autofac;
@@ -56,7 +57,7 @@ namespace AxisCameraMPPlugin
 		/// The facade layout containing cameras.
 		/// </summary>
 		[SkinControl(50)]
-		protected GUIFacadeControl facadeLayout;
+		private GUIFacadeControl facadeLayout = null;
 
 
 		/// <summary>
@@ -383,7 +384,7 @@ namespace AxisCameraMPPlugin
 					return -1;
 				}
 
-				return string.Compare(x.Label, y.Label);
+				return string.Compare(x.Label, y.Label, false, CultureInfo.CurrentCulture);
 			}
 		}
 	}

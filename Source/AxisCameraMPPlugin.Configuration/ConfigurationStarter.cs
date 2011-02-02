@@ -19,6 +19,7 @@
 #endregion
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Autofac.Features.OwnedInstances;
 using AxisCameraMPPlugin.Configuration.Provider;
@@ -53,6 +54,8 @@ namespace AxisCameraMPPlugin.Configuration
 		/// <param name="setupProvider">The setup view model provider.</param>
 		/// <param name="cameraConverter">The camera converter.</param>
 		/// <param name="cameraViewModelProvider">The camera name view model provider.</param>
+		[SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures",
+			Justification = "Nested generic types aren't complex.")]
 		public ConfigurationStarter(
 			IWindowService windowService,
 			ICurrentProcessService currentProcessService,
