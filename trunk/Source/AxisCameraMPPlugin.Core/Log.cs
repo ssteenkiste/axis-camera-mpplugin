@@ -27,7 +27,7 @@ namespace AxisCameraMPPlugin.Core
 	/// </summary>
 	public static class Log
 	{
-		private static readonly string PluginName = "AxisCameraMPPlugin";
+		private const string PluginName = "AxisCameraMPPlugin";
 
 
 		/// <summary>

@@ -24,7 +24,7 @@ namespace AxisCameraMPPlugin
 	/// <summary>
 	/// Interface responsible for playing video.
 	/// </summary>
-	interface IPlayer
+	public interface IPlayer
 	{
 		/// <summary>
 		/// Plays live video from specified camera.

@@ -28,7 +28,7 @@ namespace AxisCameraMPPlugin
 	/// <summary>
 	/// Class responsible for playing video.
 	/// </summary>
-	class Player : IPlayer
+	public class Player : IPlayer
 	{
 		private const string LiveVideoUrl = "axrtpu://{0}:{1}@{2}:{3}/mpeg4/media.amp";
 
