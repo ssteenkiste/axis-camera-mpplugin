@@ -34,8 +34,12 @@ namespace AxisCameraMPPlugin.Configuration.View
 		{
 			InitializeComponent();
 
-			// Set focus on the name text box
-			Loaded += (sender, e) => FocusManager.SetFocusedElement(this, nameTextBox);
+			// Set focus and select all text in the name text box
+			Loaded += (sender, e) =>
+			{
+				FocusManager.SetFocusedElement(this, nameTextBox);
+				nameTextBox.SelectAll();
+			};
 		}
 	}
 }
