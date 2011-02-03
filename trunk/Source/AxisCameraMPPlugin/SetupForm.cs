@@ -29,6 +29,7 @@ using AxisCameraMPPlugin.Core;
 using AxisCameraMPPlugin.Data;
 using AxisCameraMPPlugin.Properties;
 using MediaPortal.Configuration;
+using MediaPortal.Dialogs;
 using MediaPortal.GUI.Library;
 using ActionType = MediaPortal.GUI.Library.Action.ActionType;
 using Log = AxisCameraMPPlugin.Core.Log;
@@ -233,20 +234,38 @@ namespace AxisCameraMPPlugin
 		{
 			Log.Info("Page loaded");
 
-			// Add cameras
-			foreach (Camera camera in cameras.Value)
+			// Make sure any cameras have been added
+			if (cameras.Value.Any())
 			{
-				facadeLayout.Add(CreateListItemFrom(camera));
-			}
+				// Add cameras
+				foreach (Camera camera in cameras.Value)
+				{
+					facadeLayout.Add(CreateListItemFrom(camera));
+				}
 
-			// Sort list of cameras
-			facadeLayout.Sort(new CameraComparer());
+				// Sort list of cameras
+				facadeLayout.Sort(new CameraComparer());
+
+				// Set selected camera
+				SetSelectedCamera();
+			}
+			else
+			{
+				// Display message to user about how to add cameras to the plugin
+				int messageBoxId = (int)GUIWindow.Window.WINDOW_DIALOG_OK;
+
+				using (GUIDialogOK messageBox = (GUIDialogOK)GUIWindowManager.GetWindow(messageBoxId))
+				{
+					messageBox.SetHeading(PluginResources.SetupForm_AddCameras_Title);
+					messageBox.SetLine(2, PluginResources.SetupForm_AddCameras_Line1);
+					messageBox.SetLine(3, PluginResources.SetupForm_AddCameras_Line2);
+					messageBox.SetLine(4, PluginResources.SetupForm_AddCameras_Line3);
+					messageBox.DoModal(GUIWindowManager.ActiveWindow);
+				}
+			}
 
 			// Set item count property
 			GUIPropertyManager.SetProperty("#itemcount", Utils.GetObjectCountLabel(cameras.Value.Count()));
-
-			// Set selected camera
-			SetSelectedCamera();
 
 			base.OnPageLoad();
 		}

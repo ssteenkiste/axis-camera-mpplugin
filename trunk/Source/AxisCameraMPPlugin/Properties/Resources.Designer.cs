@@ -95,5 +95,41 @@ namespace AxisCameraMPPlugin.Properties {
                 return ResourceManager.GetString("Plugin_Name", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To add cameras, exit MediaPortal and.
+        /// </summary>
+        internal static string SetupForm_AddCameras_Line1 {
+            get {
+                return ResourceManager.GetString("SetupForm_AddCameras_Line1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to configure the plugin in the MediaPortal.
+        /// </summary>
+        internal static string SetupForm_AddCameras_Line2 {
+            get {
+                return ResourceManager.GetString("SetupForm_AddCameras_Line2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configuration application..
+        /// </summary>
+        internal static string SetupForm_AddCameras_Line3 {
+            get {
+                return ResourceManager.GetString("SetupForm_AddCameras_Line3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Cameras.
+        /// </summary>
+        internal static string SetupForm_AddCameras_Title {
+            get {
+                return ResourceManager.GetString("SetupForm_AddCameras_Title", resourceCulture);
+            }
+        }
     }
 }
