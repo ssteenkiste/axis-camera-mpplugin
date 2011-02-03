@@ -129,4 +129,16 @@
   <data name="Plugin_Name" xml:space="preserve">
     <value>Axis Cameras</value>
   </data>
+  <data name="SetupForm_AddCameras_Line1" xml:space="preserve">
+    <value>To add cameras, exit MediaPortal and</value>
+  </data>
+  <data name="SetupForm_AddCameras_Line2" xml:space="preserve">
+    <value>configure the plugin in the MediaPortal</value>
+  </data>
+  <data name="SetupForm_AddCameras_Line3" xml:space="preserve">
+    <value>Configuration application.</value>
+  </data>
+  <data name="SetupForm_AddCameras_Title" xml:space="preserve">
+    <value>No Cameras</value>
+  </data>
 </root>
