@@ -62,7 +62,7 @@
 			<width>148</width>
 			<height>144</height>
 			<texture flipY="true" diffuse="Thumb_Mask.png">Picture_cover.png</texture>
-			<visible>Control.HasFocus(50)</visible>
+			<visible>Control.HasThumb(500)+Control.HasFocus(50)</visible>
 			<animation effect="fade" time="450" reversible="false">visible</animation>
 		</control>
 
@@ -75,7 +75,7 @@
 			<width>200</width>
 			<label>Info:</label>
 			<font>font14</font>
-			<visible>Control.HasFocus(50)</visible>
+			<visible>Control.HasThumb(500)+Control.HasFocus(50)</visible>
 			<animation effect="fade" time="450" reversible="false">visible</animation>
 		</control>
 
