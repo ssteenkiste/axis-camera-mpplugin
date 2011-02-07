@@ -139,6 +139,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
     <OnlineLocation>http://axis-camera-mpplugin.googlecode.com/files/AxisCameraMPPlugin[Version].mpe1</OnlineLocation>
     <ReleaseDate>2011-02-07T21:00:06.6678446+01:00</ReleaseDate>
     <Tags>axis,camera,live,video</Tags>
+    <Location>.\AxisCameraMPPlugin[Version].mpe1</Location>
     <Params>
       <Items>
         <SectionParam Name="Icon">
@@ -177,7 +178,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{2d797b39-417c-44ea-b7f3-375c26fb1428}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{33bfd1af-44c7-4e9b-8206-baa2fbe2e3bf}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
