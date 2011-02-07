@@ -11,6 +11,23 @@
           <Items />
         </Files>
       </GroupItem>
+      <GroupItem Name="Thumbs">
+        <ParentGroup />
+        <DisplayName>Plugin icons</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>A variety of PNG files used by the plugin.</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameraMPPlugin\Thumbs\AxisCameraMPPlugin\CameraPortrait.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{7cf945bc-a7ab-491a-ab85-5122611ceecc}-CameraPortrait.png</ZipFileName>
+              <DestinationFilename>%Thumbs%\AxisCameraMPPlugin\CameraPortrait.png</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
     </Items>
   </Groups>
   <Sections>
@@ -173,17 +190,35 @@ Click Next to continue or Cancel to exit Setup.</Value>
   </GeneralInfo>
   <UniqueFileList>
     <Items>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameraMPPlugin\Thumbs\AxisCameraMPPlugin\CameraPortrait.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{7cf945bc-a7ab-491a-ab85-5122611ceecc}-CameraPortrait.png</ZipFileName>
+        <DestinationFilename>%Thumbs%\AxisCameraMPPlugin\CameraPortrait.png</DestinationFilename>
+      </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{9fd735a2-7eb1-42bd-8d8b-aa979f38fd3f}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{41ca05e2-b820-4f34-9a17-7cdccb049b93}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
   </UniqueFileList>
   <ProjectSettings>
-    <FolderGroups />
+    <FolderGroups>
+      <FolderGroup InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName />
+        <ZipFileName>Installer{CopyFile}\{45df3b71-4674-4d51-8a83-3b947cbe1e5d}-</ZipFileName>
+        <DestinationFilename>%Thumbs%\AxisCameraMPPlugin</DestinationFilename>
+        <Folder>..\AxisCameraMPPlugin\Thumbs\AxisCameraMPPlugin</Folder>
+        <Group>Thumbs</Group>
+        <Recursive>false</Recursive>
+      </FolderGroup>
+    </FolderGroups>
     <ProjectFilename>C:\Users\Mattias\Desktop\axis-camera-mpplugin\Source\Setup\AxisCameraMPPlugin.xmp2</ProjectFilename>
   </ProjectSettings>
 </PackageClass>
