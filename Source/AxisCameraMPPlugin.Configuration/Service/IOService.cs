@@ -70,6 +70,13 @@ namespace AxisCameraMPPlugin.Configuration.Service
 
 			string thumbFileName = GetThumbFileName(cameraId);
 
+			// Make sure thumb directory exists
+			string thumbDirectory = Path.GetDirectoryName(thumbFileName);
+			if (!Directory.Exists(thumbDirectory))
+			{
+				Directory.CreateDirectory(thumbDirectory);
+			}
+
 			File.WriteAllBytes(thumbFileName, image);
 
 			return thumbFileName;
