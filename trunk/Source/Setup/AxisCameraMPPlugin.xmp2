@@ -121,15 +121,24 @@ Click Next to continue or Cancel to exit Setup.</Value>
     <Items />
   </Dependencies>
   <GeneralInfo>
+    <Name>Axis Camera MPPlugin</Name>
     <Id>7295daa1-612d-4896-8672-443bd5ce5ba0</Id>
+    <Author>Disore</Author>
+    <HomePage>http://code.google.com/p/axis-camera-mpplugin/</HomePage>
+    <ForumPage>http://forum.team-mediaportal.com/mediaportal-plugins-47/axis-camera-mpplugin-93277/</ForumPage>
+    <UpdateUrl>http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/update.xml</UpdateUrl>
     <Version>
       <Major>0</Major>
-      <Minor>0</Minor>
+      <Minor>1</Minor>
       <Build>0</Build>
       <Revision>0</Revision>
     </Version>
+    <ExtensionDescription />
+    <VersionDescription />
+    <DevelopmentStatus>Rc</DevelopmentStatus>
+    <OnlineLocation>http://axis-camera-mpplugin.googlecode.com/files/AxisCameraMPPlugin[Version].mpe1</OnlineLocation>
     <ReleaseDate>2011-02-07T21:00:06.6678446+01:00</ReleaseDate>
-    <Tags />
+    <Tags>axis,camera,live,video</Tags>
     <Params>
       <Items>
         <SectionParam Name="Icon">
