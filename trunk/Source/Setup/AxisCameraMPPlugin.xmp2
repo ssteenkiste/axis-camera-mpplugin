@@ -142,7 +142,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
     <Params>
       <Items>
         <SectionParam Name="Icon">
-          <Value />
+          <Value>Setup_icon.png</Value>
           <ValueType>File</ValueType>
           <Description>The icon file of the package (jpg,png,bmp)</Description>
         </SectionParam>
@@ -172,7 +172,15 @@ Click Next to continue or Cancel to exit Setup.</Value>
     </Params>
   </GeneralInfo>
   <UniqueFileList>
-    <Items />
+    <Items>
+      <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Setup_icon.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{9fd735a2-7eb1-42bd-8d8b-aa979f38fd3f}-Setup_icon.png</ZipFileName>
+        <DestinationFilename />
+      </FileItem>
+    </Items>
   </UniqueFileList>
   <ProjectSettings>
     <FolderGroups />
