@@ -133,8 +133,8 @@ Click Next to continue or Cancel to exit Setup.</Value>
       <Build>0</Build>
       <Revision>0</Revision>
     </Version>
-    <ExtensionDescription />
-    <VersionDescription />
+    <ExtensionDescription>Plugin making it possible to watch live video from any Axis network camera in MediaPortal.</ExtensionDescription>
+    <VersionDescription>New features: Watching live video. Bug fixes:</VersionDescription>
     <DevelopmentStatus>Rc</DevelopmentStatus>
     <OnlineLocation>http://axis-camera-mpplugin.googlecode.com/files/AxisCameraMPPlugin[Version].mpe1</OnlineLocation>
     <ReleaseDate>2011-02-07T21:00:06.6678446+01:00</ReleaseDate>
