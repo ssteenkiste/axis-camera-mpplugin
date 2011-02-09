@@ -188,9 +188,11 @@ Install only if you already have StreamedMP installed.</Description>
               <Description />
             </SectionParam>
             <SectionParam Name="Description">
-              <Value>This will install [Name] version [Version] on your computer. It is recommended that you close all other applications before continuing.
+              <Value>This will install [Name] version [Version] on your computer.
 
-Click Next to continue or Cancel to exit Setup.</Value>
+It is recommended that you close all other applications before continuing.
+
+Click Next to continue, or Cancel to exit Setup.</Value>
               <ValueType>String</ValueType>
               <Description />
             </SectionParam>
@@ -488,21 +490,21 @@ Click Next to continue or Cancel to exit Setup.</Value>
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{7801842a-d72d-4e45-ba0d-31904ced3606}-Welcome_left.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{1ed50cf4-dcda-4e19-915b-65aa274258b6}-Welcome_left.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Header.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{1f2f0a2d-bbad-46c7-a7f6-87f0799bae3b}-Header.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{b09a7115-6473-4f16-a609-abc4fc9d02c5}-Header.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{085ecf0b-d950-4f89-a937-5e171f8fa98a}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{4eb8222b-d51c-4bc7-8c33-0bbde40355f9}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
