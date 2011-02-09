@@ -253,17 +253,17 @@ Click Next to continue, or Cancel to exit Setup.</Value>
         <Params>
           <Items>
             <SectionParam Name="Header Title">
-              <Value />
+              <Value>Installing</Value>
               <ValueType>String</ValueType>
               <Description>Header title</Description>
             </SectionParam>
             <SectionParam Name="Header description">
-              <Value />
+              <Value>Please wait while Setup installs [Name] on yor computer,</Value>
               <ValueType>String</ValueType>
               <Description>Description of section, shown in under section title</Description>
             </SectionParam>
             <SectionParam Name="Header image">
-              <Value />
+              <Value>Header.png</Value>
               <ValueType>File</ValueType>
               <Description>Image in upper right part</Description>
             </SectionParam>
@@ -490,21 +490,21 @@ Click Next to continue, or Cancel to exit Setup.</Value>
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{1ed50cf4-dcda-4e19-915b-65aa274258b6}-Welcome_left.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{d2c95f71-3e6d-41f6-bafb-ea700ff44df5}-Welcome_left.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Header.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{b09a7115-6473-4f16-a609-abc4fc9d02c5}-Header.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{b5123dba-d786-4bde-b84a-737dc75c1643}-Header.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{4eb8222b-d51c-4bc7-8c33-0bbde40355f9}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{6c24c930-4e70-4b3d-852c-efcea65402d1}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
