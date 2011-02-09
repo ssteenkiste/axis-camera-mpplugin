@@ -89,9 +89,9 @@
       </GroupItem>
       <GroupItem Name="Blue3">
         <ParentGroup />
-        <DisplayName>Blue3 skin</DisplayName>
+        <DisplayName>Blue3 skin support</DisplayName>
         <DefaulChecked>true</DefaulChecked>
-        <Description>The plugin skin files for Blue3.</Description>
+        <Description>Skin support for Blue3.</Description>
         <Files>
           <Items>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
@@ -120,9 +120,9 @@
       </GroupItem>
       <GroupItem Name="Blue3wide">
         <ParentGroup />
-        <DisplayName>Blue3wide skin</DisplayName>
+        <DisplayName>Blue3wide skin support</DisplayName>
         <DefaulChecked>true</DefaulChecked>
-        <Description>The plugin skin files for Blue3wide.</Description>
+        <Description>Skin support for Blue3wide.</Description>
         <Files>
           <Items>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
@@ -151,9 +151,11 @@
       </GroupItem>
       <GroupItem Name="StreamedMP">
         <ParentGroup />
-        <DisplayName>StreamedMP skin</DisplayName>
-        <DefaulChecked>true</DefaulChecked>
-        <Description>The plugin skin files for StreamedMP.</Description>
+        <DisplayName>StreamedMP skin support</DisplayName>
+        <DefaulChecked>false</DefaulChecked>
+        <Description>Skin support for StreamedMP.
+
+Install only if you already have StreamedMP installed.</Description>
         <Files>
           <Items>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
@@ -210,6 +212,40 @@ Click Next to continue or Cancel to exit Setup.</Value>
         <IncludedGroups />
         <PanelName>Welcome Screen</PanelName>
         <WizardButtonsEnum>NextCancel</WizardButtonsEnum>
+      </SectionItem>
+      <SectionItem Guid="2941e573-1f36-43a3-99b7-112bcb9175e9" Name="Tree View Selector" ConditionGroup="">
+        <Params>
+          <Items>
+            <SectionParam Name="Header Title">
+              <Value>Select Components</Value>
+              <ValueType>String</ValueType>
+              <Description>Header title</Description>
+            </SectionParam>
+            <SectionParam Name="Header description">
+              <Value>Which components should be installed?</Value>
+              <ValueType>String</ValueType>
+              <Description>Description of section, shown in under section title</Description>
+            </SectionParam>
+            <SectionParam Name="Header image">
+              <Value>Header.png</Value>
+              <ValueType>File</ValueType>
+              <Description>Image in upper right part</Description>
+            </SectionParam>
+            <SectionParam Name="Description ">
+              <Value>Select the components you want to install; clear the components you do not want to install. Click Next when you are ready to continue,</Value>
+              <ValueType>String</ValueType>
+              <Description>Description of this operation</Description>
+            </SectionParam>
+          </Items>
+        </Params>
+        <Actions>
+          <Items />
+        </Actions>
+        <IncludedGroups>
+          <string>StreamedMP</string>
+        </IncludedGroups>
+        <PanelName>Tree View Selector</PanelName>
+        <WizardButtonsEnum>BackNextCancel</WizardButtonsEnum>
       </SectionItem>
       <SectionItem Guid="d61deab3-28fd-4d85-9088-76ffa14334a2" Name="Install Section" ConditionGroup="">
         <Params>
@@ -452,14 +488,21 @@ Click Next to continue or Cancel to exit Setup.</Value>
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{79db5910-6d91-4697-bded-f21cfb86f5d5}-Welcome_left.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{7801842a-d72d-4e45-ba0d-31904ced3606}-Welcome_left.png</ZipFileName>
+        <DestinationFilename />
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Header.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{1f2f0a2d-bbad-46c7-a7f6-87f0799bae3b}-Header.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{3aa729eb-a6d1-457e-8fff-a770d4dccf3d}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{085ecf0b-d950-4f89-a937-5e171f8fa98a}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
