@@ -277,6 +277,12 @@ Click Next to continue, or Cancel to exit Setup.</Value>
               </Params>
               <ExecuteLocation>AfterPanelShow</ExecuteLocation>
             </ActionItem>
+            <ActionItem Name="ClearSkinCache" ActionType="ClearSkinCache" ConditionGroup="">
+              <Params>
+                <Items />
+              </Params>
+              <ExecuteLocation>AfterPanelShow</ExecuteLocation>
+            </ActionItem>
           </Items>
         </Actions>
         <IncludedGroups />
@@ -490,21 +496,21 @@ Click Next to continue, or Cancel to exit Setup.</Value>
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{205c0c2a-01e2-480c-9efb-911f0e2c5d3b}-Welcome_left.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{0dabf03b-0cb4-4057-afcb-5af8ecd50aa1}-Welcome_left.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Header.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{cfe3b98c-96c2-4c76-b4b4-28e831726095}-Header.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{2a84ab23-8a3c-4546-8e70-2c4e5d52c944}-Header.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{725fe04b-85f7-49fb-9d91-6c0fe6dede1d}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{8c4465a4-7224-44c5-8376-14d502cc8e7e}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
