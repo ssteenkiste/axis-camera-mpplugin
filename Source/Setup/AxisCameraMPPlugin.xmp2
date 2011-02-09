@@ -186,14 +186,14 @@
               <Description />
             </SectionParam>
             <SectionParam Name="Description">
-              <Value>This will install [Name] version [Version] on your computer.
-It is recommended that you close all other applications before continuing.
+              <Value>This will install [Name] version [Version] on your computer. It is recommended that you close all other applications before continuing.
+
 Click Next to continue or Cancel to exit Setup.</Value>
               <ValueType>String</ValueType>
               <Description />
             </SectionParam>
             <SectionParam Name="Left part image">
-              <Value />
+              <Value>Welcome_left.png</Value>
               <ValueType>File</ValueType>
               <Description />
             </SectionParam>
@@ -451,8 +451,15 @@ Click Next to continue or Cancel to exit Setup.</Value>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Welcome_left.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{79db5910-6d91-4697-bded-f21cfb86f5d5}-Welcome_left.png</ZipFileName>
+        <DestinationFilename />
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{4e178c38-2e91-4e70-88dd-9766a6f97c1a}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{3aa729eb-a6d1-457e-8fff-a770d4dccf3d}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
