@@ -292,7 +292,7 @@ Click Next to continue, or Cancel to exit Setup.</Value>
               <Description />
             </SectionParam>
             <SectionParam Name="Left part image">
-              <Value />
+              <Value>Welcome_left.png</Value>
               <ValueType>File</ValueType>
               <Description />
             </SectionParam>
@@ -490,21 +490,21 @@ Click Next to continue, or Cancel to exit Setup.</Value>
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{d2c95f71-3e6d-41f6-bafb-ea700ff44df5}-Welcome_left.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{8264941a-092c-41e4-ab6d-6bc3d473700d}-Welcome_left.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Header.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{b5123dba-d786-4bde-b84a-737dc75c1643}-Header.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{0b4417bc-cee2-48df-b9c9-e425820019e8}-Header.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{6c24c930-4e70-4b3d-852c-efcea65402d1}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{8afe2d58-bb43-490e-b215-3741f568cc75}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
