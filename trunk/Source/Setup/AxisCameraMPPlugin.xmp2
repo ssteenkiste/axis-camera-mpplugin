@@ -336,10 +336,10 @@ Click Next to continue, or Cancel to exit Setup.</Value>
     <ExtensionDescription>Plugin making it possible to watch live video from any Axis network camera in MediaPortal.</ExtensionDescription>
     <VersionDescription>New features: Watching live video. Bug fixes:</VersionDescription>
     <DevelopmentStatus>Rc</DevelopmentStatus>
-    <OnlineLocation>http://axis-camera-mpplugin.googlecode.com/files/AxisCameraMPPlugin[Version].mpe1</OnlineLocation>
+    <OnlineLocation>http://axis-camera-mpplugin.googlecode.com/files/AxisCameraMPPlugin_[Version].mpe1</OnlineLocation>
     <ReleaseDate>2011-02-07T21:00:06.6678446+01:00</ReleaseDate>
     <Tags>axis,camera,live,video</Tags>
-    <Location>.\AxisCameraMPPlugin[Version].mpe1</Location>
+    <Location>.\AxisCameraMPPlugin_[Version].mpe1</Location>
     <Params>
       <Items>
         <SectionParam Name="Icon">
@@ -490,21 +490,21 @@ Click Next to continue, or Cancel to exit Setup.</Value>
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{8264941a-092c-41e4-ab6d-6bc3d473700d}-Welcome_left.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{205c0c2a-01e2-480c-9efb-911f0e2c5d3b}-Welcome_left.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Header.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{0b4417bc-cee2-48df-b9c9-e425820019e8}-Header.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{cfe3b98c-96c2-4c76-b4b4-28e831726095}-Header.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{8afe2d58-bb43-490e-b215-3741f568cc75}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{725fe04b-85f7-49fb-9d91-6c0fe6dede1d}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
