@@ -175,6 +175,23 @@ Install only if you already have StreamedMP installed.</Description>
           </Items>
         </Files>
       </GroupItem>
+      <GroupItem Name="Axis binaries">
+        <ParentGroup />
+        <DisplayName>Axis binaries</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>Binaries from Axis making it possible to view live video from any Axis network device in MediaPortal.</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Externals\Axis\AxisRTPSrcFilter.ax</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{6fc1c1f8-c430-4227-988c-d5d91017148c}-AxisRTPSrcFilter.ax</ZipFileName>
+              <DestinationFilename>%Temp%\AxisRTPSrcFilter.ax</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
     </Items>
   </Groups>
   <Sections>
@@ -492,25 +509,32 @@ Click Next to continue, or Cancel to exit Setup.</Value>
         <ZipFileName>Installer{CopyFile}\{afe3a00d-5ccc-4086-b8b5-62b66e27173b}-hoover_axiscamerampplugin.png</ZipFileName>
         <DestinationFilename>%Skin%\StreamedMP\Media\hoover_axiscamerampplugin.png</DestinationFilename>
       </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Externals\Axis\AxisRTPSrcFilter.ax</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{6fc1c1f8-c430-4227-988c-d5d91017148c}-AxisRTPSrcFilter.ax</ZipFileName>
+        <DestinationFilename>%Temp%\AxisRTPSrcFilter.ax</DestinationFilename>
+      </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{0dabf03b-0cb4-4057-afcb-5af8ecd50aa1}-Welcome_left.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{b92a8a50-54c0-4569-bbac-2ba27801d629}-Welcome_left.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Header.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{2a84ab23-8a3c-4546-8e70-2c4e5d52c944}-Header.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{ed36d606-efbd-46aa-b2ad-59ae0cd73c76}-Header.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{8c4465a4-7224-44c5-8376-14d502cc8e7e}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{db642050-289a-49d5-b38c-eb53a193faee}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
