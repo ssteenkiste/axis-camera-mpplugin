@@ -83,11 +83,9 @@ public class Script
 			AxisComponentsFolder,
 			"AxisRTPSrcFilter.ax");
 
-		ProcessStartInfo startInfo = new ProcessStartInfo
-		{
-			FileName = "regsvr32.exe",
-			Arguments = "/s \"" + fileName + "\""
-		};
+		ProcessStartInfo startInfo = new ProcessStartInfo();
+		startInfo.FileName = "regsvr32.exe";
+		startInfo.Arguments = "/s \"" + fileName + "\"";
 
 		try
 		{
