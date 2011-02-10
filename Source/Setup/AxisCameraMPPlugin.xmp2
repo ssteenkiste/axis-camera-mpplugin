@@ -294,6 +294,210 @@ Click Next to continue, or Cancel to exit Setup.</Value>
               </Params>
               <ExecuteLocation>AfterPanelShow</ExecuteLocation>
             </ActionItem>
+            <ActionItem Name="Script" ActionType="Script" ConditionGroup="">
+              <Params>
+                <Items>
+                  <SectionParam Name="Script">
+                    <Value>//css_reference "MpeCore.dll";
+
+using System;
+using System.Diagnostics;
+using System.IO;
+using Microsoft.Win32;
+using MpeCore;
+using MpeCore.Classes;
+
+public class Script
+{
+    public static void Main(PackageClass packageClass, ActionItem actionItem)
+    {
+        FileVersionInfo axisRtpSourceFilterFileVersion = GetVersionFromClsid(AxisRtpSrcFilter.Clsid);
+
+        if (axisRtpSourceFilterFileVersion != null)
+        {
+            // Axis RTP source filter is registered, determine if its version is same or newer
+            Version registeredVersion = new Version(axisRtpSourceFilterFileVersion.ProductVersion);
+            if (registeredVersion &gt;= AxisRtpSrcFilter.ProductVersion)
+            {
+                // Registered version is same or newer, do nothing
+                return;
+            }
+        }
+
+        // Move source filter to correct location
+        if (MoveAxisRtpSourceFilter())
+        {
+            // Register source filter
+            RegisterAxisRtpSourceFilter();
+        }
+    }
+
+
+    /// &lt;summary&gt;
+    /// Moves the Axis RTP source filter from the temp directory to the correct Axis components
+    /// folder.
+    /// &lt;/summary&gt;
+    /// &lt;returns&gt;true if source filter was moved successfully; otherwise false.&lt;/returns&gt;
+    private static bool MoveAxisRtpSourceFilter()
+    {
+        string sourceFileName = Path.Combine(
+            MpeInstaller.TransformInRealPath("%Temp%"),
+            "AxisRTPSrcFilter.ax");
+
+        string destDirectory = AxisComponentsFolder;
+
+        string destFileName = Path.Combine(
+            destDirectory,
+            "AxisRTPSrcFilter.ax");
+
+        try
+        {
+            if (!Directory.Exists(destDirectory))
+            {
+                // Create directory if it doesn't exist
+                Directory.CreateDirectory(destDirectory);
+            }
+            else if (File.Exists(destFileName))
+            {
+                // Delete file if it already exists
+                File.Delete(destFileName);
+            }
+
+            File.Move(sourceFileName, destFileName);
+
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+
+    /// &lt;summary&gt;
+    /// Is registering the Axis RTP source filter.
+    /// &lt;/summary&gt;
+    private static void RegisterAxisRtpSourceFilter()
+    {
+        string fileName = Path.Combine(
+            AxisComponentsFolder,
+            "AxisRTPSrcFilter.ax");
+
+        ProcessStartInfo startInfo = new ProcessStartInfo();
+        startInfo.FileName = "regsvr32.exe";
+        startInfo.Arguments = "/s \"" + fileName + "\"";
+
+        try
+        {
+            using (Process process = Process.Start(startInfo))
+            {
+                process.WaitForExit();
+            }
+        }
+        catch
+        {
+        }
+    }
+
+
+    /// &lt;summary&gt;
+    /// Gets the file version of registered assembly based on specified CLSID.
+    /// &lt;/summary&gt;
+    /// &lt;param name="clsid"&gt;The CLSID of the registered assembly.&lt;/param&gt;
+    /// &lt;returns&gt;
+    /// The file version of the registered assembly if successful; otherwise null.
+    /// &lt;/returns&gt;
+    private static FileVersionInfo GetVersionFromClsid(string clsid)
+    {
+        if (clsid == null) throw new ArgumentNullException("clsid");
+
+        string registryPath = @"SOFTWARE\Classes\CLSID\{" + clsid + @"}\InprocServer32";
+
+        // Get file path from CLSID
+        string filePath;
+
+        try
+        {
+            using (RegistryKey registryKey = Registry.LocalMachine.OpenSubKey(registryPath, false))
+            {
+                filePath = registryKey.GetValue(null) as string;
+            }
+        }
+        catch
+        {
+            // CLSID is not registered
+            return null;
+        }
+
+        // Get version from file
+        try
+        {
+            return FileVersionInfo.GetVersionInfo(filePath);
+        }
+        catch
+        {
+            // Unable to get version from file. Most probable answer is that the file doesn't exist
+            return null;
+        }
+    }
+
+
+    /// &lt;summary&gt;
+    /// Gets the Axis components folder.
+    /// &lt;/summary&gt;
+    private static string AxisComponentsFolder
+    {
+        get
+        {
+            return Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),
+                @"Axis Communications\Components");
+        }
+    }
+
+
+    /// &lt;summary&gt;
+    /// Class describing the properties of AxisRTPSrcFilter.
+    /// &lt;/summary&gt;
+    static class AxisRtpSrcFilter
+    {
+        /// &lt;summary&gt;
+        /// Gets the CLSID.
+        /// &lt;/summary&gt;
+        public static string Clsid = "4F1D0C59-5ECC-4028-87F3-482191D2230F";
+
+
+        /// &lt;summary&gt;
+        /// Gets the version of the AxisRTPSrcFilter.
+        /// &lt;/summary&gt;
+        public static Version ProductVersion = new Version(2, 9, 1, 0);
+    }	
+}
+</Value>
+                    <ValueType>Script</ValueType>
+                    <Description />
+                  </SectionParam>
+                  <SectionParam Name="Uninstall Script">
+                    <Value>//css_reference "MpeCore.dll";
+
+using MpeCore.Classes;
+using MpeCore;
+
+public class Script
+{
+    public static void Main(PackageClass packageClass, UnInstallItem item)
+    {
+        return;
+    }
+}
+</Value>
+                    <ValueType>Script</ValueType>
+                    <Description />
+                  </SectionParam>
+                </Items>
+              </Params>
+              <ExecuteLocation>AfterPanelShow</ExecuteLocation>
+            </ActionItem>
             <ActionItem Name="ClearSkinCache" ActionType="ClearSkinCache" ConditionGroup="">
               <Params>
                 <Items />
@@ -520,21 +724,21 @@ Click Next to continue, or Cancel to exit Setup.</Value>
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{b92a8a50-54c0-4569-bbac-2ba27801d629}-Welcome_left.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{78e1fe24-149a-4cb3-af08-9be82a545ad2}-Welcome_left.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Header.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{ed36d606-efbd-46aa-b2ad-59ae0cd73c76}-Header.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{3c04a7bf-ade3-4c1a-816f-8b8d23527cc1}-Header.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{db642050-289a-49d5-b38c-eb53a193faee}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{2a304421-8b3f-4505-b9fa-5dc9d7ff9f22}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
