@@ -63,6 +63,7 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 				Port = camera.Port,
 				UserName = camera.UserName,
 				Password = camera.Password,
+				FirmwareVersion = camera.FirmwareVersion,
 				Snapshot = ioService.GetThumb(camera.Id)
 			};
 		}
@@ -86,6 +87,7 @@ namespace AxisCameraMPPlugin.Configuration.Provider
 				Port = configurableCamera.Port,
 				UserName = configurableCamera.UserName,
 				Password = configurableCamera.Password,
+				FirmwareVersion = configurableCamera.FirmwareVersion,
 				SnapshotPath = ioService.SaveThumb(configurableCamera.Id, configurableCamera.Snapshot.ToArray())
 			};
 		}

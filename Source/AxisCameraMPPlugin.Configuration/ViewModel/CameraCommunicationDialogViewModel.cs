@@ -86,6 +86,16 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 
 
 		/// <summary>
+		/// Gets the firmware version of a camera.
+		/// </summary>
+		public string FirmwareVersion
+		{
+			get { return Property(() => FirmwareVersion); }
+			private set { Property(() => FirmwareVersion, value); }
+		}
+
+
+		/// <summary>
 		/// Gets the camera snapshot.
 		/// </summary>
 		public IEnumerable<byte> Snapshot
@@ -114,6 +124,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 				else
 				{
 					FriendlyName = e.FriendlyName;
+					FirmwareVersion = e.FirmwareVersion;
 					Snapshot = e.Snapshot;
 
 					// Close dialog successfully
