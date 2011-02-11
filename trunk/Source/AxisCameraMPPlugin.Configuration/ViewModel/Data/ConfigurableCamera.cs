@@ -78,6 +78,12 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel.Data
 
 
 		/// <summary>
+		/// Gets or sets the firmware version.
+		/// </summary>
+		public string FirmwareVersion { get; set; }
+
+
+		/// <summary>
 		/// Gets or sets the snapshot.
 		/// </summary>
 		public IEnumerable<byte> Snapshot { get; set; }

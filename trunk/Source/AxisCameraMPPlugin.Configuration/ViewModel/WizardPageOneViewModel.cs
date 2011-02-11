@@ -41,6 +41,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 
 		private DirtyState dirtyState;
 		private string friendlyName;
+		private string firmwareVersion;
 		private IEnumerable<byte> snapshot;
 
 
@@ -132,6 +133,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 			if (camera == null) throw new ArgumentNullException("camera");
 
 			friendlyName = camera.Name;
+			firmwareVersion = camera.FirmwareVersion;
 			snapshot = camera.Snapshot;
 
 			Address = camera.Address;
@@ -156,6 +158,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 			if (camera == null) throw new ArgumentNullException("camera");
 
 			camera.Name = friendlyName;
+			camera.FirmwareVersion = firmwareVersion;
 			camera.Snapshot = snapshot;
 
 			camera.Address = Address;
@@ -195,6 +198,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel
 				if (success == true)
 				{
 					friendlyName = communicationViewModel.FriendlyName;
+					firmwareVersion = communicationViewModel.FirmwareVersion;
 					snapshot = communicationViewModel.Snapshot;
 				}
 				else

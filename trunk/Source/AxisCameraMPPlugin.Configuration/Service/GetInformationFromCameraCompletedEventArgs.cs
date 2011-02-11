@@ -32,6 +32,7 @@ namespace AxisCameraMPPlugin.Configuration.Service
 		/// class.
 		/// </summary>
 		/// <param name="friendlyName">The friendly name. Default value is null.</param>
+		/// <param name="firmwareVersion">The firmware version. Default value is null.</param>
 		/// <param name="snapshot">The camera snapshot. Default value is null.</param>
 		/// <param name="error">
 		/// Any error that occurred during the asynchronous operation. Default value is null.
@@ -41,12 +42,14 @@ namespace AxisCameraMPPlugin.Configuration.Service
 		/// </param>
 		public GetInformationFromCameraCompletedEventArgs(
 			string friendlyName = null,
+			string firmwareVersion = null,
 			byte[] snapshot = null,
 			Exception error = null,
 			bool cancelled = false) :
 			base(error, cancelled, null)
 		{
 			FriendlyName = friendlyName;
+			FirmwareVersion = firmwareVersion;
 			Snapshot = snapshot;
 		}
 
@@ -55,6 +58,12 @@ namespace AxisCameraMPPlugin.Configuration.Service
 		/// Gets the friendly name.
 		/// </summary>
 		public string FriendlyName { get; private set; }
+
+
+		/// <summary>
+		/// Gets the firmware version.
+		/// </summary>
+		public string FirmwareVersion { get; private set; }
 
 
 		/// <summary>

@@ -29,13 +29,17 @@ namespace AxisCameraMPPlugin.Configuration.Service
 	/// </summary>
 	class CameraCommunicationService : ICameraCommunicationService, IDisposable
 	{
-		private const string Parameter = "Network.UPnP.FriendlyName";
-		private const string ParameterCgi = "http://{0}:{1}/axis-cgi/admin/param.cgi?action=list&group=" + Parameter;
+		// CGIs
+		private const string ParameterCgi = "http://{0}:{1}/axis-cgi/admin/param.cgi?action=list&group={2}";
 		private const string SnapshotCgi = "http://{0}:{1}/axis-cgi/jpg/image.cgi";
+
+		// Parameters
+		private const string FriendlyName = "Network.UPnP.FriendlyName";
+		private const string FirmwareVersion = "Properties.Firmware.Version";
 
 		private readonly IParameterParser parameterParser;
 
-		private ClientState<string> parameterState;
+		private ClientState<Parameters> parameterState;
 		private ClientState<byte[]> snapshotState;
 
 		private object syncRoot = new object();
@@ -58,7 +62,7 @@ namespace AxisCameraMPPlugin.Configuration.Service
 
 			this.parameterParser = parameterParser;
 
-			parameterState = new ClientState<string>();
+			parameterState = new ClientState<Parameters>();
 			snapshotState = new ClientState<byte[]>();
 		}
 
@@ -86,7 +90,8 @@ namespace AxisCameraMPPlugin.Configuration.Service
 				networkEndpoint.Password);
 			Uri parameterUri = new Uri(ParameterCgi.InvariantFormat(
 				networkEndpoint.Address,
-				networkEndpoint.Port));
+				networkEndpoint.Port,
+				string.Join(",", new[] { FriendlyName, FirmwareVersion })));
 			parameterState.Client.DownloadStringAsync(parameterUri);
 
 			// Download snapshot
@@ -148,8 +153,17 @@ namespace AxisCameraMPPlugin.Configuration.Service
 			parameterState.Error = e.Error;
 			if (!e.Cancelled && e.Error == null)
 			{
+				parameterState.Result = new Parameters();
+
 				IDictionary<string, string> parameters = parameterParser.Parse(e.Result);
-				parameterState.Result = parameters[Parameter];
+				if (parameters.ContainsKey(FriendlyName))
+				{
+					parameterState.Result.FriendlyName = parameters[FriendlyName];
+				}
+				if (parameters.ContainsKey(FirmwareVersion))
+				{
+					parameterState.Result.FirmwareVersion = parameters[FirmwareVersion];
+				}
 			}
 
 			SendEventIfCompleted();
@@ -201,7 +215,8 @@ namespace AxisCameraMPPlugin.Configuration.Service
 					else
 					{
 						e = new GetInformationFromCameraCompletedEventArgs(
-							friendlyName: parameterState.Result,
+							friendlyName: parameterState.Result.FriendlyName,
+							firmwareVersion: parameterState.Result.FirmwareVersion,
 							snapshot: snapshotState.Result);
 					}
 
@@ -325,6 +340,24 @@ namespace AxisCameraMPPlugin.Configuration.Service
 						Result != null;
 				}
 			}
+		}
+
+
+		/// <summary>
+		/// Class describing the requested parameter values.
+		/// </summary>
+		class Parameters
+		{
+			/// <summary>
+			/// Gets or sets the friendly name.
+			/// </summary>
+			public string FriendlyName { get; set; }
+
+
+			/// <summary>
+			/// Gets or sets the firmware version.
+			/// </summary>
+			public string FirmwareVersion { get; set; }
 		}
 	}
 }
