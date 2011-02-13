@@ -24,7 +24,7 @@ namespace AxisCameraMPPlugin.Configuration.Service
 	/// Class describing the Axis VAPIX:
 	/// http://www.axis.com/techsup/cam_servers/dev/cam_http_api_index.php
 	/// </summary>
-	class Vapix
+	static class Vapix
 	{
 		/// <summary>
 		/// Gets CGI for listing parameters.
