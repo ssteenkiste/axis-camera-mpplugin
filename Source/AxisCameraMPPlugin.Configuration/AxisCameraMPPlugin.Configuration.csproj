@@ -105,6 +105,7 @@
       <DependentUpon>ParameterParser.cs</DependentUpon>
     </Compile>
     <Compile Include="Service\ParameterParser.cs" />
+    <Compile Include="Service\Vapix.cs" />
     <Compile Include="ViewModel\CameraCommunicationDialogViewModel.cs" />
     <Compile Include="ViewModel\CameraNameViewModel.cs" />
     <Compile Include="ViewModel\Data\ConfigurableCamera.cs" />

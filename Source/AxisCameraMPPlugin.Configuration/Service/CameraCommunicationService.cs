@@ -29,14 +29,6 @@ namespace AxisCameraMPPlugin.Configuration.Service
 	/// </summary>
 	class CameraCommunicationService : ICameraCommunicationService, IDisposable
 	{
-		// CGIs
-		private const string ParameterCgi = "http://{0}:{1}/axis-cgi/admin/param.cgi?action=list&group={2}";
-		private const string SnapshotCgi = "http://{0}:{1}/axis-cgi/jpg/image.cgi";
-
-		// Parameters
-		private const string FriendlyName = "Network.UPnP.FriendlyName";
-		private const string FirmwareVersion = "Properties.Firmware.Version";
-
 		private readonly IParameterParser parameterParser;
 
 		private ClientState<Parameters> parameterState;
@@ -88,10 +80,10 @@ namespace AxisCameraMPPlugin.Configuration.Service
 			parameterState.Client.Credentials = new NetworkCredential(
 				networkEndpoint.UserName,
 				networkEndpoint.Password);
-			Uri parameterUri = new Uri(ParameterCgi.InvariantFormat(
+			Uri parameterUri = new Uri(Vapix.ParameterCgi.InvariantFormat(
 				networkEndpoint.Address,
 				networkEndpoint.Port,
-				string.Join(",", new[] { FriendlyName, FirmwareVersion })));
+				string.Join(",", new[] { Vapix.FriendlyName, Vapix.FirmwareVersion })));
 			parameterState.Client.DownloadStringAsync(parameterUri);
 
 			// Download snapshot
@@ -99,7 +91,7 @@ namespace AxisCameraMPPlugin.Configuration.Service
 			snapshotState.Client.Credentials = new NetworkCredential(
 				networkEndpoint.UserName,
 				networkEndpoint.Password);
-			Uri snapshotUri = new Uri(SnapshotCgi.InvariantFormat(
+			Uri snapshotUri = new Uri(Vapix.SnapshotCgi.InvariantFormat(
 				networkEndpoint.Address,
 				networkEndpoint.Port));
 			snapshotState.Client.DownloadDataAsync(snapshotUri);
@@ -156,13 +148,13 @@ namespace AxisCameraMPPlugin.Configuration.Service
 				parameterState.Result = new Parameters();
 
 				IDictionary<string, string> parameters = parameterParser.Parse(e.Result);
-				if (parameters.ContainsKey(FriendlyName))
+				if (parameters.ContainsKey(Vapix.FriendlyName))
 				{
-					parameterState.Result.FriendlyName = parameters[FriendlyName];
+					parameterState.Result.FriendlyName = parameters[Vapix.FriendlyName];
 				}
-				if (parameters.ContainsKey(FirmwareVersion))
+				if (parameters.ContainsKey(Vapix.FirmwareVersion))
 				{
-					parameterState.Result.FirmwareVersion = parameters[FirmwareVersion];
+					parameterState.Result.FirmwareVersion = parameters[Vapix.FirmwareVersion];
 				}
 			}
 
