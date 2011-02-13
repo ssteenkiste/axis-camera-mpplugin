@@ -23,7 +23,7 @@
  <Targets>
   <AssemblyReferenceDirectories>
    <Directory>$(ProjectDir)/AxisCameraMPPlugin.Network/bin/Debug/</Directory>
-   <Directory>$(ProjectDir)/AxisCameraMPPlugin.Network/bin/Debug/</Directory>
+   <Directory>$(ProjectDir)/Externals/MediaPortal/</Directory>
   </AssemblyReferenceDirectories>
   <Target Name="$(ProjectDir)/AxisCameraMPPlugin.Configuration/bin/Debug/AxisCameraMPPlugin.Configuration.dll" Analyze="True" AnalyzeAllChildren="True" />
   <Target Name="$(ProjectDir)/AxisCameraMPPlugin.Core/bin/Debug/AxisCameraMPPlugin.Core.dll" Analyze="True" AnalyzeAllChildren="True" />
