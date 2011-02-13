@@ -18,6 +18,7 @@
 
 #endregion
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Web;
 using AxisCameraMPPlugin.Core;
 using AxisCameraMPPlugin.Data;
@@ -71,6 +72,8 @@ namespace AxisCameraMPPlugin
 		/// </summary>
 		/// <param name="camera">The camera.</param>
 		/// <returns>The live video video URL based on specified camera.</returns>
+		[SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes",
+			Justification = "Easier for me to catch all exceptions, instead of specifying all possible exception types.")]
 		private static string GetLiveVideoUrl(Camera camera)
 		{
 			// Try to parse firmware version
