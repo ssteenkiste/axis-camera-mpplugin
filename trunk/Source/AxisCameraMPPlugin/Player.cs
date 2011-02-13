@@ -30,7 +30,16 @@ namespace AxisCameraMPPlugin
 	/// </summary>
 	public class Player : IPlayer
 	{
-		private const string LiveVideoUrl = "axrtpu://{0}:{1}@{2}:{3}/mpeg4/media.amp";
+		/// <summary>
+		/// VAPIX 2 version of live video URL. The video format received is MPEG4.
+		/// </summary>
+		private const string Vapix2LiveVideoUrl = "axrtsphttp://{0}:{1}@{2}:{3}/mpeg4/media.amp";
+
+
+		/// <summary>
+		/// VAPIX 3 version of live video URL. The video format received is H.264.
+		/// </summary>
+		private const string Vapix3LiveVideoUrl = "axrtsphttp://{0}:{1}@{2}:{3}/axis-media/media.amp?videocodec=h264";
 
 
 		/// <summary>
@@ -43,11 +52,7 @@ namespace AxisCameraMPPlugin
 
 			Log.Info("Play live view from {0}", camera.Name);
 
-			string url = LiveVideoUrl.InvariantFormat(
-				HttpUtility.UrlEncode(camera.UserName),
-				HttpUtility.UrlEncode(camera.Password),
-				camera.Address,
-				camera.Port);
+			string url = GetLiveVideoUrl(camera);
 
 			// Stop player if already playing
 			if (g_Player.Playing)
@@ -58,6 +63,38 @@ namespace AxisCameraMPPlugin
 			// Play live view in full screen
 			g_Player.PlayVideoStream(url, camera.Name);
 			g_Player.ShowFullScreenWindow();
+		}
+
+
+		/// <summary>
+		/// Gets the live video video URL based on specified camera.
+		/// </summary>
+		/// <param name="camera">The camera.</param>
+		/// <returns>The live video video URL based on specified camera.</returns>
+		private static string GetLiveVideoUrl(Camera camera)
+		{
+			// Try to parse firmware version
+			Version firmwareVersion;
+			try
+			{
+				firmwareVersion = new Version(camera.FirmwareVersion);
+			}
+			catch
+			{
+				// If firmware version cannot be parsed, assume it is a beta of LFP, i.e. the VAPIX 3 live
+				// video URL should be used
+				firmwareVersion = new Version(5, 0);
+			}
+
+			// If firmware version is below 5.0 use VAPIX 2; otherwise use VAPIX 3
+			string urlFormat = firmwareVersion < new Version(5, 0) ?
+				Vapix2LiveVideoUrl : Vapix3LiveVideoUrl;
+
+			return urlFormat.InvariantFormat(
+				HttpUtility.UrlEncode(camera.UserName),
+				HttpUtility.UrlEncode(camera.Password),
+				camera.Address,
+				camera.Port);
 		}
 	}
 }
