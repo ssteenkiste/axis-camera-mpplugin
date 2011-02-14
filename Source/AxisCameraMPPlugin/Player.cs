@@ -90,8 +90,17 @@ namespace AxisCameraMPPlugin
 			}
 
 			// If firmware version is below 5.0 use VAPIX 2; otherwise use VAPIX 3
-			string urlFormat = firmwareVersion < new Version(5, 0) ?
-				Vapix2LiveVideoUrl : Vapix3LiveVideoUrl;
+			string urlFormat;
+			if (firmwareVersion < new Version(5, 0))
+			{
+				Log.Debug("Camera firmware version is {0}, use VAPIX 2 CGI.", firmwareVersion);
+				urlFormat = Vapix2LiveVideoUrl;
+			}
+			else
+			{
+				Log.Debug("Camera firmware version is {0}, use VAPIX 3 CGI.", firmwareVersion);
+				urlFormat = Vapix3LiveVideoUrl;
+			}
 
 			return urlFormat.InvariantFormat(
 				HttpUtility.UrlEncode(camera.UserName),
