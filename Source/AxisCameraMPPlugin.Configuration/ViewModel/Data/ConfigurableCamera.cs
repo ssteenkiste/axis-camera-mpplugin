@@ -104,6 +104,7 @@ namespace AxisCameraMPPlugin.Configuration.ViewModel.Data
 				Port = Port,
 				UserName = UserName,
 				Password = Password,
+				FirmwareVersion = FirmwareVersion,
 				// Use ToList() to evaluate the Linq expression now, rather than when it is used for the
 				// first time. One expects the clone method to clone the data when the method is executed,
 				// not anytime later.
