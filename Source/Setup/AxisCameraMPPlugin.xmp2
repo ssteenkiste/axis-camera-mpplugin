@@ -214,7 +214,7 @@ Click Next to continue, or Cancel to exit Setup.</Value>
               <Description />
             </SectionParam>
             <SectionParam Name="Left part image">
-              <Value>Welcome_left.png</Value>
+              <Value>Icons\Welcome_left.png</Value>
               <ValueType>File</ValueType>
               <Description />
             </SectionParam>
@@ -246,7 +246,7 @@ Click Next to continue, or Cancel to exit Setup.</Value>
               <Description>Description of section, shown in under section title</Description>
             </SectionParam>
             <SectionParam Name="Header image">
-              <Value>Setup_icon.png</Value>
+              <Value>Icons\Setup_icon.png</Value>
               <ValueType>File</ValueType>
               <Description>Image in upper right part</Description>
             </SectionParam>
@@ -280,7 +280,7 @@ Click Next to continue, or Cancel to exit Setup.</Value>
               <Description>Description of section, shown in under section title</Description>
             </SectionParam>
             <SectionParam Name="Header image">
-              <Value>Setup_icon.png</Value>
+              <Value>Icons\Setup_icon.png</Value>
               <ValueType>File</ValueType>
               <Description>Image in upper right part</Description>
             </SectionParam>
@@ -519,7 +519,7 @@ public class Script
               <Description />
             </SectionParam>
             <SectionParam Name="Left part image">
-              <Value>Welcome_left.png</Value>
+              <Value>Icons\Welcome_left.png</Value>
               <ValueType>File</ValueType>
               <Description />
             </SectionParam>
@@ -570,7 +570,7 @@ public class Script
     <Params>
       <Items>
         <SectionParam Name="Icon">
-          <Value>Setup_icon.png</Value>
+          <Value>Icons\Setup_icon.png</Value>
           <ValueType>File</ValueType>
           <Description>The icon file of the package (jpg,png,bmp)</Description>
         </SectionParam>
@@ -723,15 +723,15 @@ public class Script
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{a9311474-f10c-4e17-a920-07b3d57af0f3}-Welcome_left.png</ZipFileName>
+        <LocalFileName>Icons\Welcome_left.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{bd477d0b-7466-461a-8d1d-096610963503}-Welcome_left.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{aa3c9e86-aac6-4067-bb84-0a3075852f3e}-Setup_icon.png</ZipFileName>
+        <LocalFileName>Icons\Setup_icon.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{fa6bd5a8-3010-4bfe-bd95-f8d10d52d657}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
