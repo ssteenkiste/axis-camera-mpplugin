@@ -19,6 +19,7 @@
 #endregion
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using AxisCameraMPPlugin.Core;
 
@@ -126,7 +127,10 @@ namespace AxisCameraMPPlugin.Configuration.Service
 
 			if (handler != null)
 			{
-				Log.Debug("Get information from camera completed");
+				Log.Debug("Get information from camera completed. [{0}|{1}|{2}]",
+					e.FriendlyName,
+					e.FirmwareVersion,
+					e.Snapshot != null ? "Snapshot" : "No snapshot");
 				handler(this, e);
 			}
 		}
