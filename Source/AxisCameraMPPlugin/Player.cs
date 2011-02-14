@@ -82,8 +82,12 @@ namespace AxisCameraMPPlugin
 			{
 				firmwareVersion = new Version(camera.FirmwareVersion);
 			}
-			catch
+			catch (Exception e)
 			{
+				Log.Error("Player - Unable to parse firmware version {0}, defaulting to 5.0. {1}",
+					camera.FirmwareVersion,
+					e.ToString());
+
 				// If firmware version cannot be parsed, assume it is a beta of LFP, i.e. the VAPIX 3 live
 				// video URL should be used
 				firmwareVersion = new Version(5, 0);
