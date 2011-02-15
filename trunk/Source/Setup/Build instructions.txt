@@ -14,5 +14,6 @@ BUILD SETUP INSTRUCTIONS
 4. Build the setup
 5. Upload the setup to Google Code
 6. Generate update xml
-7. Commit changes
-8. Create tag from commit
+7. Publish update.xml
+8. Commit changes
+9. Create tag from commit
