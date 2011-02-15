@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	
+	<!-- Properties -->
+	<PropertyGroup>
+		<!-- Solution -->
+		<SolutionName>AxisCameraMPPlugin</SolutionName>
+		<SolutionPath>..\$(SolutionName).sln</SolutionPath>
+		
+		<!-- MPE Maker -->
+		<SetupScriptPath>AxisCameraMPPlugin.xmp2</SetupScriptPath>
+		<MpeMakerPath>$(ProgramFiles)\Team MediaPortal\MediaPortal\MpeMaker.exe</MpeMakerPath>
+	</PropertyGroup>
+
+	<!-- Is building the solution in release mode -->
+	<Target Name="BuildRelease">
+		<Message Text="Start building $(SolutionName) in release mode"/>
+		<MSBuild Projects="$(SolutionPath)" Targets="Clean" Properties="Configuration=Release"/>
+		<MSBuild Projects="$(SolutionPath)" Targets="Build" Properties="Configuration=Release"/>
+		<Message Text="Finished building $(SolutionName) in release mode"/>
+	</Target>
+	
+	<!-- Is building a setup -->
+	<Target Name="BuildSetup" DependsOnTargets="BuildRelease">
+		<Message Text="Start building setup"/>
+		<Exec Command="&quot;$(MpeMakerPath)&quot; $(SetupScriptPath)"/>
+		<Message Text="Finished building setup"/>
+	</Target>
+</Project>
