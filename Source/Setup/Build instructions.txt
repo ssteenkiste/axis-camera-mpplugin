@@ -1,0 +1,18 @@
+BUILD SETUP INSTRUCTIONS
+========================
+
+1. Increment "AssemblyVersion" and "AssemblyFileVersion" in "GlobalAssemblyInfo.cs"
+2. Run "Build.bat"
+3. In MpeMaker, update:
+     - Extension Informations
+       - Version
+       - Status
+       - Release date
+       - Tags
+       - Extension description
+       - This version description
+4. Build the setup
+5. Upload the setup to Google Code
+6. Generate update xml
+7. Commit changes
+8. Create tag from commit
