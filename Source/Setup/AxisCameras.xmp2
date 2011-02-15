@@ -548,9 +548,9 @@ public class Script
     <Items />
   </Dependencies>
   <GeneralInfo>
-    <Name>Axis Camera MPPlugin</Name>
+    <Name>Axis Cameras</Name>
     <Id>7295daa1-612d-4896-8672-443bd5ce5ba0</Id>
-    <Author>Disore</Author>
+    <Author>Mattias Kindborg</Author>
     <HomePage>http://code.google.com/p/axis-camera-mpplugin/</HomePage>
     <ForumPage>http://forum.team-mediaportal.com/mediaportal-plugins-47/axis-camera-mpplugin-93277/</ForumPage>
     <UpdateUrl>http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/update.xml</UpdateUrl>
@@ -563,10 +563,10 @@ public class Script
     <ExtensionDescription>Plugin making it possible to watch live video from any Axis network camera in MediaPortal.</ExtensionDescription>
     <VersionDescription>New features: Watching live video. Bug fixes:</VersionDescription>
     <DevelopmentStatus>Rc</DevelopmentStatus>
-    <OnlineLocation>http://axis-camera-mpplugin.googlecode.com/files/AxisCameraMPPlugin_[Version].mpe1</OnlineLocation>
+    <OnlineLocation>http://axis-camera-mpplugin.googlecode.com/files/AxisCameras_[Version].mpe1</OnlineLocation>
     <ReleaseDate>2011-02-07T21:00:06.6678446+01:00</ReleaseDate>
     <Tags>axis,camera,live,video</Tags>
-    <Location>.\AxisCameraMPPlugin_[Version].mpe1</Location>
+    <Location>.\AxisCameras_[Version].mpe1</Location>
     <Params>
       <Items>
         <SectionParam Name="Icon">
@@ -724,14 +724,14 @@ public class Script
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{1bf1f285-0e48-48e7-9b4d-aaad45d1fd3a}-Welcome_left.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{62899068-8a63-4a0c-9696-9c4477f214f2}-Welcome_left.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{f914395c-2945-4486-87b0-39c21ba6d384}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{489da5a0-12f5-414c-b26d-6703b072efaa}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
