@@ -724,14 +724,14 @@ public class Script
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{291e0287-bb86-4186-bc50-25a0ad1b6821}-Welcome_left.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{1bf1f285-0e48-48e7-9b4d-aaad45d1fd3a}-Welcome_left.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{e8585a00-5015-426c-ab82-aedee330f8b0}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{f914395c-2945-4486-87b0-39c21ba6d384}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
@@ -780,5 +780,8 @@ public class Script
       </FolderGroup>
     </FolderGroups>
     <ProjectFilename>C:\Users\Mattias\Desktop\axis-camera-mpplugin\Source\Setup\AxisCameraMPPlugin.xmp2</ProjectFilename>
+    <UpdatePath1>.\update.xml</UpdatePath1>
+    <UpdatePath2 />
+    <UpdatePath3 />
   </ProjectSettings>
 </PackageClass>
