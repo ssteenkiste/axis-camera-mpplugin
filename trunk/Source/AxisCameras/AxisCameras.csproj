@@ -136,13 +136,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Skin\Blue3wide\axiscameras.xml" />
-    <None Include="Skin\Blue3wide\Media\axiscameras_logo.png" />
-    <None Include="Skin\Blue3wide\Media\hover_axiscameras.png" />
+    <None Include="Skin\Blue3wide\Media\AxisCameras_logo.png" />
+    <None Include="Skin\Blue3wide\Media\hover_AxisCameras.png" />
     <None Include="Skin\Blue3\axiscameras.xml" />
-    <None Include="Skin\Blue3\Media\axiscameras_logo.png" />
-    <None Include="Skin\Blue3\Media\hover_axiscameras.png" />
+    <None Include="Skin\Blue3\Media\AxisCameras_logo.png" />
+    <None Include="Skin\Blue3\Media\hover_AxisCameras.png" />
     <None Include="Skin\StreamedMP\axiscameras.xml" />
-    <None Include="Skin\StreamedMP\Media\hoover_axiscameras.png" />
+    <None Include="Skin\StreamedMP\Media\hoover_AxisCameras.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Thumbs\AxisCameras\CameraPortrait.png" />
