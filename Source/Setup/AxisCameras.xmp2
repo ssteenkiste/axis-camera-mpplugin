@@ -21,44 +21,44 @@
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameraMPPlugin\bin\Release\AxisCameraMPPlugin.dll</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{03f4a14b-f6c7-4e6e-ae74-cdade74f83a8}-AxisCameraMPPlugin.dll</ZipFileName>
-              <DestinationFilename>%Plugins%\Windows\AxisCameraMPPlugin.dll</DestinationFilename>
+              <LocalFileName>..\AxisCameras\bin\Release\AxisCameras.dll</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{03f4a14b-f6c7-4e6e-ae74-cdade74f83a8}-AxisCameras.dll</ZipFileName>
+              <DestinationFilename>%Plugins%\Windows\AxisCameras.dll</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameraMPPlugin\bin\Release\AxisCameraMPPlugin.dll.config</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{9f2111ae-b790-4964-b85e-343da23cb053}-AxisCameraMPPlugin.dll.config</ZipFileName>
-              <DestinationFilename>%Plugins%\Windows\AxisCameraMPPlugin.dll.config</DestinationFilename>
+              <LocalFileName>..\AxisCameras\bin\Release\AxisCameras.dll.config</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{9f2111ae-b790-4964-b85e-343da23cb053}-AxisCameras.dll.config</ZipFileName>
+              <DestinationFilename>%Plugins%\Windows\AxisCameras.dll.config</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameraMPPlugin.Configuration\bin\Release\AxisCameraMPPlugin.Configuration.dll</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{9ae95e92-df7a-4ccb-9fdd-73d06cd17fee}-AxisCameraMPPlugin.Configuration.dll</ZipFileName>
-              <DestinationFilename>%Plugins%\Windows\AxisCameraMPPlugin.Configuration.dll</DestinationFilename>
+              <LocalFileName>..\AxisCameras.Configuration\bin\Release\AxisCameras.Configuration.dll</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{9ae95e92-df7a-4ccb-9fdd-73d06cd17fee}-AxisCameras.Configuration.dll</ZipFileName>
+              <DestinationFilename>%Plugins%\Windows\AxisCameras.Configuration.dll</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameraMPPlugin.Core\bin\Release\AxisCameraMPPlugin.Core.dll</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{d11f23a3-f067-456e-a9c0-7b550d96584f}-AxisCameraMPPlugin.Core.dll</ZipFileName>
-              <DestinationFilename>%Plugins%\Windows\AxisCameraMPPlugin.Core.dll</DestinationFilename>
+              <LocalFileName>..\AxisCameras.Core\bin\Release\AxisCameras.Core.dll</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{d11f23a3-f067-456e-a9c0-7b550d96584f}-AxisCameras.Core.dll</ZipFileName>
+              <DestinationFilename>%Plugins%\Windows\AxisCameras.Core.dll</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameraMPPlugin.Data\bin\Release\AxisCameraMPPlugin.Data.dll</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{742afa38-8374-4cfb-affe-c97cf277d203}-AxisCameraMPPlugin.Data.dll</ZipFileName>
-              <DestinationFilename>%Plugins%\Windows\AxisCameraMPPlugin.Data.dll</DestinationFilename>
+              <LocalFileName>..\AxisCameras.Data\bin\Release\AxisCameras.Data.dll</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{742afa38-8374-4cfb-affe-c97cf277d203}-AxisCameras.Data.dll</ZipFileName>
+              <DestinationFilename>%Plugins%\Windows\AxisCameras.Data.dll</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameraMPPlugin.Mvvm\bin\Release\AxisCameraMPPlugin.Mvvm.dll</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{31129be6-45c9-46e9-8031-6686bc7370c1}-AxisCameraMPPlugin.Mvvm.dll</ZipFileName>
-              <DestinationFilename>%Plugins%\Windows\AxisCameraMPPlugin.Mvvm.dll</DestinationFilename>
+              <LocalFileName>..\AxisCameras.Mvvm\bin\Release\AxisCameras.Mvvm.dll</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{31129be6-45c9-46e9-8031-6686bc7370c1}-AxisCameras.Mvvm.dll</ZipFileName>
+              <DestinationFilename>%Plugins%\Windows\AxisCameras.Mvvm.dll</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
@@ -80,9 +80,9 @@
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameraMPPlugin\Thumbs\AxisCameraMPPlugin\CameraPortrait.png</LocalFileName>
+              <LocalFileName>..\AxisCameras\Thumbs\AxisCameras\CameraPortrait.png</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{63d869a0-63e2-4bd6-be9b-130d4dbd80d5}-CameraPortrait.png</ZipFileName>
-              <DestinationFilename>%Thumbs%\AxisCameraMPPlugin\CameraPortrait.png</DestinationFilename>
+              <DestinationFilename>%Thumbs%\AxisCameras\CameraPortrait.png</DestinationFilename>
             </FileItem>
           </Items>
         </Files>
@@ -97,23 +97,23 @@
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameraMPPlugin\Skin\Blue3\axiscamerampplugin.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{c3c95a35-e850-41c4-9ae4-28ca5f373d0a}-axiscamerampplugin.xml</ZipFileName>
-              <DestinationFilename>%Skin%\Blue3\axiscamerampplugin.xml</DestinationFilename>
+              <LocalFileName>..\AxisCameras\Skin\Blue3\axiscameras.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{c3c95a35-e850-41c4-9ae4-28ca5f373d0a}-axiscameras.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Blue3\axiscameras.xml</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameraMPPlugin\Skin\Blue3\Media\axiscamerampplugin_logo.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{39e8529a-c79a-44b0-bbbc-0169f34dd270}-axiscamerampplugin_logo.png</ZipFileName>
-              <DestinationFilename>%Skin%\Blue3\Media\axiscamerampplugin_logo.png</DestinationFilename>
+              <LocalFileName>..\AxisCameras\Skin\Blue3\Media\AxisCameras_logo.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{39e8529a-c79a-44b0-bbbc-0169f34dd270}-AxisCameras_logo.png</ZipFileName>
+              <DestinationFilename>%Skin%\Blue3\Media\AxisCameras_logo.png</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameraMPPlugin\Skin\Blue3\Media\hover_axiscamerampplugin.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{24c632ce-b6d0-4947-b95b-e427f0074381}-hover_axiscamerampplugin.png</ZipFileName>
-              <DestinationFilename>%Skin%\Blue3\Media\hover_axiscamerampplugin.png</DestinationFilename>
+              <LocalFileName>..\AxisCameras\Skin\Blue3\Media\hover_AxisCameras.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{24c632ce-b6d0-4947-b95b-e427f0074381}-hover_AxisCameras.png</ZipFileName>
+              <DestinationFilename>%Skin%\Blue3\Media\hover_AxisCameras.png</DestinationFilename>
             </FileItem>
           </Items>
         </Files>
@@ -128,23 +128,23 @@
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameraMPPlugin\Skin\Blue3wide\axiscamerampplugin.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{40b23c57-8545-4fb9-ad94-667d7cc8694c}-axiscamerampplugin.xml</ZipFileName>
-              <DestinationFilename>%Skin%\Blue3wide\axiscamerampplugin.xml</DestinationFilename>
+              <LocalFileName>..\AxisCameras\Skin\Blue3wide\axiscameras.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{40b23c57-8545-4fb9-ad94-667d7cc8694c}-axiscameras.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Blue3wide\axiscameras.xml</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameraMPPlugin\Skin\Blue3wide\Media\axiscamerampplugin_logo.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{8c66a3bd-31c6-4d87-bfeb-eee321c7d9ab}-axiscamerampplugin_logo.png</ZipFileName>
-              <DestinationFilename>%Skin%\Blue3wide\Media\axiscamerampplugin_logo.png</DestinationFilename>
+              <LocalFileName>..\AxisCameras\Skin\Blue3wide\Media\AxisCameras_logo.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{8c66a3bd-31c6-4d87-bfeb-eee321c7d9ab}-AxisCameras_logo.png</ZipFileName>
+              <DestinationFilename>%Skin%\Blue3wide\Media\AxisCameras_logo.png</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameraMPPlugin\Skin\Blue3wide\Media\hover_axiscamerampplugin.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{92c1aa16-732d-48eb-a333-e9185f8f337d}-hover_axiscamerampplugin.png</ZipFileName>
-              <DestinationFilename>%Skin%\Blue3wide\Media\hover_axiscamerampplugin.png</DestinationFilename>
+              <LocalFileName>..\AxisCameras\Skin\Blue3wide\Media\hover_AxisCameras.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{92c1aa16-732d-48eb-a333-e9185f8f337d}-hover_AxisCameras.png</ZipFileName>
+              <DestinationFilename>%Skin%\Blue3wide\Media\hover_AxisCameras.png</DestinationFilename>
             </FileItem>
           </Items>
         </Files>
@@ -161,16 +161,16 @@ Install only if you already have StreamedMP installed.</Description>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameraMPPlugin\Skin\StreamedMP\axiscamerampplugin.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{03a072a2-b25f-45fd-80a8-0a29076ab457}-axiscamerampplugin.xml</ZipFileName>
-              <DestinationFilename>%Skin%\StreamedMP\axiscamerampplugin.xml</DestinationFilename>
+              <LocalFileName>..\AxisCameras\Skin\StreamedMP\axiscameras.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{03a072a2-b25f-45fd-80a8-0a29076ab457}-axiscameras.xml</ZipFileName>
+              <DestinationFilename>%Skin%\StreamedMP\axiscameras.xml</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameraMPPlugin\Skin\StreamedMP\Media\hoover_axiscamerampplugin.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{afe3a00d-5ccc-4086-b8b5-62b66e27173b}-hoover_axiscamerampplugin.png</ZipFileName>
-              <DestinationFilename>%Skin%\StreamedMP\Media\hoover_axiscamerampplugin.png</DestinationFilename>
+              <LocalFileName>..\AxisCameras\Skin\StreamedMP\Media\hoover_AxisCameras.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{afe3a00d-5ccc-4086-b8b5-62b66e27173b}-hoover_AxisCameras.png</ZipFileName>
+              <DestinationFilename>%Skin%\StreamedMP\Media\hoover_AxisCameras.png</DestinationFilename>
             </FileItem>
           </Items>
         </Files>
@@ -580,7 +580,7 @@ public class Script
           <Description>The icon file of the package stored online (jpg,png,bmp)</Description>
         </SectionParam>
         <SectionParam Name="Configuration file">
-          <Value>%Plugins%\Windows\AxisCameraMPPlugin.dll</Value>
+          <Value>%Plugins%\Windows\AxisCameras.dll</Value>
           <ValueType>Template</ValueType>
           <Description>The file used to configure the extension.
  If have .exe extension the will be executed
@@ -604,44 +604,44 @@ public class Script
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameraMPPlugin\bin\Release\AxisCameraMPPlugin.dll</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{03f4a14b-f6c7-4e6e-ae74-cdade74f83a8}-AxisCameraMPPlugin.dll</ZipFileName>
-        <DestinationFilename>%Plugins%\Windows\AxisCameraMPPlugin.dll</DestinationFilename>
+        <LocalFileName>..\AxisCameras\bin\Release\AxisCameras.dll</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{03f4a14b-f6c7-4e6e-ae74-cdade74f83a8}-AxisCameras.dll</ZipFileName>
+        <DestinationFilename>%Plugins%\Windows\AxisCameras.dll</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameraMPPlugin\bin\Release\AxisCameraMPPlugin.dll.config</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{9f2111ae-b790-4964-b85e-343da23cb053}-AxisCameraMPPlugin.dll.config</ZipFileName>
-        <DestinationFilename>%Plugins%\Windows\AxisCameraMPPlugin.dll.config</DestinationFilename>
+        <LocalFileName>..\AxisCameras\bin\Release\AxisCameras.dll.config</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{9f2111ae-b790-4964-b85e-343da23cb053}-AxisCameras.dll.config</ZipFileName>
+        <DestinationFilename>%Plugins%\Windows\AxisCameras.dll.config</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameraMPPlugin.Configuration\bin\Release\AxisCameraMPPlugin.Configuration.dll</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{9ae95e92-df7a-4ccb-9fdd-73d06cd17fee}-AxisCameraMPPlugin.Configuration.dll</ZipFileName>
-        <DestinationFilename>%Plugins%\Windows\AxisCameraMPPlugin.Configuration.dll</DestinationFilename>
+        <LocalFileName>..\AxisCameras.Configuration\bin\Release\AxisCameras.Configuration.dll</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{9ae95e92-df7a-4ccb-9fdd-73d06cd17fee}-AxisCameras.Configuration.dll</ZipFileName>
+        <DestinationFilename>%Plugins%\Windows\AxisCameras.Configuration.dll</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameraMPPlugin.Core\bin\Release\AxisCameraMPPlugin.Core.dll</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{d11f23a3-f067-456e-a9c0-7b550d96584f}-AxisCameraMPPlugin.Core.dll</ZipFileName>
-        <DestinationFilename>%Plugins%\Windows\AxisCameraMPPlugin.Core.dll</DestinationFilename>
+        <LocalFileName>..\AxisCameras.Core\bin\Release\AxisCameras.Core.dll</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{d11f23a3-f067-456e-a9c0-7b550d96584f}-AxisCameras.Core.dll</ZipFileName>
+        <DestinationFilename>%Plugins%\Windows\AxisCameras.Core.dll</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameraMPPlugin.Data\bin\Release\AxisCameraMPPlugin.Data.dll</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{742afa38-8374-4cfb-affe-c97cf277d203}-AxisCameraMPPlugin.Data.dll</ZipFileName>
-        <DestinationFilename>%Plugins%\Windows\AxisCameraMPPlugin.Data.dll</DestinationFilename>
+        <LocalFileName>..\AxisCameras.Data\bin\Release\AxisCameras.Data.dll</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{742afa38-8374-4cfb-affe-c97cf277d203}-AxisCameras.Data.dll</ZipFileName>
+        <DestinationFilename>%Plugins%\Windows\AxisCameras.Data.dll</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameraMPPlugin.Mvvm\bin\Release\AxisCameraMPPlugin.Mvvm.dll</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{31129be6-45c9-46e9-8031-6686bc7370c1}-AxisCameraMPPlugin.Mvvm.dll</ZipFileName>
-        <DestinationFilename>%Plugins%\Windows\AxisCameraMPPlugin.Mvvm.dll</DestinationFilename>
+        <LocalFileName>..\AxisCameras.Mvvm\bin\Release\AxisCameras.Mvvm.dll</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{31129be6-45c9-46e9-8031-6686bc7370c1}-AxisCameras.Mvvm.dll</ZipFileName>
+        <DestinationFilename>%Plugins%\Windows\AxisCameras.Mvvm.dll</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
@@ -653,65 +653,65 @@ public class Script
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameraMPPlugin\Thumbs\AxisCameraMPPlugin\CameraPortrait.png</LocalFileName>
+        <LocalFileName>..\AxisCameras\Thumbs\AxisCameras\CameraPortrait.png</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{63d869a0-63e2-4bd6-be9b-130d4dbd80d5}-CameraPortrait.png</ZipFileName>
-        <DestinationFilename>%Thumbs%\AxisCameraMPPlugin\CameraPortrait.png</DestinationFilename>
+        <DestinationFilename>%Thumbs%\AxisCameras\CameraPortrait.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameraMPPlugin\Skin\Blue3\axiscamerampplugin.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{c3c95a35-e850-41c4-9ae4-28ca5f373d0a}-axiscamerampplugin.xml</ZipFileName>
-        <DestinationFilename>%Skin%\Blue3\axiscamerampplugin.xml</DestinationFilename>
+        <LocalFileName>..\AxisCameras\Skin\Blue3\axiscameras.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{c3c95a35-e850-41c4-9ae4-28ca5f373d0a}-axiscameras.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Blue3\axiscameras.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameraMPPlugin\Skin\Blue3\Media\axiscamerampplugin_logo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{39e8529a-c79a-44b0-bbbc-0169f34dd270}-axiscamerampplugin_logo.png</ZipFileName>
-        <DestinationFilename>%Skin%\Blue3\Media\axiscamerampplugin_logo.png</DestinationFilename>
+        <LocalFileName>..\AxisCameras\Skin\Blue3\Media\AxisCameras_logo.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{39e8529a-c79a-44b0-bbbc-0169f34dd270}-AxisCameras_logo.png</ZipFileName>
+        <DestinationFilename>%Skin%\Blue3\Media\AxisCameras_logo.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameraMPPlugin\Skin\Blue3\Media\hover_axiscamerampplugin.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{24c632ce-b6d0-4947-b95b-e427f0074381}-hover_axiscamerampplugin.png</ZipFileName>
-        <DestinationFilename>%Skin%\Blue3\Media\hover_axiscamerampplugin.png</DestinationFilename>
+        <LocalFileName>..\AxisCameras\Skin\Blue3\Media\hover_AxisCameras.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{24c632ce-b6d0-4947-b95b-e427f0074381}-hover_AxisCameras.png</ZipFileName>
+        <DestinationFilename>%Skin%\Blue3\Media\hover_AxisCameras.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameraMPPlugin\Skin\Blue3wide\axiscamerampplugin.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{40b23c57-8545-4fb9-ad94-667d7cc8694c}-axiscamerampplugin.xml</ZipFileName>
-        <DestinationFilename>%Skin%\Blue3wide\axiscamerampplugin.xml</DestinationFilename>
+        <LocalFileName>..\AxisCameras\Skin\Blue3wide\axiscameras.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{40b23c57-8545-4fb9-ad94-667d7cc8694c}-axiscameras.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Blue3wide\axiscameras.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameraMPPlugin\Skin\Blue3wide\Media\axiscamerampplugin_logo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{8c66a3bd-31c6-4d87-bfeb-eee321c7d9ab}-axiscamerampplugin_logo.png</ZipFileName>
-        <DestinationFilename>%Skin%\Blue3wide\Media\axiscamerampplugin_logo.png</DestinationFilename>
+        <LocalFileName>..\AxisCameras\Skin\Blue3wide\Media\AxisCameras_logo.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{8c66a3bd-31c6-4d87-bfeb-eee321c7d9ab}-AxisCameras_logo.png</ZipFileName>
+        <DestinationFilename>%Skin%\Blue3wide\Media\AxisCameras_logo.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameraMPPlugin\Skin\Blue3wide\Media\hover_axiscamerampplugin.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{92c1aa16-732d-48eb-a333-e9185f8f337d}-hover_axiscamerampplugin.png</ZipFileName>
-        <DestinationFilename>%Skin%\Blue3wide\Media\hover_axiscamerampplugin.png</DestinationFilename>
+        <LocalFileName>..\AxisCameras\Skin\Blue3wide\Media\hover_AxisCameras.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{92c1aa16-732d-48eb-a333-e9185f8f337d}-hover_AxisCameras.png</ZipFileName>
+        <DestinationFilename>%Skin%\Blue3wide\Media\hover_AxisCameras.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameraMPPlugin\Skin\StreamedMP\axiscamerampplugin.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{03a072a2-b25f-45fd-80a8-0a29076ab457}-axiscamerampplugin.xml</ZipFileName>
-        <DestinationFilename>%Skin%\StreamedMP\axiscamerampplugin.xml</DestinationFilename>
+        <LocalFileName>..\AxisCameras\Skin\StreamedMP\axiscameras.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{03a072a2-b25f-45fd-80a8-0a29076ab457}-axiscameras.xml</ZipFileName>
+        <DestinationFilename>%Skin%\StreamedMP\axiscameras.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameraMPPlugin\Skin\StreamedMP\Media\hoover_axiscamerampplugin.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{afe3a00d-5ccc-4086-b8b5-62b66e27173b}-hoover_axiscamerampplugin.png</ZipFileName>
-        <DestinationFilename>%Skin%\StreamedMP\Media\hoover_axiscamerampplugin.png</DestinationFilename>
+        <LocalFileName>..\AxisCameras\Skin\StreamedMP\Media\hoover_AxisCameras.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{afe3a00d-5ccc-4086-b8b5-62b66e27173b}-hoover_AxisCameras.png</ZipFileName>
+        <DestinationFilename>%Skin%\StreamedMP\Media\hoover_AxisCameras.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
@@ -744,7 +744,7 @@ public class Script
         <LocalFileName />
         <ZipFileName>Installer{CopyFile}\{4042f6b1-d6d5-4a32-8459-83321f4be5ba}-</ZipFileName>
         <DestinationFilename>%Skin%\Blue3</DestinationFilename>
-        <Folder>..\AxisCameraMPPlugin\Skin\Blue3</Folder>
+        <Folder>..\AxisCameras\Skin\Blue3</Folder>
         <Group>Blue3</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
@@ -753,8 +753,8 @@ public class Script
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName />
         <ZipFileName>Installer{CopyFile}\{b2f0e82b-b79a-4411-b338-e5b931e23fe6}-</ZipFileName>
-        <DestinationFilename>%Thumbs%\AxisCameraMPPlugin</DestinationFilename>
-        <Folder>..\AxisCameraMPPlugin\Thumbs\AxisCameraMPPlugin</Folder>
+        <DestinationFilename>%Thumbs%\AxisCameras</DestinationFilename>
+        <Folder>..\AxisCameras\Thumbs\AxisCameras</Folder>
         <Group>Thumbs</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
@@ -764,7 +764,7 @@ public class Script
         <LocalFileName />
         <ZipFileName>Installer{CopyFile}\{ba368f55-3f32-4b39-840a-df8b0d785ab4}-</ZipFileName>
         <DestinationFilename>%Skin%\Blue3wide</DestinationFilename>
-        <Folder>..\AxisCameraMPPlugin\Skin\Blue3wide</Folder>
+        <Folder>..\AxisCameras\Skin\Blue3wide</Folder>
         <Group>Blue3wide</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
@@ -774,12 +774,12 @@ public class Script
         <LocalFileName />
         <ZipFileName>Installer{CopyFile}\{08648c3c-b25e-456d-9257-863dc2d3ae89}-</ZipFileName>
         <DestinationFilename>%Skin%\StreamedMP</DestinationFilename>
-        <Folder>..\AxisCameraMPPlugin\Skin\StreamedMP</Folder>
+        <Folder>..\AxisCameras\Skin\StreamedMP</Folder>
         <Group>StreamedMP</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
     </FolderGroups>
-    <ProjectFilename>C:\Users\Mattias\Desktop\axis-camera-mpplugin\Source\Setup\AxisCameraMPPlugin.xmp2</ProjectFilename>
+    <ProjectFilename>C:\Users\Mattias\Desktop\axis-camera-mpplugin\Source\Setup\AxisCameras.xmp2</ProjectFilename>
     <UpdatePath1>.\update.xml</UpdatePath1>
     <UpdatePath2 />
     <UpdatePath3 />

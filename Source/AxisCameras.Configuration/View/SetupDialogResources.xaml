@@ -1,0 +1,17 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase">
+	
+	<!-- Merged resources -->
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="/AxisCameras.Configuration;Component/VisualStyle/Styles.xaml"/>
+	</ResourceDictionary.MergedDictionaries>
+	
+	<!-- A collection of sorted cameras -->
+	<CollectionViewSource x:Key="SortedCameras" Source="{Binding Cameras}">
+		<CollectionViewSource.SortDescriptions>
+			<scm:SortDescription PropertyName="Name"/>
+		</CollectionViewSource.SortDescriptions>
+	</CollectionViewSource>
+</ResourceDictionary>

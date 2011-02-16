@@ -22,14 +22,13 @@
  </ProjectOptions>
  <Targets>
   <AssemblyReferenceDirectories>
-   <Directory>$(ProjectDir)/AxisCameraMPPlugin.Network/bin/Debug/</Directory>
    <Directory>$(ProjectDir)/Externals/MediaPortal/</Directory>
   </AssemblyReferenceDirectories>
-  <Target Name="$(ProjectDir)/AxisCameraMPPlugin.Configuration/bin/Debug/AxisCameraMPPlugin.Configuration.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/AxisCameraMPPlugin.Core/bin/Debug/AxisCameraMPPlugin.Core.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/AxisCameraMPPlugin.Data/bin/Debug/AxisCameraMPPlugin.Data.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/AxisCameraMPPlugin.Mvvm/bin/Debug/AxisCameraMPPlugin.Mvvm.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/AxisCameraMPPlugin/bin/Debug/AxisCameraMPPlugin.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/AxisCameras.Configuration/bin/Debug/AxisCameras.Configuration.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/AxisCameras.Core/bin/Debug/AxisCameras.Core.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/AxisCameras.Data/bin/Debug/AxisCameras.Data.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/AxisCameras.Mvvm/bin/Debug/AxisCameras.Mvvm.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/AxisCameras/bin/Debug/AxisCameras.dll" Analyze="True" AnalyzeAllChildren="True" />
  </Targets>
  <Rules>
   <RuleFiles>
