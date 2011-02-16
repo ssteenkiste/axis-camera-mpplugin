@@ -200,7 +200,7 @@ Install only if you already have StreamedMP installed.</Description>
         <Params>
           <Items>
             <SectionParam Name="Header text">
-              <Value>Welcome to the Extension Installer for [Name]</Value>
+              <Value>Welcome to the Extension Installer for [Name].</Value>
               <ValueType>String</ValueType>
               <Description />
             </SectionParam>
@@ -724,14 +724,14 @@ public class Script
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{62899068-8a63-4a0c-9696-9c4477f214f2}-Welcome_left.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{0d446f50-4b10-47be-a834-d777337739a7}-Welcome_left.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{489da5a0-12f5-414c-b26d-6703b072efaa}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{6be106d3-0659-4390-af5e-801f348f45bb}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
