@@ -4,11 +4,11 @@
 	<!-- Properties -->
 	<PropertyGroup>
 		<!-- Solution -->
-		<SolutionName>AxisCameraMPPlugin</SolutionName>
+		<SolutionName>AxisCameras</SolutionName>
 		<SolutionPath>..\$(SolutionName).sln</SolutionPath>
 		
 		<!-- MPE Maker -->
-		<SetupScriptPath>AxisCameraMPPlugin.xmp2</SetupScriptPath>
+		<SetupScriptPath>AxisCameras.xmp2</SetupScriptPath>
 		<MpeMakerPath>$(ProgramFiles)\Team MediaPortal\MediaPortal\MpeMaker.exe</MpeMakerPath>
 	</PropertyGroup>
 

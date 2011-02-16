@@ -16,7 +16,7 @@
             <close>true</close>
             <maximizeRestore>false</maximizeRestore>
             <minimize>false</minimize>
-            <text>Axis%20Camera%20MPPlugin%20-%20Setup</text>
+            <text>Axis%20Cameras%20-%20Setup</text>
           </controlProperties>
         </control>
         <control controlID="1" controlTypeID="com.balsamiq.mockups::Button" x="217" y="284" w="59" h="28" measuredW="56" measuredH="28" zOrder="1" locked="false" isInGroup="13">
@@ -171,7 +171,7 @@
                     <text>192.168.0.80</text>
                   </controlProperties>
                 </control>
-                <control controlID="5" controlTypeID="com.balsamiq.mockups::TextInput" x="79" y="49" w="166" h="-1" measuredW="30" measuredH="29" zOrder="5" locked="false" isInGroup="1">
+                <control controlID="5" controlTypeID="com.balsamiq.mockups::TextInput" x="79" y="49" w="166" h="-1" measuredW="29" measuredH="29" zOrder="5" locked="false" isInGroup="1">
                   <controlProperties>
                     <text>80</text>
                   </controlProperties>
