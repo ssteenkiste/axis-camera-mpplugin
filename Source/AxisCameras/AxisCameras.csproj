@@ -89,7 +89,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Resources\axiscameras_logo.pspimage" />
+    <None Include="Resources\BoxShot\axiscameras_logo.pspimage" />
     <None Include="Resources\BoxShot\front.pspimage" />
     <None Include="Resources\BoxShot\side.pspimage" />
     <None Include="Resources\surveillance-camera.ico" />
