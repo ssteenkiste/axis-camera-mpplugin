@@ -1,29 +1,55 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	
+
 	<!-- Properties -->
 	<PropertyGroup>
 		<!-- Solution -->
+		<SolutionPath>$(MSBuildProjectDirectory)\..</SolutionPath>
 		<SolutionName>AxisCameras</SolutionName>
-		<SolutionPath>..\$(SolutionName).sln</SolutionPath>
+		<SolutionFile>$(SolutionPath)\$(SolutionName).sln</SolutionFile>
 		
 		<!-- MPE Maker -->
-		<SetupScriptPath>AxisCameras.xmp2</SetupScriptPath>
-		<MpeMakerPath>$(ProgramFiles)\Team MediaPortal\MediaPortal\MpeMaker.exe</MpeMakerPath>
+		<SetupScriptFile>AxisCameras.xmp2</SetupScriptFile>
+		<MpeMakerFile>$(ProgramFiles)\Team MediaPortal\MediaPortal\MpeMaker.exe</MpeMakerFile>
+
+		<!-- NUnit -->
+		<NUnitToolPath>$(SolutionPath)\Externals\NUnit</NUnitToolPath>
+
+		<!-- MSBuild community tasks -->
+		<MSBuildCommunityTasksPath>$(SolutionPath)\Externals\MSBuild</MSBuildCommunityTasksPath>	
 	</PropertyGroup>
+
+	<!-- Imports -->
+	<Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets" />
+
+	<!-- Is building the solution in debug mode -->
+	<Target Name="BuildDebug">
+		<Message Text="Start building $(SolutionName) in debug mode"/>
+		<MSBuild Projects="$(SolutionFile)" Targets="Clean" Properties="Configuration=Debug"/>
+		<MSBuild Projects="$(SolutionFile)" Targets="Build" Properties="Configuration=Debug"/>
+		<Message Text="Finished building $(SolutionName) in debug mode"/>
+	</Target>
 
 	<!-- Is building the solution in release mode -->
 	<Target Name="BuildRelease">
 		<Message Text="Start building $(SolutionName) in release mode"/>
-		<MSBuild Projects="$(SolutionPath)" Targets="Clean" Properties="Configuration=Release"/>
-		<MSBuild Projects="$(SolutionPath)" Targets="Build" Properties="Configuration=Release"/>
+		<MSBuild Projects="$(SolutionFile)" Targets="Clean" Properties="Configuration=Release"/>
+		<MSBuild Projects="$(SolutionFile)" Targets="Build" Properties="Configuration=Release"/>
 		<Message Text="Finished building $(SolutionName) in release mode"/>
 	</Target>
 	
+	<!-- Unit tests -->
+	<Target Name="Test">
+		<CreateItem Include="$(SolutionPath)\*Test\bin\Debug\*Test.dll">
+			<Output TaskParameter="Include" ItemName="TestAssemblies" />
+		</CreateItem>
+		<NUnit ToolPath="$(NUnitToolPath)" Assemblies="@(TestAssemblies)"/>
+	</Target>
+	
 	<!-- Is building a setup -->
-	<Target Name="BuildSetup" DependsOnTargets="BuildRelease">
+	<Target Name="BuildSetup" DependsOnTargets="BuildDebug;Test;BuildRelease">
 		<Message Text="Start building setup"/>
-		<Exec Command="&quot;$(MpeMakerPath)&quot; $(SetupScriptPath)"/>
+		<Exec Command="&quot;$(MpeMakerFile)&quot; $(SetupScriptFile)"/>
 		<Message Text="Finished building setup"/>
 	</Target>
 </Project>
