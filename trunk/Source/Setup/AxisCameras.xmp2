@@ -587,7 +587,7 @@ public class Script
  If have .dll extension used like MP plugin configuration</Description>
         </SectionParam>
         <SectionParam Name="Online Screenshots">
-          <Value>http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/Blue3wide.png;http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/StreamedMP.png;http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/Config_Cameras.png;http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/Config_Edit_WP1.png;http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/Config_Edit_WP2.png</Value>
+          <Value>http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/1.0.0.0/Blue3wide.png;http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/1.0.0.0/StreamedMP.png;http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/1.0.0.0/Config_Cameras.png;http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/1.0.0.0/Config_Edit_WP1.png;http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/1.0.0.0/Config_Edit_WP2.png</Value>
           <ValueType>String</ValueType>
           <Description>Online stored screenshot urls separated by ; </Description>
         </SectionParam>
@@ -724,14 +724,14 @@ public class Script
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{3c0cdca6-b194-4ba6-8381-cb4865d1b21d}-Welcome_left.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{d38a1692-3948-43cb-bfb5-1b40b6f89b7b}-Welcome_left.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{05828e60-3dc5-4111-b25c-8a4f1c0e76d7}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{fc2e02ec-ce86-495b-b6e7-e518057a0c63}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
