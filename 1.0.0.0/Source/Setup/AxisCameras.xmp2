@@ -192,6 +192,23 @@ Install only if you already have StreamedMP installed.</Description>
           </Items>
         </Files>
       </GroupItem>
+      <GroupItem Name="Settings">
+        <ParentGroup />
+        <DisplayName>Settings</DisplayName>
+        <DefaulChecked>false</DefaulChecked>
+        <Description>The plugin settings</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Settings\extension_settings.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{11000da4-8342-4db4-ac7b-076c0a188cca}-extension_settings.xml</ZipFileName>
+              <DestinationFilename>%Base%\extension_settings.xml</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
     </Items>
   </Groups>
   <Sections>
@@ -720,18 +737,25 @@ public class Script
         <ZipFileName>Installer{CopyFile}\{6fc1c1f8-c430-4227-988c-d5d91017148c}-AxisRTPSrcFilter.ax</ZipFileName>
         <DestinationFilename>%Temp%\AxisRTPSrcFilter.ax</DestinationFilename>
       </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Settings\extension_settings.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{11000da4-8342-4db4-ac7b-076c0a188cca}-extension_settings.xml</ZipFileName>
+        <DestinationFilename>%Base%\extension_settings.xml</DestinationFilename>
+      </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{d38a1692-3948-43cb-bfb5-1b40b6f89b7b}-Welcome_left.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{93747998-44c3-4a38-8c00-c584e78a61aa}-Welcome_left.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{fc2e02ec-ce86-495b-b6e7-e518057a0c63}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{0c6f4fac-030b-4ba6-80a8-e3b930440236}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
@@ -779,7 +803,7 @@ public class Script
         <Recursive>true</Recursive>
       </FolderGroup>
     </FolderGroups>
-    <ProjectFilename>C:\Users\Mattias\Desktop\axis-camera-mpplugin\Source\Setup\AxisCameras.xmp2</ProjectFilename>
+    <ProjectFilename>C:\Users\Mattias\Desktop\Axis Cameras\branches\1.0.0.0\Source\Setup\AxisCameras.xmp2</ProjectFilename>
     <UpdatePath1>.\update.xml</UpdatePath1>
     <UpdatePath2 />
     <UpdatePath3 />
