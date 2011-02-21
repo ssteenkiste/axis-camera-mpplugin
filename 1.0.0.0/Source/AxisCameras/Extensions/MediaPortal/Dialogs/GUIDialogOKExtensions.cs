@@ -18,7 +18,6 @@
 
 #endregion
 using System;
-using MediaPortal.Dialogs;
 using System.Diagnostics.CodeAnalysis;
 
 namespace MediaPortal.Dialogs
@@ -26,15 +25,9 @@ namespace MediaPortal.Dialogs
 	/// <summary>
 	/// Class containing extensions for the GUIDialogOK class.
 	/// </summary>
-	[SuppressMessage(
-		"Microsoft.Naming",
-		"CA1709:IdentifiersShouldBeCasedCorrectly",
-		MessageId = "GUI",
+	[SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "GUI",
 		Justification = "MediaPortal has named the control like this.")]
-	[SuppressMessage(
-		"Microsoft.Naming",
-		"CA1709:IdentifiersShouldBeCasedCorrectly",
-		MessageId = "OK",
+	[SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "OK",
 		Justification = "MediaPortal has named the control like this.")]
 	public static class GUIDialogOKExtensions
 	{
@@ -45,10 +38,7 @@ namespace MediaPortal.Dialogs
 		/// <param name="message">
 		/// The message displayed in the OK dialog. Each line is split on "\n" or "\\n".
 		/// </param>
-		[SuppressMessage(
-			"Microsoft.Naming",
-			"CA1702:CompoundWordsShouldBeCasedCorrectly",
-			MessageId = "SetLines",
+		[SuppressMessage("Microsoft.Naming", "CA1702:CompoundWordsShouldBeCasedCorrectly", MessageId = "SetLines",
 			Justification = "Method setting single line is called SetLine, only appropriate to call this method SetLines.")]
 		public static void SetLines(this GUIDialogOK dialog, string message)
 		{
@@ -56,7 +46,18 @@ namespace MediaPortal.Dialogs
 
 			string[] lines = message.Split(new[] { "\n", "\\n" }, StringSplitOptions.None);
 
-			for (int row = 1; row <= Math.Min(lines.Length, 4); row++)
+			// The GUIDialogOK supports maximum 4 lines
+			int maxLineCount = 4;
+			if (lines.Length > maxLineCount)
+			{
+				string errorMessageFormat =
+					"The GUIDialogOK dialog supports maximum {0} lines, the specified message has {1}.";
+				string errorMessage = errorMessageFormat.InvariantFormat(maxLineCount, lines.Length);
+
+				throw new ArgumentException(errorMessage, "message");
+			}
+
+			for (int row = 1; row <= Math.Min(lines.Length, maxLineCount); row++)
 			{
 				dialog.SetLine(row, lines[row - 1]);
 			}
