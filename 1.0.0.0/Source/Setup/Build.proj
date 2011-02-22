@@ -21,6 +21,7 @@
 		
 		<!-- NUnit -->
 		<NUnitToolPath>$(SolutionPath)\Externals\NUnit</NUnitToolPath>
+		<NUnitResults>$(SolutionPath)\Setup\NUnitResults.xml</NUnitResults>
 
 		<!-- MSBuild community tasks -->
 		<MSBuildCommunityTasksPath>$(SolutionPath)\Externals\MSBuild</MSBuildCommunityTasksPath>	
@@ -83,7 +84,7 @@
 		<CreateItem Include="$(SolutionPath)\*Test\bin\Debug\*Test.dll">
 			<Output TaskParameter="Include" ItemName="TestAssemblies" />
 		</CreateItem>
-		<NUnit ToolPath="$(NUnitToolPath)" Assemblies="@(TestAssemblies)"/>
+		<NUnit ToolPath="$(NUnitToolPath)" Assemblies="@(TestAssemblies)" OutputXmlFile="$(NUnitResults)" />
 	</Target>
 	
 	<!-- Is building a setup -->
