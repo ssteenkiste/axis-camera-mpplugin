@@ -572,17 +572,17 @@ public class Script
     <ForumPage>http://forum.team-mediaportal.com/mediaportal-plugins-47/axis-camera-mpplugin-93277/</ForumPage>
     <UpdateUrl>http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/update.xml</UpdateUrl>
     <Version>
-      <Major>0</Major>
-      <Minor>1</Minor>
+      <Major>1</Major>
+      <Minor>0</Minor>
       <Build>0</Build>
       <Revision>0</Revision>
     </Version>
     <ExtensionDescription>Plugin making it possible to watch live video from any Axis network camera in MediaPortal.</ExtensionDescription>
-    <VersionDescription>New features: Watching live video. Bug fixes:</VersionDescription>
-    <DevelopmentStatus>Rc</DevelopmentStatus>
+    <VersionDescription>[FEATURE]: Show live video streams from Axis network cameras</VersionDescription>
+    <DevelopmentStatus>Stable</DevelopmentStatus>
     <OnlineLocation>http://axis-camera-mpplugin.googlecode.com/files/AxisCameras_[Version].mpe1</OnlineLocation>
-    <ReleaseDate>2011-02-07T21:00:06.6678446+01:00</ReleaseDate>
-    <Tags>axis,camera,live,video</Tags>
+    <ReleaseDate>2011-02-23T21:00:06</ReleaseDate>
+    <Tags>axis,cameras,camera,live,video</Tags>
     <Location>.\AxisCameras_[Version].mpe1</Location>
     <Params>
       <Items>
@@ -748,14 +748,14 @@ public class Script
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{93747998-44c3-4a38-8c00-c584e78a61aa}-Welcome_left.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{d914f99c-9d24-4f43-a7a2-1aa885b4d6f1}-Welcome_left.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{0c6f4fac-030b-4ba6-80a8-e3b930440236}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{53bcb942-33eb-4883-8381-34ad76a2d408}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
@@ -803,7 +803,7 @@ public class Script
         <Recursive>true</Recursive>
       </FolderGroup>
     </FolderGroups>
-    <ProjectFilename>C:\Users\Mattias\Desktop\Axis Cameras\branches\1.0.0.0\Source\Setup\AxisCameras.xmp2</ProjectFilename>
+    <ProjectFilename>C:\Users\Mattias\Desktop\Axis Cameras\branches\releases\1.0.0.0\Source\Setup\AxisCameras.xmp2</ProjectFilename>
     <UpdatePath1>.\update.xml</UpdatePath1>
     <UpdatePath2 />
     <UpdatePath3 />
