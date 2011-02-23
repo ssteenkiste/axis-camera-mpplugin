@@ -48,6 +48,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\ParameterParserTest.cs" />
+    <Compile Include="ViewModel\Data\ConfigurableCameraTest.cs" />
     <Compile Include="ViewModel\ValidationRule\NotEmptyStringValidationRuleTest.cs" />
     <Compile Include="ViewModel\ValidationRule\PortValidationRuleTest.cs" />
     <Compile Include="ViewModel\ValidationRule\RelayValidationRuleTest.cs" />
