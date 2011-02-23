@@ -36,7 +36,6 @@ using Log = AxisCameras.Core.Log;
 using PluginResources = AxisCameras.Properties.Resources;
 using Utils = MediaPortal.Util.Utils;
 
-
 namespace AxisCameras
 {
 	/// <summary>
@@ -257,9 +256,7 @@ namespace AxisCameras
 				using (GUIDialogOK messageBox = (GUIDialogOK)GUIWindowManager.GetWindow(messageBoxId))
 				{
 					messageBox.SetHeading(PluginResources.SetupForm_AddCameras_Title);
-					messageBox.SetLine(2, PluginResources.SetupForm_AddCameras_Line1);
-					messageBox.SetLine(3, PluginResources.SetupForm_AddCameras_Line2);
-					messageBox.SetLine(4, PluginResources.SetupForm_AddCameras_Line3);
+					messageBox.SetLines(PluginResources.SetupForm_AddCameras);
 					messageBox.DoModal(GUIWindowManager.ActiveWindow);
 				}
 			}
