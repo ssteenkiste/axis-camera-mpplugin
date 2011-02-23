@@ -12,8 +12,16 @@
 		<SetupScriptFile>AxisCameras.xmp2</SetupScriptFile>
 		<MpeMakerFile>$(ProgramFiles)\Team MediaPortal\MediaPortal\MpeMaker.exe</MpeMakerFile>
 
+		<!-- FxCop -->
+		<FxCopToolPath>$(SolutionPath)\Externals\FxCop</FxCopToolPath>
+		<FxCopResults>$(SolutionPath)\Setup\FxCopResults.xml</FxCopResults>
+		<FxCopCriticalErrors>0</FxCopCriticalErrors>
+		<FxCopErrors>0</FxCopErrors>
+		<FxCopCriticalWarnings>0</FxCopCriticalWarnings>
+		
 		<!-- NUnit -->
 		<NUnitToolPath>$(SolutionPath)\Externals\NUnit</NUnitToolPath>
+		<NUnitResults>$(SolutionPath)\Setup\NUnitResults.xml</NUnitResults>
 
 		<!-- MSBuild community tasks -->
 		<MSBuildCommunityTasksPath>$(SolutionPath)\Externals\MSBuild</MSBuildCommunityTasksPath>	
@@ -37,17 +45,50 @@
 		<MSBuild Projects="$(SolutionFile)" Targets="Build" Properties="Configuration=Release"/>
 		<Message Text="Finished building $(SolutionName) in release mode"/>
 	</Target>
-	
+
+	<!-- FxCop -->
+	<Target Name="FxCop">
+		<FxCop ToolPath="$(FxCopToolPath)" ProjectFile="$(SolutionPath)\FxCop.FxCop" DirectOutputToConsole="True" AnalysisReportFileName="$(FxCopResults)"/>
+	</Target>
+
+	<!-- Is parsing the FxCop result file and terminates the build process if errors or warnings are found -->
+	<Target Name="ParseFxCopResult">
+		<XmlRead
+			ContinueOnError="True"
+			Condition="Exists('$(FxCopResults)')"
+			XmlFileName="$(FxCopResults)"
+			XPath="string(count(//Issue[@Level='CriticalError']))">
+			<Output TaskParameter="Value" PropertyName="FxCopCriticalErrors" />
+		</XmlRead>
+		<XmlRead
+			ContinueOnError="True"
+			Condition="Exists('$(FxCopResults)')"
+			XmlFileName="$(FxCopResults)"
+			XPath="string(count(//Issue[@Level='Error']))">
+			<Output TaskParameter="Value" PropertyName="FxCopErrors" />
+		</XmlRead>
+		<XmlRead
+			ContinueOnError="True"
+			Condition="Exists('$(FxCopResults)')"
+			XmlFileName="$(FxCopResults)"
+			XPath="string(count(//Issue[@Level='CriticalWarning']))">
+			<Output TaskParameter="Value" PropertyName="FxCopCriticalWarnings" />
+		</XmlRead>
+		<Error
+			Text="FxCop encountered rule violations"
+			Condition="$(FxCopCriticalErrors) &gt; 0 or $(FxCopErrors) &gt; 0 or $(FxCopCriticalWarnings) &gt; 0" />
+	</Target>
+
 	<!-- Unit tests -->
 	<Target Name="Test">
 		<CreateItem Include="$(SolutionPath)\*Test\bin\Debug\*Test.dll">
 			<Output TaskParameter="Include" ItemName="TestAssemblies" />
 		</CreateItem>
-		<NUnit ToolPath="$(NUnitToolPath)" Assemblies="@(TestAssemblies)"/>
+		<NUnit ToolPath="$(NUnitToolPath)" Assemblies="@(TestAssemblies)" OutputXmlFile="$(NUnitResults)" />
 	</Target>
 	
 	<!-- Is building a setup -->
-	<Target Name="BuildSetup" DependsOnTargets="BuildDebug;Test;BuildRelease">
+	<Target Name="BuildSetup" DependsOnTargets="BuildDebug;FxCop;ParseFxCopResult;Test;BuildRelease">
 		<Message Text="Start building setup"/>
 		<Exec Command="&quot;$(MpeMakerFile)&quot; $(SetupScriptFile)"/>
 		<Message Text="Finished building setup"/>
