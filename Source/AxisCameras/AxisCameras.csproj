@@ -70,6 +70,10 @@
     <Compile Include="Player\ICameraPlayer.cs">
       <DependentUpon>CameraPlayer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Player\IMediaPortalPlayer.cs">
+      <DependentUpon>MediaPortalPlayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Player\MediaPortalPlayer.cs" />
     <Compile Include="Player\Vapix.cs" />
     <Compile Include="PluginModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

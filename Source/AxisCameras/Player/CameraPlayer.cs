@@ -22,7 +22,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Web;
 using AxisCameras.Core;
 using AxisCameras.Data;
-using MediaPortal.Player;
 
 namespace AxisCameras.Player
 {
@@ -31,6 +30,21 @@ namespace AxisCameras.Player
 	/// </summary>
 	public class CameraPlayer : ICameraPlayer
 	{
+		private readonly IMediaPortalPlayer mediaPortalPlayer;
+
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CameraPlayer"/> class.
+		/// </summary>
+		/// <param name="mediaPortalPlayer">The played used in MediaPortal.</param>
+		public CameraPlayer(IMediaPortalPlayer mediaPortalPlayer)
+		{
+			if (mediaPortalPlayer == null) throw new ArgumentNullException("mediaPortalPlayer");
+
+			this.mediaPortalPlayer = mediaPortalPlayer;
+		}
+
+
 		/// <summary>
 		/// Plays live video from specified camera.
 		/// </summary>
@@ -44,14 +58,14 @@ namespace AxisCameras.Player
 			string url = GetLiveVideoUrl(camera);
 
 			// Stop player if already playing
-			if (g_Player.Playing)
+			if (mediaPortalPlayer.Playing)
 			{
-				g_Player.Stop();
+				mediaPortalPlayer.Stop();
 			}
 
 			// Play live view in full screen
-			g_Player.PlayVideoStream(url, camera.Name);
-			g_Player.ShowFullScreenWindow();
+			mediaPortalPlayer.PlayVideoStream(url, camera.Name);
+			mediaPortalPlayer.ShowFullScreenWindow();
 		}
 
 
