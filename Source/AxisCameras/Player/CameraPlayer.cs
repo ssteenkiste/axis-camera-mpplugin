@@ -24,25 +24,13 @@ using AxisCameras.Core;
 using AxisCameras.Data;
 using MediaPortal.Player;
 
-namespace AxisCameras
+namespace AxisCameras.Player
 {
 	/// <summary>
 	/// Class responsible for playing video.
 	/// </summary>
-	public class Player : IPlayer
+	public class CameraPlayer : ICameraPlayer
 	{
-		/// <summary>
-		/// VAPIX 2 version of live video URL. The video format received is MPEG4.
-		/// </summary>
-		private const string Vapix2LiveVideoUrl = "axrtsphttp://{0}:{1}@{2}:{3}/mpeg4/media.amp";
-
-
-		/// <summary>
-		/// VAPIX 3 version of live video URL. The video format received is H.264.
-		/// </summary>
-		private const string Vapix3LiveVideoUrl = "axrtsphttp://{0}:{1}@{2}:{3}/axis-media/media.amp?videocodec=h264";
-
-
 		/// <summary>
 		/// Plays live video from specified camera.
 		/// </summary>
@@ -98,12 +86,12 @@ namespace AxisCameras
 			if (firmwareVersion < new Version(5, 0))
 			{
 				Log.Debug("Camera firmware version is {0}, use VAPIX 2 CGI.", firmwareVersion);
-				urlFormat = Vapix2LiveVideoUrl;
+				urlFormat = Vapix.Version2.LiveVideoUrl;
 			}
 			else
 			{
 				Log.Debug("Camera firmware version is {0}, use VAPIX 3 CGI.", firmwareVersion);
-				urlFormat = Vapix3LiveVideoUrl;
+				urlFormat = Vapix.Version3.LiveVideoUrl;
 			}
 
 			return urlFormat.InvariantFormat(
