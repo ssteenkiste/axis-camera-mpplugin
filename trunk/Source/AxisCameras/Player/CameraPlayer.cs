@@ -57,15 +57,8 @@ namespace AxisCameras.Player
 
 			string url = GetLiveVideoUrl(camera);
 
-			// Stop player if already playing
-			if (mediaPortalPlayer.Playing)
-			{
-				mediaPortalPlayer.Stop();
-			}
-
 			// Play live view in full screen
-			mediaPortalPlayer.PlayVideoStream(url, camera.Name);
-			mediaPortalPlayer.ShowFullScreenWindow();
+			mediaPortalPlayer.PlayVideoStreamInFullScreen(url, camera.Name);
 		}
 
 
