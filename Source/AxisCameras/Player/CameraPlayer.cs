@@ -83,14 +83,14 @@ namespace AxisCameras.Player
 					camera.FirmwareVersion,
 					e.ToString());
 
-				// If firmware version cannot be parsed, assume it is a beta of LFP, i.e. the VAPIX 3 live
+				// If firmware version cannot be parsed, assume it is a new beta, i.e. the VAPIX 3 live
 				// video URL should be used
 				firmwareVersion = new Version(5, 0);
 			}
 
 			// If firmware version is below 5.0 use VAPIX 2; otherwise use VAPIX 3
 			string urlFormat;
-			if (firmwareVersion < new Version(5, 0))
+			if (firmwareVersion.Major < 5)
 			{
 				Log.Debug("Camera firmware version is {0}, use VAPIX 2 CGI.", firmwareVersion);
 				urlFormat = Vapix.Version2.LiveVideoUrl;
