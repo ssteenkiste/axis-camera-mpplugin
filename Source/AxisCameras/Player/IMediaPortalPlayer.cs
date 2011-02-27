@@ -26,29 +26,11 @@ namespace AxisCameras.Player
 	public interface IMediaPortalPlayer
 	{
 		/// <summary>
-		/// Starts playing a video from specified URL.
+		/// Starts playing a video from specified URL in full screen.
 		/// </summary>
 		/// <param name="url">The URL of the video.</param>
 		/// <param name="name">The name of the video, will be displayed inside MediaPortal.</param>
 		/// <returns>true if playback started successfully; otherwise false.</returns>
-		bool PlayVideoStream(string url, string name);
-
-
-		/// <summary>
-		/// Stop playing current media.
-		/// </summary>
-		void Stop();
-
-
-		/// <summary>
-		/// Gets a value indicating whether any media is being played.
-		/// </summary>
-		bool Playing { get; }
-
-
-		/// <summary>
-		/// Is showing the played media in full screen.
-		/// </summary>
-		void ShowFullScreenWindow();
+		bool PlayVideoStreamInFullScreen(string url, string name);
 	}
 }
