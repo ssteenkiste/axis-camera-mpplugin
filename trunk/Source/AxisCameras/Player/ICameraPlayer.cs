@@ -19,12 +19,12 @@
 #endregion
 using AxisCameras.Data;
 
-namespace AxisCameras
+namespace AxisCameras.Player
 {
 	/// <summary>
 	/// Interface responsible for playing video.
 	/// </summary>
-	public interface IPlayer
+	public interface ICameraPlayer
 	{
 		/// <summary>
 		/// Plays live video from specified camera.

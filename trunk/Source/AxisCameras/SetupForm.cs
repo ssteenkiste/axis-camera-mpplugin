@@ -27,6 +27,7 @@ using AxisCameras.Configuration;
 using AxisCameras.Configuration.Service;
 using AxisCameras.Core;
 using AxisCameras.Data;
+using AxisCameras.Player;
 using AxisCameras.Properties;
 using MediaPortal.Configuration;
 using MediaPortal.Dialogs;
@@ -48,7 +49,7 @@ namespace AxisCameras
 	{
 		private IContainer container;
 		private Lazy<IEnumerable<Camera>> cameras;
-		private Lazy<IPlayer> player;
+		private Lazy<ICameraPlayer> player;
 		private Lazy<IIOService> ioService;
 		private Guid selectedCameraGuid;
 
@@ -205,7 +206,7 @@ namespace AxisCameras
 					return pluginSettings.Cameras;
 				}
 			});
-			player = new Lazy<IPlayer>(() => container.Resolve<IPlayer>());
+			player = new Lazy<ICameraPlayer>(() => container.Resolve<ICameraPlayer>());
 			ioService = new Lazy<IIOService>(() => container.Resolve<IIOService>());
 
 			return Load(Path.Combine(GUIGraphicsContext.Skin, Settings.Default.Plugin_Skin));
