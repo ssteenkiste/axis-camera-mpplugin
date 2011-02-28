@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+using System.Collections.Generic;
 using AxisCameras.Configuration.ViewModel.Data;
 using AxisCameras.Mvvm;
 
@@ -27,6 +28,18 @@ namespace AxisCameras.Configuration.ViewModel
 	/// </summary>
 	public interface ICameraNameViewModel : IViewModelBase
 	{
+		/// <summary>
+		/// Gets the name of the camera.
+		/// </summary>
+		string Name { get; }
+
+
+		/// <summary>
+		/// Gets the snapshot.
+		/// </summary>
+		IEnumerable<byte> Snapshot { get; }
+
+
 		/// <summary>
 		/// Gets the camera.
 		/// </summary>

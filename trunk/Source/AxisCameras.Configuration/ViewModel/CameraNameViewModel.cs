@@ -18,6 +18,7 @@
 
 #endregion
 using System;
+using System.Collections.Generic;
 using AxisCameras.Configuration.ViewModel.Data;
 using AxisCameras.Data;
 using AxisCameras.Mvvm;
@@ -47,6 +48,15 @@ namespace AxisCameras.Configuration.ViewModel
 		public string Name
 		{
 			get { return Camera.Name; }
+		}
+
+
+		/// <summary>
+		/// Gets the snapshot.
+		/// </summary>
+		public IEnumerable<byte> Snapshot
+		{
+			get { return Camera.Snapshot; }
 		}
 
 
