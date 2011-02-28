@@ -18,8 +18,6 @@
 
 #endregion
 using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Web;
 using AxisCameras.Core;
 using AxisCameras.Data;
 
@@ -31,17 +29,23 @@ namespace AxisCameras.Player
 	public class CameraPlayer : ICameraPlayer
 	{
 		private readonly IMediaPortalPlayer mediaPortalPlayer;
+		private readonly IVideoUrlBuilder videoUrlBuilder;
 
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CameraPlayer"/> class.
 		/// </summary>
 		/// <param name="mediaPortalPlayer">The played used in MediaPortal.</param>
-		public CameraPlayer(IMediaPortalPlayer mediaPortalPlayer)
+		/// <param name="videoUrlBuilder">The video URL builder.</param>
+		public CameraPlayer(
+			IMediaPortalPlayer mediaPortalPlayer,
+			IVideoUrlBuilder videoUrlBuilder)
 		{
 			if (mediaPortalPlayer == null) throw new ArgumentNullException("mediaPortalPlayer");
+			if (videoUrlBuilder == null) throw new ArgumentNullException("videoUrlBuilder");
 
 			this.mediaPortalPlayer = mediaPortalPlayer;
+			this.videoUrlBuilder = videoUrlBuilder;
 		}
 
 
@@ -55,57 +59,15 @@ namespace AxisCameras.Player
 
 			Log.Info("Play live view from {0}", camera.Name);
 
-			string url = GetLiveVideoUrl(camera);
+			string url = videoUrlBuilder.BuildLiveVideoUrl(
+				camera.Address,
+				camera.Port,
+				camera.UserName,
+				camera.Password,
+				camera.FirmwareVersion);
 
 			// Play live view in full screen
 			mediaPortalPlayer.PlayVideoStreamInFullScreen(url, camera.Name);
-		}
-
-
-		/// <summary>
-		/// Gets the live video video URL based on specified camera.
-		/// </summary>
-		/// <param name="camera">The camera.</param>
-		/// <returns>The live video video URL based on specified camera.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes",
-			Justification = "Easier for me to catch all exceptions, instead of specifying all possible exception types.")]
-		private static string GetLiveVideoUrl(Camera camera)
-		{
-			// Try to parse firmware version
-			Version firmwareVersion;
-			try
-			{
-				firmwareVersion = new Version(camera.FirmwareVersion);
-			}
-			catch (Exception e)
-			{
-				Log.Error("Player - Unable to parse firmware version {0}, defaulting to 5.0. {1}",
-					camera.FirmwareVersion,
-					e.ToString());
-
-				// If firmware version cannot be parsed, assume it is a new beta, i.e. the VAPIX 3 live
-				// video URL should be used
-				firmwareVersion = new Version(5, 0);
-			}
-
-			// If firmware version is below 5.0 use VAPIX 2; otherwise use VAPIX 3
-			string urlFormat;
-			if (firmwareVersion.Major < 5)
-			{
-				Log.Debug("Camera firmware version is {0}, use VAPIX 2 CGI.", firmwareVersion);
-				urlFormat = Vapix.Version2.LiveVideoUrl;
-			}
-			else
-			{
-				Log.Debug("Camera firmware version is {0}, use VAPIX 3 CGI.", firmwareVersion);
-				urlFormat = Vapix.Version3.LiveVideoUrl;
-			}
-
-			return urlFormat.InvariantFormat(
-				HttpUtility.UrlEncode(camera.UserName),
-				HttpUtility.UrlEncode(camera.Password),
-				camera.Address,
-				camera.Port);
 		}
 	}
 }
