@@ -5,8 +5,11 @@
 	xmlns:mvvm="clr-namespace:AxisCameras.Mvvm;assembly=AxisCameras.Mvvm"
 	xmlns:services="clr-namespace:AxisCameras.Mvvm.Services;assembly=AxisCameras.Mvvm"
 	Title="{Binding Title}"
-	Style="{DynamicResource DialogWindow}"
 	WindowStartupLocation="CenterOwner"
+	Width="460"
+	Height="400"
+	ResizeMode="CanResize"
+	ShowInTaskbar="False"
 	services:WindowServiceBehaviors.IsRegisteredView="True">
 	
 	<!-- Resources -->
@@ -34,11 +37,12 @@
 
 				<!-- List with cameras -->
 				<ListBox
-					Height="200"
 					ItemsSource="{Binding Source={StaticResource SortedCameras}}"
-					mvvm:ListBoxBehaviors.SelectedItems="{Binding SelectedItems}"
-					DisplayMemberPath="Name"/>
-				
+					ItemTemplate="{StaticResource CameraTemplate}"
+					ItemsPanel="{StaticResource CamerasPanel}"
+					ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+					mvvm:ListBoxBehaviors.SelectedItems="{Binding SelectedItems}"/>
+
 				<!-- List buttons -->
 				<StackPanel
 					Grid.Row="1"
