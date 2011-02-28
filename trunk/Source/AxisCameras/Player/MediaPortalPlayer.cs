@@ -25,7 +25,7 @@ namespace AxisCameras.Player
 	/// <summary>
 	/// Class describing the player used in MediaPortal.
 	/// </summary>
-	class MediaPortalPlayer : IMediaPortalPlayer
+	public class MediaPortalPlayer : IMediaPortalPlayer
 	{
 		/// <summary>
 		/// Starts playing a video from specified URL in full screen.
