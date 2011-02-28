@@ -33,6 +33,7 @@ namespace AxisCameras.Configuration.Provider
 	{
 		private readonly IWindowService windowService;
 		private readonly IIOService ioService;
+		private readonly IProductInformation productInformation;
 		private readonly ICameraNameViewModelProvider cameraProvider;
 		private readonly WizardDialogViewModelProvider wizardProvider;
 
@@ -42,21 +43,25 @@ namespace AxisCameras.Configuration.Provider
 		/// </summary>
 		/// <param name="windowService">The window service.</param>
 		/// <param name="ioService">The I/O service.</param>
+		/// <param name="productInformation">The product information.</param>
 		/// <param name="cameraProvider">The camera name view model provider.</param>
 		/// <param name="wizardProvider">The wizard view model provider.</param>
 		public SetupDialogViewModelProvider(
 			IWindowService windowService,
 			IIOService ioService,
+			IProductInformation productInformation,
 			ICameraNameViewModelProvider cameraProvider,
 			WizardDialogViewModelProvider wizardProvider)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
 			if (ioService == null) throw new ArgumentNullException("ioService");
+			if (productInformation == null) throw new ArgumentNullException("productInformation");
 			if (cameraProvider == null) throw new ArgumentNullException("cameraProvider");
 			if (wizardProvider == null) throw new ArgumentNullException("wizardProvider");
 
 			this.windowService = windowService;
 			this.ioService = ioService;
+			this.productInformation = productInformation;
 			this.cameraProvider = cameraProvider;
 			this.wizardProvider = wizardProvider;
 		}
@@ -75,6 +80,7 @@ namespace AxisCameras.Configuration.Provider
 			return new SetupDialogViewModel(
 				windowService,
 				ioService,
+				productInformation,
 				cameraProvider,
 				wizardProvider,
 				cameras);

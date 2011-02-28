@@ -135,6 +135,9 @@
   <data name="RemoveCameraWarning_Title" xml:space="preserve">
     <value>Remove Camera</value>
   </data>
+  <data name="SetupDialogViewModel_Title" xml:space="preserve">
+    <value>Axis Cameras {0} - Setup</value>
+  </data>
   <data name="Validation_Failed_Address" xml:space="preserve">
     <value>Enter a network address.</value>
   </data>

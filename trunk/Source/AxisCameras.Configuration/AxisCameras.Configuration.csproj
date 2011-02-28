@@ -104,7 +104,11 @@
     <Compile Include="Service\IParameterParser.cs">
       <DependentUpon>ParameterParser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Service\IProductInformation.cs">
+      <DependentUpon>ProductInformation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Service\ParameterParser.cs" />
+    <Compile Include="Service\ProductInformation.cs" />
     <Compile Include="Service\Vapix.cs" />
     <Compile Include="ViewModel\CameraCommunicationDialogViewModel.cs" />
     <Compile Include="ViewModel\CameraNameViewModel.cs" />
