@@ -115,6 +115,15 @@ namespace AxisCameras.Configuration.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Axis Cameras {0} - Setup.
+        /// </summary>
+        internal static string SetupDialogViewModel_Title {
+            get {
+                return ResourceManager.GetString("SetupDialogViewModel_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter a network address..
         /// </summary>
         internal static string Validation_Failed_Address {

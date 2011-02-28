@@ -50,18 +50,21 @@ namespace AxisCameras.Configuration.ViewModel
 		/// </summary>
 		/// <param name="windowService">The window service.</param>
 		/// <param name="ioService">The I/O service.</param>
+		/// <param name="productInformation">The product information.</param>
 		/// <param name="cameraProvider">The camera name view model provider.</param>
 		/// <param name="wizardProvider">The wizard view model provider.</param>
 		/// <param name="cameras">The cameras.</param>
 		public SetupDialogViewModel(
 			IWindowService windowService,
 			IIOService ioService,
+			IProductInformation productInformation,
 			ICameraNameViewModelProvider cameraProvider,
 			IWizardDialogViewModelProvider wizardProvider,
 			IEnumerable<ICameraNameViewModel> cameras)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
 			if (ioService == null) throw new ArgumentNullException("ioService");
+			if (productInformation == null) throw new ArgumentNullException("productInformation");
 			if (cameraProvider == null) throw new ArgumentNullException("cameraProvider");
 			if (wizardProvider == null) throw new ArgumentNullException("wizardProvider");
 			if (cameras == null) throw new ArgumentNullException("cameras");
@@ -71,12 +74,24 @@ namespace AxisCameras.Configuration.ViewModel
 			this.cameraProvider = cameraProvider;
 			this.wizardProvider = wizardProvider;
 
+			Title = Resources.SetupDialogViewModel_Title.CurrentFormat(productInformation.Version);
+
 			Cameras = new ObservableCollection<ICameraNameViewModel>(cameras);
 			SelectedItems = new ObservableCollection<object>();
 
 			AddCommand = new RelayCommand(Add);
 			EditCommand = new RelayCommand(Edit, CanEdit);
 			RemoveCommand = new RelayCommand(Remove, CanRemove);
+		}
+
+
+		/// <summary>
+		/// Gets the title of the dialog.
+		/// </summary>
+		public string Title
+		{
+			get { return Property(() => Title); }
+			private set { Property(() => Title, value); }
 		}
 
 
