@@ -17,39 +17,26 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System.Collections.Generic;
-using System.Windows.Input;
-using AxisCameras.Configuration.ViewModel.Data;
-using AxisCameras.Mvvm;
+using System;
+using System.Diagnostics;
+using System.Threading;
 
-namespace AxisCameras.Configuration.ViewModel
+namespace AxisCameras.Configuration.Service
 {
 	/// <summary>
-	/// Interface for CameraNameViewModel.
+	/// Class responsible for opening URLs in the default browser.
 	/// </summary>
-	public interface ICameraNameViewModel : IViewModelBase
+	class BrowserService : IBrowserService
 	{
 		/// <summary>
-		/// Gets the name of the camera.
+		/// Opens specified URL in default browser.
 		/// </summary>
-		string Name { get; }
+		/// <param name="url">The URL to open.</param>
+		public void Open(string url)
+		{
+			if (string.IsNullOrEmpty(url)) throw new ArgumentNullException("url");
 
-
-		/// <summary>
-		/// Gets the snapshot.
-		/// </summary>
-		IEnumerable<byte> Snapshot { get; }
-
-
-		/// <summary>
-		/// Gets the browse command.
-		/// </summary>
-		ICommand BrowseCommand { get; }
-
-
-		/// <summary>
-		/// Gets the camera.
-		/// </summary>
-		ConfigurableCamera Camera { get; }
+			ThreadPool.QueueUserWorkItem(state => Process.Start(new ProcessStartInfo(url)));
+		}
 	}
 }
