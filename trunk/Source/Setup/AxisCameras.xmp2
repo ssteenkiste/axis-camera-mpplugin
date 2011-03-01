@@ -592,7 +592,7 @@ public class Script
           <Description>The icon file of the package (jpg,png,bmp)</Description>
         </SectionParam>
         <SectionParam Name="Online Icon">
-          <Value />
+          <Value>http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Icons/Setup_icon.png</Value>
           <ValueType>String</ValueType>
           <Description>The icon file of the package stored online (jpg,png,bmp)</Description>
         </SectionParam>
@@ -748,14 +748,14 @@ public class Script
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{d914f99c-9d24-4f43-a7a2-1aa885b4d6f1}-Welcome_left.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{baaf5c37-27e5-48c9-ade1-b75ddecf1978}-Welcome_left.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{53bcb942-33eb-4883-8381-34ad76a2d408}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{e363e766-48b8-432f-ba7e-760e33e647dc}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
@@ -803,7 +803,7 @@ public class Script
         <Recursive>true</Recursive>
       </FolderGroup>
     </FolderGroups>
-    <ProjectFilename>C:\Users\Mattias\Desktop\Axis Cameras\branches\releases\1.0.0.0\Source\Setup\AxisCameras.xmp2</ProjectFilename>
+    <ProjectFilename>C:\Users\Mattias\Desktop\Axis Cameras\trunk\Source\Setup\AxisCameras.xmp2</ProjectFilename>
     <UpdatePath1>.\update.xml</UpdatePath1>
     <UpdatePath2 />
     <UpdatePath3 />
