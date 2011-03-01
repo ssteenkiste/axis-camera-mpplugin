@@ -26,7 +26,7 @@ namespace AxisCameras.Configuration.Service
 	/// <summary>
 	/// Class describing information about the product.
 	/// </summary>
-	class ProductInformation : IProductInformation
+	public class ProductInformation : IProductInformation
 	{
 		private readonly Lazy<FileVersionInfo> fileVersionInfo;
 
