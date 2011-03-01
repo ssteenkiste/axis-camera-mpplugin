@@ -19,6 +19,9 @@
 #endregion
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Windows.Input;
+using AxisCameras.Configuration.Service;
 using AxisCameras.Configuration.ViewModel.Data;
 using AxisCameras.Data;
 using AxisCameras.Mvvm;
@@ -30,14 +33,24 @@ namespace AxisCameras.Configuration.ViewModel
 	/// </summary>
 	class CameraNameViewModel : ViewModelBase, ICameraNameViewModel
 	{
+		private const string CameraUrl = "http://{0}:{1}";
+
+		private readonly IBrowserService browserService;
+
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CameraNameViewModel"/> class.
 		/// </summary>
 		/// <param name="camera">The camera.</param>
-		public CameraNameViewModel(ConfigurableCamera camera)
+		/// <param name="browserService">The browser service.</param>
+		public CameraNameViewModel(ConfigurableCamera camera, IBrowserService browserService)
 		{
 			if (camera == null) throw new ArgumentNullException("camera");
+			if (browserService == null) throw new ArgumentNullException("browserService");
 
+			this.browserService = browserService;
+
+			BrowseCommand = new RelayCommand(Browse);
 			Camera = camera;
 		}
 
@@ -61,6 +74,16 @@ namespace AxisCameras.Configuration.ViewModel
 
 
 		/// <summary>
+		/// Gets the browse command.
+		/// </summary>
+		public ICommand BrowseCommand
+		{
+			get { return Property(() => BrowseCommand); }
+			private set { Property(() => BrowseCommand, value); }
+		}
+
+
+		/// <summary>
 		/// Gets or sets the camera.
 		/// </summary>
 		public ConfigurableCamera Camera
@@ -71,6 +94,19 @@ namespace AxisCameras.Configuration.ViewModel
 				Property(() => Camera, value);
 				OnPropertyChanged(() => Name);
 			}
+		}
+
+
+		/// <summary>
+		/// Is opening the camera's web page in default browser.
+		/// </summary>
+		private void Browse(object parameter)
+		{
+			string url = CameraUrl.InvariantFormat(
+				Camera.Address,
+				Camera.Port.ToString(CultureInfo.InvariantCulture));
+
+			browserService.Open(url);
 		}
 	}
 }

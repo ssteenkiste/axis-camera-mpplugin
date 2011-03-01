@@ -32,10 +32,13 @@
 				ToolTip="{Binding Name}"/>
 			
 			<!-- Name -->
-			<TextBlock
-				HorizontalAlignment="Center"
-				Text="{Binding Name}"
-				TextTrimming="CharacterEllipsis"/>
+			<TextBlock HorizontalAlignment="Center">
+				<Hyperlink Command="{Binding BrowseCommand}">
+					<TextBlock
+						Text="{Binding Name}"
+						TextTrimming="CharacterEllipsis"/>
+				</Hyperlink>
+			</TextBlock>
 		</StackPanel>
 	</DataTemplate>
 

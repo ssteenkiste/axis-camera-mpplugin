@@ -18,6 +18,7 @@
 
 #endregion
 using System;
+using AxisCameras.Configuration.Service;
 using AxisCameras.Configuration.ViewModel;
 using AxisCameras.Configuration.ViewModel.Data;
 using AxisCameras.Core;
@@ -29,6 +30,21 @@ namespace AxisCameras.Configuration.Provider
 	/// </summary>
 	class CameraNameViewModelProvider : ICameraNameViewModelProvider
 	{
+		private readonly IBrowserService browserService;
+
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CameraNameViewModelProvider"/> class.
+		/// </summary>
+		/// <param name="browserService">The browser service.</param>
+		public CameraNameViewModelProvider(IBrowserService browserService)
+		{
+			if (browserService == null) throw new ArgumentNullException("browserService");
+
+			this.browserService = browserService;
+		}
+
+
 		/// <summary>
 		/// Returns a ICameraNameViewModel created from a ConfigurableCamera.
 		/// </summary>
@@ -39,7 +55,7 @@ namespace AxisCameras.Configuration.Provider
 
 			Log.Debug("Provide a ICameraNameViewModel");
 
-			return new CameraNameViewModel(camera);
+			return new CameraNameViewModel(camera, browserService);
 		}
 	}
 }

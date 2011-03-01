@@ -88,9 +88,13 @@
     <Compile Include="Provider\SetupDialogViewModelProvider.cs" />
     <Compile Include="Provider\WizardDialogViewModelProvider.cs" />
     <Compile Include="Provider\WizardPageViewModelsProvider.cs" />
+    <Compile Include="Service\BrowserService.cs" />
     <Compile Include="Service\CameraCommunicationService.cs" />
     <Compile Include="Service\CurrentProcessService.cs" />
     <Compile Include="Service\GetInformationFromCameraCompletedEventArgs.cs" />
+    <Compile Include="Service\IBrowserService.cs">
+      <DependentUpon>BrowserService.cs</DependentUpon>
+    </Compile>
     <Compile Include="Service\ICameraCommunicationService.cs">
       <DependentUpon>CameraCommunicationService.cs</DependentUpon>
     </Compile>
