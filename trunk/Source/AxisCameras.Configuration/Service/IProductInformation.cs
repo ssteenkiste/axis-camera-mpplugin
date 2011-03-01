@@ -23,7 +23,7 @@ namespace AxisCameras.Configuration.Service
 	/// <summary>
 	/// Interface describing information about the product.
 	/// </summary>
-	interface IProductInformation
+	public interface IProductInformation
 	{
 		/// <summary>
 		/// Gets the product version.

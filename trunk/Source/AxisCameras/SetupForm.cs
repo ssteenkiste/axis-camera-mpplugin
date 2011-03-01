@@ -62,6 +62,15 @@ namespace AxisCameras
 
 
 		/// <summary>
+		/// Initializes a new instance of the <see cref="SetupForm"/> class.
+		/// </summary>
+		public SetupForm()
+		{
+			Log.Info("Version: {0}", new ProductInformation().Version);
+		}
+
+
+		/// <summary>
 		/// Returns the author of the plugin which is shown in the plugin menu.
 		/// </summary>
 		public string Author()

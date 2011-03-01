@@ -27,7 +27,7 @@ namespace AxisCameras.Core
 	/// </summary>
 	public static class Log
 	{
-		private const string PluginName = "AxisCameras";
+		private const string PluginName = "Axis Cameras";
 
 
 		/// <summary>
