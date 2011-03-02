@@ -52,7 +52,7 @@ namespace AxisCameras.Player
 			if (string.IsNullOrEmpty(password)) throw new ArgumentNullException("password");
 			if (string.IsNullOrEmpty(firmwareVersion)) throw new ArgumentNullException("firmwareVersion");
 
-			Version version = ParseFirmwareVersion(firmwareVersion);
+			FirmwareVersion version = ParseFirmwareVersion(firmwareVersion);
 
 			string urlFormat;
 			if (version.Major >= 5)
@@ -92,22 +92,20 @@ namespace AxisCameras.Player
 		/// </returns>
 		[SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes",
 			Justification = "Easier to catch general exception instead of specifying all unique.")]
-		private static Version ParseFirmwareVersion(string firmwareVersion)
+		private static FirmwareVersion ParseFirmwareVersion(string firmwareVersion)
 		{
-			try
+			FirmwareVersion parsedFirmwareVersion;
+			if (FirmwareVersion.TryParse(firmwareVersion, out parsedFirmwareVersion))
 			{
-				return new Version(firmwareVersion);
+				// Firmware version successfully parsed
+				return parsedFirmwareVersion;
 			}
-			catch (Exception e)
-			{
-				Log.Error("VideoUrlBuilder - Unable to parse firmware version '{0}', defaulting to 5.0. {1}",
-					firmwareVersion,
-					e.ToString());
 
-				// If firmware version cannot be parsed, assume it is a new beta, i.e. the VAPIX 3 live
-				// video URL should be used
-				return new Version(5, 0);
-			}
+			// If firmware version cannot be parsed, assume it is a new beta, i.e. the VAPIX 3 live
+			// video URL should be used
+			Log.Error("VideoUrlBuilder - Unable to parse firmware version '{0}', defaulting to 5.0.",
+				firmwareVersion);
+			return new FirmwareVersion("5.0");
 		}
 	}
 }

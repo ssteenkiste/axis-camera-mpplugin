@@ -20,6 +20,7 @@
 using System;
 using System.Reflection;
 using System.Resources;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
@@ -39,3 +40,6 @@ using System.Runtime.InteropServices;
 
 [assembly: CLSCompliant(false)]
 [assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.MainAssembly)]
+
+// Provide access to internal types and methods to test functions
+[assembly: InternalsVisibleTo("AxisCamerasTest")]

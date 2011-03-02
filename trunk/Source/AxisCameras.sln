@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCameras.Core", "AxisCam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCameras.ConfigurationTest", "AxisCameras.ConfigurationTest\AxisCameras.ConfigurationTest.csproj", "{77DE00E0-2830-4148-AC09-4172D4D71FDC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCamerasTest", "AxisCamerasTest\AxisCamerasTest.csproj", "{8B4B11CB-6CC0-40BB-875E-D29E4613BE2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{77DE00E0-2830-4148-AC09-4172D4D71FDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77DE00E0-2830-4148-AC09-4172D4D71FDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77DE00E0-2830-4148-AC09-4172D4D71FDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B4B11CB-6CC0-40BB-875E-D29E4613BE2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B4B11CB-6CC0-40BB-875E-D29E4613BE2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B4B11CB-6CC0-40BB-875E-D29E4613BE2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B4B11CB-6CC0-40BB-875E-D29E4613BE2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
