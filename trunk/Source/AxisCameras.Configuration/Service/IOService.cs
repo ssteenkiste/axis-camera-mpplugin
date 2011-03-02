@@ -19,6 +19,7 @@
 #endregion
 using System;
 using System.IO;
+using System.Windows;
 using AxisCameras.Core;
 using MediaPortal.Configuration;
 
@@ -30,6 +31,7 @@ namespace AxisCameras.Configuration.Service
 	class IOService : IIOService
 	{
 		private const string PluginFolderName = "AxisCameras";
+		private const string DefaultSnapshotUri = "/AxisCameras.Configuration;component/Resources/DefaultSnapshot.png";
 
 
 		/// <summary>
@@ -54,7 +56,17 @@ namespace AxisCameras.Configuration.Service
 
 			Log.Debug("Get thumb from camera with id {0}", cameraId);
 
-			return File.ReadAllBytes(GetThumbFileName(cameraId));
+			string thumbFileName = GetThumbFileName(cameraId);
+			if (File.Exists(thumbFileName))
+			{
+				return File.ReadAllBytes(thumbFileName);
+			}
+
+			Log.Warn(
+				"Snapshot of camera with ID {0} has been removed from disk, returning default.",
+				cameraId);
+
+			return ReadBytesFromResource(DefaultSnapshotUri);
 		}
 
 
@@ -106,6 +118,28 @@ namespace AxisCameras.Configuration.Service
 				Config.Dir.Thumbs,
 				PluginFolderName,
 				cameraId + ".jpg");
+		}
+
+
+		/// <summary>
+		/// Returns the bytes in specified resource.
+		/// </summary>
+		/// <param name="uri">The URI of the resource.</param>
+		private static byte[] ReadBytesFromResource(string uri)
+		{
+			using (Stream resourceStream = Application.GetResourceStream(new Uri(uri, UriKind.Relative)).Stream)
+			using (MemoryStream memoryStream = new MemoryStream())
+			{
+				byte[] buffer = new byte[1024];
+				
+				int bytesRead;
+				while ((bytesRead = resourceStream.Read(buffer, 0, buffer.Length)) > 0)
+				{
+					memoryStream.Write(buffer, 0, bytesRead);
+				}
+
+				return memoryStream.ToArray();
+			}
 		}
 	}
 }

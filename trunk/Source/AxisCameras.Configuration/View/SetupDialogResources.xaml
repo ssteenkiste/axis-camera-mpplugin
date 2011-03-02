@@ -21,9 +21,13 @@
 	
 	<!-- A camera template -->
 	<DataTemplate x:Key="CameraTemplate">
-		<StackPanel
-			Margin="3"
-			Width="125">
+		<Grid Margin="3">
+			
+			<!-- Row definitions -->
+			<Grid.RowDefinitions>
+				<RowDefinition Height="100"/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
 			
 			<!-- Snapshot -->
 			<Image
@@ -32,14 +36,16 @@
 				ToolTip="{Binding Name}"/>
 			
 			<!-- Name -->
-			<TextBlock HorizontalAlignment="Center">
+			<TextBlock
+				Grid.Row="1"
+				HorizontalAlignment="Center">
 				<Hyperlink Command="{Binding BrowseCommand}">
 					<TextBlock
 						Text="{Binding Name}"
 						TextTrimming="CharacterEllipsis"/>
 				</Hyperlink>
 			</TextBlock>
-		</StackPanel>
+		</Grid>
 	</DataTemplate>
 
 	<!-- The cameras panel -->
