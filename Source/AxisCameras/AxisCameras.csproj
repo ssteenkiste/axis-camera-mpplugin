@@ -67,6 +67,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="NetworkConfiguration.cs" />
     <Compile Include="Player\CameraPlayer.cs" />
+    <Compile Include="Player\FirmwareVersion.cs" />
     <Compile Include="Player\ICameraPlayer.cs">
       <DependentUpon>CameraPlayer.cs</DependentUpon>
     </Compile>
