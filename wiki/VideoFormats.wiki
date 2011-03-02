@@ -1,4 +1,4 @@
-#summary Video formats
+#summary A quick walkthrough on the different video formats used by the plugin.
 #labels Featured,Phase-Deploy
 
 = Live video formats =
