@@ -144,8 +144,7 @@ namespace AxisCameras.Mvvm
 
 
 		/// <summary>
-		/// Represents the method that will handle the PropertyChanged event raised when a property is
-		/// changed on a component.
+		/// Sends a property changed notification on specified property of this view model.
 		/// </summary>
 		/// <typeparam name="T">The property type.</typeparam>
 		/// <param name="nameExpression">The expression pointing to the property.</param>
@@ -157,16 +156,24 @@ namespace AxisCameras.Mvvm
 
 
 		/// <summary>
-		/// Represents the method that will handle the PropertyChanged event raised when a property is
-		/// changed on a component.
+		/// Sends a property changed notification on specified properties of this view model.
 		/// </summary>
-		/// <param name="propertyNames"></param>
+		/// <param name="propertyNames">The properties to send notifications on.</param>
 		protected void OnPropertiesChanged(IEnumerable<string> propertyNames)
 		{
 			foreach (string propertyName in propertyNames)
 			{
 				OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
 			}
+		}
+
+
+		/// <summary>
+		/// Sends a property changed notification on all properties of this view model.
+		/// </summary>
+		protected void OnAllPropertiesChanged()
+		{
+			OnPropertyChanged(new PropertyChangedEventArgs(string.Empty));
 		}
 
 

@@ -92,7 +92,7 @@ namespace AxisCameras.Configuration.ViewModel
 			set
 			{
 				Property(() => Camera, value);
-				OnPropertyChanged(() => Name);
+				OnAllPropertiesChanged();
 			}
 		}
 
