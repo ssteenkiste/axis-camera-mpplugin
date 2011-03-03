@@ -41,7 +41,7 @@ namespace AxisCameras.Configuration.ViewModel
 	{
 		private readonly IWindowService windowService;
 		private readonly IIOService ioService;
-		private readonly ICameraNameViewModelProvider cameraProvider;
+		private readonly ICameraViewModelProvider cameraProvider;
 		private readonly IWizardDialogViewModelProvider wizardProvider;
 
 
@@ -58,9 +58,9 @@ namespace AxisCameras.Configuration.ViewModel
 			IWindowService windowService,
 			IIOService ioService,
 			IProductInformation productInformation,
-			ICameraNameViewModelProvider cameraProvider,
+			ICameraViewModelProvider cameraProvider,
 			IWizardDialogViewModelProvider wizardProvider,
-			IEnumerable<ICameraNameViewModel> cameras)
+			IEnumerable<ICameraViewModel> cameras)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
 			if (ioService == null) throw new ArgumentNullException("ioService");
@@ -76,7 +76,7 @@ namespace AxisCameras.Configuration.ViewModel
 
 			Title = Resources.SetupDialogViewModel_Title.CurrentFormat(productInformation.Version);
 
-			Cameras = new ObservableCollection<ICameraNameViewModel>(cameras);
+			Cameras = new ObservableCollection<ICameraViewModel>(cameras);
 			SelectedItems = new ObservableCollection<object>();
 
 			AddCommand = new RelayCommand(Add);
@@ -98,7 +98,7 @@ namespace AxisCameras.Configuration.ViewModel
 		/// <summary>
 		/// Gets the cameras.
 		/// </summary>
-		public ObservableCollection<ICameraNameViewModel> Cameras
+		public ObservableCollection<ICameraViewModel> Cameras
 		{
 			get { return Property(() => Cameras); }
 			private set { Property(() => Cameras, value); }
@@ -174,7 +174,7 @@ namespace AxisCameras.Configuration.ViewModel
 		/// </summary>
 		private void Edit(object parameter)
 		{
-			CameraNameViewModel selectedViewModel = (CameraNameViewModel)SelectedItems.Single();
+			CameraViewModel selectedViewModel = (CameraViewModel)SelectedItems.Single();
 
 			IWizardDialogViewModel wizard = wizardProvider.Provide(
 				Resources.EditCamera_Title,
@@ -213,7 +213,7 @@ namespace AxisCameras.Configuration.ViewModel
 
 			if (result == MessageBoxResult.Yes)
 			{
-				ICameraNameViewModel camera = (ICameraNameViewModel)SelectedItems.Single();
+				ICameraViewModel camera = (ICameraViewModel)SelectedItems.Single();
 
 				Log.Debug("Removed camera {0}", camera.Camera.Name);
 

@@ -34,7 +34,7 @@ namespace AxisCameras.Configuration.Provider
 		private readonly IWindowService windowService;
 		private readonly IIOService ioService;
 		private readonly IProductInformation productInformation;
-		private readonly ICameraNameViewModelProvider cameraProvider;
+		private readonly ICameraViewModelProvider cameraProvider;
 		private readonly WizardDialogViewModelProvider wizardProvider;
 
 
@@ -50,7 +50,7 @@ namespace AxisCameras.Configuration.Provider
 			IWindowService windowService,
 			IIOService ioService,
 			IProductInformation productInformation,
-			ICameraNameViewModelProvider cameraProvider,
+			ICameraViewModelProvider cameraProvider,
 			WizardDialogViewModelProvider wizardProvider)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
@@ -71,7 +71,7 @@ namespace AxisCameras.Configuration.Provider
 		/// Returns a ISetupDialogViewModel.
 		/// </summary>
 		/// <param name="cameras">The cameras.</param>
-		public ISetupDialogViewModel Provide(IEnumerable<ICameraNameViewModel> cameras)
+		public ISetupDialogViewModel Provide(IEnumerable<ICameraViewModel> cameras)
 		{
 			if (cameras == null) throw new ArgumentNullException("cameras");
 

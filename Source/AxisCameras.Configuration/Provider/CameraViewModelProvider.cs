@@ -26,18 +26,18 @@ using AxisCameras.Core;
 namespace AxisCameras.Configuration.Provider
 {
 	/// <summary>
-	/// Class describing a provider that provides a ICameraNameViewModel.
+	/// Class describing a provider that provides a ICameraViewModel.
 	/// </summary>
-	class CameraNameViewModelProvider : ICameraNameViewModelProvider
+	class CameraViewModelProvider : ICameraViewModelProvider
 	{
 		private readonly IBrowserService browserService;
 
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="CameraNameViewModelProvider"/> class.
+		/// Initializes a new instance of the <see cref="CameraViewModelProvider"/> class.
 		/// </summary>
 		/// <param name="browserService">The browser service.</param>
-		public CameraNameViewModelProvider(IBrowserService browserService)
+		public CameraViewModelProvider(IBrowserService browserService)
 		{
 			if (browserService == null) throw new ArgumentNullException("browserService");
 
@@ -46,16 +46,16 @@ namespace AxisCameras.Configuration.Provider
 
 
 		/// <summary>
-		/// Returns a ICameraNameViewModel created from a ConfigurableCamera.
+		/// Returns a ICameraViewModel created from a ConfigurableCamera.
 		/// </summary>
-		/// <param name="camera">The camera to turn into a ICameraNameViewModel.</param>
-		public ICameraNameViewModel Provide(ConfigurableCamera camera)
+		/// <param name="camera">The camera to turn into a ICameraViewModel.</param>
+		public ICameraViewModel Provide(ConfigurableCamera camera)
 		{
 			if (camera == null) throw new ArgumentNullException("camera");
 
-			Log.Debug("Provide a ICameraNameViewModel");
+			Log.Debug("Provide a ICameraViewModel");
 
-			return new CameraNameViewModel(camera, browserService);
+			return new CameraViewModel(camera, browserService);
 		}
 	}
 }

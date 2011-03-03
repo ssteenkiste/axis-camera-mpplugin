@@ -31,6 +31,6 @@ namespace AxisCameras.Configuration.Provider
 		/// Returns a ISetupDialogViewModel.
 		/// </summary>
 		/// <param name="cameras">The cameras.</param>
-		ISetupDialogViewModel Provide(IEnumerable<ICameraNameViewModel> cameras);
+		ISetupDialogViewModel Provide(IEnumerable<ICameraViewModel> cameras);
 	}
 }
