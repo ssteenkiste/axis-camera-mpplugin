@@ -81,10 +81,10 @@ namespace AxisCameras.Configuration.Service
 			parameterState.Client.Credentials = new NetworkCredential(
 				networkEndpoint.UserName,
 				networkEndpoint.Password);
-			Uri parameterUri = new Uri(Vapix.ParameterCgi.InvariantFormat(
+			Uri parameterUri = new Uri(Vapix.Cgi.Parameter.InvariantFormat(
 				networkEndpoint.Address,
 				networkEndpoint.Port,
-				string.Join(",", new[] { Vapix.FriendlyName, Vapix.FirmwareVersion })));
+				string.Join(",", new[] { Vapix.Parameters.FriendlyName, Vapix.Parameters.FirmwareVersion })));
 			parameterState.Client.DownloadStringAsync(parameterUri);
 
 			// Download snapshot
@@ -92,7 +92,7 @@ namespace AxisCameras.Configuration.Service
 			snapshotState.Client.Credentials = new NetworkCredential(
 				networkEndpoint.UserName,
 				networkEndpoint.Password);
-			Uri snapshotUri = new Uri(Vapix.SnapshotCgi.InvariantFormat(
+			Uri snapshotUri = new Uri(Vapix.Cgi.Snapshot.InvariantFormat(
 				networkEndpoint.Address,
 				networkEndpoint.Port));
 			snapshotState.Client.DownloadDataAsync(snapshotUri);
@@ -152,13 +152,13 @@ namespace AxisCameras.Configuration.Service
 				parameterState.Result = new Parameters();
 
 				IDictionary<string, string> parameters = parameterParser.Parse(e.Result);
-				if (parameters.ContainsKey(Vapix.FriendlyName))
+				if (parameters.ContainsKey(Vapix.Parameters.FriendlyName))
 				{
-					parameterState.Result.FriendlyName = parameters[Vapix.FriendlyName];
+					parameterState.Result.FriendlyName = parameters[Vapix.Parameters.FriendlyName];
 				}
-				if (parameters.ContainsKey(Vapix.FirmwareVersion))
+				if (parameters.ContainsKey(Vapix.Parameters.FirmwareVersion))
 				{
-					parameterState.Result.FirmwareVersion = parameters[Vapix.FirmwareVersion];
+					parameterState.Result.FirmwareVersion = parameters[Vapix.Parameters.FirmwareVersion];
 				}
 			}
 

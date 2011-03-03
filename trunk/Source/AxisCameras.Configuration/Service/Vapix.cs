@@ -27,26 +27,44 @@ namespace AxisCameras.Configuration.Service
 	static class Vapix
 	{
 		/// <summary>
-		/// Gets CGI for listing parameters.
+		/// Class containing the VAPIX CGI.
 		/// </summary>
-		public const string ParameterCgi = "http://{0}:{1}/axis-cgi/admin/param.cgi?action=list&group={2}";
+		public static class Cgi
+		{
+			/// <summary>
+			/// Gets CGI for listing parameters.
+			/// </summary>
+			public const string Parameter = "http://{0}:{1}/axis-cgi/admin/param.cgi?action=list&group={2}";
+
+
+			/// <summary>
+			/// Gets CGI for requesting a snapshot.
+			/// </summary>
+			public const string Snapshot = "http://{0}:{1}/axis-cgi/jpg/image.cgi";
+		}
 
 
 		/// <summary>
-		/// Gets CGI for requesting a snapshot.
+		/// Class containing the camera parameters.
 		/// </summary>
-		public const string SnapshotCgi = "http://{0}:{1}/axis-cgi/jpg/image.cgi";
+		public static class Parameters
+		{
+			/// <summary>
+			/// Gets UPnP friendly name parameter name.
+			/// </summary>
+			public const string FriendlyName = "Network.UPnP.FriendlyName";
 
 
-		/// <summary>
-		/// Gets UPnP friendly name parameter name.
-		/// </summary>
-		public const string FriendlyName = "Network.UPnP.FriendlyName";
+			/// <summary>
+			/// Gets firmware version parameter name.
+			/// </summary>
+			public const string FirmwareVersion = "Properties.Firmware.Version";
 
 
-		/// <summary>
-		/// Gets firmware version parameter name.
-		/// </summary>
-		public const string FirmwareVersion = "Properties.Firmware.Version";
+			/// <summary>
+			/// Gets number of video sources parameter name.
+			/// </summary>
+			public const string NbrOfImageSources = "ImageSource.NbrOfSources";
+		}
 	}
 }
