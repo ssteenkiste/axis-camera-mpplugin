@@ -61,17 +61,11 @@ namespace AxisCameras.Player
 				Log.Debug("Camera firmware version is {0}, use H.264.", firmwareVersion);
 				urlFormat = Vapix.Version3.H264VideoUrl;
 			}
-			else if (version.Major >= 4)
-			{
-				// Firmware version 4.0 or newer means that the camera supports MPEG-4
-				Log.Debug("Camera firmware version is {0}, use MPEG-4.", firmwareVersion);
-				urlFormat = Vapix.Version2.Mpeg4VideoUrl;
-			}
 			else
 			{
-				// Firmware version older than 4.0 means that the camera supports M-JPEG
-				Log.Debug("Camera firmware version is {0}, use M-JPEG.", firmwareVersion);
-				urlFormat = Vapix.Version2.MjpegVideoUrl;
+				// Firmware version below 5.0 means that the camera supports MPEG-4
+				Log.Debug("Camera firmware version is {0}, use MPEG-4.", firmwareVersion);
+				urlFormat = Vapix.Version2.Mpeg4VideoUrl;
 			}
 
 			return urlFormat.InvariantFormat(
