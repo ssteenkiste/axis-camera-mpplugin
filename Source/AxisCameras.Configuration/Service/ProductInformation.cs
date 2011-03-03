@@ -18,6 +18,7 @@
 
 #endregion
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using AxisCameras.Core;
 
@@ -44,6 +45,8 @@ namespace AxisCameras.Configuration.Service
 		/// <summary>
 		/// Gets the product version.
 		/// </summary>
+		[SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands",
+			Justification = "I am not sure on how to fix this actually.")]
 		public string Version
 		{
 			get { return fileVersionInfo.Value.ProductVersion; }
