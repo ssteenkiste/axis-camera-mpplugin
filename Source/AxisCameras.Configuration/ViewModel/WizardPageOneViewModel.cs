@@ -197,9 +197,16 @@ namespace AxisCameras.Configuration.ViewModel
 				// Was communication with camera successful?
 				if (success == true)
 				{
-					friendlyName = communicationViewModel.FriendlyName;
+					// Only update friendly name and snapshot if user redirected camera to another address or
+					// port, i.e. don't update if only new credentials were entered
+					if (dirtyState.IsNetworkSettingsDirty(Address, Port))
+					{
+						friendlyName = communicationViewModel.FriendlyName;
+						snapshot = communicationViewModel.Snapshot;
+					}
+
+					// Update firmware version regardless, it won't hurt
 					firmwareVersion = communicationViewModel.FirmwareVersion;
-					snapshot = communicationViewModel.Snapshot;
 				}
 				else
 				{
@@ -279,6 +286,20 @@ namespace AxisCameras.Configuration.ViewModel
 					oldPort != newPort ||
 					oldUserName != newUserName ||
 					oldPassword != newPassword;
+			}
+
+
+			/// <summary>
+			/// Determines whether any of the network properties, i.e. address or port, are dirty.
+			/// </summary>
+			/// <param name="newAddress">The new address.</param>
+			/// <param name="newPort">The new port.</param>
+			/// <returns>true if any of the network properties are dirty; otherwise false.</returns>
+			public bool IsNetworkSettingsDirty(string newAddress, string newPort)
+			{
+				return
+					oldAddress != newAddress ||
+					oldPort != newPort;
 			}
 		}
 	}
