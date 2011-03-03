@@ -42,7 +42,7 @@ namespace AxisCameras.Configuration
 		private readonly Func<Owned<IPluginSettings>> pluginSettingsProvider;
 		private readonly ISetupDialogViewModelProvider setupProvider;
 		private readonly ICameraConverter cameraConverter;
-		private readonly ICameraNameViewModelProvider cameraViewModelProvider;
+		private readonly ICameraViewModelProvider cameraViewModelProvider;
 
 
 		/// <summary>
@@ -62,7 +62,7 @@ namespace AxisCameras.Configuration
 			Func<Owned<IPluginSettings>> pluginSettingsProvider,
 			ISetupDialogViewModelProvider setupProvider,
 			ICameraConverter cameraConverter,
-			ICameraNameViewModelProvider cameraViewModelProvider)
+			ICameraViewModelProvider cameraViewModelProvider)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
 			if (pluginSettingsProvider == null) throw new ArgumentNullException("pluginSettingsProvider");
@@ -89,7 +89,7 @@ namespace AxisCameras.Configuration
 
 			using (Owned<IPluginSettings> pluginSettings = pluginSettingsProvider())
 			{
-				IEnumerable<ICameraNameViewModel> cameraViewModels =
+				IEnumerable<ICameraViewModel> cameraViewModels =
 					from camera in pluginSettings.Value.Cameras
 					let configurableCamera = cameraConverter.ToConfigurableCamera(camera)
 					select cameraViewModelProvider.Provide(configurableCamera);

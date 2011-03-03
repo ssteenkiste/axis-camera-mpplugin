@@ -31,7 +31,7 @@ namespace AxisCameras.Configuration.ViewModel
 	/// <summary>
 	/// Class acting as view model when displaying a camera by its name.
 	/// </summary>
-	class CameraNameViewModel : ViewModelBase, ICameraNameViewModel
+	class CameraViewModel : ViewModelBase, ICameraViewModel
 	{
 		private const string CameraUrl = "http://{0}:{1}";
 
@@ -39,11 +39,11 @@ namespace AxisCameras.Configuration.ViewModel
 
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="CameraNameViewModel"/> class.
+		/// Initializes a new instance of the <see cref="CameraViewModel"/> class.
 		/// </summary>
 		/// <param name="camera">The camera.</param>
 		/// <param name="browserService">The browser service.</param>
-		public CameraNameViewModel(ConfigurableCamera camera, IBrowserService browserService)
+		public CameraViewModel(ConfigurableCamera camera, IBrowserService browserService)
 		{
 			if (camera == null) throw new ArgumentNullException("camera");
 			if (browserService == null) throw new ArgumentNullException("browserService");

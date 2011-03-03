@@ -25,9 +25,9 @@ using AxisCameras.Mvvm;
 namespace AxisCameras.Configuration.ViewModel
 {
 	/// <summary>
-	/// Interface for CameraNameViewModel.
+	/// Interface for CameraViewModel.
 	/// </summary>
-	public interface ICameraNameViewModel : IViewModelBase
+	public interface ICameraViewModel : IViewModelBase
 	{
 		/// <summary>
 		/// Gets the name of the camera.

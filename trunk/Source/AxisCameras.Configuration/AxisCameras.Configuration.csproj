@@ -65,7 +65,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Provider\CameraCommunicationDialogViewModelProvider.cs" />
-    <Compile Include="Provider\CameraNameViewModelProvider.cs" />
+    <Compile Include="Provider\CameraViewModelProvider.cs" />
     <Compile Include="Provider\CameraConverter.cs" />
     <Compile Include="Provider\ICameraConverter.cs">
       <DependentUpon>CameraConverter.cs</DependentUpon>
@@ -73,8 +73,8 @@
     <Compile Include="Provider\ICameraCommunicationDialogViewModelProvider.cs">
       <DependentUpon>CameraCommunicationDialogViewModelProvider.cs</DependentUpon>
     </Compile>
-    <Compile Include="Provider\ICameraNameViewModelProvider.cs">
-      <DependentUpon>CameraNameViewModelProvider.cs</DependentUpon>
+    <Compile Include="Provider\ICameraViewModelProvider.cs">
+      <DependentUpon>CameraViewModelProvider.cs</DependentUpon>
     </Compile>
     <Compile Include="Provider\ISetupDialogViewModelProvider.cs">
       <DependentUpon>SetupDialogViewModelProvider.cs</DependentUpon>
@@ -115,13 +115,13 @@
     <Compile Include="Service\ProductInformation.cs" />
     <Compile Include="Service\Vapix.cs" />
     <Compile Include="ViewModel\CameraCommunicationDialogViewModel.cs" />
-    <Compile Include="ViewModel\CameraNameViewModel.cs" />
+    <Compile Include="ViewModel\CameraViewModel.cs" />
     <Compile Include="ViewModel\Data\ConfigurableCamera.cs" />
     <Compile Include="ViewModel\ICameraCommunicationDialogViewModel.cs">
       <DependentUpon>CameraCommunicationDialogViewModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\ICameraNameViewModel.cs">
-      <DependentUpon>CameraNameViewModel.cs</DependentUpon>
+    <Compile Include="ViewModel\ICameraViewModel.cs">
+      <DependentUpon>CameraViewModel.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\ISetupDialogViewModel.cs">
       <DependentUpon>SetupDialogViewModel.cs</DependentUpon>

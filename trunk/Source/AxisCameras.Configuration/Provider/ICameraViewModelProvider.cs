@@ -23,14 +23,14 @@ using AxisCameras.Configuration.ViewModel.Data;
 namespace AxisCameras.Configuration.Provider
 {
 	/// <summary>
-	/// Interface describing a provider that provides a ICameraNameViewModel.
+	/// Interface describing a provider that provides a ICameraViewModel.
 	/// </summary>
-	public interface ICameraNameViewModelProvider
+	public interface ICameraViewModelProvider
 	{
 		/// <summary>
-		/// Returns a ICameraNameViewModel created from a ConfigurableCamera.
+		/// Returns a ICameraViewModel created from a ConfigurableCamera.
 		/// </summary>
-		/// <param name="camera">The camera to turn into a ICameraNameViewModel.</param>
-		ICameraNameViewModel Provide(ConfigurableCamera camera);
+		/// <param name="camera">The camera to turn into a ICameraViewModel.</param>
+		ICameraViewModel Provide(ConfigurableCamera camera);
 	}
 }

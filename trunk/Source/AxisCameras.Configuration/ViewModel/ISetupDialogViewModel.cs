@@ -30,6 +30,6 @@ namespace AxisCameras.Configuration.ViewModel
 		/// <summary>
 		/// Gets the cameras.
 		/// </summary>
-		ObservableCollection<ICameraNameViewModel> Cameras { get; }
+		ObservableCollection<ICameraViewModel> Cameras { get; }
 	}
 }
