@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{67CFC722-5331-4E93-AFAA-6256812CB246}</ProjectGuid>
+    <ProjectGuid>{67B2C614-6B13-4577-BDBC-0F9C7487FB9B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AxisCameras.Configuration.Starter</RootNamespace>
@@ -37,13 +37,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>AxisCameras.Configuration.Starter.App</StartupObject>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac">
-      <HintPath>..\Externals\Autofac\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="Core, Version=1.1.2.20593, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="Core">
       <HintPath>..\Externals\MediaPortal\Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -70,30 +68,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <None Include="app.config" />
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AxisCameras.Configuration\AxisCameras.Configuration.csproj">
-      <Project>{A9EB29F7-45D9-4528-AD57-98CCECFC5E51}</Project>
-      <Name>AxisCameras.Configuration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AxisCameras.Core\AxisCameras.Core.csproj">
-      <Project>{BA65EA0C-E460-437E-A56C-CCF118D3DBE0}</Project>
-      <Name>AxisCameras.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AxisCameras.Mvvm\AxisCameras.Mvvm.csproj">
-      <Project>{442C117D-98D8-41A8-843B-716B66D60B97}</Project>
-      <Name>AxisCameras.Mvvm</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AxisCameras\AxisCameras.csproj">
       <Project>{A2B1464E-D965-4DE3-8EA2-5E4463E40262}</Project>
       <Name>AxisCameras</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
