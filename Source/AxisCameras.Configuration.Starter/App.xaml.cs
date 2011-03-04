@@ -18,7 +18,7 @@
 
 #endregion
 using System.Windows;
-using Autofac;
+using AxisCameras;
 
 namespace AxisCameras.Configuration.Starter
 {
