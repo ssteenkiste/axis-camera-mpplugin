@@ -24,7 +24,6 @@ using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 using AxisCameras.Core;
-using MediaPortal.Configuration;
 using MediaPortal.Profile;
 
 namespace AxisCameras.Data
@@ -34,19 +33,22 @@ namespace AxisCameras.Data
 	/// </summary>
 	public class PluginSettings : IPluginSettings
 	{
-		private const string FileName = "AxisCameras.xml";
-		private const string CameraSection = "camera";
-		private const string CamerasEntry = "cameras";
-
+		private readonly IDataPersistenceInformation dataPersistenceInformation;
 		private Settings settings;
 
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="PluginSettings"/> class.
 		/// </summary>
-		public PluginSettings()
+		/// <param name="dataPersistenceInformation">
+		/// Information of how the settings are persisted.
+		/// </param>
+		public PluginSettings(IDataPersistenceInformation dataPersistenceInformation)
 		{
-			settings = new Settings(Config.GetFile(Config.Dir.Config, FileName));
+			if (dataPersistenceInformation == null) throw new ArgumentNullException("dataPersistenceInformation");
+
+			this.dataPersistenceInformation = dataPersistenceInformation;
+			settings = new Settings(dataPersistenceInformation.FileName);
 		}
 
 
@@ -67,7 +69,9 @@ namespace AxisCameras.Data
 		{
 			Log.Debug("Getting cameras from disk");
 
-			string value = settings.GetValue(CameraSection, CamerasEntry);
+			string value = settings.GetValue(
+				dataPersistenceInformation.CameraSection,
+				dataPersistenceInformation.CamerasEntry);
 
 			if (!string.IsNullOrEmpty(value))
 			{
@@ -98,7 +102,10 @@ namespace AxisCameras.Data
 				XmlSerializer serializer = new XmlSerializer(typeof(List<Camera>));
 				serializer.Serialize(writer, cameras.ToList());
 
-				settings.SetValue(CameraSection, CamerasEntry, writer.ToString());
+				settings.SetValue(
+					dataPersistenceInformation.CameraSection,
+					dataPersistenceInformation.CamerasEntry,
+					writer.ToString());
 			}
 		}
 
