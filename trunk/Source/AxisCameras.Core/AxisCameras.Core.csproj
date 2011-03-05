@@ -51,7 +51,6 @@
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ISingleInstance.cs" />
-    <Compile Include="Lazy.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -17,10 +17,10 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
-using AxisCameras.Core;
 
 namespace AxisCameras.Configuration.Service
 {
