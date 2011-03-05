@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCamerasTest", "AxisCame
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCameras.Configuration.Starter", "AxisCameras.Configuration.Starter\AxisCameras.Configuration.Starter.csproj", "{67B2C614-6B13-4577-BDBC-0F9C7487FB9B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCameras.DataTest", "AxisCameras.DataTest\AxisCameras.DataTest.csproj", "{3EDF16AB-0ED4-4C8C-BB1E-28FAF6B469D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,16 @@ Global
 		{67B2C614-6B13-4577-BDBC-0F9C7487FB9B}.Release|Mixed Platforms.Build.0 = Release|x86
 		{67B2C614-6B13-4577-BDBC-0F9C7487FB9B}.Release|x86.ActiveCfg = Release|x86
 		{67B2C614-6B13-4577-BDBC-0F9C7487FB9B}.Release|x86.Build.0 = Release|x86
+		{3EDF16AB-0ED4-4C8C-BB1E-28FAF6B469D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EDF16AB-0ED4-4C8C-BB1E-28FAF6B469D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EDF16AB-0ED4-4C8C-BB1E-28FAF6B469D7}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3EDF16AB-0ED4-4C8C-BB1E-28FAF6B469D7}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3EDF16AB-0ED4-4C8C-BB1E-28FAF6B469D7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3EDF16AB-0ED4-4C8C-BB1E-28FAF6B469D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EDF16AB-0ED4-4C8C-BB1E-28FAF6B469D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EDF16AB-0ED4-4C8C-BB1E-28FAF6B469D7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3EDF16AB-0ED4-4C8C-BB1E-28FAF6B469D7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3EDF16AB-0ED4-4C8C-BB1E-28FAF6B469D7}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
