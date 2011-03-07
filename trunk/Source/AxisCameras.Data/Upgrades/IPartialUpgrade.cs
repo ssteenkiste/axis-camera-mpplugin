@@ -17,10 +17,30 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System.Diagnostics.CodeAnalysis;
 
-[module: SuppressMessage("Microsoft.Design", "CA2210:AssembliesShouldHaveValidStrongNames")]
-[module: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "AxisCameras.Data")]
-[module: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "AxisCameras.Data.IO")]
-[module: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "AxisCameras.Data.MediaPortal")]
-[module: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "AxisCameras.Data.Upgrades")]
+namespace AxisCameras.Data.Upgrades
+{
+	/// <summary>
+	/// Interface describing a partial upgrade between two consecutive versions.
+	/// </summary>
+	public interface IPartialUpgrade
+	{
+		/// <summary>
+		/// Gets the version before the upgrade.
+		/// </summary>
+		int FromVersion { get; }
+
+
+		/// <summary>
+		/// Gets the version after the upgrade.
+		/// </summary>
+		int ToVersion { get; }
+
+
+		/// <summary>
+		/// Upgrades the data.
+		/// </summary>
+		/// <returns>true if upgrade was successful; otherwise false.</returns>
+		bool Upgrade();
+	}
+}

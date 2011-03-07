@@ -21,24 +21,20 @@
 namespace AxisCameras.Data
 {
 	/// <summary>
-	/// Interface describing how the settings are persisted.
+	/// Interface responsible for upgrading the data between version of the plugin.
 	/// </summary>
-	public interface IDataPersistenceInformation
+	public interface IUpgradeData
 	{
 		/// <summary>
-		/// Gets the file name of settings.
+		/// Gets a value indicating whether upgrading the data is required.
 		/// </summary>
-		string FileName { get; }
-
-		/// <summary>
-		/// Gets the name of the section in the persisted file where the cameras are saved.
-		/// </summary>
-		string CameraSection { get; }
+		bool IsUpgradeRequired { get; }
 
 
 		/// <summary>
-		/// Gets the name of the entry in the persisted file where the cameras are saved.
+		/// Upgrades the data.
 		/// </summary>
-		string CamerasEntry { get; }
+		/// <returns>true if upgrade was successful; otherwise false.</returns>
+		bool Upgrade();
 	}
 }

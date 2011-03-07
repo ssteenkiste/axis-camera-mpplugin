@@ -17,10 +17,25 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System.Diagnostics.CodeAnalysis;
 
-[module: SuppressMessage("Microsoft.Design", "CA2210:AssembliesShouldHaveValidStrongNames")]
-[module: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "AxisCameras.Data")]
-[module: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "AxisCameras.Data.IO")]
-[module: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "AxisCameras.Data.MediaPortal")]
-[module: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "AxisCameras.Data.Upgrades")]
+namespace AxisCameras.Data.IO
+{
+	/// <summary>
+	/// Interface responsible for I/O operations.
+	/// </summary>
+	public interface IIOService
+	{
+		/// <summary>
+		/// Determines whether the specified file exists.
+		/// </summary>
+		/// <param name="path">The file to check.</param>
+		/// <returns>
+		/// true if the caller has the required permissions and path contains the name of an existing
+		/// file; otherwise, false. This method also returns false if path is null, an invalid path, or
+		/// a zero-length string. If the caller does not have sufficient permissions to read the
+		/// specified file, no exception is thrown and the method returns false regardless of the
+		/// existence of path.
+		/// </returns>
+		bool FileExists(string path);
+	}
+}

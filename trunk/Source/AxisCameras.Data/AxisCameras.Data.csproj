@@ -49,14 +49,25 @@
     <Compile Include="Camera.cs" />
     <Compile Include="DataPersistenceInformation.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="IDataPersistenceInformation.cs">
-      <DependentUpon>DataPersistenceInformation.cs</DependentUpon>
+    <Compile Include="IO\IIOService.cs">
+      <DependentUpon>IOService.cs</DependentUpon>
     </Compile>
+    <Compile Include="IO\IOService.cs" />
+    <Compile Include="Upgrades\IPartialUpgrade.cs" />
     <Compile Include="IPluginSettings.cs">
       <DependentUpon>PluginSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="IUpgradeData.cs">
+      <DependentUpon>UpgradeData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MediaPortal\ISettings.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MediaPortal\Settings.cs" />
     <Compile Include="PluginSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UpgradeData.cs" />
+    <Compile Include="Upgrades\UpgradeChainException.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AxisCameras.Core\AxisCameras.Core.csproj">
