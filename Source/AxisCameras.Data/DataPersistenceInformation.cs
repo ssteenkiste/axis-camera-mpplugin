@@ -24,32 +24,47 @@ namespace AxisCameras.Data
 	/// <summary>
 	/// Class describing how the settings are persisted.
 	/// </summary>
-	public class DataPersistenceInformation : IDataPersistenceInformation
+	internal static class DataPersistenceInformation
 	{
 		/// <summary>
-		/// Gets the file name of settings.
+		/// Gets the file name where the data is persisted.
 		/// </summary>
-		public string FileName
+		internal static readonly string FileName = Config.GetFile(Config.Dir.Config, "AxisCameras.xml");
+
+
+		/// <summary>
+		/// Class describing the camera section.
+		/// </summary>
+		internal static class CameraSection
 		{
-			get { return Config.GetFile(Config.Dir.Config, "AxisCameras.xml"); }
+			/// <summary>
+			/// Gets the name of the section.
+			/// </summary>
+			internal const string Name = "camera";
+
+
+			/// <summary>
+			/// Gets the name of the entry in the persisted file where the cameras are saved.
+			/// </summary>
+			internal const string CamerasEntry = "cameras";
 		}
 
 
 		/// <summary>
-		/// Gets the name of the section in the persisted file where the cameras are saved.
+		/// Class describing the database section.
 		/// </summary>
-		public string CameraSection
+		internal static class DatabaseSection
 		{
-			get { return "camera"; }
-		}
+			/// <summary>
+			/// Gets the name of the section.
+			/// </summary>
+			internal const string Name = "database";
 
 
-		/// <summary>
-		/// Gets the name of the entry in the persisted file where the cameras are saved.
-		/// </summary>
-		public string CamerasEntry
-		{
-			get { return "cameras"; }
+			/// <summary>
+			/// Gets the name of the entry in the persisted file where the database version is saved.
+			/// </summary>
+			internal const string VersionEntry = "version";
 		}
 	}
 }
