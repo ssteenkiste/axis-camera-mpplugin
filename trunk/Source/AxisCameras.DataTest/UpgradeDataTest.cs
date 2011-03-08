@@ -150,8 +150,9 @@ namespace AxisCameras.DataTest
 				new[] { upgradeToSecondVersion.Object, upgradeToThirdVersion.Object },
 				ioService.Object);
 
-			upgradeData.Upgrade();
+			bool success = upgradeData.Upgrade();
 
+			Assert.That(success, Is.True);
 			upgradeToSecondVersion.Verify(pu => pu.Upgrade(), Times.Once());
 			upgradeToThirdVersion.Verify(pu => pu.Upgrade(), Times.Once());
 			settings.Verify(
@@ -186,8 +187,9 @@ namespace AxisCameras.DataTest
 				new[] { upgradeToSecondVersion.Object, upgradeToThirdVersion.Object },
 				ioService.Object);
 
-			upgradeData.Upgrade();
+			bool success = upgradeData.Upgrade();
 
+			Assert.That(success, Is.True);
 			upgradeToSecondVersion.Verify(pu => pu.Upgrade(), Times.Never());
 			upgradeToThirdVersion.Verify(pu => pu.Upgrade(), Times.Once());
 			settings.Verify(
@@ -216,8 +218,9 @@ namespace AxisCameras.DataTest
 				new[] { upgradeToSecondVersion.Object, upgradeToThirdVersion.Object },
 				ioService.Object);
 
-			upgradeData.Upgrade();
+			bool success = upgradeData.Upgrade();
 
+			Assert.That(success, Is.True);
 			upgradeToSecondVersion.Verify(pu => pu.Upgrade(), Times.Never());
 			upgradeToThirdVersion.Verify(pu => pu.Upgrade(), Times.Never());
 			settings.Verify(
@@ -249,6 +252,48 @@ namespace AxisCameras.DataTest
 				ioService.Object);
 
 			Assert.Throws<UpgradeChainException>(() => upgradeData.Upgrade());
+		}
+
+
+		[Test]
+		public void PartialUpgradeFails()
+		{
+			int currentVersion = 1;
+
+			settings
+				.Setup(s => s.GetValueAsInt(
+					DataPersistenceInformation.DatabaseSection.Name,
+					DataPersistenceInformation.DatabaseSection.VersionEntry,
+					1))
+				.Returns(currentVersion);
+
+			// Setup that partial upgrade to third version fails
+			upgradeToThirdVersion
+				.Setup(pu => pu.Upgrade())
+				.Returns(false);
+
+			IUpgradeData upgradeData = new UpgradeData(
+				settings.Object,
+				new[] { upgradeToSecondVersion.Object, upgradeToThirdVersion.Object },
+				ioService.Object);
+
+			bool success = upgradeData.Upgrade();
+
+			Assert.That(success, Is.False);
+			upgradeToSecondVersion.Verify(pu => pu.Upgrade(), Times.Once());
+			upgradeToThirdVersion.Verify(pu => pu.Upgrade(), Times.Once());
+			settings.Verify(
+				s => s.SetValue(
+					DataPersistenceInformation.DatabaseSection.Name,
+					DataPersistenceInformation.DatabaseSection.VersionEntry,
+					2),
+				Times.Once());
+			settings.Verify(
+				s => s.SetValue(
+					DataPersistenceInformation.DatabaseSection.Name,
+					DataPersistenceInformation.DatabaseSection.VersionEntry,
+					3),
+				Times.Never());
 		}
 	}
 }
