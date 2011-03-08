@@ -138,14 +138,25 @@ namespace AxisCameras.Data
 		/// mode.
 		/// </summary>
 		[Conditional("DEBUG")]
-		private static void ValidateChainOfPartialUpgrades(IEnumerable<IPartialUpgrade> partialUpgrades)
+		private void ValidateChainOfPartialUpgrades(IEnumerable<IPartialUpgrade> partialUpgrades)
 		{
 			if (partialUpgrades.Any())
 			{
 				var previous = partialUpgrades.First();
 
+				// Make sure the first partial upgrade works on current version
+				if (previous.FromVersion != CurrentVersion)
+				{
+					string message =
+						"First partial upgrade with version '{0}' doesn't match current version '{1}'"
+						.InvariantFormat(previous.FromVersion, CurrentVersion);
+
+					throw new UpgradeChainException(message);
+				}
+
 				foreach (var current in partialUpgrades.Skip(1))
 				{
+					// The current version cannot continue from the previous version
 					if (previous.ToVersion != current.FromVersion)
 					{
 						string message = "From version '{0}' doesn't connect to version '{1}'".InvariantFormat(
