@@ -256,6 +256,34 @@ namespace AxisCameras.DataTest
 
 
 		[Test]
+		public void PartialUpgradesDoesNotChain()
+		{
+			int currentVersion = 1;
+
+			settings
+				.Setup(s => s.GetValueAsInt(
+					DataPersistenceInformation.DatabaseSection.Name,
+					DataPersistenceInformation.DatabaseSection.VersionEntry,
+					1))
+				.Returns(currentVersion);
+
+			// Setup a partial upgrade from version 3 to 4
+			Mock<IPartialUpgrade> upgradeToFourthVersion = new Mock<IPartialUpgrade>();
+			upgradeToFourthVersion
+				.Setup(pu => pu.FromVersion)
+				.Returns(3);
+
+			// The partial upgrades does not chain, since there is no one upgrading from version 2 to 3
+			IUpgradeData upgradeData = new UpgradeData(
+				settings.Object,
+				new[] { upgradeToSecondVersion.Object, upgradeToFourthVersion.Object },
+				ioService.Object);
+
+			Assert.Throws<UpgradeChainException>(() => upgradeData.Upgrade());
+		}
+
+
+		[Test]
 		public void PartialUpgradeFails()
 		{
 			int currentVersion = 1;
