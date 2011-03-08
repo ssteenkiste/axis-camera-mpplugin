@@ -103,6 +103,14 @@ namespace AxisCameras.Data
 					// Upgrade failed
 					return false;
 				}
+
+				// Save the current version after partial upgrade finished successfully, because if the
+				// next upgrade fails, we would like to start upgrading from this version and not the
+				// original version the next time the upgrade is executed.
+				settings.SetValue(
+					DataPersistenceInformation.DatabaseSection.Name,
+					DataPersistenceInformation.DatabaseSection.VersionEntry,
+					relevantPartialUpgrade.ToVersion);
 			}
 
 			// All partial upgrades finished successfully

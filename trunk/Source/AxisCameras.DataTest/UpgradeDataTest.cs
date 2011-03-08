@@ -158,6 +158,18 @@ namespace AxisCameras.DataTest
 
 			upgradeToSecondVersion.Verify(pu => pu.Upgrade(), Times.Once());
 			upgradeToThirdVersion.Verify(pu => pu.Upgrade(), Times.Once());
+			settings.Verify(
+				s => s.SetValue(
+					DataPersistenceInformation.DatabaseSection.Name,
+					DataPersistenceInformation.DatabaseSection.VersionEntry,
+					2),
+				Times.Once());
+			settings.Verify(
+				s => s.SetValue(
+					DataPersistenceInformation.DatabaseSection.Name,
+					DataPersistenceInformation.DatabaseSection.VersionEntry,
+					3),
+				Times.Once());
 		}
 
 
@@ -186,6 +198,12 @@ namespace AxisCameras.DataTest
 
 			upgradeToSecondVersion.Verify(pu => pu.Upgrade(), Times.Never());
 			upgradeToThirdVersion.Verify(pu => pu.Upgrade(), Times.Once());
+			settings.Verify(
+				s => s.SetValue(
+					DataPersistenceInformation.DatabaseSection.Name,
+					DataPersistenceInformation.DatabaseSection.VersionEntry,
+					3),
+				Times.Once());
 		}
 
 
@@ -214,6 +232,12 @@ namespace AxisCameras.DataTest
 
 			upgradeToSecondVersion.Verify(pu => pu.Upgrade(), Times.Never());
 			upgradeToThirdVersion.Verify(pu => pu.Upgrade(), Times.Never());
+			settings.Verify(
+				s => s.SetValue(
+					DataPersistenceInformation.DatabaseSection.Name,
+					DataPersistenceInformation.DatabaseSection.VersionEntry,
+					3),
+				Times.Never());
 		}
 	}
 }
