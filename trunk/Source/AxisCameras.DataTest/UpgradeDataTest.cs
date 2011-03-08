@@ -138,10 +138,6 @@ namespace AxisCameras.DataTest
 		{
 			int currentVersion = 1;
 
-			ioService
-				.Setup(ios => ios.FileExists(DataPersistenceInformation.FileName))
-				.Returns(true);
-
 			settings
 				.Setup(s => s.GetValueAsInt(
 					DataPersistenceInformation.DatabaseSection.Name,
@@ -178,10 +174,6 @@ namespace AxisCameras.DataTest
 		{
 			int currentVersion = 2;
 
-			ioService
-				.Setup(ios => ios.FileExists(DataPersistenceInformation.FileName))
-				.Returns(true);
-
 			settings
 				.Setup(s => s.GetValueAsInt(
 					DataPersistenceInformation.DatabaseSection.Name,
@@ -211,10 +203,6 @@ namespace AxisCameras.DataTest
 		public void UpgradeFromVersion3To3()
 		{
 			int currentVersion = 3;
-
-			ioService
-				.Setup(ios => ios.FileExists(DataPersistenceInformation.FileName))
-				.Returns(true);
 
 			settings
 				.Setup(s => s.GetValueAsInt(
