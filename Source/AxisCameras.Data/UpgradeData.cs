@@ -32,6 +32,8 @@ namespace AxisCameras.Data
 	/// </summary>
 	class UpgradeData : IUpgradeData
 	{
+		private const string BackupFileNameFormat = "{0}.bak";
+
 		private readonly ISettings settings;
 		private readonly IEnumerable<IPartialUpgrade> partialUpgrades;
 		private readonly IIOService ioService;
@@ -88,6 +90,12 @@ namespace AxisCameras.Data
 		/// <returns>true if upgrade was successful; otherwise false.</returns>
 		public bool Upgrade()
 		{
+			// Start upgrade by backing up current data
+			if (!Backup())
+			{
+				return false;
+			}
+
 			// Find the partial upgrades relevant when upgrading current version, and order them
 			// according to version
 			var relevantPartialUpgrades = partialUpgrades
@@ -130,6 +138,29 @@ namespace AxisCameras.Data
 					DataPersistenceInformation.DatabaseSection.VersionEntry,
 					1);
 			}
+		}
+
+
+		/// <summary>
+		/// Is backing up data.
+		/// </summary>
+		/// <returns>true if backup succeeded; otherwise false.</returns>
+		private bool Backup()
+		{
+			string backupFileName = BackupFileNameFormat.InvariantFormat(
+				DataPersistenceInformation.FileName);
+
+			// Remove backup file if it exists
+			if (ioService.FileExists(backupFileName))
+			{
+				if (!ioService.DeleteFile(backupFileName))
+				{
+					// Delete backup failed
+					return false;
+				}
+			}
+
+			return ioService.CopyFile(DataPersistenceInformation.FileName, backupFileName);
 		}
 
 

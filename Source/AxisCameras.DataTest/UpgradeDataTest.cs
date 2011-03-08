@@ -64,6 +64,13 @@ namespace AxisCameras.DataTest
 			upgradeToThirdVersion
 				.Setup(pu => pu.Upgrade())
 				.Returns(true);
+
+			ioService
+				.Setup(ios => ios.CopyFile(It.IsAny<string>(), It.IsAny<string>()))
+				.Returns(true);
+			ioService
+				.Setup(ios => ios.DeleteFile(It.IsAny<string>()))
+				.Returns(true);
 		}
 
 
@@ -322,6 +329,84 @@ namespace AxisCameras.DataTest
 					DataPersistenceInformation.DatabaseSection.VersionEntry,
 					3),
 				Times.Never());
+		}
+
+
+		[Test]
+		public void BackupIfNoBackupExists()
+		{
+			int currentVersion = 1;
+
+			settings
+				.Setup(s => s.GetValueAsInt(
+					DataPersistenceInformation.DatabaseSection.Name,
+					DataPersistenceInformation.DatabaseSection.VersionEntry,
+					1))
+				.Returns(currentVersion);
+
+			// Setup I/O service to report that there exists no backup file
+			ioService
+				.Setup(ios => ios.FileExists(DataPersistenceInformation.FileName + ".bak"))
+				.Returns(false);
+
+			IUpgradeData upgradeData = new UpgradeData(
+				settings.Object,
+				new[] { upgradeToSecondVersion.Object, upgradeToThirdVersion.Object },
+				ioService.Object);
+
+			bool success = upgradeData.Upgrade();
+
+			Assert.That(success, Is.True);
+			ioService.Verify(
+				ios => ios.FileExists(DataPersistenceInformation.FileName + ".bak"),
+				Times.Once());
+			ioService.Verify(
+				ios => ios.DeleteFile(DataPersistenceInformation.FileName + ".bak"),
+				Times.Never());
+			ioService.Verify(
+				ios => ios.CopyFile(
+					DataPersistenceInformation.FileName,
+					DataPersistenceInformation.FileName + ".bak"),
+				Times.Once());
+		}
+
+
+		[Test]
+		public void BackupIfBackupExists()
+		{
+			int currentVersion = 1;
+
+			settings
+				.Setup(s => s.GetValueAsInt(
+					DataPersistenceInformation.DatabaseSection.Name,
+					DataPersistenceInformation.DatabaseSection.VersionEntry,
+					1))
+				.Returns(currentVersion);
+
+			// Setup I/O service to report that there exists a backup file
+			ioService
+				.Setup(ios => ios.FileExists(DataPersistenceInformation.FileName + ".bak"))
+				.Returns(true);
+
+			IUpgradeData upgradeData = new UpgradeData(
+				settings.Object,
+				new[] { upgradeToSecondVersion.Object, upgradeToThirdVersion.Object },
+				ioService.Object);
+
+			bool success = upgradeData.Upgrade();
+
+			Assert.That(success, Is.True);
+			ioService.Verify(
+				ios => ios.FileExists(DataPersistenceInformation.FileName + ".bak"),
+				Times.Once());
+			ioService.Verify(
+				ios => ios.DeleteFile(DataPersistenceInformation.FileName + ".bak"),
+				Times.Once());
+			ioService.Verify(
+				ios => ios.CopyFile(
+					DataPersistenceInformation.FileName,
+					DataPersistenceInformation.FileName + ".bak"),
+				Times.Once());
 		}
 	}
 }

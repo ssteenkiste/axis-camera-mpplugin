@@ -37,5 +37,25 @@ namespace AxisCameras.Data.IO
 		/// existence of path.
 		/// </returns>
 		bool FileExists(string path);
+
+
+		/// <summary>
+		/// Copies an existing file to a new file. Overwriting a file of the same name is not allowed.
+		/// </summary>
+		/// <param name="sourceFileName">The file to copy.</param>
+		/// <param name="destinationFileName">
+		/// The name of the destination file. This cannot be a directory or an existing file.
+		/// </param>
+		/// <returns>true if operation succeeds; otherwise false.</returns>
+		bool CopyFile(string sourceFileName, string destinationFileName);
+
+
+		/// <summary>
+		/// Deletes the specified file. An exception is not thrown if the specified file does not
+		/// exist.
+		/// </summary>
+		/// <param name="path">The name of the file to be deleted.</param>
+		/// <returns>true if operation succeeds; otherwise false.</returns>
+		bool DeleteFile(string path);
 	}
 }
