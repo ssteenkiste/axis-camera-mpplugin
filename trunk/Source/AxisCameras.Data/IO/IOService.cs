@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+using System;
 using System.IO;
 
 namespace AxisCameras.Data.IO
@@ -40,6 +41,51 @@ namespace AxisCameras.Data.IO
 		public bool FileExists(string path)
 		{
 			return File.Exists(path);
+		}
+
+
+		/// <summary>
+		/// Copies an existing file to a new file. Overwriting a file of the same name is not allowed.
+		/// </summary>
+		/// <param name="sourceFileName">The file to copy.</param>
+		/// <param name="destinationFileName">
+		/// The name of the destination file. This cannot be a directory or an existing file.
+		/// </param>
+		/// <returns>true if operation succeeds; otherwise false.</returns>
+		public bool CopyFile(string sourceFileName, string destinationFileName)
+		{
+			try
+			{
+				File.Copy(sourceFileName, destinationFileName);
+				return true;
+			}
+			catch (UnauthorizedAccessException) { }
+			catch (DirectoryNotFoundException) { }
+			catch (FileNotFoundException) { }
+			catch (IOException) { }
+
+			return false;
+		}
+
+
+		/// <summary>
+		/// Deletes the specified file. An exception is not thrown if the specified file does not
+		/// exist.
+		/// </summary>
+		/// <param name="path">The name of the file to be deleted.</param>
+		/// <returns>true if operation succeeds; otherwise false.</returns>
+		public bool DeleteFile(string path)
+		{
+			try
+			{
+				File.Delete(path);
+				return true;
+			}
+			catch (UnauthorizedAccessException) { }
+			catch (DirectoryNotFoundException) { }
+			catch (IOException) { }
+
+			return false;
 		}
 	}
 }
