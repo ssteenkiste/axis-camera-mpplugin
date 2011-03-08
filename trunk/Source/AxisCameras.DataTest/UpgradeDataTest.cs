@@ -227,5 +227,28 @@ namespace AxisCameras.DataTest
 					3),
 				Times.Never());
 		}
+
+
+		[Test]
+		public void NoPartialUpgradeForCurrentVersion()
+		{
+			int currentVersion = 1;
+
+			settings
+				.Setup(s => s.GetValueAsInt(
+					DataPersistenceInformation.DatabaseSection.Name,
+					DataPersistenceInformation.DatabaseSection.VersionEntry,
+					1))
+				.Returns(currentVersion);
+
+			// No partial upgrade from version 1 to version 2 exists, this should make the Upgrade()
+			// method to throw an exception
+			IUpgradeData upgradeData = new UpgradeData(
+				settings.Object,
+				new[] { upgradeToThirdVersion.Object },
+				ioService.Object);
+
+			Assert.Throws<UpgradeChainException>(() => upgradeData.Upgrade());
+		}
 	}
 }
