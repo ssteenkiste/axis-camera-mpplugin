@@ -55,5 +55,11 @@ namespace AxisCameras.Data.MediaPortal
 		/// <param name="entry">The settings entry name.</param>
 		/// <param name="value">The setting value.</param>
 		void SetValue(string section, string entry, object value);
+
+
+		/// <summary>
+		/// Saves the settings to disk.
+		/// </summary>
+		void Save();
 	}
 }

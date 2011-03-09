@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <profile>
-  <section name="database">
-    <entry name="version">2</entry>
-  </section>
   <section name="camera">
     <entry name="cameras">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfCamera xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
@@ -11,12 +8,15 @@
     &lt;Name&gt;AXIS 210 - 00408CAAAAAA&lt;/Name&gt;
     &lt;Address&gt;192.168.0.80&lt;/Address&gt;
     &lt;Port&gt;80&lt;/Port&gt;
+    &lt;VideoSource&gt;1&lt;/VideoSource&gt;
     &lt;UserName&gt;root&lt;/UserName&gt;
     &lt;Password&gt;pass&lt;/Password&gt;
-    &lt;VideoSource&gt;1&lt;/VideoSource&gt;
     &lt;FirmwareVersion&gt;4.40.2&lt;/FirmwareVersion&gt;
     &lt;SnapshotPath&gt;C:\ProgramData\Team MediaPortal\MediaPortal\Thumbs\AxisCameras\79dfc57d-34dc-452a-87a1-29c1c77563a8.jpg&lt;/SnapshotPath&gt;
   &lt;/Camera&gt;
 &lt;/ArrayOfCamera&gt;</entry>
+  </section>
+  <section name="database">
+    <entry name="version">2</entry>
   </section>
 </profile>

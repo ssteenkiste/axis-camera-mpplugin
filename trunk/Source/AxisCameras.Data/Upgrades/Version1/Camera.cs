@@ -19,10 +19,10 @@
 #endregion
 using System;
 
-namespace AxisCameras.DataTest.Versions.Version1
+namespace AxisCameras.Data.Upgrades.Version1
 {
 	/// <summary>
-	/// Class describing the properties of a camera.
+	/// Class describing the properties of a camera of version 1.
 	/// </summary>
 	public class Camera
 	{

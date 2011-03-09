@@ -76,6 +76,15 @@ namespace AxisCameras.Data.MediaPortal
 		}
 
 
+		/// <summary>
+		/// Saves the settings to disk.
+		/// </summary>
+		public void Save()
+		{
+			MediaPortalSettings.SaveCache();
+		}
+
+
 		#region IDisposable Members
 
 		/// <summary>
