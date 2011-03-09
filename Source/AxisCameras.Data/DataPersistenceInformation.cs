@@ -27,9 +27,9 @@ namespace AxisCameras.Data
 	internal static class DataPersistenceInformation
 	{
 		/// <summary>
-		/// Gets the file name where the data is persisted.
+		/// Gets or sets the file name where the data is persisted.
 		/// </summary>
-		internal static readonly string FileName = Config.GetFile(Config.Dir.Config, "AxisCameras.xml");
+		internal static string FileName = Config.GetFile(Config.Dir.Config, "AxisCameras.xml");
 
 
 		/// <summary>

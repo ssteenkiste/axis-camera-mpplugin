@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\Externals\Autofac\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="Moq">
       <HintPath>..\Externals\Moq\Moq.dll</HintPath>
     </Reference>
@@ -51,7 +54,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpgradeDataTest.cs" />
-    <Compile Include="Versions\Version1\Camera.cs" />
+    <Compile Include="UpgradeTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AxisCameras.Data\AxisCameras.Data.csproj">
@@ -65,7 +68,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Versions\Version2\AxisCameras.xml" />
+    <None Include="Versions\Version2\AxisCameras.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
