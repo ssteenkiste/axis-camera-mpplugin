@@ -84,7 +84,7 @@
 		<CreateItem Include="$(SolutionPath)\*Test\bin\Debug\*Test.dll">
 			<Output TaskParameter="Include" ItemName="TestAssemblies" />
 		</CreateItem>
-		<NUnit ToolPath="$(NUnitToolPath)" Assemblies="@(TestAssemblies)" OutputXmlFile="$(NUnitResults)" />
+		<NUnit ToolPath="$(NUnitToolPath)" Assemblies="@(TestAssemblies)" OutputXmlFile="$(NUnitResults)" DisableShadowCopy="True" />
 	</Target>
 	
 	<!-- Is investigating whether the code is acceptable to check-in -->
