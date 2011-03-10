@@ -25,7 +25,6 @@ using System.Linq;
 using Autofac;
 using AxisCameras.Configuration;
 using AxisCameras.Configuration.Service;
-using AxisCameras.Core;
 using AxisCameras.Data;
 using AxisCameras.Player;
 using AxisCameras.Properties;

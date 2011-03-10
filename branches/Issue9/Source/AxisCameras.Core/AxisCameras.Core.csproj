@@ -49,9 +49,9 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Extensions\System\StringExtensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ISingleInstance.cs" />
-    <Compile Include="Lazy.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

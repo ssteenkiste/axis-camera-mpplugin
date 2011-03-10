@@ -67,6 +67,13 @@
               <ZipFileName>Installer{CopyFile}\{24d522a9-daf1-4c67-8dfd-1d722d13a806}-Autofac.dll</ZipFileName>
               <DestinationFilename>%Plugins%\Windows\Autofac.dll</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\Externals\Reactive Extensions\System.Threading.dll</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{b900e8e0-9c8a-4fca-b9a3-13e81091e56e}-System.Threading.dll</ZipFileName>
+              <DestinationFilename>%Plugins%\Windows\System.Threading.dll</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -667,6 +674,13 @@ public class Script
         <ZipFileName>Installer{CopyFile}\{24d522a9-daf1-4c67-8dfd-1d722d13a806}-Autofac.dll</ZipFileName>
         <DestinationFilename>%Plugins%\Windows\Autofac.dll</DestinationFilename>
       </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\Externals\Reactive Extensions\System.Threading.dll</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{b900e8e0-9c8a-4fca-b9a3-13e81091e56e}-System.Threading.dll</ZipFileName>
+        <DestinationFilename>%Plugins%\Windows\System.Threading.dll</DestinationFilename>
+      </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
@@ -748,14 +762,14 @@ public class Script
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{c285281a-d2b1-498e-9923-25e6a1bdb68e}-Welcome_left.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{fd254ad8-853a-4030-bb62-1a990898fae3}-Welcome_left.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{ccaa49a6-96da-4694-9565-6d7f71808eac}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{805e9270-be1b-4e75-956c-e1753d61f972}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
