@@ -36,7 +36,7 @@ namespace AxisCameras.Configuration.ViewModel
 	/// <summary>
 	/// View model where camera name is entered and snapshot displayed.
 	/// </summary>
-	class WizardPageTwoViewModel : WizardPageViewModel, IWizardPageTwoViewModel
+	class WizardPageThreeViewModel : WizardPageViewModel, IWizardPageThreeViewModel
 	{
 		private readonly IWindowService windowService;
 		private readonly ICameraCommunicationDialogViewModelProvider communicationProvider;
@@ -45,13 +45,13 @@ namespace AxisCameras.Configuration.ViewModel
 
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="WizardPageTwoViewModel"/> class.
+		/// Initializes a new instance of the <see cref="WizardPageThreeViewModel"/> class.
 		/// </summary>
 		/// <param name="windowService">The window service.</param>
 		/// <param name="communicationProvider">
 		/// The camera communication dialog view model provider.
 		/// </param>
-		public WizardPageTwoViewModel(
+		public WizardPageThreeViewModel(
 			IWindowService windowService,
 			ICameraCommunicationDialogViewModelProvider communicationProvider)
 		{

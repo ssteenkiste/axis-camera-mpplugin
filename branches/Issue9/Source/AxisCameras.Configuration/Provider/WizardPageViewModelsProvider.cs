@@ -62,7 +62,7 @@ namespace AxisCameras.Configuration.Provider
 				windowService,
 				communicationProvider);
 
-			IWizardPageViewModel pageTwo = new WizardPageTwoViewModel(
+			IWizardPageViewModel pageThree = new WizardPageThreeViewModel(
 				windowService,
 				communicationProvider);
 
@@ -71,7 +71,7 @@ namespace AxisCameras.Configuration.Provider
 			return new IWizardPageViewModel[]
 			{
 				pageOne,
-				pageTwo
+				pageThree
 			};
 		}
 	}

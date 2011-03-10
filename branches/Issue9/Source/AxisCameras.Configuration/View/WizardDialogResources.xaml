@@ -15,8 +15,8 @@
 	</DataTemplate>
 
 	<!-- Data template for second wizard page -->
-	<DataTemplate DataType="{x:Type viewmodel:WizardPageTwoViewModel}">
-		<local:WizardPageTwo/>
+	<DataTemplate DataType="{x:Type viewmodel:WizardPageThreeViewModel}">
+		<local:WizardPageThree/>
 	</DataTemplate>
 
 </ResourceDictionary>

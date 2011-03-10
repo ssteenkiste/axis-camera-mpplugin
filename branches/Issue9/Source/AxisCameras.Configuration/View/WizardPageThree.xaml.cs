@@ -25,12 +25,12 @@ namespace AxisCameras.Configuration.View
 	/// <summary>
 	/// The second page of the camera wizard.
 	/// </summary>
-	public partial class WizardPageTwo : UserControl
+	public partial class WizardPageThree : UserControl
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="WizardPageTwo"/> class.
+		/// Initializes a new instance of the <see cref="WizardPageThree"/> class.
 		/// </summary>
-		public WizardPageTwo()
+		public WizardPageThree()
 		{
 			InitializeComponent();
 

@@ -134,8 +134,8 @@
     <Compile Include="ViewModel\IWizardPageOneViewModel.cs">
       <DependentUpon>WizardPageOneViewModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\IWizardPageTwoViewModel.cs">
-      <DependentUpon>WizardPageTwoViewModel.cs</DependentUpon>
+    <Compile Include="ViewModel\IWizardPageThreeViewModel.cs">
+      <DependentUpon>WizardPageThreeViewModel.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\IWizardPageViewModel.cs">
       <DependentUpon>WizardPageViewModel.cs</DependentUpon>
@@ -148,7 +148,7 @@
     <Compile Include="ViewModel\ValidationRule\UserNameValidationRule.cs" />
     <Compile Include="ViewModel\WizardDialogViewModel.cs" />
     <Compile Include="ViewModel\WizardPageOneViewModel.cs" />
-    <Compile Include="ViewModel\WizardPageTwoViewModel.cs" />
+    <Compile Include="ViewModel\WizardPageThreeViewModel.cs" />
     <Compile Include="ViewModel\WizardPageViewModel.cs" />
     <Compile Include="View\CameraCommunicationDialog.xaml.cs">
       <DependentUpon>CameraCommunicationDialog.xaml</DependentUpon>
@@ -163,8 +163,8 @@
     <Compile Include="View\WizardPageOne.xaml.cs">
       <DependentUpon>WizardPageOne.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\WizardPageTwo.xaml.cs">
-      <DependentUpon>WizardPageTwo.xaml</DependentUpon>
+    <Compile Include="View\WizardPageThree.xaml.cs">
+      <DependentUpon>WizardPageThree.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -200,7 +200,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\WizardPageTwo.xaml">
+    <Page Include="View\WizardPageThree.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

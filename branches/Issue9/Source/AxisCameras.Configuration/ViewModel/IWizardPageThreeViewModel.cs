@@ -23,7 +23,7 @@ namespace AxisCameras.Configuration.ViewModel
 	/// <summary>
 	/// Interface for WizardPageTwoViewModel.
 	/// </summary>
-	interface IWizardPageTwoViewModel : IWizardPageViewModel
+	interface IWizardPageThreeViewModel : IWizardPageViewModel
 	{
 	}
 }
