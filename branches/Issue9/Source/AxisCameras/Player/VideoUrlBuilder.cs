@@ -38,19 +38,25 @@ namespace AxisCameras.Player
 		/// <param name="userName">The user name.</param>
 		/// <param name="password">The password.</param>
 		/// <param name="firmwareVersion">The firmware version.</param>
+		/// <param name="videoSource">
+		/// The video source of the camera. This property should always be 1 on cameras, but can be
+		/// other than 1 on video servers with multiple camera inputs.
+		/// </param>
 		/// <returns>The live video URL used when getting live video from the camera.</returns>
 		public string BuildLiveVideoUrl(
 			string address,
 			int port,
 			string userName,
 			string password,
-			string firmwareVersion)
+			string firmwareVersion,
+			int videoSource)
 		{
 			if (string.IsNullOrEmpty(address)) throw new ArgumentNullException("address");
 			if (port < 0 || port > 65535) throw new ArgumentException("Port must be between 0-65535", "port");
 			if (string.IsNullOrEmpty(userName)) throw new ArgumentNullException("userName");
 			if (string.IsNullOrEmpty(password)) throw new ArgumentNullException("password");
 			if (string.IsNullOrEmpty(firmwareVersion)) throw new ArgumentNullException("firmwareVersion");
+			if (videoSource < 1) throw new ArgumentException("Video source must be at least 1.");
 
 			FirmwareVersion version = ParseFirmwareVersion(firmwareVersion);
 
@@ -72,7 +78,8 @@ namespace AxisCameras.Player
 				HttpUtility.UrlEncode(userName),
 				HttpUtility.UrlEncode(password),
 				address,
-				port);
+				port,
+				videoSource);
 		}
 
 
