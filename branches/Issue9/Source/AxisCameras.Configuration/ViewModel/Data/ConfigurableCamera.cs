@@ -66,6 +66,20 @@ namespace AxisCameras.Configuration.ViewModel.Data
 
 
 		/// <summary>
+		/// Gets or sets the video source. This property will always be 1 on cameras, but can be other
+		/// than 1 on video servers with multiple camera inputs.
+		/// </summary>
+		public int VideoSource { get; set; }
+
+
+		/// <summary>
+		/// Gets or sets the video source count, i.e. the number of video source this camera (device
+		/// actually) has.
+		/// </summary>
+		public int VideoSourceCount { get; set; }
+
+
+		/// <summary>
 		/// Gets or sets the user name.
 		/// </summary>
 		public string UserName { get; set; }

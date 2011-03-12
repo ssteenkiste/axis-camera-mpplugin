@@ -17,6 +17,9 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 using AxisCameras.Configuration.Properties;
 using AxisCameras.Configuration.ViewModel.Data;
 
@@ -27,6 +30,26 @@ namespace AxisCameras.Configuration.ViewModel
 	/// </summary>
 	class WizardPageTwoViewModel : WizardPageViewModel, IWizardPageTwoViewModel
 	{
+		/// <summary>
+		/// Gets the video sources.
+		/// </summary>
+		public ReadOnlyObservableCollection<int> VideoSources
+		{
+			get { return Property(() => VideoSources); }
+			private set { Property(() => VideoSources, value); }
+		}
+
+
+		/// <summary>
+		/// Gets the selected video source.
+		/// </summary>
+		public int SelectedVideoSource
+		{
+			get { return Property(() => SelectedVideoSource); }
+			set { Property(() => SelectedVideoSource, value); }
+		}
+
+
 		/// <summary>
 		/// Gets the header of the wizard page.
 		/// </summary>
@@ -51,6 +74,13 @@ namespace AxisCameras.Configuration.ViewModel
 		/// <param name="camera">The camera to load page properties from.</param>
 		public override void Load(ConfigurableCamera camera)
 		{
+			if (camera == null) throw new ArgumentNullException("camera");
+
+			VideoSources = new ReadOnlyObservableCollection<int>(
+				new ObservableCollection<int>(
+					Enumerable.Range(1, camera.VideoSourceCount)));
+
+			SelectedVideoSource = camera.VideoSource;
 		}
 
 
@@ -60,6 +90,9 @@ namespace AxisCameras.Configuration.ViewModel
 		/// <param name="camera">The camera to save page properties to.</param>
 		public override void Save(ConfigurableCamera camera)
 		{
+			if (camera == null) throw new ArgumentNullException("camera");
+
+			camera.VideoSource = SelectedVideoSource;
 		}
 	}
 }

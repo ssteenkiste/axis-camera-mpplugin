@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+using System.Collections.ObjectModel;
 
 namespace AxisCameras.Configuration.ViewModel
 {
@@ -25,5 +26,15 @@ namespace AxisCameras.Configuration.ViewModel
 	/// </summary>
 	interface IWizardPageTwoViewModel
 	{
+		/// <summary>
+		/// Gets the video sources.
+		/// </summary>
+		ReadOnlyObservableCollection<int> VideoSources { get; }
+
+
+		/// <summary>
+		/// Gets the selected video source.
+		/// </summary>
+		int SelectedVideoSource { get; }
 	}
 }
