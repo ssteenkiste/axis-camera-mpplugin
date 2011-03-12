@@ -62,6 +62,12 @@
 		<Setter Property="VerticalAlignment" Value="Center"/>
 	</Style>
 	<Style TargetType="Button" BasedOn="{StaticResource ButtonStyle}"/>
+	
+	<!-- Generic style for all combo boxes -->
+	<Style x:Key="ComboBoxStyle" TargetType="ComboBox" BasedOn="{StaticResource BaseStyle}">
+		<Setter Property="VerticalAlignment" Value="Center"/>
+	</Style>
+	<Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxStyle}"/>
 
 	<!-- Generic style for all group boxes -->
 	<Style x:Key="GroupBoxStyle" TargetType="GroupBox" BasedOn="{StaticResource BaseStyle}"/>

@@ -102,7 +102,7 @@ namespace AxisCameras.Configuration.ViewModel
 		/// </summary>
 		public override string Header
 		{
-			get { return Resources.WizardPageTwo_Header; }
+			get { return Resources.WizardPageThree_Header; }
 		}
 
 
@@ -111,7 +111,7 @@ namespace AxisCameras.Configuration.ViewModel
 		/// </summary>
 		public override string Description
 		{
-			get { return Resources.WizardPageTwo_Description; }
+			get { return Resources.WizardPageThree_Description; }
 		}
 
 

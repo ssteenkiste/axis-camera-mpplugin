@@ -1,0 +1,29 @@
+﻿<UserControl
+	x:Class="AxisCameras.Configuration.View.WizardPageTwo"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<!-- Resources -->
+	<UserControl.Resources>
+		<ResourceDictionary Source="WizardPageResources.xaml"/>
+	</UserControl.Resources>
+	
+	<!-- Root element -->
+	<Grid VerticalAlignment="Top">
+
+		<!-- Column definitions -->
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		
+		<!-- Video source -->
+		<TextBlock Text="Video source:"/>
+		<ComboBox
+			Grid.Column="1"
+			HorizontalAlignment="Left"
+			ItemsSource="{Binding VideoSources}"
+			Width="100"/>
+
+	</Grid>
+</UserControl>

@@ -23,7 +23,7 @@ using System.Windows.Input;
 namespace AxisCameras.Configuration.View
 {
 	/// <summary>
-	/// The second page of the camera wizard.
+	/// The third page of the camera wizard.
 	/// </summary>
 	public partial class WizardPageThree : UserControl
 	{

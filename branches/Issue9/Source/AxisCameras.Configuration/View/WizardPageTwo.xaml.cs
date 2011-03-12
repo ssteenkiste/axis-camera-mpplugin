@@ -17,13 +17,21 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+using System.Windows.Controls;
 
-namespace AxisCameras.Configuration.ViewModel
+namespace AxisCameras.Configuration.View
 {
 	/// <summary>
-	/// Interface for WizardPageThreeViewModel.
+	/// The second page of the camera wizard.
 	/// </summary>
-	interface IWizardPageThreeViewModel : IWizardPageViewModel
+	public partial class WizardPageTwo : UserControl
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="WizardPageTwo"/> class.
+		/// </summary>
+		public WizardPageTwo()
+		{
+			InitializeComponent();
+		}
 	}
 }
