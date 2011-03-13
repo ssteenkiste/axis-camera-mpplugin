@@ -51,5 +51,13 @@ namespace AxisCameras.Configuration.ViewModel
 		/// </summary>
 		/// <param name="camera">The camera to save page properties to.</param>
 		void Save(ConfigurableCamera camera);
+
+
+		/// <summary>
+		/// Instruct the wizard whether wizard page should be skipped.
+		/// </summary>
+		/// <param name="camera">The camera displayed in the page.</param>
+		/// <returns>true to skip page; otherwise false.</returns>
+		bool ShouldSkipPage(ConfigurableCamera camera);
 	}
 }

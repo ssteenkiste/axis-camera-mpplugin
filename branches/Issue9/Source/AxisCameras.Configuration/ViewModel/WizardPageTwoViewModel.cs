@@ -94,5 +94,17 @@ namespace AxisCameras.Configuration.ViewModel
 
 			camera.VideoSource = SelectedVideoSource;
 		}
+
+
+		/// <summary>
+		/// Instruct the wizard whether wizard page should be skipped.
+		/// </summary>
+		/// <param name="camera">The camera displayed in the page.</param>
+		/// <returns>true to skip page; otherwise false.</returns>
+		public override bool ShouldSkipPage(ConfigurableCamera camera)
+		{
+			// Skip page if camera (device actually) only has one video source
+			return camera.VideoSourceCount == 1;
+		}
 	}
 }
