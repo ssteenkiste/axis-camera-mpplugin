@@ -116,6 +116,8 @@ namespace AxisCameras.Configuration.ViewModel.Data
 				Name = Name,
 				Address = Address,
 				Port = Port,
+				VideoSource = VideoSource,
+				VideoSourceCount = VideoSourceCount,
 				UserName = UserName,
 				Password = Password,
 				FirmwareVersion = FirmwareVersion,

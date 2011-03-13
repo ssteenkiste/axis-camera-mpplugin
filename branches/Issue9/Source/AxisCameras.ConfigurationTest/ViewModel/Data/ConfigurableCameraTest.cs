@@ -39,6 +39,8 @@ namespace AxisCameras.ConfigurationTest.ViewModel.Data
 				Name = "Name",
 				Address = "192.168.0.90",
 				Port = 80,
+				VideoSource = 1,
+				VideoSourceCount = 1,
 				UserName = "root",
 				Password = "pass",
 				FirmwareVersion = "5.0",
