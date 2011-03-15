@@ -102,7 +102,7 @@ namespace AxisCameras.Data.Upgrades.Version2
 			}
 			catch (Exception e)
 			{
-				Log.Error("Error when upgrading from version 1 to 2. {0}", e.ToString());
+				Log.Error("Error when upgrading from version 1 to 2.", e);
 				return false;
 			}
 

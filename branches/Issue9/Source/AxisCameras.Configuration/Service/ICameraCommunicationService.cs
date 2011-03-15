@@ -17,7 +17,8 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace AxisCameras.Configuration.Service
 {
@@ -27,28 +28,26 @@ namespace AxisCameras.Configuration.Service
 	interface ICameraCommunicationService
 	{
 		/// <summary>
-		/// Occurs when the asynchronous getting information operation is completed, been canceled, or
-		/// raised an exception.
-		/// </summary>
-		event EventHandler<GetInformationFromCameraCompletedEventArgs> GetInformationFromCameraCompleted;
-
-
-		/// <summary>
-		/// Gets information from specified camera network endpoint asynchronously.
+		/// Gets camera parameters from specified camera network endpoint asynchronously.
 		/// </summary>
 		/// <param name="networkEndpoint">The network endpoint.</param>
-		void GetInformationFromCameraAsync(NetworkEndpoint networkEndpoint);
+		/// <param name="cancellationToken">The cancellation token.</param>
+		/// <returns>A task getting camera parameters.</returns>
+		Task<CameraParameters> GetCameraParametersAsync(
+			NetworkEndpoint networkEndpoint,
+			CancellationToken cancellationToken = default(CancellationToken));
 
 
 		/// <summary>
-		/// Cancels an asynchronous getting information operation.
+		/// Gets camera snapshot from specified camera network endpoint asynchronously.
 		/// </summary>
-		void CancelAsync();
-
-
-		/// <summary>
-		/// Gets whether a getting information operation is in progress.
-		/// </summary>
-		bool IsBusy { get; }
+		/// <param name="networkEndpoint">The network endpoint.</param>
+		/// <param name="videoSource">The video source to get snapshot from.</param>
+		/// <param name="cancellationToken">The cancellation token.</param>
+		/// <returns>A task getting a camera snapshot.</returns>
+		Task<byte[]> GetSnapshotAsync(
+			NetworkEndpoint networkEndpoint,
+			int videoSource,
+			CancellationToken cancellationToken = default(CancellationToken));
 	}
 }

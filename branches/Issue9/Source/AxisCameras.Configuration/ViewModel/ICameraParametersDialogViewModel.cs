@@ -17,31 +17,32 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System.Collections.Generic;
+using System;
 using AxisCameras.Mvvm;
 
 namespace AxisCameras.Configuration.ViewModel
 {
 	/// <summary>
-	/// Interface for CameraCommunicationDialogViewModel.
+	/// Interface responsible for reading parameters from a camera.
 	/// </summary>
-	public interface ICameraCommunicationDialogViewModel : IDialogViewModelBase
+	interface ICameraParametersDialogViewModel : IDialogViewModelBase, IDisposable
 	{
 		/// <summary>
-		/// Gets the friendly name of the camera.
+		/// Gets the friendly name.
 		/// </summary>
 		string FriendlyName { get; }
 
 
 		/// <summary>
-		/// Gets the firmware version of a camera.
+		/// Gets the firmware version.
 		/// </summary>
 		string FirmwareVersion { get; }
 
 
 		/// <summary>
-		/// Gets the camera snapshot.
+		/// Gets the video source count, i.e. the number of video source this camera (device actually)
+		/// has.
 		/// </summary>
-		IEnumerable<byte> Snapshot { get; }
+		int VideoSourceCount { get; }
 	}
 }

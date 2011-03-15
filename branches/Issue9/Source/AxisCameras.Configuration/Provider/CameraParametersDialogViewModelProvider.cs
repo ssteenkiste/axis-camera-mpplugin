@@ -18,7 +18,6 @@
 
 #endregion
 using System;
-using Autofac.Features.OwnedInstances;
 using AxisCameras.Configuration.Service;
 using AxisCameras.Configuration.ViewModel;
 using AxisCameras.Core;
@@ -26,20 +25,20 @@ using AxisCameras.Core;
 namespace AxisCameras.Configuration.Provider
 {
 	/// <summary>
-	/// Class describing a provider that provides a ICameraCommunicationDialogViewModel.
+	/// Class describing a provider that provides a ICameraParametersDialogViewModel.
 	/// </summary>
-	class CameraCommunicationDialogViewModelProvider : ICameraCommunicationDialogViewModelProvider
+	class CameraParametersDialogViewModelProvider : ICameraParametersDialogViewModelProvider
 	{
-		private readonly Func<Owned<ICameraCommunicationService>> cameraCommunicationService;
+		private readonly Func<ICameraCommunicationService> cameraCommunicationService;
 
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="CameraCommunicationDialogViewModelProvider"/>
+		/// Initializes a new instance of the <see cref="CameraParametersDialogViewModelProvider"/>
 		/// class.
 		/// </summary>
 		/// <param name="cameraCommunicationService">The camera communication service.</param>
-		public CameraCommunicationDialogViewModelProvider(
-			Func<Owned<ICameraCommunicationService>> cameraCommunicationService)
+		public CameraParametersDialogViewModelProvider(
+			Func<ICameraCommunicationService> cameraCommunicationService)
 		{
 			if (cameraCommunicationService == null) throw new ArgumentNullException("cameraCommunicationService");
 
@@ -48,16 +47,16 @@ namespace AxisCameras.Configuration.Provider
 
 
 		/// <summary>
-		/// Returns a ICameraCommunicationDialogViewModel from specified network endpoint.
+		/// Returns a ICameraParametersDialogViewModel from specified network endpoint.
 		/// </summary>
 		/// <param name="cameraEndpoint">The camera network endpoint.</param>
-		public ICameraCommunicationDialogViewModel Provide(NetworkEndpoint cameraEndpoint)
+		public ICameraParametersDialogViewModel Provide(NetworkEndpoint cameraEndpoint)
 		{
 			if (cameraEndpoint == null) throw new ArgumentNullException("cameraEndpoint");
 
-			Log.Debug("Provide a ICameraCommunicationDialogViewModel");
+			Log.Debug("Provide a ICameraParametersDialogViewModel");
 
-			return new CameraCommunicationDialogViewModel(
+			return new CameraParametersDialogViewModel(
 				cameraCommunicationService(),
 				cameraEndpoint);
 		}

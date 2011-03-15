@@ -17,21 +17,20 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System.Windows;
+using AxisCameras.Configuration.Service;
+using AxisCameras.Configuration.ViewModel;
 
-namespace AxisCameras.Configuration.View
+namespace AxisCameras.Configuration.Provider
 {
 	/// <summary>
-	/// Dialog displayed to the user when application is communicating with the camera.
+	/// Interface describing a provider that provides a ICameraParametersDialogViewModel.
 	/// </summary>
-	public partial class CameraCommunicationDialog : Window
+	interface ICameraParametersDialogViewModelProvider
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="CameraCommunicationDialog"/> class.
+		/// Returns a ICameraParametersDialogViewModel from specified network endpoint.
 		/// </summary>
-		public CameraCommunicationDialog()
-		{
-			InitializeComponent();
-		}
+		/// <param name="cameraEndpoint">The camera network endpoint.</param>
+		ICameraParametersDialogViewModel Provide(NetworkEndpoint cameraEndpoint);
 	}
 }

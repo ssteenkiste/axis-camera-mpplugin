@@ -31,25 +31,25 @@ namespace AxisCameras.Configuration.Provider
 	class WizardPageViewModelsProvider : IWizardPageViewModelsProvider
 	{
 		private readonly IWindowService windowService;
-		private readonly ICameraCommunicationDialogViewModelProvider communicationProvider;
+		private readonly ICameraParametersDialogViewModelProvider cameraParametersProvider;
 
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="WizardPageViewModelsProvider"/> class.
 		/// </summary>
 		/// <param name="windowService">The window service.</param>
-		/// <param name="communicationProvider">
-		/// The camera communication dialog view model provider.
+		/// <param name="cameraParametersProvider">
+		/// The camera parameters dialog view model provider.
 		/// </param>
 		public WizardPageViewModelsProvider(
 			IWindowService windowService,
-			ICameraCommunicationDialogViewModelProvider communicationProvider)
+			ICameraParametersDialogViewModelProvider cameraParametersProvider)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
-			if (communicationProvider == null) throw new ArgumentNullException("communicationProvider");
+			if (cameraParametersProvider == null) throw new ArgumentNullException("cameraParametersProvider");
 
 			this.windowService = windowService;
-			this.communicationProvider = communicationProvider;
+			this.cameraParametersProvider = cameraParametersProvider;
 		}
 
 
@@ -60,13 +60,13 @@ namespace AxisCameras.Configuration.Provider
 		{
 			IWizardPageViewModel pageOne = new WizardPageOneViewModel(
 				windowService,
-				communicationProvider);
+				cameraParametersProvider);
 
 			IWizardPageViewModel pageTwo = new WizardPageTwoViewModel();
 
 			IWizardPageViewModel pageThree = new WizardPageThreeViewModel(
 				windowService,
-				communicationProvider);
+				cameraParametersProvider);
 
 			Log.Debug("Provide a sequence of IWizardPageViewModels");
 

@@ -39,7 +39,7 @@ namespace AxisCameras.Configuration.ViewModel
 	class WizardPageThreeViewModel : WizardPageViewModel, IWizardPageThreeViewModel
 	{
 		private readonly IWindowService windowService;
-		private readonly ICameraCommunicationDialogViewModelProvider communicationProvider;
+		private readonly ICameraParametersDialogViewModelProvider communicationProvider;
 
 		private NetworkEndpoint cameraEndpoint;
 
@@ -53,7 +53,7 @@ namespace AxisCameras.Configuration.ViewModel
 		/// </param>
 		public WizardPageThreeViewModel(
 			IWindowService windowService,
-			ICameraCommunicationDialogViewModelProvider communicationProvider)
+			ICameraParametersDialogViewModelProvider communicationProvider)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
 			if (communicationProvider == null) throw new ArgumentNullException("communicationProvider");
@@ -152,29 +152,30 @@ namespace AxisCameras.Configuration.ViewModel
 		/// </summary>
 		private void Refresh(object parameter)
 		{
-			Log.Debug("Refreshing snapshot");
+			// TODO: Implement me!
+			//Log.Debug("Refreshing snapshot");
 
-			ICameraCommunicationDialogViewModel communicationViewModel =
-				communicationProvider.Provide(cameraEndpoint);
+			//ICameraCommunicationDialogViewModel communicationViewModel =
+			//  communicationProvider.Provide(cameraEndpoint);
 
-			// Communicate with camera
-			bool? success = windowService.ShowDialog<CameraCommunicationDialog>(
-				communicationViewModel,
-				this);
+			//// Communicate with camera
+			//bool? success = windowService.ShowDialog<ProgressDialog>(
+			//  communicationViewModel,
+			//  this);
 
-			// Was communication with camera successful?
-			if (success == true)
-			{
-				Snapshot = communicationViewModel.Snapshot;
-			}
-			else
-			{
-				windowService.ShowMessageBox(
-					this,
-					Resources.CameraCommunicationError,
-					Resources.CameraCommunicationError_Title,
-					icon: MessageBoxImage.Error);
-			}
+			//// Was communication with camera successful?
+			//if (success == true)
+			//{
+			//  Snapshot = communicationViewModel.Snapshot;
+			//}
+			//else
+			//{
+			//  windowService.ShowMessageBox(
+			//    this,
+			//    Resources.CameraCommunicationError,
+			//    Resources.CameraCommunicationError_Title,
+			//    icon: MessageBoxImage.Error);
+			//}
 		}
 
 
