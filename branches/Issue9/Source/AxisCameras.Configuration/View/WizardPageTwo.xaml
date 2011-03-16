@@ -23,7 +23,9 @@
 			Grid.Column="1"
 			HorizontalAlignment="Left"
 			ItemsSource="{Binding VideoSources}"
-			Width="100"/>
-
+			SelectedItem="{Binding SelectedVideoSource}"
+			Width="100"
+			ItemTemplate="{StaticResource VideoSourceTemplate}"/>
+	
 	</Grid>
 </UserControl>

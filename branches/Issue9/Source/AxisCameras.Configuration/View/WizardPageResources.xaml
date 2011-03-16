@@ -11,8 +11,13 @@
 	
 	<!-- Image bytes converter -->
 	<local:ImageBytesConverter x:Key="ImageBytesConverter"/>
+	
+	<!-- Video source template -->
+	<DataTemplate x:Key="VideoSourceTemplate">
+		<TextBlock Text="{Binding}"/>
+	</DataTemplate>
 
-	<!-- Generic style for TextBox -->
+		<!-- Generic style for TextBox -->
 	<Style TargetType="PasswordBox" BasedOn="{StaticResource PasswordBoxStyle}">
 		<Setter Property="Width" Value="200"/>
 		<Setter Property="HorizontalAlignment" Value="Left"/>
