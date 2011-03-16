@@ -32,6 +32,7 @@ namespace AxisCameras.Configuration.Provider
 	{
 		private readonly IWindowService windowService;
 		private readonly ICameraParametersDialogViewModelProvider cameraParametersProvider;
+		private readonly ICameraSnapshotDialogViewModelProvider cameraSnapshotProvider;
 
 
 		/// <summary>
@@ -41,15 +42,21 @@ namespace AxisCameras.Configuration.Provider
 		/// <param name="cameraParametersProvider">
 		/// The camera parameters dialog view model provider.
 		/// </param>
+		/// <param name="cameraSnapshotProvider">
+		/// The camera snapshot dialog view model provider.
+		/// </param>
 		public WizardPageViewModelsProvider(
 			IWindowService windowService,
-			ICameraParametersDialogViewModelProvider cameraParametersProvider)
+			ICameraParametersDialogViewModelProvider cameraParametersProvider,
+			ICameraSnapshotDialogViewModelProvider cameraSnapshotProvider)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
 			if (cameraParametersProvider == null) throw new ArgumentNullException("cameraParametersProvider");
+			if (cameraSnapshotProvider == null) throw new ArgumentNullException("cameraSnapshotProvider");
 
 			this.windowService = windowService;
 			this.cameraParametersProvider = cameraParametersProvider;
+			this.cameraSnapshotProvider = cameraSnapshotProvider;
 		}
 
 
@@ -66,7 +73,7 @@ namespace AxisCameras.Configuration.Provider
 
 			IWizardPageViewModel pageThree = new WizardPageThreeViewModel(
 				windowService,
-				cameraParametersProvider);
+				cameraSnapshotProvider);
 
 			Log.Debug("Provide a sequence of IWizardPageViewModels");
 

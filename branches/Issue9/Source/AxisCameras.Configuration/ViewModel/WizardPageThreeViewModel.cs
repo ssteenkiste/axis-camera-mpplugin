@@ -39,27 +39,28 @@ namespace AxisCameras.Configuration.ViewModel
 	class WizardPageThreeViewModel : WizardPageViewModel, IWizardPageThreeViewModel
 	{
 		private readonly IWindowService windowService;
-		private readonly ICameraParametersDialogViewModelProvider communicationProvider;
+		private readonly ICameraSnapshotDialogViewModelProvider cameraSnapshotProvider;
 
 		private NetworkEndpoint cameraEndpoint;
+		private int videoSource;
 
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="WizardPageThreeViewModel"/> class.
 		/// </summary>
 		/// <param name="windowService">The window service.</param>
-		/// <param name="communicationProvider">
-		/// The camera communication dialog view model provider.
+		/// <param name="cameraSnapshotProvider">
+		/// The camera snapshot dialog view model provider.
 		/// </param>
 		public WizardPageThreeViewModel(
 			IWindowService windowService,
-			ICameraParametersDialogViewModelProvider communicationProvider)
+			ICameraSnapshotDialogViewModelProvider cameraSnapshotProvider)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
-			if (communicationProvider == null) throw new ArgumentNullException("communicationProvider");
+			if (cameraSnapshotProvider == null) throw new ArgumentNullException("cameraSnapshotProvider");
 
 			this.windowService = windowService;
-			this.communicationProvider = communicationProvider;
+			this.cameraSnapshotProvider = cameraSnapshotProvider;
 
 			RefreshCommand = new RelayCommand(Refresh);
 
@@ -128,6 +129,7 @@ namespace AxisCameras.Configuration.ViewModel
 				camera.Port,
 				camera.UserName,
 				camera.Password);
+			videoSource = camera.VideoSource;
 
 			Name = camera.Name;
 			Snapshot = camera.Snapshot;
@@ -152,30 +154,30 @@ namespace AxisCameras.Configuration.ViewModel
 		/// </summary>
 		private void Refresh(object parameter)
 		{
-			// TODO: Implement me!
-			//Log.Debug("Refreshing snapshot");
+			Log.Debug("Refreshing snapshot");
 
-			//ICameraCommunicationDialogViewModel communicationViewModel =
-			//  communicationProvider.Provide(cameraEndpoint);
+			using (ICameraSnapshotDialogViewModel cameraSnapshotDialogViewModel =
+				cameraSnapshotProvider.Provide(cameraEndpoint, videoSource))
+			{
+				// Communicate with camera
+				bool? success = windowService.ShowDialog<ProgressDialog>(
+					cameraSnapshotDialogViewModel,
+					this);
 
-			//// Communicate with camera
-			//bool? success = windowService.ShowDialog<ProgressDialog>(
-			//  communicationViewModel,
-			//  this);
-
-			//// Was communication with camera successful?
-			//if (success == true)
-			//{
-			//  Snapshot = communicationViewModel.Snapshot;
-			//}
-			//else
-			//{
-			//  windowService.ShowMessageBox(
-			//    this,
-			//    Resources.CameraCommunicationError,
-			//    Resources.CameraCommunicationError_Title,
-			//    icon: MessageBoxImage.Error);
-			//}
+				// Was communication with camera successful?
+				if (success == true)
+				{
+					Snapshot = cameraSnapshotDialogViewModel.Snapshot;
+				}
+				else
+				{
+					windowService.ShowMessageBox(
+						this,
+						Resources.CameraCommunicationError,
+						Resources.CameraCommunicationError_Title,
+						icon: MessageBoxImage.Error);
+				}
+			}
 		}
 
 
