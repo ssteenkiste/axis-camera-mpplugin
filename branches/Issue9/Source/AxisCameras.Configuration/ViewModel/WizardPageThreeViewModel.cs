@@ -70,6 +70,7 @@ namespace AxisCameras.Configuration.ViewModel
 			this.resourceService = resourceService;
 			this.cameraSnapshotProvider = cameraSnapshotProvider;
 
+			LoadedCommand = new RelayCommand(Loaded);
 			RefreshCommand = new RelayCommand(Refresh);
 
 			AddValidators();
@@ -91,19 +92,18 @@ namespace AxisCameras.Configuration.ViewModel
 		/// </summary>
 		public IEnumerable<byte> Snapshot
 		{
-			get
-			{
-				IEnumerable<byte> snapshot = Property(() => Snapshot);
-
-				if (snapshot == null)
-				{
-					Log.Debug("Start getting snapshot from camera.");
-					RefreshCommand.Execute(null);
-				}
-
-				return snapshot;
-			}
+			get { return Property(() => Snapshot); }
 			private set { Property(() => Snapshot, value); }
+		}
+
+
+		/// <summary>
+		/// Gets the loaded command.
+		/// </summary>
+		public ICommand LoadedCommand
+		{
+			get { return Property(() => LoadedCommand); }
+			private set { Property(() => LoadedCommand, value); }
 		}
 
 
@@ -165,6 +165,19 @@ namespace AxisCameras.Configuration.ViewModel
 
 			camera.Name = Name;
 			camera.Snapshot = Snapshot;
+		}
+
+
+		/// <summary>
+		/// Method executed when view is loaded.
+		/// </summary>
+		private void Loaded(object parameter)
+		{
+			if (Snapshot == null)
+			{
+				Log.Debug("Start getting snapshot from camera.");
+				RefreshCommand.Execute(null);
+			}
 		}
 
 

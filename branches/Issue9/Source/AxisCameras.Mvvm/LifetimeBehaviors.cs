@@ -76,7 +76,7 @@ namespace AxisCameras.Mvvm
 		private static void OnLoadedEventInfoChanged(DependencyObject sender,
 				DependencyPropertyChangedEventArgs e)
 		{
-			var win = sender as Window;
+			var win = GetWindow(sender);
 			if (win != null)
 			{
 				win.Loaded -= OnWindowLoaded;
@@ -143,7 +143,7 @@ namespace AxisCameras.Mvvm
 		private static void OnActivatedEventInfoChanged(DependencyObject sender,
 				DependencyPropertyChangedEventArgs e)
 		{
-			var win = sender as Window;
+			var win = GetWindow(sender);
 			if (win != null)
 			{
 				win.Activated -= OnWindowActivated;
@@ -203,7 +203,7 @@ namespace AxisCameras.Mvvm
 		private static void OnDeactivatedEventInfoChanged(DependencyObject sender,
 				DependencyPropertyChangedEventArgs e)
 		{
-			var win = sender as Window;
+			var win = GetWindow(sender);
 			if (win != null)
 			{
 				win.Deactivated -= OnWindowDeactivated;
@@ -263,7 +263,7 @@ namespace AxisCameras.Mvvm
 		private static void OnCloseEventInfoChanged(DependencyObject sender,
 				DependencyPropertyChangedEventArgs e)
 		{
-			var win = sender as Window;
+			var win = GetWindow(sender);
 			if (win != null)
 			{
 				win.Closing -= OnWindowClosing;
@@ -344,7 +344,7 @@ namespace AxisCameras.Mvvm
 		private static void OnUnloadedEventInfoChanged(DependencyObject sender,
 				DependencyPropertyChangedEventArgs e)
 		{
-			var win = sender as Window;
+			var win = GetWindow(sender);
 
 			if (win != null)
 			{
@@ -396,6 +396,20 @@ namespace AxisCameras.Mvvm
 		{
 			source.SetValue(CommandParameterProperty, value);
 		}
+		#endregion
+
+		#region Window methods
+
+		/// <summary>
+		/// Gets the window of the specified target.
+		/// </summary>
+		/// <remarks>THIS METHOD WAS NOT PART OF THE ORIGINAL CODE, BUT HAS BEEN ADDED BY ME.</remarks>
+		/// <returns>The window if successful; otherwise null.</returns>
+		private static Window GetWindow(DependencyObject target)
+		{
+			return target as Window ?? Window.GetWindow(target);
+		}
+
 		#endregion
 	}
 }
