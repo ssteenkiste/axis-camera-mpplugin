@@ -117,8 +117,12 @@
     <Compile Include="Service\IProductInformation.cs">
       <DependentUpon>ProductInformation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Service\IResourceService.cs">
+      <DependentUpon>ResourceService.cs</DependentUpon>
+    </Compile>
     <Compile Include="Service\ParameterParser.cs" />
     <Compile Include="Service\ProductInformation.cs" />
+    <Compile Include="Service\ResourceService.cs" />
     <Compile Include="Service\Vapix.cs" />
     <Compile Include="Service\WebClientTasks.cs" />
     <Compile Include="ViewModel\CameraParametersDialogViewModel.cs" />

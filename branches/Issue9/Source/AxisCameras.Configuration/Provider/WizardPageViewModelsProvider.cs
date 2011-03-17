@@ -19,6 +19,7 @@
 #endregion
 using System;
 using System.Collections.Generic;
+using AxisCameras.Configuration.Service;
 using AxisCameras.Configuration.ViewModel;
 using AxisCameras.Core;
 using AxisCameras.Mvvm.Services;
@@ -33,6 +34,7 @@ namespace AxisCameras.Configuration.Provider
 		private readonly IWindowService windowService;
 		private readonly ICameraParametersDialogViewModelProvider cameraParametersProvider;
 		private readonly ICameraSnapshotDialogViewModelProvider cameraSnapshotProvider;
+		private readonly IResourceService resourceService;
 
 
 		/// <summary>
@@ -45,18 +47,22 @@ namespace AxisCameras.Configuration.Provider
 		/// <param name="cameraSnapshotProvider">
 		/// The camera snapshot dialog view model provider.
 		/// </param>
+		/// <param name="resourceService">The resource service.</param>
 		public WizardPageViewModelsProvider(
 			IWindowService windowService,
 			ICameraParametersDialogViewModelProvider cameraParametersProvider,
-			ICameraSnapshotDialogViewModelProvider cameraSnapshotProvider)
+			ICameraSnapshotDialogViewModelProvider cameraSnapshotProvider,
+			IResourceService resourceService)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
 			if (cameraParametersProvider == null) throw new ArgumentNullException("cameraParametersProvider");
 			if (cameraSnapshotProvider == null) throw new ArgumentNullException("cameraSnapshotProvider");
+			if (resourceService == null) throw new ArgumentNullException("resourceService");
 
 			this.windowService = windowService;
 			this.cameraParametersProvider = cameraParametersProvider;
 			this.cameraSnapshotProvider = cameraSnapshotProvider;
+			this.resourceService = resourceService;
 		}
 
 
@@ -73,6 +79,7 @@ namespace AxisCameras.Configuration.Provider
 
 			IWizardPageViewModel pageThree = new WizardPageThreeViewModel(
 				windowService,
+				resourceService,
 				cameraSnapshotProvider);
 
 			Log.Debug("Provide a sequence of IWizardPageViewModels");

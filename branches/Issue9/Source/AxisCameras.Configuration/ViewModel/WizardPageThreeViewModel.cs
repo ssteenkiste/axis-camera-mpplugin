@@ -38,28 +38,36 @@ namespace AxisCameras.Configuration.ViewModel
 	/// </summary>
 	class WizardPageThreeViewModel : WizardPageViewModel, IWizardPageThreeViewModel
 	{
+		private const string DefaultSnapshotUri = "/AxisCameras.Configuration;component/Resources/DefaultSnapshot.png";
+
 		private readonly IWindowService windowService;
+		private readonly IResourceService resourceService;
 		private readonly ICameraSnapshotDialogViewModelProvider cameraSnapshotProvider;
 
 		private NetworkEndpoint cameraEndpoint;
 		private int videoSource;
+		private byte[] defaultSnapshot;
 
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="WizardPageThreeViewModel"/> class.
 		/// </summary>
 		/// <param name="windowService">The window service.</param>
+		/// <param name="resourceService">The resource service.</param>
 		/// <param name="cameraSnapshotProvider">
 		/// The camera snapshot dialog view model provider.
 		/// </param>
 		public WizardPageThreeViewModel(
 			IWindowService windowService,
+			IResourceService resourceService,
 			ICameraSnapshotDialogViewModelProvider cameraSnapshotProvider)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
+			if (resourceService == null) throw new ArgumentNullException("resourceService");
 			if (cameraSnapshotProvider == null) throw new ArgumentNullException("cameraSnapshotProvider");
 
 			this.windowService = windowService;
+			this.resourceService = resourceService;
 			this.cameraSnapshotProvider = cameraSnapshotProvider;
 
 			RefreshCommand = new RelayCommand(Refresh);
@@ -83,7 +91,18 @@ namespace AxisCameras.Configuration.ViewModel
 		/// </summary>
 		public IEnumerable<byte> Snapshot
 		{
-			get { return Property(() => Snapshot); }
+			get
+			{
+				IEnumerable<byte> snapshot = Property(() => Snapshot);
+
+				if (snapshot == null)
+				{
+					Log.Debug("Start getting snapshot from camera.");
+					RefreshCommand.Execute(null);
+				}
+
+				return snapshot;
+			}
 			private set { Property(() => Snapshot, value); }
 		}
 
@@ -171,12 +190,31 @@ namespace AxisCameras.Configuration.ViewModel
 				}
 				else
 				{
+					Snapshot = DefaultSnapshot;
+
 					windowService.ShowMessageBox(
 						this,
 						Resources.CameraCommunicationError,
 						Resources.CameraCommunicationError_Title,
 						icon: MessageBoxImage.Error);
 				}
+			}
+		}
+
+
+		/// <summary>
+		/// Gets the default snapshot.
+		/// </summary>
+		private IEnumerable<byte> DefaultSnapshot
+		{
+			get
+			{
+				if (defaultSnapshot == null)
+				{
+					defaultSnapshot = resourceService.ReadBytesFromResource(DefaultSnapshotUri);
+				}
+
+				return defaultSnapshot;
 			}
 		}
 
