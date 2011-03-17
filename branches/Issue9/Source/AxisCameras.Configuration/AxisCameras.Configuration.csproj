@@ -98,6 +98,7 @@
     <Compile Include="Service\CameraCommunicationService.cs" />
     <Compile Include="Service\CameraParameters.cs" />
     <Compile Include="Service\CurrentProcessService.cs" />
+    <Compile Include="Service\DispatcherService.cs" />
     <Compile Include="Service\IBrowserService.cs">
       <DependentUpon>BrowserService.cs</DependentUpon>
     </Compile>
@@ -106,6 +107,9 @@
     </Compile>
     <Compile Include="Service\ICurrentProcessService.cs">
       <DependentUpon>CurrentProcessService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service\IDispatcherService.cs">
+      <DependentUpon>DispatcherService.cs</DependentUpon>
     </Compile>
     <Compile Include="Service\IIOService.cs">
       <DependentUpon>IOService.cs</DependentUpon>

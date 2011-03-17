@@ -42,6 +42,7 @@ namespace AxisCameras.Configuration.ViewModel
 
 		private readonly IWindowService windowService;
 		private readonly IResourceService resourceService;
+		private readonly IDispatcherService dispatcherService;
 		private readonly ICameraSnapshotDialogViewModelProvider cameraSnapshotProvider;
 
 		private NetworkEndpoint cameraEndpoint;
@@ -54,20 +55,24 @@ namespace AxisCameras.Configuration.ViewModel
 		/// </summary>
 		/// <param name="windowService">The window service.</param>
 		/// <param name="resourceService">The resource service.</param>
+		/// <param name="dispatcherService">The dispatcher service.</param>
 		/// <param name="cameraSnapshotProvider">
 		/// The camera snapshot dialog view model provider.
 		/// </param>
 		public WizardPageThreeViewModel(
 			IWindowService windowService,
 			IResourceService resourceService,
+			IDispatcherService dispatcherService,
 			ICameraSnapshotDialogViewModelProvider cameraSnapshotProvider)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
 			if (resourceService == null) throw new ArgumentNullException("resourceService");
+			if (dispatcherService == null) throw new ArgumentNullException("dispatcherService");
 			if (cameraSnapshotProvider == null) throw new ArgumentNullException("cameraSnapshotProvider");
 
 			this.windowService = windowService;
 			this.resourceService = resourceService;
+			this.dispatcherService = dispatcherService;
 			this.cameraSnapshotProvider = cameraSnapshotProvider;
 
 			LoadedCommand = new RelayCommand(Loaded);
@@ -173,11 +178,24 @@ namespace AxisCameras.Configuration.ViewModel
 		/// </summary>
 		private void Loaded(object parameter)
 		{
-			if (Snapshot == null)
+			// We got a little bit of synchronization problem here. This code cannot run before the view
+			// has been registered, because then the progress dialog wouldn't be centered on the owner.
+			// The problem we are facing is that both this method and the registering process in the
+			// window service is depending on the Loaded event, and unfortunately this class registers
+			// for the event before the window service does.
+			// We can 'solve' this by letting the registering code run first by putting this code in the
+			// event queue, making the dispatcher run it after the registering code.
+			dispatcherService.BeginInvoke(new Action(() =>
 			{
-				Log.Debug("Start getting snapshot from camera.");
-				RefreshCommand.Execute(null);
-			}
+				if (Snapshot == null)
+				{
+					// Set default snapshot while getting snapshot from camera
+					Snapshot = DefaultSnapshot;
+
+					Log.Debug("Start getting snapshot from camera.");
+					RefreshCommand.Execute(null);
+				}
+			}));
 		}
 
 
