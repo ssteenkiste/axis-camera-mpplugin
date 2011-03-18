@@ -48,8 +48,14 @@
 
 				<!-- Snapshot image -->
 				<Image
-					Source="{Binding Snapshot, Converter={StaticResource ImageBytesConverter}}"/>
-				
+					Source="{Binding Snapshot, Converter={StaticResource ImageBytesConverter}}">
+
+					<!-- Image effect -->
+					<Image.Effect>
+						<DropShadowEffect Opacity="0.5"/>
+					</Image.Effect>
+				</Image>
+
 				<!-- Refresh button -->
 				<Button
 					VerticalAlignment="Bottom"
