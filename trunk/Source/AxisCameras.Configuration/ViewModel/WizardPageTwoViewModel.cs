@@ -110,7 +110,7 @@ namespace AxisCameras.Configuration.ViewModel
 		public override bool ShouldSkipPage(ConfigurableCamera camera)
 		{
 			// Skip page if camera (device actually) only has one video source
-			return camera.VideoSourceCount == 1;
+			return camera.VideoSourceCount <= 1;
 		}
 	}
 }
