@@ -42,6 +42,7 @@ namespace AxisCameras.Configuration.ViewModel
 		private DirtyState dirtyState;
 		private string friendlyName;
 		private string firmwareVersion;
+		private IEnumerable<byte> snapshot;
 		private int videoSource;
 		private int videoSourceCount;
 
@@ -135,6 +136,7 @@ namespace AxisCameras.Configuration.ViewModel
 
 			friendlyName = camera.Name;
 			firmwareVersion = camera.FirmwareVersion;
+			snapshot = camera.Snapshot;
 			videoSource = camera.VideoSource;
 			videoSourceCount = camera.VideoSourceCount;
 
@@ -161,6 +163,7 @@ namespace AxisCameras.Configuration.ViewModel
 
 			camera.Name = friendlyName;
 			camera.FirmwareVersion = firmwareVersion;
+			camera.Snapshot = snapshot;
 			camera.VideoSource = videoSource;
 			camera.VideoSourceCount = videoSourceCount;
 
@@ -206,6 +209,7 @@ namespace AxisCameras.Configuration.ViewModel
 						{
 							friendlyName = cameraParametersDialogViewModel.FriendlyName;
 							videoSource = 1;
+							snapshot = null;
 						}
 
 						// Update the following parameters regardless, it won't hurt

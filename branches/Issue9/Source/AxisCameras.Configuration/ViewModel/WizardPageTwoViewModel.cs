@@ -92,7 +92,13 @@ namespace AxisCameras.Configuration.ViewModel
 		{
 			if (camera == null) throw new ArgumentNullException("camera");
 
-			camera.VideoSource = SelectedVideoSource;
+			if (camera.VideoSource != SelectedVideoSource)
+			{
+				camera.VideoSource = SelectedVideoSource;
+
+				// Remove snapshot if another video source is selected
+				camera.Snapshot = null;
+			}
 		}
 
 
