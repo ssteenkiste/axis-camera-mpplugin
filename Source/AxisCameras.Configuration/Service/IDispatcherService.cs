@@ -17,21 +17,31 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System.Windows.Controls;
+using System;
+using System.Windows.Threading;
 
-namespace AxisCameras.Configuration.View
+namespace AxisCameras.Configuration.Service
 {
 	/// <summary>
-	/// The second page of the camera wizard.
+	/// Interface wrapping the Dispatcher.
 	/// </summary>
-	public partial class WizardPageTwo : UserControl
+	interface IDispatcherService
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="WizardPageTwo"/> class.
+		/// Executes the specified delegate asynchronously with the specified arguments on the thread
+		/// that the Dispatcher was created on.
 		/// </summary>
-		public WizardPageTwo()
-		{
-			InitializeComponent();
-		}
+		/// <param name="method">
+		/// The delegate to a method that takes parameters specified in args, which is pushed onto the
+		/// Dispatcher event queue.
+		/// </param>
+		/// <param name="args">
+		/// An array of objects to pass as arguments to the given method. Can be null.
+		/// </param>
+		/// <returns>
+		/// An object, which is returned immediately after BeginInvoke is called, that can be used to
+		/// interact with the delegate as it is pending execution in the event queue.
+		/// </returns>
+		DispatcherOperation BeginInvoke(Delegate method, params object[] args);
 	}
 }

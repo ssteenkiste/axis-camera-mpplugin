@@ -9,6 +9,7 @@
     &lt;Address&gt;192.168.0.80&lt;/Address&gt;
     &lt;Port&gt;80&lt;/Port&gt;
     &lt;VideoSource&gt;1&lt;/VideoSource&gt;
+    &lt;VideoSourceCount&gt;0&lt;/VideoSourceCount&gt;
     &lt;UserName&gt;root&lt;/UserName&gt;
     &lt;Password&gt;pass&lt;/Password&gt;
     &lt;FirmwareVersion&gt;4.40.2&lt;/FirmwareVersion&gt;

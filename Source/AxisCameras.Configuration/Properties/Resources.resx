@@ -154,15 +154,21 @@
     <value>Enter a user name that contains from one to fourteen characters. Valid characters are: A-Z, a-z, 0-9 and _ (underscore). User name must start with a letter.</value>
   </data>
   <data name="WizardPageOne_Description" xml:space="preserve">
-    <value>The camera is specified by entering network address and HTTP port. Credentials are used to validate you as a trusted user on the camera.</value>
+    <value>The device is specified by entering network address and HTTP port. Credentials are used to validate you as a trusted user on the device.</value>
   </data>
   <data name="WizardPageOne_Header" xml:space="preserve">
-    <value>Select Camera</value>
+    <value>Select Device</value>
   </data>
-  <data name="WizardPageTwo_Description" xml:space="preserve">
+  <data name="WizardPageThree_Description" xml:space="preserve">
     <value>Finish the operation by specifying a name and snapshot identifying the camera inside MediaPortal.</value>
   </data>
-  <data name="WizardPageTwo_Header" xml:space="preserve">
+  <data name="WizardPageThree_Header" xml:space="preserve">
     <value>Finish Operation</value>
+  </data>
+  <data name="WizardPageTwo_Description" xml:space="preserve">
+    <value>The selected device is a video server with multiple video sources. Select the video source to use.</value>
+  </data>
+  <data name="WizardPageTwo_Header" xml:space="preserve">
+    <value>Select Video Source</value>
   </data>
 </root>

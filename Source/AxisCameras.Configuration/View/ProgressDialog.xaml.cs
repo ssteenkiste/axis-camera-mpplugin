@@ -17,21 +17,32 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System.Windows.Controls;
+using System.ComponentModel;
+using System.Windows;
 
 namespace AxisCameras.Configuration.View
 {
 	/// <summary>
-	/// The second page of the camera wizard.
+	/// Dialog displayed to the user when application is communicating with the camera.
 	/// </summary>
-	public partial class WizardPageTwo : UserControl
+	public partial class ProgressDialog : Window
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="WizardPageTwo"/> class.
+		/// Initializes a new instance of the <see cref="ProgressDialog"/> class.
 		/// </summary>
-		public WizardPageTwo()
+		public ProgressDialog()
 		{
 			InitializeComponent();
+		}
+
+
+		/// <summary>
+		/// Handles the Closing event of the Window control.
+		/// </summary>
+		private void Window_Closing(object sender, CancelEventArgs e)
+		{
+			// Prevent closing the window if DialogResult hasn't been set
+			e.Cancel = !DialogResult.HasValue;
 		}
 	}
 }

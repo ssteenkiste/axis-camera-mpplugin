@@ -54,7 +54,7 @@ namespace AxisCameras.Configuration.ViewModel
 
 			Title = title;
 			Camera = camera;
-			CurrentWizardPage = pages.First();
+			LoadAndShowPage(pages.First());
 			PreviousCommand = new RelayCommand(Previous, CanPrevious);
 			NextCommand = new RelayCommand(Next, CanNext);
 			FinishCommand = new RelayCommand(Finish, CanFinish);
@@ -79,18 +79,6 @@ namespace AxisCameras.Configuration.ViewModel
 			get { return Property(() => CurrentWizardPage); }
 			private set
 			{
-				// Save properties from old page
-				if (CurrentWizardPage != null)
-				{
-					CurrentWizardPage.Save(Camera);
-				}
-
-				// Load properties to new page
-				if (value != null)
-				{
-					value.Load(Camera);
-				}
-
 				Property(() => CurrentWizardPage, value);
 				OnPropertyChanged(() => Header);
 				OnPropertyChanged(() => Description);
@@ -161,8 +149,21 @@ namespace AxisCameras.Configuration.ViewModel
 		/// </summary>
 		private void Previous(object parameter)
 		{
-			int currentPageIndex = pages.IndexOf(CurrentWizardPage);
-			CurrentWizardPage = pages[currentPageIndex - 1];
+			// Save settings from page
+			SaveCurrentPage();
+
+			// Find previous page wishing to be displayed
+			for (int index = pages.IndexOf(CurrentWizardPage) - 1; index >= 0; index--)
+			{
+				if (!pages[index].ShouldSkipPage(Camera))
+				{
+					// Load settings to page and show it
+					LoadAndShowPage(pages[index]);
+					return;
+				}
+			}
+
+			throw new InvalidOperationException("No previous page wishes to be displayed.");
 		}
 
 
@@ -184,8 +185,21 @@ namespace AxisCameras.Configuration.ViewModel
 			// Validate current page before moving to next page
 			if (CurrentWizardPage.Validate())
 			{
-				int currentPageIndex = pages.IndexOf(CurrentWizardPage);
-				CurrentWizardPage = pages[currentPageIndex + 1];
+				// Save settings from page
+				SaveCurrentPage();
+
+				// Find next page wishing to be displayed
+				for (int index = pages.IndexOf(CurrentWizardPage) + 1; index < pages.Count; index++)
+				{
+					if (!pages[index].ShouldSkipPage(Camera))
+					{
+						// Load settings to page and show it
+						LoadAndShowPage(pages[index]);
+						return;
+					}
+				}
+
+				throw new InvalidOperationException("No next page wishes to be displayed.");
 			}
 		}
 
@@ -222,6 +236,35 @@ namespace AxisCameras.Configuration.ViewModel
 		private bool CanFinish(object parameter)
 		{
 			return CurrentWizardPage == pages.Last();
+		}
+
+
+		/// <summary>
+		/// Loads the camera settings to specified page and show it in the wizard.
+		/// </summary>
+		/// <param name="pageViewModel">
+		/// The page to load the camera settings to and show in the wizard.
+		/// </param>
+		private void LoadAndShowPage(IWizardPageViewModel pageViewModel)
+		{
+			if (pageViewModel != null)
+			{
+				pageViewModel.Load(Camera);
+
+				CurrentWizardPage = pageViewModel;
+			}
+		}
+
+
+		/// <summary>
+		/// Saves the camera settings entered in current page.
+		/// </summary>
+		private void SaveCurrentPage()
+		{
+			if (CurrentWizardPage != null)
+			{
+				CurrentWizardPage.Save(Camera);
+			}
 		}
 	}
 }

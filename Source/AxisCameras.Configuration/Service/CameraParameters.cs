@@ -17,40 +17,31 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System;
-using System.ComponentModel;
 
 namespace AxisCameras.Configuration.Service
 {
 	/// <summary>
-	/// Event argument sent when getting information from a camera completed.
+	/// Class containing parameters read from a camera.
 	/// </summary>
-	class GetInformationFromCameraCompletedEventArgs : AsyncCompletedEventArgs
+	class CameraParameters
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="GetInformationFromCameraCompletedEventArgs"/>
+		/// Initializes a new instance of the <see cref="CameraParameters"/>
 		/// class.
 		/// </summary>
-		/// <param name="friendlyName">The friendly name. Default value is null.</param>
-		/// <param name="firmwareVersion">The firmware version. Default value is null.</param>
-		/// <param name="snapshot">The camera snapshot. Default value is null.</param>
-		/// <param name="error">
-		/// Any error that occurred during the asynchronous operation. Default value is null.
+		/// <param name="friendlyName">The friendly name.</param>
+		/// <param name="firmwareVersion">The firmware version.</param>
+		/// <param name="videoSourceCount">
+		/// The video source count, i.e. the number of video source this camera (device actually) has.
 		/// </param>
-		/// <param name="cancelled">
-		/// A value indicating whether the asynchronous operation was canceled. Default value is false.
-		/// </param>
-		public GetInformationFromCameraCompletedEventArgs(
-			string friendlyName = null,
-			string firmwareVersion = null,
-			byte[] snapshot = null,
-			Exception error = null,
-			bool cancelled = false) :
-			base(error, cancelled, null)
+		public CameraParameters(
+			string friendlyName,
+			string firmwareVersion,
+			int videoSourceCount)
 		{
 			FriendlyName = friendlyName;
 			FirmwareVersion = firmwareVersion;
-			Snapshot = snapshot;
+			VideoSourceCount = videoSourceCount;
 		}
 
 
@@ -67,8 +58,9 @@ namespace AxisCameras.Configuration.Service
 
 
 		/// <summary>
-		/// Gets the snapshot.
+		/// Gets or sets the video source count, i.e. the number of video source this camera (device
+		/// actually) has.
 		/// </summary>
-		public byte[] Snapshot { get; private set; }
+		public int VideoSourceCount { get; private set; }
 	}
 }

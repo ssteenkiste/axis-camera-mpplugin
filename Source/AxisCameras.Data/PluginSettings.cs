@@ -33,6 +33,7 @@ namespace AxisCameras.Data
 	/// </summary>
 	public class PluginSettings : IPluginSettings
 	{
+		private readonly IUpgradeData upgradeData;
 		private ISettings settings;
 
 
@@ -40,11 +41,14 @@ namespace AxisCameras.Data
 		/// Initializes a new instance of the <see cref="PluginSettings"/> class.
 		/// </summary>
 		/// <param name="settings">The MediaPortal settings.</param>
-		public PluginSettings(ISettings settings)
+		/// <param name="upgradeData">Responsible for upgrading the data.</param>
+		public PluginSettings(ISettings settings, IUpgradeData upgradeData)
 		{
 			if (settings == null) throw new ArgumentNullException("settings");
+			if (upgradeData == null) throw new ArgumentNullException("upgradeData");
 
 			this.settings = settings;
+			this.upgradeData = upgradeData;
 		}
 
 
@@ -64,6 +68,12 @@ namespace AxisCameras.Data
 		private IEnumerable<Camera> GetCameras()
 		{
 			Log.Debug("Getting cameras from disk");
+
+			// Upgrade data if required
+			if (upgradeData.IsUpgradeRequired)
+			{
+				Upgrade();
+			}
 
 			string value = settings.GetValue(
 				DataPersistenceInformation.CameraSection.Name,
@@ -102,6 +112,24 @@ namespace AxisCameras.Data
 					DataPersistenceInformation.CameraSection.Name,
 					DataPersistenceInformation.CameraSection.CamerasEntry,
 					writer.ToString());
+			}
+		}
+
+
+		/// <summary>
+		/// Upgrades the data.
+		/// </summary>
+		private void Upgrade()
+		{
+			Log.Info("Upgrade of data is required");
+
+			if (upgradeData.Upgrade())
+			{
+				Log.Info("Upgrade successfully");
+			}
+			else
+			{
+				Log.Error("Upgrade failed!");
 			}
 		}
 

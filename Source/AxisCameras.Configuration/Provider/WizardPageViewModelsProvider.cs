@@ -19,6 +19,7 @@
 #endregion
 using System;
 using System.Collections.Generic;
+using AxisCameras.Configuration.Service;
 using AxisCameras.Configuration.ViewModel;
 using AxisCameras.Core;
 using AxisCameras.Mvvm.Services;
@@ -31,25 +32,42 @@ namespace AxisCameras.Configuration.Provider
 	class WizardPageViewModelsProvider : IWizardPageViewModelsProvider
 	{
 		private readonly IWindowService windowService;
-		private readonly ICameraCommunicationDialogViewModelProvider communicationProvider;
+		private readonly ICameraParametersDialogViewModelProvider cameraParametersProvider;
+		private readonly ICameraSnapshotDialogViewModelProvider cameraSnapshotProvider;
+		private readonly IResourceService resourceService;
+		private readonly IDispatcherService dispatcherService;
 
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="WizardPageViewModelsProvider"/> class.
 		/// </summary>
 		/// <param name="windowService">The window service.</param>
-		/// <param name="communicationProvider">
-		/// The camera communication dialog view model provider.
+		/// <param name="cameraParametersProvider">
+		/// The camera parameters dialog view model provider.
 		/// </param>
+		/// <param name="cameraSnapshotProvider">
+		/// The camera snapshot dialog view model provider.
+		/// </param>
+		/// <param name="resourceService">The resource service.</param>
+		/// <param name="dispatcherService">The dispatcher service.</param>
 		public WizardPageViewModelsProvider(
 			IWindowService windowService,
-			ICameraCommunicationDialogViewModelProvider communicationProvider)
+			ICameraParametersDialogViewModelProvider cameraParametersProvider,
+			ICameraSnapshotDialogViewModelProvider cameraSnapshotProvider,
+			IResourceService resourceService,
+			IDispatcherService dispatcherService)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
-			if (communicationProvider == null) throw new ArgumentNullException("communicationProvider");
+			if (cameraParametersProvider == null) throw new ArgumentNullException("cameraParametersProvider");
+			if (cameraSnapshotProvider == null) throw new ArgumentNullException("cameraSnapshotProvider");
+			if (resourceService == null) throw new ArgumentNullException("resourceService");
+			if (dispatcherService == null) throw new ArgumentNullException("dispatcherService");
 
 			this.windowService = windowService;
-			this.communicationProvider = communicationProvider;
+			this.cameraParametersProvider = cameraParametersProvider;
+			this.cameraSnapshotProvider = cameraSnapshotProvider;
+			this.resourceService = resourceService;
+			this.dispatcherService = dispatcherService;
 		}
 
 
@@ -60,18 +78,23 @@ namespace AxisCameras.Configuration.Provider
 		{
 			IWizardPageViewModel pageOne = new WizardPageOneViewModel(
 				windowService,
-				communicationProvider);
+				cameraParametersProvider);
 
-			IWizardPageViewModel pageTwo = new WizardPageTwoViewModel(
+			IWizardPageViewModel pageTwo = new WizardPageTwoViewModel();
+
+			IWizardPageViewModel pageThree = new WizardPageThreeViewModel(
 				windowService,
-				communicationProvider);
+				resourceService,
+				dispatcherService,
+				cameraSnapshotProvider);
 
 			Log.Debug("Provide a sequence of IWizardPageViewModels");
 
 			return new IWizardPageViewModel[]
 			{
 				pageOne,
-				pageTwo
+				pageTwo,
+				pageThree
 			};
 		}
 	}

@@ -17,21 +17,20 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System.Windows.Controls;
+using AxisCameras.Configuration.Service;
+using AxisCameras.Configuration.ViewModel;
 
-namespace AxisCameras.Configuration.View
+namespace AxisCameras.Configuration.Provider
 {
 	/// <summary>
-	/// The second page of the camera wizard.
+	/// Interface describing a provider that provides a ICameraParametersDialogViewModel.
 	/// </summary>
-	public partial class WizardPageTwo : UserControl
+	interface ICameraParametersDialogViewModelProvider
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="WizardPageTwo"/> class.
+		/// Returns a ICameraParametersDialogViewModel from specified network endpoint.
 		/// </summary>
-		public WizardPageTwo()
-		{
-			InitializeComponent();
-		}
+		/// <param name="cameraEndpoint">The camera network endpoint.</param>
+		ICameraParametersDialogViewModel Provide(NetworkEndpoint cameraEndpoint);
 	}
 }

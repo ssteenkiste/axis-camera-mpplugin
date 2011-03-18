@@ -64,7 +64,8 @@ namespace AxisCameras.Player
 				camera.Port,
 				camera.UserName,
 				camera.Password,
-				camera.FirmwareVersion);
+				camera.FirmwareVersion,
+				camera.VideoSource);
 
 			// Play live view in full screen
 			mediaPortalPlayer.PlayVideoStreamInFullScreen(url, camera.Name);

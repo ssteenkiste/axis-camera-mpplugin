@@ -58,6 +58,13 @@ namespace AxisCameras.Data
 
 
 		/// <summary>
+		/// Gets or sets the video source count, i.e. the number of video source this camera (device
+		/// actually) has.
+		/// </summary>
+		public int VideoSourceCount { get; set; }
+
+
+		/// <summary>
 		/// Gets or sets the user name.
 		/// </summary>
 		public string UserName { get; set; }

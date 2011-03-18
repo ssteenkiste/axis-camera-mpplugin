@@ -40,7 +40,7 @@ namespace AxisCameras.Configuration.Service
 			/// <summary>
 			/// Gets CGI for requesting a snapshot.
 			/// </summary>
-			public const string Snapshot = "http://{0}:{1}/axis-cgi/jpg/image.cgi";
+			public const string Snapshot = "http://{0}:{1}/axis-cgi/jpg/image.cgi?camera={2}";
 		}
 
 

@@ -17,21 +17,36 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System.Windows.Controls;
+using System;
+using System.IO;
+using System.Windows;
 
-namespace AxisCameras.Configuration.View
+namespace AxisCameras.Configuration.Service
 {
 	/// <summary>
-	/// The second page of the camera wizard.
+	/// Class responsible for reading from the application resources.
 	/// </summary>
-	public partial class WizardPageTwo : UserControl
+	class ResourceService : IResourceService
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="WizardPageTwo"/> class.
+		/// Returns the bytes in specified resource.
 		/// </summary>
-		public WizardPageTwo()
+		/// <param name="uri">The URI of the resource.</param>
+		public byte[] ReadBytesFromResource(string uri)
 		{
-			InitializeComponent();
+			using (Stream resourceStream = Application.GetResourceStream(new Uri(uri, UriKind.Relative)).Stream)
+			using (MemoryStream memoryStream = new MemoryStream())
+			{
+				byte[] buffer = new byte[1024];
+
+				int bytesRead;
+				while ((bytesRead = resourceStream.Read(buffer, 0, buffer.Length)) > 0)
+				{
+					memoryStream.Write(buffer, 0, bytesRead);
+				}
+
+				return memoryStream.ToArray();
+			}
 		}
 	}
 }

@@ -17,20 +17,13 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using AxisCameras.Configuration.Service;
-using AxisCameras.Configuration.ViewModel;
 
-namespace AxisCameras.Configuration.Provider
+namespace AxisCameras.Configuration.ViewModel
 {
 	/// <summary>
-	/// Interface describing a provider that provides a ICameraCommunicationDialogViewModel.
+	/// Interface for WizardPageThreeViewModel.
 	/// </summary>
-	interface ICameraCommunicationDialogViewModelProvider
+	interface IWizardPageThreeViewModel : IWizardPageViewModel
 	{
-		/// <summary>
-		/// Returns a ICameraCommunicationDialogViewModel from specified network endpoint.
-		/// </summary>
-		/// <param name="cameraEndpoint">The camera network endpoint.</param>
-		ICameraCommunicationDialogViewModel Provide(NetworkEndpoint cameraEndpoint);
 	}
 }

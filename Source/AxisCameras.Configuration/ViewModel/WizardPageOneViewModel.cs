@@ -37,30 +37,32 @@ namespace AxisCameras.Configuration.ViewModel
 	class WizardPageOneViewModel : WizardPageViewModel, IWizardPageOneViewModel
 	{
 		private readonly IWindowService windowService;
-		private readonly ICameraCommunicationDialogViewModelProvider communicationProvider;
+		private readonly ICameraParametersDialogViewModelProvider cameraParametersProvider;
 
 		private DirtyState dirtyState;
 		private string friendlyName;
 		private string firmwareVersion;
 		private IEnumerable<byte> snapshot;
+		private int videoSource;
+		private int videoSourceCount;
 
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="WizardPageOneViewModel"/> class.
 		/// </summary>
 		/// <param name="windowService">The window service.</param>
-		/// <param name="communicationProvider">
-		/// The camera communication dialog view model provider.
+		/// <param name="cameraParametersProvider">
+		/// The camera parameters dialog view model provider.
 		/// </param>
 		public WizardPageOneViewModel(
 			IWindowService windowService,
-			ICameraCommunicationDialogViewModelProvider communicationProvider)
+			ICameraParametersDialogViewModelProvider cameraParametersProvider)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
-			if (communicationProvider == null) throw new ArgumentNullException("communicationProvider");
+			if (cameraParametersProvider == null) throw new ArgumentNullException("cameraParametersProvider");
 
 			this.windowService = windowService;
-			this.communicationProvider = communicationProvider;
+			this.cameraParametersProvider = cameraParametersProvider;
 
 			AddValidators();
 		}
@@ -135,6 +137,8 @@ namespace AxisCameras.Configuration.ViewModel
 			friendlyName = camera.Name;
 			firmwareVersion = camera.FirmwareVersion;
 			snapshot = camera.Snapshot;
+			videoSource = camera.VideoSource;
+			videoSourceCount = camera.VideoSourceCount;
 
 			Address = camera.Address;
 			Port = camera.Port.ToString(CultureInfo.CurrentCulture);
@@ -160,6 +164,8 @@ namespace AxisCameras.Configuration.ViewModel
 			camera.Name = friendlyName;
 			camera.FirmwareVersion = firmwareVersion;
 			camera.Snapshot = snapshot;
+			camera.VideoSource = videoSource;
+			camera.VideoSourceCount = videoSourceCount;
 
 			camera.Address = Address;
 			camera.Port = int.Parse(Port, CultureInfo.CurrentCulture);
@@ -186,37 +192,40 @@ namespace AxisCameras.Configuration.ViewModel
 					UserName,
 					Password);
 
-				ICameraCommunicationDialogViewModel communicationViewModel =
-					communicationProvider.Provide(cameraEndpoint);
-
-				// Communicate with camera
-				bool? success = windowService.ShowDialog<CameraCommunicationDialog>(
-					communicationViewModel,
-					this);
-
-				// Was communication with camera successful?
-				if (success == true)
+				using (ICameraParametersDialogViewModel cameraParametersDialogViewModel =
+					cameraParametersProvider.Provide(cameraEndpoint))
 				{
-					// Only update friendly name and snapshot if user redirected camera to another address or
-					// port, i.e. don't update if only new credentials were entered
-					if (dirtyState.IsNetworkSettingsDirty(Address, Port))
+					// Communicate with camera
+					bool? success = windowService.ShowDialog<ProgressDialog>(
+						cameraParametersDialogViewModel,
+						this);
+
+					// Was communication with camera successful?
+					if (success == true)
 					{
-						friendlyName = communicationViewModel.FriendlyName;
-						snapshot = communicationViewModel.Snapshot;
+						// Only update the following values if user redirected camera to another address or
+						// port, i.e. don't update if only new credentials were entered
+						if (dirtyState.IsNetworkSettingsDirty(Address, Port))
+						{
+							friendlyName = cameraParametersDialogViewModel.FriendlyName;
+							videoSource = 1;
+							snapshot = null;
+						}
+
+						// Update the following parameters regardless, it won't hurt
+						firmwareVersion = cameraParametersDialogViewModel.FirmwareVersion;
+						videoSourceCount = cameraParametersDialogViewModel.VideoSourceCount;
 					}
+					else
+					{
+						isValid = false;
 
-					// Update firmware version regardless, it won't hurt
-					firmwareVersion = communicationViewModel.FirmwareVersion;
-				}
-				else
-				{
-					isValid = false;
-
-					windowService.ShowMessageBox(
-						this,
-						Resources.CameraCommunicationError,
-						Resources.CameraCommunicationError_Title,
-						icon: MessageBoxImage.Error);
+						windowService.ShowMessageBox(
+							this,
+							Resources.CameraCommunicationError,
+							Resources.CameraCommunicationError_Title,
+							icon: MessageBoxImage.Error);
+					}
 				}
 			}
 

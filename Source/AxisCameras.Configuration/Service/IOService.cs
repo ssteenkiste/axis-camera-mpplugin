@@ -19,7 +19,6 @@
 #endregion
 using System;
 using System.IO;
-using System.Windows;
 using AxisCameras.Core;
 using MediaPortal.Configuration;
 
@@ -33,6 +32,19 @@ namespace AxisCameras.Configuration.Service
 		private const string PluginFolderName = "AxisCameras";
 		private const string DefaultSnapshotUri = "/AxisCameras.Configuration;component/Resources/DefaultSnapshot.png";
 
+		private readonly IResourceService resourceService;
+
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="IOService"/> class.
+		/// </summary>
+		/// <param name="resourceService">The resource service.</param>
+		public IOService(IResourceService resourceService)
+		{
+			if (resourceService == null) throw new ArgumentNullException("resourceService");
+
+			this.resourceService = resourceService;
+		}
 
 		/// <summary>
 		/// Gets the path of the camera icon.
@@ -66,7 +78,7 @@ namespace AxisCameras.Configuration.Service
 				"Snapshot of camera with ID {0} has been removed from disk, returning default.",
 				cameraId);
 
-			return ReadBytesFromResource(DefaultSnapshotUri);
+			return resourceService.ReadBytesFromResource(DefaultSnapshotUri);
 		}
 
 
@@ -118,28 +130,6 @@ namespace AxisCameras.Configuration.Service
 				Config.Dir.Thumbs,
 				PluginFolderName,
 				cameraId + ".jpg");
-		}
-
-
-		/// <summary>
-		/// Returns the bytes in specified resource.
-		/// </summary>
-		/// <param name="uri">The URI of the resource.</param>
-		private static byte[] ReadBytesFromResource(string uri)
-		{
-			using (Stream resourceStream = Application.GetResourceStream(new Uri(uri, UriKind.Relative)).Stream)
-			using (MemoryStream memoryStream = new MemoryStream())
-			{
-				byte[] buffer = new byte[1024];
-				
-				int bytesRead;
-				while ((bytesRead = resourceStream.Read(buffer, 0, buffer.Length)) > 0)
-				{
-					memoryStream.Write(buffer, 0, bytesRead);
-				}
-
-				return memoryStream.ToArray();
-			}
 		}
 	}
 }
