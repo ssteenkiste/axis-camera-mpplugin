@@ -18,82 +18,35 @@
 
 #endregion
 using System;
-using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Input;
+using System.Collections.ObjectModel;
+using System.Linq;
 using AxisCameras.Configuration.Properties;
-using AxisCameras.Configuration.Provider;
-using AxisCameras.Configuration.Service;
-using AxisCameras.Configuration.View;
 using AxisCameras.Configuration.ViewModel.Data;
-using AxisCameras.Configuration.ViewModel.ValidationRule;
-using AxisCameras.Core;
-using AxisCameras.Mvvm;
-using AxisCameras.Mvvm.Services;
 
 namespace AxisCameras.Configuration.ViewModel
 {
 	/// <summary>
-	/// View model where camera name is entered and snapshot displayed.
+	/// View model where video source is entered if specified device is a video server.
 	/// </summary>
 	class WizardPageTwoViewModel : WizardPageViewModel, IWizardPageTwoViewModel
 	{
-		private readonly IWindowService windowService;
-		private readonly ICameraCommunicationDialogViewModelProvider communicationProvider;
-
-		private NetworkEndpoint cameraEndpoint;
-
-
 		/// <summary>
-		/// Initializes a new instance of the <see cref="WizardPageTwoViewModel"/> class.
+		/// Gets the video sources.
 		/// </summary>
-		/// <param name="windowService">The window service.</param>
-		/// <param name="communicationProvider">
-		/// The camera communication dialog view model provider.
-		/// </param>
-		public WizardPageTwoViewModel(
-			IWindowService windowService,
-			ICameraCommunicationDialogViewModelProvider communicationProvider)
+		public ReadOnlyObservableCollection<int> VideoSources
 		{
-			if (windowService == null) throw new ArgumentNullException("windowService");
-			if (communicationProvider == null) throw new ArgumentNullException("communicationProvider");
-
-			this.windowService = windowService;
-			this.communicationProvider = communicationProvider;
-
-			RefreshCommand = new RelayCommand(Refresh);
-
-			AddValidators();
+			get { return Property(() => VideoSources); }
+			private set { Property(() => VideoSources, value); }
 		}
 
 
 		/// <summary>
-		/// Gets or sets the name.
+		/// Gets the selected video source.
 		/// </summary>
-		public string Name
+		public int SelectedVideoSource
 		{
-			get { return Property(() => Name); }
-			set { Property(() => Name, value); }
-		}
-
-
-		/// <summary>
-		/// Gets the snapshot.
-		/// </summary>
-		public IEnumerable<byte> Snapshot
-		{
-			get { return Property(() => Snapshot); }
-			private set { Property(() => Snapshot, value); }
-		}
-
-
-		/// <summary>
-		/// Gets the command refreshing the snapshot.
-		/// </summary>
-		public ICommand RefreshCommand
-		{
-			get { return Property(() => RefreshCommand); }
-			private set { Property(() => RefreshCommand, value); }
+			get { return Property(() => SelectedVideoSource); }
+			set { Property(() => SelectedVideoSource, value); }
 		}
 
 
@@ -123,14 +76,11 @@ namespace AxisCameras.Configuration.ViewModel
 		{
 			if (camera == null) throw new ArgumentNullException("camera");
 
-			cameraEndpoint = new NetworkEndpoint(
-				camera.Address,
-				camera.Port,
-				camera.UserName,
-				camera.Password);
+			VideoSources = new ReadOnlyObservableCollection<int>(
+				new ObservableCollection<int>(
+					Enumerable.Range(1, camera.VideoSourceCount)));
 
-			Name = camera.Name;
-			Snapshot = camera.Snapshot;
+			SelectedVideoSource = camera.VideoSource;
 		}
 
 
@@ -142,50 +92,25 @@ namespace AxisCameras.Configuration.ViewModel
 		{
 			if (camera == null) throw new ArgumentNullException("camera");
 
-			camera.Name = Name;
-			camera.Snapshot = Snapshot;
-		}
-
-
-		/// <summary>
-		/// Refreshes the snapshot.
-		/// </summary>
-		private void Refresh(object parameter)
-		{
-			Log.Debug("Refreshing snapshot");
-
-			ICameraCommunicationDialogViewModel communicationViewModel =
-				communicationProvider.Provide(cameraEndpoint);
-
-			// Communicate with camera
-			bool? success = windowService.ShowDialog<CameraCommunicationDialog>(
-				communicationViewModel,
-				this);
-
-			// Was communication with camera successful?
-			if (success == true)
+			if (camera.VideoSource != SelectedVideoSource)
 			{
-				Snapshot = communicationViewModel.Snapshot;
-			}
-			else
-			{
-				windowService.ShowMessageBox(
-					this,
-					Resources.CameraCommunicationError,
-					Resources.CameraCommunicationError_Title,
-					icon: MessageBoxImage.Error);
+				camera.VideoSource = SelectedVideoSource;
+
+				// Remove snapshot if another video source is selected
+				camera.Snapshot = null;
 			}
 		}
 
 
 		/// <summary>
-		/// Adds the validators.
+		/// Instruct the wizard whether wizard page should be skipped.
 		/// </summary>
-		private void AddValidators()
+		/// <param name="camera">The camera displayed in the page.</param>
+		/// <returns>true to skip page; otherwise false.</returns>
+		public override bool ShouldSkipPage(ConfigurableCamera camera)
 		{
-			AddValidator(
-				() => Name,
-				new NotEmptyStringValidationRule { ErrorMessage = Resources.Validation_Failed_CameraName });
+			// Skip page if camera (device actually) only has one video source
+			return camera.VideoSourceCount == 1;
 		}
 	}
 }

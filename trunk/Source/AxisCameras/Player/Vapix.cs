@@ -35,13 +35,13 @@ namespace AxisCameras.Player
 			/// <summary>
 			/// The M-JPEG live view URL.
 			/// </summary>
-			internal const string MjpegVideoUrl = "axrtsphttp://{0}:{1}@{2}:{3}/mjpg/video.mjpg";
+			internal const string MjpegVideoUrl = "axrtsphttp://{0}:{1}@{2}:{3}/mjpg/{4}/video.mjpg";
 
 
 			/// <summary>
 			/// The MPEG-4 live video URL.
 			/// </summary>
-			internal const string Mpeg4VideoUrl = "axrtsphttp://{0}:{1}@{2}:{3}/mpeg4/media.amp";
+			internal const string Mpeg4VideoUrl = "axrtsphttp://{0}:{1}@{2}:{3}/mpeg4/{4}/media.amp";
 		}
 
 
@@ -54,7 +54,7 @@ namespace AxisCameras.Player
 			/// <summary>
 			/// The H.264 live video URL.
 			/// </summary>
-			internal const string H264VideoUrl = "axrtsphttp://{0}:{1}@{2}:{3}/axis-media/media.amp?videocodec=h264";
+			internal const string H264VideoUrl = "axrtsphttp://{0}:{1}@{2}:{3}/axis-media/{4}/media.amp?videocodec=h264";
 		}
 	}
 }

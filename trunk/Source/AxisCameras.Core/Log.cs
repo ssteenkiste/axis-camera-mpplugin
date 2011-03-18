@@ -76,6 +76,15 @@ namespace AxisCameras.Core
 
 
 		/// <summary>
+		/// Is logging a message and exception with error level.
+		/// </summary>
+		public static void Error(string message, Exception exception)
+		{
+			MediaPortalLog.Error(Prefix(message) + " " + exception.ToString());
+		}
+
+
+		/// <summary>
 		/// Adds the plugin name as prefix to the format text.
 		/// </summary>
 		/// <param name="format">The format.</param>

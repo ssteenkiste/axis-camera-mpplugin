@@ -17,21 +17,19 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System.Windows.Controls;
+using System;
+using AxisCameras.Mvvm;
 
-namespace AxisCameras.Configuration.View
+namespace AxisCameras.Configuration.ViewModel
 {
 	/// <summary>
-	/// The second page of the camera wizard.
+	/// Interface responsible for reading parameters from a camera.
 	/// </summary>
-	public partial class WizardPageTwo : UserControl
+	interface ICameraSnapshotDialogViewModel : IDialogViewModelBase, IDisposable
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="WizardPageTwo"/> class.
+		/// Gets the camera snapshot.
 		/// </summary>
-		public WizardPageTwo()
-		{
-			InitializeComponent();
-		}
+		byte[] Snapshot { get; }
 	}
 }

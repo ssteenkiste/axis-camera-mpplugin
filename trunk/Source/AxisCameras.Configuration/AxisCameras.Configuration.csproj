@@ -66,14 +66,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Provider\CameraCommunicationDialogViewModelProvider.cs" />
+    <Compile Include="Provider\CameraParametersDialogViewModelProvider.cs" />
+    <Compile Include="Provider\CameraSnapshotDialogViewModelProvider.cs" />
     <Compile Include="Provider\CameraViewModelProvider.cs" />
     <Compile Include="Provider\CameraConverter.cs" />
     <Compile Include="Provider\ICameraConverter.cs">
       <DependentUpon>CameraConverter.cs</DependentUpon>
     </Compile>
-    <Compile Include="Provider\ICameraCommunicationDialogViewModelProvider.cs">
-      <DependentUpon>CameraCommunicationDialogViewModelProvider.cs</DependentUpon>
+    <Compile Include="Provider\ICameraParametersDialogViewModelProvider.cs">
+      <DependentUpon>CameraParametersDialogViewModelProvider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Provider\ICameraSnapshotDialogViewModelProvider.cs">
+      <DependentUpon>CameraSnapshotDialogViewModelProvider.cs</DependentUpon>
     </Compile>
     <Compile Include="Provider\ICameraViewModelProvider.cs">
       <DependentUpon>CameraViewModelProvider.cs</DependentUpon>
@@ -92,8 +96,9 @@
     <Compile Include="Provider\WizardPageViewModelsProvider.cs" />
     <Compile Include="Service\BrowserService.cs" />
     <Compile Include="Service\CameraCommunicationService.cs" />
+    <Compile Include="Service\CameraParameters.cs" />
     <Compile Include="Service\CurrentProcessService.cs" />
-    <Compile Include="Service\GetInformationFromCameraCompletedEventArgs.cs" />
+    <Compile Include="Service\DispatcherService.cs" />
     <Compile Include="Service\IBrowserService.cs">
       <DependentUpon>BrowserService.cs</DependentUpon>
     </Compile>
@@ -102,6 +107,9 @@
     </Compile>
     <Compile Include="Service\ICurrentProcessService.cs">
       <DependentUpon>CurrentProcessService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service\IDispatcherService.cs">
+      <DependentUpon>DispatcherService.cs</DependentUpon>
     </Compile>
     <Compile Include="Service\IIOService.cs">
       <DependentUpon>IOService.cs</DependentUpon>
@@ -113,14 +121,23 @@
     <Compile Include="Service\IProductInformation.cs">
       <DependentUpon>ProductInformation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Service\IResourceService.cs">
+      <DependentUpon>ResourceService.cs</DependentUpon>
+    </Compile>
     <Compile Include="Service\ParameterParser.cs" />
     <Compile Include="Service\ProductInformation.cs" />
+    <Compile Include="Service\ResourceService.cs" />
     <Compile Include="Service\Vapix.cs" />
-    <Compile Include="ViewModel\CameraCommunicationDialogViewModel.cs" />
+    <Compile Include="Service\WebClientTasks.cs" />
+    <Compile Include="ViewModel\CameraParametersDialogViewModel.cs" />
+    <Compile Include="ViewModel\CameraSnapshotDialogViewModel.cs" />
     <Compile Include="ViewModel\CameraViewModel.cs" />
     <Compile Include="ViewModel\Data\ConfigurableCamera.cs" />
-    <Compile Include="ViewModel\ICameraCommunicationDialogViewModel.cs">
-      <DependentUpon>CameraCommunicationDialogViewModel.cs</DependentUpon>
+    <Compile Include="ViewModel\ICameraParametersDialogViewModel.cs">
+      <DependentUpon>CameraParametersDialogViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\ICameraSnapshotDialogViewModel.cs">
+      <DependentUpon>CameraSnapshotDialogViewModel.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\ICameraViewModel.cs">
       <DependentUpon>CameraViewModel.cs</DependentUpon>
@@ -134,6 +151,9 @@
     <Compile Include="ViewModel\IWizardPageOneViewModel.cs">
       <DependentUpon>WizardPageOneViewModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\IWizardPageThreeViewModel.cs">
+      <DependentUpon>WizardPageThreeViewModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\IWizardPageTwoViewModel.cs">
       <DependentUpon>WizardPageTwoViewModel.cs</DependentUpon>
     </Compile>
@@ -141,6 +161,7 @@
       <DependentUpon>WizardPageViewModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Service\NetworkEndpoint.cs" />
+    <Compile Include="ViewModel\ProgressDialogViewModel.cs" />
     <Compile Include="ViewModel\SetupDialogViewModel.cs" />
     <Compile Include="ViewModel\ValidationRule\NotEmptyStringValidationRule.cs" />
     <Compile Include="ViewModel\ValidationRule\PortValidationRule.cs" />
@@ -148,12 +169,13 @@
     <Compile Include="ViewModel\ValidationRule\UserNameValidationRule.cs" />
     <Compile Include="ViewModel\WizardDialogViewModel.cs" />
     <Compile Include="ViewModel\WizardPageOneViewModel.cs" />
+    <Compile Include="ViewModel\WizardPageThreeViewModel.cs" />
     <Compile Include="ViewModel\WizardPageTwoViewModel.cs" />
     <Compile Include="ViewModel\WizardPageViewModel.cs" />
-    <Compile Include="View\CameraCommunicationDialog.xaml.cs">
-      <DependentUpon>CameraCommunicationDialog.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\ImageBytesConverter.cs" />
+    <Compile Include="View\ProgressDialog.xaml.cs">
+      <DependentUpon>ProgressDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SetupDialog.xaml.cs">
       <DependentUpon>SetupDialog.xaml</DependentUpon>
     </Compile>
@@ -163,16 +185,19 @@
     <Compile Include="View\WizardPageOne.xaml.cs">
       <DependentUpon>WizardPageOne.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\WizardPageThree.xaml.cs">
+      <DependentUpon>WizardPageThree.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\WizardPageTwo.xaml.cs">
       <DependentUpon>WizardPageTwo.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="View\CameraCommunicationDialog.xaml">
+    <Page Include="View\CameraCommunicationDialogResources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\CameraCommunicationDialogResources.xaml">
+    <Page Include="View\ProgressDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -199,6 +224,10 @@
     <Page Include="View\WizardPageResources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\WizardPageThree.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\WizardPageTwo.xaml">
       <SubType>Designer</SubType>

@@ -35,6 +35,10 @@ namespace AxisCameras.Player
 		/// <param name="userName">The user name.</param>
 		/// <param name="password">The password.</param>
 		/// <param name="firmwareVersion">The firmware version.</param>
+		/// <param name="videoSource">
+		/// The video source of the camera. This property should always be 1 on cameras, but can be
+		/// other than 1 on video servers with multiple camera inputs.
+		/// </param>
 		/// <returns>The live video URL used when getting live video from the camera.</returns>
 		[SuppressMessage("Microsoft.Design", "CA1055:UriReturnValuesShouldNotBeStrings",
 			Justification = "I am building a URL, but since g_Player doesn't accept URLs but instead " +
@@ -44,6 +48,7 @@ namespace AxisCameras.Player
 			int port,
 			string userName,
 			string password,
-			string firmwareVersion);
+			string firmwareVersion,
+			int videoSource);
 	}
 }

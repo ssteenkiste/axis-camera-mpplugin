@@ -153,7 +153,8 @@ namespace AxisCameras.Configuration.ViewModel
 			ConfigurableCamera camera = new ConfigurableCamera(Guid.NewGuid())
 			{
 				Port = 80,
-				UserName = "root"
+				UserName = "root",
+				VideoSource = 1
 			};
 
 			IWizardDialogViewModel wizard = wizardProvider.Provide(
