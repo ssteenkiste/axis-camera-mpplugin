@@ -42,6 +42,7 @@ namespace AxisCameras.Configuration.ViewModel
 		private DirtyState dirtyState;
 		private string friendlyName;
 		private string firmwareVersion;
+		private int videoSource;
 		private int videoSourceCount;
 
 
@@ -134,6 +135,7 @@ namespace AxisCameras.Configuration.ViewModel
 
 			friendlyName = camera.Name;
 			firmwareVersion = camera.FirmwareVersion;
+			videoSource = camera.VideoSource;
 			videoSourceCount = camera.VideoSourceCount;
 
 			Address = camera.Address;
@@ -159,6 +161,7 @@ namespace AxisCameras.Configuration.ViewModel
 
 			camera.Name = friendlyName;
 			camera.FirmwareVersion = firmwareVersion;
+			camera.VideoSource = videoSource;
 			camera.VideoSourceCount = videoSourceCount;
 
 			camera.Address = Address;
@@ -197,11 +200,12 @@ namespace AxisCameras.Configuration.ViewModel
 					// Was communication with camera successful?
 					if (success == true)
 					{
-						// Only update friendly name if user redirected camera to another address or port, i.e.
-						// don't update if only new credentials were entered
+						// Only update the following values if user redirected camera to another address or
+						// port, i.e. don't update if only new credentials were entered
 						if (dirtyState.IsNetworkSettingsDirty(Address, Port))
 						{
 							friendlyName = cameraParametersDialogViewModel.FriendlyName;
+							videoSource = 1;
 						}
 
 						// Update the following parameters regardless, it won't hurt
