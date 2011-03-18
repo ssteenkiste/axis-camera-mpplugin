@@ -6,7 +6,7 @@
 	xmlns:services="clr-namespace:AxisCameras.Mvvm.Services;assembly=AxisCameras.Mvvm"
 	Title="{Binding Title}"
 	WindowStartupLocation="CenterOwner"
-	Width="500"
+	Width="570"
 	Height="400"
 	ResizeMode="CanResize"
 	ShowInTaskbar="False"

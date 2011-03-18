@@ -21,24 +21,34 @@
 	
 	<!-- A camera template -->
 	<DataTemplate x:Key="CameraTemplate">
-		<Grid Margin="3">
+		<Grid
+			Margin="3"
+			Height="120"
+			Width="160">
 			
 			<!-- Row definitions -->
 			<Grid.RowDefinitions>
-				<RowDefinition Height="100"/>
 				<RowDefinition/>
+				<RowDefinition Height="Auto"/>
 			</Grid.RowDefinitions>
 			
 			<!-- Snapshot -->
 			<Image
 				HorizontalAlignment="Center"
 				Source="{Binding Snapshot, Converter={StaticResource ImageBytesConverter}}"
-				ToolTip="{Binding Name}"/>
-			
+				ToolTip="{Binding Name}">
+				
+				<!-- Image effect -->
+				<Image.Effect>
+					<DropShadowEffect Opacity="0.5"/>
+				</Image.Effect>
+			</Image>
+
 			<!-- Name -->
 			<TextBlock
 				Grid.Row="1"
-				HorizontalAlignment="Center">
+				HorizontalAlignment="Center"
+				Margin="0,3,0,0">
 				<Hyperlink Command="{Binding BrowseCommand}">
 					<TextBlock
 						Text="{Binding Name}"
