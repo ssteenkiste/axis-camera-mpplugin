@@ -81,6 +81,9 @@ namespace AxisCameras.Configuration.Provider
 
 			Log.Debug("Convert a ConfigurableCamera to a Camera");
 
+			// Save thumb to disk
+			ioService.SaveThumb(configurableCamera.Id, configurableCamera.Snapshot.ToArray());
+
 			return new Camera
 			{
 				Id = configurableCamera.Id,
@@ -91,8 +94,7 @@ namespace AxisCameras.Configuration.Provider
 				VideoSourceCount = configurableCamera.VideoSourceCount,
 				UserName = configurableCamera.UserName,
 				Password = configurableCamera.Password,
-				FirmwareVersion = configurableCamera.FirmwareVersion,
-				SnapshotPath = ioService.SaveThumb(configurableCamera.Id, configurableCamera.Snapshot.ToArray())
+				FirmwareVersion = configurableCamera.FirmwareVersion
 			};
 		}
 	}

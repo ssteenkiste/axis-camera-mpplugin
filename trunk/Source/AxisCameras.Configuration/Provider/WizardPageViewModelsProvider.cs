@@ -34,7 +34,7 @@ namespace AxisCameras.Configuration.Provider
 		private readonly IWindowService windowService;
 		private readonly ICameraParametersDialogViewModelProvider cameraParametersProvider;
 		private readonly ICameraSnapshotDialogViewModelProvider cameraSnapshotProvider;
-		private readonly IResourceService resourceService;
+		private readonly IIOService ioService;
 		private readonly IDispatcherService dispatcherService;
 
 
@@ -48,25 +48,25 @@ namespace AxisCameras.Configuration.Provider
 		/// <param name="cameraSnapshotProvider">
 		/// The camera snapshot dialog view model provider.
 		/// </param>
-		/// <param name="resourceService">The resource service.</param>
+		/// <param name="ioService">The I/O service.</param>
 		/// <param name="dispatcherService">The dispatcher service.</param>
 		public WizardPageViewModelsProvider(
 			IWindowService windowService,
 			ICameraParametersDialogViewModelProvider cameraParametersProvider,
 			ICameraSnapshotDialogViewModelProvider cameraSnapshotProvider,
-			IResourceService resourceService,
+			IIOService ioService,
 			IDispatcherService dispatcherService)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
 			if (cameraParametersProvider == null) throw new ArgumentNullException("cameraParametersProvider");
 			if (cameraSnapshotProvider == null) throw new ArgumentNullException("cameraSnapshotProvider");
-			if (resourceService == null) throw new ArgumentNullException("resourceService");
+			if (ioService == null) throw new ArgumentNullException("ioService");
 			if (dispatcherService == null) throw new ArgumentNullException("dispatcherService");
 
 			this.windowService = windowService;
 			this.cameraParametersProvider = cameraParametersProvider;
 			this.cameraSnapshotProvider = cameraSnapshotProvider;
-			this.resourceService = resourceService;
+			this.ioService = ioService;
 			this.dispatcherService = dispatcherService;
 		}
 
@@ -84,9 +84,9 @@ namespace AxisCameras.Configuration.Provider
 
 			IWizardPageViewModel pageThree = new WizardPageThreeViewModel(
 				windowService,
-				resourceService,
 				dispatcherService,
-				cameraSnapshotProvider);
+				cameraSnapshotProvider,
+				ioService);
 
 			Log.Debug("Provide a sequence of IWizardPageViewModels");
 

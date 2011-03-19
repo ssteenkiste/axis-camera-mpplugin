@@ -71,11 +71,13 @@ namespace AxisCameras.Data.Upgrades.Version2
 					serializedVersion1Cameras);
 
 				// Convert version 1 cameras into version 2 cameras. New properties:
-				//   - VideoSource -      Default value is 1 (since previous version only handled cameras,
+				//
+				//   - VideoSource        Default value is 1 (since previous version only handled cameras,
 				//                        and cameras has video source == 1).
-				//   - VideoSourceCount - The number of video source the camera (device actually) has.
+				//   - VideoSourceCount   The number of video source the camera (device actually) has.
 				//                        Defaulting it to 0 will force the configuration to read the value
 				//                        from the camera the next time the camera is edited.
+				//   - SnapshotPath       Removed since the snapshot file name is calculated in runtime.
 				IEnumerable<Camera> version2Cameras = version1Cameras.Select(version1Camera =>
 					new Camera
 					{
@@ -87,8 +89,7 @@ namespace AxisCameras.Data.Upgrades.Version2
 						VideoSourceCount = 0,
 						UserName = version1Camera.UserName,
 						Password = version1Camera.Password,
-						FirmwareVersion = version1Camera.FirmwareVersion,
-						SnapshotPath = version1Camera.SnapshotPath
+						FirmwareVersion = version1Camera.FirmwareVersion
 					});
 
 				// Serialize version 2 cameras

@@ -38,12 +38,10 @@ namespace AxisCameras.Configuration.ViewModel
 	/// </summary>
 	class WizardPageThreeViewModel : WizardPageViewModel, IWizardPageThreeViewModel
 	{
-		private const string DefaultSnapshotUri = "/AxisCameras.Configuration;component/Resources/DefaultSnapshot.png";
-
 		private readonly IWindowService windowService;
-		private readonly IResourceService resourceService;
 		private readonly IDispatcherService dispatcherService;
 		private readonly ICameraSnapshotDialogViewModelProvider cameraSnapshotProvider;
+		private readonly IIOService ioService;
 
 		private NetworkEndpoint cameraEndpoint;
 		private int videoSource;
@@ -54,26 +52,26 @@ namespace AxisCameras.Configuration.ViewModel
 		/// Initializes a new instance of the <see cref="WizardPageThreeViewModel"/> class.
 		/// </summary>
 		/// <param name="windowService">The window service.</param>
-		/// <param name="resourceService">The resource service.</param>
 		/// <param name="dispatcherService">The dispatcher service.</param>
 		/// <param name="cameraSnapshotProvider">
 		/// The camera snapshot dialog view model provider.
 		/// </param>
+		/// <param name="ioService">The I/O service.</param>
 		public WizardPageThreeViewModel(
 			IWindowService windowService,
-			IResourceService resourceService,
 			IDispatcherService dispatcherService,
-			ICameraSnapshotDialogViewModelProvider cameraSnapshotProvider)
+			ICameraSnapshotDialogViewModelProvider cameraSnapshotProvider,
+			IIOService ioService)
 		{
 			if (windowService == null) throw new ArgumentNullException("windowService");
-			if (resourceService == null) throw new ArgumentNullException("resourceService");
 			if (dispatcherService == null) throw new ArgumentNullException("dispatcherService");
 			if (cameraSnapshotProvider == null) throw new ArgumentNullException("cameraSnapshotProvider");
+			if (ioService == null) throw new ArgumentNullException("ioService");
 
 			this.windowService = windowService;
-			this.resourceService = resourceService;
 			this.dispatcherService = dispatcherService;
 			this.cameraSnapshotProvider = cameraSnapshotProvider;
+			this.ioService = ioService;
 
 			LoadedCommand = new RelayCommand(Loaded);
 			RefreshCommand = new RelayCommand(Refresh);
@@ -242,7 +240,7 @@ namespace AxisCameras.Configuration.ViewModel
 			{
 				if (defaultSnapshot == null)
 				{
-					defaultSnapshot = resourceService.ReadBytesFromResource(DefaultSnapshotUri);
+					defaultSnapshot = ioService.GetDefaultThumb();
 				}
 
 				return defaultSnapshot;

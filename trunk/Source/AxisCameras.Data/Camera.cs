@@ -80,11 +80,5 @@ namespace AxisCameras.Data
 		/// Gets or sets the firmware version.
 		/// </summary>
 		public string FirmwareVersion { get; set; }
-
-
-		/// <summary>
-		/// Gets or sets the snapshot path.
-		/// </summary>
-		public string SnapshotPath { get; set; }
 	}
 }
