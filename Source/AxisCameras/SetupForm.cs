@@ -309,8 +309,8 @@ namespace AxisCameras
 			GUIListItem listItem = new GUIListItem
 			{
 				Label = camera.Name,
-				IconImage = ioService.Value.CameraIconPath,
-				ThumbnailImage = camera.SnapshotPath,
+				IconImage = ioService.Value.CameraIconFileName,
+				ThumbnailImage = ioService.Value.GetThumbFileName(camera.Id),
 
 				// Store camera in music tag
 				MusicTag = camera

@@ -106,6 +106,7 @@
     <None Include="Resources\BoxShot\axiscameras_logo.pspimage" />
     <None Include="Resources\BoxShot\front.pspimage" />
     <None Include="Resources\BoxShot\side.pspimage" />
+    <None Include="Resources\DefaultSnapshot.pspimage" />
     <None Include="Resources\surveillance-camera.ico" />
     <None Include="Resources\surveillance-camera_24x24.png" />
     <Resource Include="Resources\surveillance-camera_32x32.png" />
@@ -160,6 +161,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Thumbs\AxisCameras\CameraPortrait.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Thumbs\AxisCameras\DefaultSnapshot.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -30,29 +30,66 @@ namespace AxisCameras.Configuration.Service
 	class IOService : IIOService
 	{
 		private const string PluginFolderName = "AxisCameras";
-		private const string DefaultSnapshotUri = "/AxisCameras.Configuration;component/Resources/DefaultSnapshot.png";
-
-		private readonly IResourceService resourceService;
+		private const string CameraIcon = "CameraPortrait.png";
+		private const string DefaultThumb = "DefaultSnapshot.png";
 
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="IOService"/> class.
+		/// Gets the file name of the camera icon.
 		/// </summary>
-		/// <param name="resourceService">The resource service.</param>
-		public IOService(IResourceService resourceService)
+		/// <returns>The file name of the camera icon.</returns>
+		public string CameraIconFileName
 		{
-			if (resourceService == null) throw new ArgumentNullException("resourceService");
-
-			this.resourceService = resourceService;
+			get { return Config.GetFile(Config.Dir.Thumbs, PluginFolderName, CameraIcon); }
 		}
 
+
 		/// <summary>
-		/// Gets the path of the camera icon.
+		/// Gets the file name of the default thumb.
 		/// </summary>
-		/// <returns>The path of the camera icon.</returns>
-		public string CameraIconPath
+		/// <returns>The file name of the default thumb.</returns>
+		public string DefaultThumbFileName
 		{
-			get { return Config.GetFile(Config.Dir.Thumbs, PluginFolderName, "CameraPortrait.png"); }
+			get { return Config.GetFile(Config.Dir.Thumbs, PluginFolderName, DefaultThumb); }
+		}
+
+
+		/// <summary>
+		/// Gets the file name of the thumb for specified camera.
+		/// </summary>
+		/// <param name="cameraId">The camera id.</param>
+		/// <returns>
+		/// The file name of the thumb if existing on disk, otherwise the default thumb.
+		/// </returns>
+		public string GetThumbFileName(Guid cameraId)
+		{
+			if (cameraId == null) throw new ArgumentNullException("id");
+			if (cameraId == Guid.Empty) throw new ArgumentException("ID cannot be Guid.Empty");
+
+			Log.Debug("Get file name of thumb from camera with id {0}", cameraId);
+
+			string fileName = CreateThumbFileNameFrom(cameraId);
+
+			if (File.Exists(fileName))
+			{
+				return fileName;
+			}
+
+			Log.Warn(
+				"Snapshot of camera with ID {0} has been removed from disk, returning default.",
+				cameraId);
+
+			return DefaultThumbFileName;
+		}
+
+
+		/// <summary>
+		/// Gets the default thumb.
+		/// </summary>
+		/// <returns>The default thumb.</returns>
+		public byte[] GetDefaultThumb()
+		{
+			return File.ReadAllBytes(DefaultThumbFileName);
 		}
 
 
@@ -60,7 +97,7 @@ namespace AxisCameras.Configuration.Service
 		/// Gets the thumb for specified camera.
 		/// </summary>
 		/// <param name="cameraId">The camera id.</param>
-		/// <returns>The thumb.</returns>
+		/// <returns>The thumb if existing; otherwise the default thumb.</returns>
 		public byte[] GetThumb(Guid cameraId)
 		{
 			if (cameraId == null) throw new ArgumentNullException("id");
@@ -69,16 +106,8 @@ namespace AxisCameras.Configuration.Service
 			Log.Debug("Get thumb from camera with id {0}", cameraId);
 
 			string thumbFileName = GetThumbFileName(cameraId);
-			if (File.Exists(thumbFileName))
-			{
-				return File.ReadAllBytes(thumbFileName);
-			}
 
-			Log.Warn(
-				"Snapshot of camera with ID {0} has been removed from disk, returning default.",
-				cameraId);
-
-			return resourceService.ReadBytesFromResource(DefaultSnapshotUri);
+			return File.ReadAllBytes(thumbFileName);
 		}
 
 
@@ -87,12 +116,16 @@ namespace AxisCameras.Configuration.Service
 		/// </summary>
 		/// <param name="cameraId">The camera id.</param>
 		/// <param name="image">The image thumb.</param>
-		/// <returns>The path where the thumb is saved.</returns>
+		/// <returns>The file name where the thumb is saved.</returns>
 		public string SaveThumb(Guid cameraId, byte[] image)
 		{
+			if (cameraId == null) throw new ArgumentNullException("id");
+			if (cameraId == Guid.Empty) throw new ArgumentException("ID cannot be Guid.Empty");
+			if (image == null) throw new ArgumentNullException("image");
+
 			Log.Debug("Save thumb of camera with id {0}", cameraId);
 
-			string thumbFileName = GetThumbFileName(cameraId);
+			string thumbFileName = CreateThumbFileNameFrom(cameraId);
 
 			// Make sure thumb directory exists
 			string thumbDirectory = Path.GetDirectoryName(thumbFileName);
@@ -113,6 +146,9 @@ namespace AxisCameras.Configuration.Service
 		/// <param name="cameraId">The camera id.</param>
 		public void DeleteThumb(Guid cameraId)
 		{
+			if (cameraId == null) throw new ArgumentNullException("id");
+			if (cameraId == Guid.Empty) throw new ArgumentException("ID cannot be Guid.Empty");
+
 			Log.Debug("Delete thumb of camera with id {0}", cameraId);
 
 			File.Delete(GetThumbFileName(cameraId));
@@ -120,11 +156,10 @@ namespace AxisCameras.Configuration.Service
 
 
 		/// <summary>
-		/// Gets the file name of the thumb based on specified camera id.
+		/// Creates the thumb file name from specified camera.
 		/// </summary>
 		/// <param name="cameraId">The camera id.</param>
-		/// <returns>The file name of the thumb.</returns>
-		private static string GetThumbFileName(Guid cameraId)
+		private static string CreateThumbFileNameFrom(Guid cameraId)
 		{
 			return Config.GetFile(
 				Config.Dir.Thumbs,

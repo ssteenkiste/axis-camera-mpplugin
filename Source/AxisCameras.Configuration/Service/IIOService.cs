@@ -27,17 +27,41 @@ namespace AxisCameras.Configuration.Service
 	public interface IIOService
 	{
 		/// <summary>
-		/// Gets the path of the camera icon.
+		/// Gets the file name of the camera icon.
 		/// </summary>
-		/// <returns>The path of the camera icon.</returns>
-		string CameraIconPath { get; }
+		/// <returns>The file name of the camera icon.</returns>
+		string CameraIconFileName { get; }
+
+
+		/// <summary>
+		/// Gets the file name of the default thumb.
+		/// </summary>
+		/// <returns>The file name of the default thumb.</returns>
+		string DefaultThumbFileName { get; }
+
+
+		/// <summary>
+		/// Gets the file name of the thumb for specified camera.
+		/// </summary>
+		/// <param name="cameraId">The camera id.</param>
+		/// <returns>
+		/// The file name of the thumb if existing on disk, otherwise the generic thumb.
+		/// </returns>
+		string GetThumbFileName(Guid cameraId);
+
+
+		/// <summary>
+		/// Gets the default thumb.
+		/// </summary>
+		/// <returns>The default thumb.</returns>
+		byte[] GetDefaultThumb();
 
 
 		/// <summary>
 		/// Gets the thumb for specified camera.
 		/// </summary>
 		/// <param name="cameraId">The camera id.</param>
-		/// <returns>The thumb.</returns>
+		/// <returns>The thumb if existing; otherwise the default thumb.</returns>
 		byte[] GetThumb(Guid cameraId);
 
 
@@ -46,7 +70,7 @@ namespace AxisCameras.Configuration.Service
 		/// </summary>
 		/// <param name="cameraId">The camera id.</param>
 		/// <param name="image">The image thumb.</param>
-		/// <returns>The path where the thumb is saved.</returns>
+		/// <returns>The file name where the thumb is saved.</returns>
 		string SaveThumb(Guid cameraId, byte[] image);
 
 
