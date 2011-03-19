@@ -27,6 +27,16 @@ namespace AxisCameras.Data
 	public class Camera
 	{
 		/// <summary>
+		/// Initializes a new instance of the <see cref="Camera"/> class.
+		/// </summary>
+		public Camera()
+		{
+			// Set default value of video source to 1, since it never should be 0
+			VideoSource = 1;
+		}
+
+
+		/// <summary>
 		/// Gets or sets the Id.
 		/// </summary>
 		public Guid Id { get; set; }
