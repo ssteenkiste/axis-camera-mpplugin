@@ -151,7 +151,7 @@ namespace AxisCameras.Configuration.Service
 
 			Log.Debug("Delete thumb of camera with id {0}", cameraId);
 
-			File.Delete(GetThumbFileName(cameraId));
+			File.Delete(CreateThumbFileNameFrom(cameraId));
 		}
 
 
