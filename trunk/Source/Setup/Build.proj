@@ -18,6 +18,7 @@
 		<FxCopCriticalErrors>0</FxCopCriticalErrors>
 		<FxCopErrors>0</FxCopErrors>
 		<FxCopCriticalWarnings>0</FxCopCriticalWarnings>
+		<FxCopWarnings>0</FxCopWarnings>
 		
 		<!-- NUnit -->
 		<NUnitToolPath>$(SolutionPath)\Externals\NUnit</NUnitToolPath>
@@ -74,9 +75,16 @@
 			XPath="string(count(//Issue[@Level='CriticalWarning']))">
 			<Output TaskParameter="Value" PropertyName="FxCopCriticalWarnings" />
 		</XmlRead>
+		<XmlRead
+			ContinueOnError="True"
+			Condition="Exists('$(FxCopResults)')"
+			XmlFileName="$(FxCopResults)"
+			XPath="string(count(//Issue[@Level='Warning']))">
+			<Output TaskParameter="Value" PropertyName="FxCopWarnings" />
+		</XmlRead>
 		<Error
 			Text="FxCop encountered rule violations"
-			Condition="$(FxCopCriticalErrors) &gt; 0 or $(FxCopErrors) &gt; 0 or $(FxCopCriticalWarnings) &gt; 0" />
+			Condition="$(FxCopCriticalErrors) &gt; 0 or $(FxCopErrors) &gt; 0 or $(FxCopCriticalWarnings) &gt; 0 or $(FxCopWarnings) &gt; 0" />
 	</Target>
 
 	<!-- Unit tests -->
