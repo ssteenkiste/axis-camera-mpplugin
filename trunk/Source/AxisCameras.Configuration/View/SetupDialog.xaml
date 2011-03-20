@@ -48,15 +48,30 @@
 					Grid.Row="1"
 					HorizontalAlignment="Right"
 					Orientation="Horizontal">
-					<Button
-						Content="Add..."
-						Command="{Binding AddCommand}"/>
-					<Button
-						Content="Edit..."
-						Command="{Binding EditCommand}"/>
-					<Button
-						Content="Remove"
-						Command="{Binding RemoveCommand}"/>
+					<Button Command="{Binding AddCommand}">
+						<StackPanel Orientation="Horizontal">
+							<Image Source="/AxisCameras.Configuration;component/Resources/112_Plus_Green_16x16_72.png"/>
+							<TextBlock
+								Margin="0"
+								Text="Add..."/>
+						</StackPanel>
+					</Button>
+					<Button Command="{Binding EditCommand}">
+						<StackPanel Orientation="Horizontal">
+							<Image Source="/AxisCameras.Configuration;component/Resources/126_Edit_16x16_72.png"/>
+							<TextBlock
+								Margin="0"
+								Text="Edit..."/>
+						</StackPanel>
+					</Button>
+					<Button Command="{Binding RemoveCommand}">
+						<StackPanel Orientation="Horizontal">
+							<Image Source="/AxisCameras.Configuration;component/Resources/delete.png"/>
+							<TextBlock
+								Margin="0"
+								Text="Delete"/>
+						</StackPanel>
+					</Button>
 				</StackPanel>
 			</Grid>			
 		</GroupBox>
