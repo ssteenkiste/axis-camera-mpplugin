@@ -1,2 +1,5 @@
+Version 1.1.0.0
+[FEATURE]: Show live video streams from Axis network video servers
+
 Version 1.0.0.0
 [FEATURE]: Show live video streams from Axis network cameras

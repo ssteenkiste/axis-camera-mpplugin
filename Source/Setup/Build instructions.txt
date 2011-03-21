@@ -13,7 +13,7 @@ BUILD SETUP INSTRUCTIONS
       - This version description
   2.2. Build the setup
   2.3. Generate update xml
-3. Upload the setup to Google Code (http://code.google.com/p/axis-camera-mpplugin/downloads/list)
-4. Commit changes
-5. Create tag (create it from the Log)
-6. Merge branch changes to trunk
+3. Update changelog.txt
+4. Upload the setup to Google Code (http://code.google.com/p/axis-camera-mpplugin/downloads/list)
+5. Commit changes
+6. Create tag (create it from the Log)
