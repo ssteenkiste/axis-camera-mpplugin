@@ -91,6 +91,13 @@
               <ZipFileName>Installer{CopyFile}\{63d869a0-63e2-4bd6-be9b-130d4dbd80d5}-CameraPortrait.png</ZipFileName>
               <DestinationFilename>%Thumbs%\AxisCameras\CameraPortrait.png</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras\Thumbs\AxisCameras\DefaultSnapshot.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{7d06173f-a64f-4eac-8115-bb1bffcd8e8a}-DefaultSnapshot.png</ZipFileName>
+              <DestinationFilename>%Thumbs%\AxisCameras\DefaultSnapshot.png</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -611,7 +618,7 @@ public class Script
  If have .dll extension used like MP plugin configuration</Description>
         </SectionParam>
         <SectionParam Name="Online Screenshots">
-          <Value>http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/1.0.0.0/Blue3wide.png;http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/1.0.0.0/StreamedMP.png;http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/1.0.0.0/Config_Cameras.png;http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/1.0.0.0/Config_Edit_WP1.png;http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/1.0.0.0/Config_Edit_WP2.png</Value>
+          <Value>http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/1.0.0.0/Blue3wide.png;http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/1.0.0.0/StreamedMP.png;http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/1.1.0.0/Config_Cameras.png;http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/1.1.0.0/Config_Edit_WP1.png;http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/1.1.0.0/Config_Edit_WP2.png;http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/1.1.0.0/Config_Edit_WP3.png</Value>
           <ValueType>String</ValueType>
           <Description>Online stored screenshot urls separated by ; </Description>
         </SectionParam>
@@ -691,6 +698,13 @@ public class Script
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras\Thumbs\AxisCameras\DefaultSnapshot.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{7d06173f-a64f-4eac-8115-bb1bffcd8e8a}-DefaultSnapshot.png</ZipFileName>
+        <DestinationFilename>%Thumbs%\AxisCameras\DefaultSnapshot.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>..\AxisCameras\Skin\Blue3\axiscameras.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{c3c95a35-e850-41c4-9ae4-28ca5f373d0a}-axiscameras.xml</ZipFileName>
         <DestinationFilename>%Skin%\Blue3\axiscameras.xml</DestinationFilename>
@@ -762,14 +776,14 @@ public class Script
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{fd254ad8-853a-4030-bb62-1a990898fae3}-Welcome_left.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{51f276a9-5b25-427d-a607-0cbbe083a331}-Welcome_left.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{805e9270-be1b-4e75-956c-e1753d61f972}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{36057522-40d6-40fc-84d7-c58bf5f03480}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
