@@ -18,7 +18,10 @@
 
 #endregion
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using MediaPortal.Player;
+using MediaPortal.Playlists;
 
 namespace AxisCameras.Player
 {
@@ -35,6 +38,8 @@ namespace AxisCameras.Player
 		/// <returns>true if playback started successfully; otherwise false.</returns>
 		public bool PlayVideoStreamInFullScreen(string url, string name)
 		{
+			if (string.IsNullOrEmpty(url)) throw new ArgumentNullException("url");
+
 			// Stop player if already playing
 			if (g_Player.Playing)
 			{
@@ -42,6 +47,57 @@ namespace AxisCameras.Player
 			}
 
 			if (g_Player.PlayVideoStream(url, name))
+			{
+				g_Player.ShowFullScreenWindow();
+				return true;
+			}
+
+			return false;
+		}
+
+
+		/// <summary>
+		/// Starts playing the first video stream in the specified sequence of playlist items.
+		/// </summary>
+		/// <param name="playlist">The sequence of playlist items to play.</param>
+		/// <param name="playlistName">The name of the playlist.</param>
+		/// <returns>true if playback started successfully; otherwise false.</returns>
+		public bool PlayVideoStreamsInFullScreen(
+			IEnumerable<PlayListItem> playlistItems,
+			string playlistName)
+		{
+			if (playlistItems == null) throw new ArgumentNullException("playlistItems");
+			if (!playlistItems.Any()) throw new ArgumentException("Playlist must contain at least one item.");
+
+			// By using the music video playlist we are forcing MediaPortal to play the playlist as a
+			// video stream, which is the preferred way of playing live video from cameras. The code 
+			// can be found in PlayListPlayer.Play(int iSong).
+			//
+			// The obvious choice would of course be to use PLAYLIST_VIDEO type but then I either need to
+			// add the amp-file extension (live video stream URL ends with media.amp) during installation
+			// or make sure the MediaInfoWrapper is capable of parsing the video stream, which I don't
+			// think it is capable of.
+			PlayListType playlistType = PlayListType.PLAYLIST_MUSIC_VIDEO;
+
+			PlayListPlayer player = PlayListPlayer.SingletonPlayer;
+			PlayList playlist = player.GetPlaylist(playlistType);
+
+			// Setup playlist
+			playlist.Clear();
+			playlist.Name = playlistName;
+
+			foreach (PlayListItem playlistItem in playlistItems)
+			{
+				playlist.Add(playlistItem);
+			}
+
+			// Setup player
+			player.Reset();
+			player.RepeatPlaylist = true;
+			player.CurrentPlaylistType = playlistType;
+
+			// Play the first item
+			if (player.Play(0))
 			{
 				g_Player.ShowFullScreenWindow();
 				return true;

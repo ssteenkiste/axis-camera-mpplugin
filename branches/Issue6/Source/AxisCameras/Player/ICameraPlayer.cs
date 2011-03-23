@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+using System.Collections.Generic;
 using AxisCameras.Data;
 
 namespace AxisCameras.Player
@@ -31,5 +32,16 @@ namespace AxisCameras.Player
 		/// </summary>
 		/// <param name="camera">The camera.</param>
 		void PlayLiveVideo(Camera camera);
+
+
+		/// <summary>
+		/// Plays live video from specified cameras.
+		/// </summary>
+		/// <param name="cameras">The cameras.</param>
+		/// <remarks>
+		/// The cameras are placed in a playlist which means that it is possible to navigate forward
+		/// and backward, i.e. previous camera and next camera, during playback.
+		/// </remarks>
+		void PlayLiveVideo(IEnumerable<Camera> cameras);
 	}
 }
