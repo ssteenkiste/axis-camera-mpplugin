@@ -17,8 +17,9 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using MediaPortal.Playlists;
 
 namespace AxisCameras.Player
 {
@@ -37,5 +38,16 @@ namespace AxisCameras.Player
 			Justification = "I am building a URL, but since g_Player doesn't accept URLs but instead " +
 			"wants a string, I don't see the point in temporary converting it to a URL.")]
 		bool PlayVideoStreamInFullScreen(string url, string name);
+
+
+		/// <summary>
+		/// Starts playing the first video stream in the specified sequence of playlist items.
+		/// </summary>
+		/// <param name="playlist">The sequence of playlist items to play.</param>
+		/// <param name="playlistName">The name of the playlist.</param>
+		/// <returns>true if playback started successfully; otherwise false.</returns>
+		bool PlayVideoStreamsInFullScreen(
+			IEnumerable<PlayListItem> playlistItems,
+			string playlistName);
 	}
 }

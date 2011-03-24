@@ -18,8 +18,12 @@
 
 #endregion
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using AxisCameras.Core;
 using AxisCameras.Data;
+using AxisCameras.Properties;
+using MediaPortal.Playlists;
 
 namespace AxisCameras.Player
 {
@@ -57,18 +61,65 @@ namespace AxisCameras.Player
 		{
 			if (camera == null) throw new ArgumentNullException("camera");
 
-			Log.Info("Play live view from {0}", camera.Name);
+			Log.Info("Play live video from {0}", camera.Name);
 
-			string url = videoUrlBuilder.BuildLiveVideoUrl(
+			string url = BuildLiveVideoUrl(camera);
+
+			// Play live view in full screen
+			mediaPortalPlayer.PlayVideoStreamInFullScreen(url, camera.Name);
+		}
+
+
+		/// <summary>
+		/// Plays live video from specified cameras.
+		/// </summary>
+		/// <param name="cameras">The cameras.</param>
+		/// <remarks>
+		/// The cameras are placed in a playlist which means that it is possible to navigate forward
+		/// and backward, i.e. previous camera and next camera, during playback.
+		/// </remarks>
+		public void PlayLiveVideo(IEnumerable<Camera> cameras)
+		{
+			if (cameras == null) throw new ArgumentNullException("cameras");
+			if (!cameras.Any()) throw new ArgumentException("Sequence must contain at least one camera");
+
+			if (cameras.Count() == 1)
+			{
+				PlayLiveVideo(cameras.First());
+			}
+			else
+			{
+				Log.Debug("Play live video from {0} cameras", cameras.Count());
+
+				IEnumerable<PlayListItem> playlistItems =
+					from camera in cameras
+					select new PlayListItem(camera.Name, BuildLiveVideoUrl(camera))
+					{
+						Description = camera.Name,
+						Type = PlayListItem.PlayListItemType.VideoStream
+					};
+
+				mediaPortalPlayer.PlayVideoStreamsInFullScreen(
+					playlistItems.ToList(),
+					Resources.Playlist_DefaultName);
+			}
+		}
+
+
+		/// <summary>
+		/// Builds a live video URL from specified camera.
+		/// </summary>
+		/// <param name="camera">The camera.</param>
+		/// <returns>A live video URL from specified camera.</returns>
+		private string BuildLiveVideoUrl(Camera camera)
+		{
+			return videoUrlBuilder.BuildLiveVideoUrl(
 				camera.Address,
 				camera.Port,
 				camera.UserName,
 				camera.Password,
 				camera.FirmwareVersion,
 				camera.VideoSource);
-
-			// Play live view in full screen
-			mediaPortalPlayer.PlayVideoStreamInFullScreen(url, camera.Name);
 		}
 	}
 }

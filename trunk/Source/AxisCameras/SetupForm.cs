@@ -289,11 +289,10 @@ namespace AxisCameras
 
 			if (control == facadeLayout && actionType == ActionType.ACTION_SELECT_ITEM)
 			{
-				GUIListItem selectedItem = facadeLayout.SelectedListItem;
-				if (selectedItem != null)
+				int selectedListItemIndex = facadeLayout.SelectedListItemIndex;
+				if (selectedListItemIndex != -1)
 				{
-					Camera camera = (Camera)selectedItem.MusicTag;
-					player.Value.PlayLiveVideo(camera);
+					PlayLiveViewFrom(selectedListItemIndex);
 				}
 			}
 		}
@@ -352,6 +351,35 @@ namespace AxisCameras
 					}
 				}
 			}
+		}
+
+
+		/// <summary>
+		/// Plays live view from specified list item index representing a camera.
+		/// </summary>
+		/// <param name="selectedListItemIndex">
+		/// The index of the list item to start playing live view from.
+		/// </param>
+		private void PlayLiveViewFrom(int selectedListItemIndex)
+		{
+			// The first played camera should be the one represented by the selected item, calculate
+			// using modula the playlist by wrapping the index, e.g.
+			//
+			//   cameraCount = 4
+			//   startIndex = 2
+			//   stopIndex = 2 + 4 = 6
+			//
+			//   playlist = 2,3,0,1
+			int cameraCount = cameras.Value.Count();
+			int startIndex = selectedListItemIndex;
+			int stopIndex = selectedListItemIndex + cameraCount;
+
+			IEnumerable<Camera> cameraPlaylist =
+				from listItemIndex in Enumerable.Range(startIndex, stopIndex)
+				let listItem = facadeLayout[listItemIndex % cameraCount]
+				select (Camera)listItem.MusicTag;
+
+			player.Value.PlayLiveVideo(cameraPlaylist);
 		}
 
 
