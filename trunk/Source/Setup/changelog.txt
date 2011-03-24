@@ -1,5 +1,13 @@
+Upcoming release
+  [FEATURE]: Navigate between cameras while watching live video
+             without having to go back to the camera list by
+             selecting the previous/next chapter on the remote
+             control or pressing F7/F8 on the keyboard
+
+
 Version 1.1.0.0
-[FEATURE]: Show live video streams from Axis network video servers
+  [FEATURE]: Show live video streams from Axis network video servers
+
 
 Version 1.0.0.0
-[FEATURE]: Show live video streams from Axis network cameras
+  [FEATURE]: Show live video streams from Axis network cameras
