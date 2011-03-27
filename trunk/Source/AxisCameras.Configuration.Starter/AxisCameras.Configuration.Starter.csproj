@@ -41,9 +41,6 @@
     </StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Core">
-      <HintPath>..\Externals\MediaPortal\Core.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -78,6 +75,10 @@
     <ProjectReference Include="..\AxisCameras\AxisCameras.csproj">
       <Project>{A2B1464E-D965-4DE3-8EA2-5E4463E40262}</Project>
       <Name>AxisCameras</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Externals\MediaPortal\mediaportal\Core\Core.csproj">
+      <Project>{02FFFC1F-2555-4B99-8B01-3432D0673855}</Project>
+      <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

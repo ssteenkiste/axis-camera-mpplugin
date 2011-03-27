@@ -38,12 +38,6 @@
     <Reference Include="Autofac">
       <HintPath>..\Externals\Autofac\Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="Core">
-      <HintPath>..\Externals\MediaPortal\Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Dialogs">
-      <HintPath>..\Externals\MediaPortal\Dialogs.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -57,9 +51,6 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Utils">
-      <HintPath>..\Externals\MediaPortal\Utils.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -134,6 +125,18 @@
     <ProjectReference Include="..\AxisCameras.Mvvm\AxisCameras.Mvvm.csproj">
       <Project>{442C117D-98D8-41A8-843B-716B66D60B97}</Project>
       <Name>AxisCameras.Mvvm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Externals\MediaPortal\mediaportal\Core\Core.csproj">
+      <Project>{02FFFC1F-2555-4B99-8B01-3432D0673855}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Externals\MediaPortal\mediaportal\Dialogs\Dialogs.csproj">
+      <Project>{396C5208-5D46-4A11-92C1-FD0F2F42D7DD}</Project>
+      <Name>Dialogs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Externals\MediaPortal\mediaportal\Utils\Utils.csproj">
+      <Project>{6DA0E4DF-6230-4642-98B5-E690BB6942BB}</Project>
+      <Name>Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
