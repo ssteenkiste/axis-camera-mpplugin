@@ -1,7 +1,4 @@
-Upcoming release
-
-
-Version 1.1.1.0
+Upcoming release (Version 1.1.1.0)
   [MEDIAPORTAL]: Plugin is now compatible with MediaPortal 1.2.0. DUE TO
                  BREAKING CHANGES IN MEDIAPORTAL, THIS VERSION OF THE
                  PLUGIN IS NOT COMPATIBLE WITH OLDER VERSIONS OF
