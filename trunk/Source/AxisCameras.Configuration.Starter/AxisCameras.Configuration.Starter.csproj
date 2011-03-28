@@ -76,6 +76,10 @@
       <Project>{A2B1464E-D965-4DE3-8EA2-5E4463E40262}</Project>
       <Name>AxisCameras</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Externals\MediaPortal\Common-MP-TVE3\Common.Utils\Common.Utils.csproj">
+      <Project>{F6EDA1F3-3DCD-43F4-8A90-E32DA70C8227}</Project>
+      <Name>Common.Utils</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Externals\MediaPortal\mediaportal\Core\Core.csproj">
       <Project>{02FFFC1F-2555-4B99-8B01-3432D0673855}</Project>
       <Name>Core</Name>
