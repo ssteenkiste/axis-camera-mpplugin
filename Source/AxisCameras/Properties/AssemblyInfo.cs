@@ -52,7 +52,7 @@ using MediaPortal.Common.Utils;
 //
 // The attribute can be applied to either the assemblies or classes. When applied to an assembly it
 // will affect all contained classes that do not have the same attribute applied upon them.
-[assembly: CompatibleVersion("1.1.6.27733", "1.1.2.0")]
+[assembly: CompatibleVersion("1.1.6.27733", "1.1.6.27644")]
 
 // This attribute is used to specify which subsystems the plugin is using. This information
 // combined with the CompatibleVersion attribute information allows the Compatibility Manager to
