@@ -22,6 +22,7 @@ using System.Reflection;
 using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using MediaPortal.Common.Utils;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -40,6 +41,31 @@ using System.Runtime.InteropServices;
 
 [assembly: CLSCompliant(false)]
 [assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.MainAssembly)]
+
+// This attribute is used to specify against which version of MediaPortal the plugin was built. It
+// may also optionally specify the minimum MediaPortal version required so that it can work
+// properly. If minRequiredVersion is omitted it is assumed equal to designedForVersion. Any
+// version of MediaPortal earlier than minRequiredVersion will consider the plugin incompatible and
+// will not load it. If any subsystems used by the plugin have breaking changes in any version
+// later than designedForVersion, the plugin will be considered incompatible and will not be
+// loaded.
+//
+// The attribute can be applied to either the assemblies or classes. When applied to an assembly it
+// will affect all contained classes that do not have the same attribute applied upon them.
+[assembly: CompatibleVersion("1.1.6.27733", "1.1.2.0")]
+
+// This attribute is used to specify which subsystems the plugin is using. This information
+// combined with the CompatibleVersion attribute information allows the Compatibility Manager to
+// determine if a plugin is still compatible with a version of MediaPortal released after the
+// release of the plugin. Specify only one subsystem (as a string) in the subsystem parameter.
+//
+// The attribute can be applied to either the assemblies or classes. When applied to an assembly it
+// will effectively be applied to all contained classes. If some of the contained classes are also
+// tagged with the same subsystem(s) the attribute applied to the classes takes precedence.
+[assembly: UsesSubsystem("MP.SkinEngine.Controls")]
+[assembly: UsesSubsystem("MP.SkinEngine.Dialogs")]
+[assembly: UsesSubsystem("MP.Players.Video")]
+[assembly: UsesSubsystem("MP.Config")]
 
 // Provide access to internal types and methods to test functions
 [assembly: InternalsVisibleTo("AxisCamerasTest")]
