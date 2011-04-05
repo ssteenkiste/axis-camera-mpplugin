@@ -59,7 +59,7 @@ namespace AxisCameras.Player
 		/// <summary>
 		/// Starts playing the first video stream in the specified sequence of playlist items.
 		/// </summary>
-		/// <param name="playlist">The sequence of playlist items to play.</param>
+		/// <param name="playlistItems">The sequence of playlist items to play.</param>
 		/// <param name="playlistName">The name of the playlist.</param>
 		/// <returns>true if playback started successfully; otherwise false.</returns>
 		public bool PlayVideoStreamsInFullScreen(

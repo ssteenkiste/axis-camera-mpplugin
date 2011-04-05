@@ -57,7 +57,7 @@ namespace AxisCameras
 		/// The facade layout containing cameras.
 		/// </summary>
 		[SkinControl(50)]
-		private GUIFacadeControl facadeLayout = null;
+		private GUIFacadeControl facadeLayout;
 
 
 		/// <summary>
@@ -179,7 +179,7 @@ namespace AxisCameras
 			CreateContainer();
 
 			// Start configuring the plugin
-			IConfigurationStarter configuration = container.Resolve<IConfigurationStarter>();
+			var configuration = container.Resolve<IConfigurationStarter>();
 			configuration.Start();
 
 			// Dispose the container
@@ -209,7 +209,7 @@ namespace AxisCameras
 
 			cameras = new Lazy<IEnumerable<Camera>>(() =>
 			{
-				using (IPluginSettings pluginSettings = container.Resolve<IPluginSettings>())
+				using (var pluginSettings = container.Resolve<IPluginSettings>())
 				{
 					return pluginSettings.Cameras;
 				}
@@ -260,9 +260,9 @@ namespace AxisCameras
 			else
 			{
 				// Display message to user about how to add cameras to the plugin
-				int messageBoxId = (int)GUIWindow.Window.WINDOW_DIALOG_OK;
+				var messageBoxId = (int)GUIWindow.Window.WINDOW_DIALOG_OK;
 
-				using (GUIDialogOK messageBox = (GUIDialogOK)GUIWindowManager.GetWindow(messageBoxId))
+				using (var messageBox = (GUIDialogOK)GUIWindowManager.GetWindow(messageBoxId))
 				{
 					messageBox.SetHeading(PluginResources.SetupForm_AddCameras_Title);
 					messageBox.SetLines(PluginResources.SetupForm_AddCameras);
@@ -305,7 +305,7 @@ namespace AxisCameras
 		/// <returns>A list item representing a camera.</returns>
 		private GUIListItem CreateListItemFrom(Camera camera)
 		{
-			GUIListItem listItem = new GUIListItem
+			var listItem = new GUIListItem
 			{
 				Label = camera.Name,
 				IconImage = ioService.Value.CameraIconFileName,
@@ -318,7 +318,7 @@ namespace AxisCameras
 			// Register for selected item changes
 			listItem.OnItemSelected += (item, parent) =>
 			{
-				Camera selectedCamera = (Camera)item.MusicTag;
+				var selectedCamera = (Camera)item.MusicTag;
 				selectedCameraGuid = selectedCamera.Id;
 			};
 
@@ -341,7 +341,7 @@ namespace AxisCameras
 			{
 				for (int index = 0; index < facadeLayout.Count; index++)
 				{
-					Camera camera = (Camera)facadeLayout[index].MusicTag;
+					var camera = (Camera)facadeLayout[index].MusicTag;
 
 					if (camera.Id == selectedCameraGuid)
 					{
@@ -388,7 +388,7 @@ namespace AxisCameras
 		/// </summary>
 		private void CreateContainer()
 		{
-			ContainerBuilder builder = new ContainerBuilder();
+			var builder = new ContainerBuilder();
 			builder.RegisterModule(new PluginModule());
 
 			container = builder.Build();
