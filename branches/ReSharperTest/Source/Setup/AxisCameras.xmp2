@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageClass xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Version>2.0</Version>
+  <Groups>
+    <Items>
+      <GroupItem Name="Default">
+        <DisplayName>Default</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>Default</Description>
+        <Files>
+          <Items />
+        </Files>
+      </GroupItem>
+      <GroupItem Name="Binaries">
+        <ParentGroup />
+        <DisplayName>Binaries</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>The plugin binaries. These files are placed in the MediaPortal windows plugins folder.</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras\bin\Release\AxisCameras.dll</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{03f4a14b-f6c7-4e6e-ae74-cdade74f83a8}-AxisCameras.dll</ZipFileName>
+              <DestinationFilename>%Plugins%\Windows\AxisCameras.dll</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras\bin\Release\AxisCameras.dll.config</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{9f2111ae-b790-4964-b85e-343da23cb053}-AxisCameras.dll.config</ZipFileName>
+              <DestinationFilename>%Plugins%\Windows\AxisCameras.dll.config</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras.Configuration\bin\Release\AxisCameras.Configuration.dll</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{9ae95e92-df7a-4ccb-9fdd-73d06cd17fee}-AxisCameras.Configuration.dll</ZipFileName>
+              <DestinationFilename>%Plugins%\Windows\AxisCameras.Configuration.dll</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras.Core\bin\Release\AxisCameras.Core.dll</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{d11f23a3-f067-456e-a9c0-7b550d96584f}-AxisCameras.Core.dll</ZipFileName>
+              <DestinationFilename>%Plugins%\Windows\AxisCameras.Core.dll</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras.Data\bin\Release\AxisCameras.Data.dll</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{742afa38-8374-4cfb-affe-c97cf277d203}-AxisCameras.Data.dll</ZipFileName>
+              <DestinationFilename>%Plugins%\Windows\AxisCameras.Data.dll</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras.Mvvm\bin\Release\AxisCameras.Mvvm.dll</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{31129be6-45c9-46e9-8031-6686bc7370c1}-AxisCameras.Mvvm.dll</ZipFileName>
+              <DestinationFilename>%Plugins%\Windows\AxisCameras.Mvvm.dll</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\Externals\Autofac\Autofac.dll</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{24d522a9-daf1-4c67-8dfd-1d722d13a806}-Autofac.dll</ZipFileName>
+              <DestinationFilename>%Plugins%\Windows\Autofac.dll</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\Externals\Reactive Extensions\System.Threading.dll</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{b900e8e0-9c8a-4fca-b9a3-13e81091e56e}-System.Threading.dll</ZipFileName>
+              <DestinationFilename>%Plugins%\Windows\System.Threading.dll</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
+      <GroupItem Name="Thumbs">
+        <ParentGroup />
+        <DisplayName>Thumbs</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>The thumbs used by the plugin. Camera snapshots are also saved in this folder, however at runtime and not during installation.</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras\Thumbs\AxisCameras\CameraPortrait.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{63d869a0-63e2-4bd6-be9b-130d4dbd80d5}-CameraPortrait.png</ZipFileName>
+              <DestinationFilename>%Thumbs%\AxisCameras\CameraPortrait.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras\Thumbs\AxisCameras\DefaultSnapshot.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{7d06173f-a64f-4eac-8115-bb1bffcd8e8a}-DefaultSnapshot.png</ZipFileName>
+              <DestinationFilename>%Thumbs%\AxisCameras\DefaultSnapshot.png</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
+      <GroupItem Name="Blue3">
+        <ParentGroup />
+        <DisplayName>Blue3 skin support</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>Skin support for Blue3.</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras\Skin\Blue3\axiscameras.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{c3c95a35-e850-41c4-9ae4-28ca5f373d0a}-axiscameras.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Blue3\axiscameras.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras\Skin\Blue3\Media\AxisCameras_logo.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{39e8529a-c79a-44b0-bbbc-0169f34dd270}-AxisCameras_logo.png</ZipFileName>
+              <DestinationFilename>%Skin%\Blue3\Media\AxisCameras_logo.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras\Skin\Blue3\Media\hover_AxisCameras.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{24c632ce-b6d0-4947-b95b-e427f0074381}-hover_AxisCameras.png</ZipFileName>
+              <DestinationFilename>%Skin%\Blue3\Media\hover_AxisCameras.png</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
+      <GroupItem Name="Blue3wide">
+        <ParentGroup />
+        <DisplayName>Blue3wide skin support</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>Skin support for Blue3wide.</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras\Skin\Blue3wide\axiscameras.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{40b23c57-8545-4fb9-ad94-667d7cc8694c}-axiscameras.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Blue3wide\axiscameras.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras\Skin\Blue3wide\Media\AxisCameras_logo.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{8c66a3bd-31c6-4d87-bfeb-eee321c7d9ab}-AxisCameras_logo.png</ZipFileName>
+              <DestinationFilename>%Skin%\Blue3wide\Media\AxisCameras_logo.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras\Skin\Blue3wide\Media\hover_AxisCameras.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{92c1aa16-732d-48eb-a333-e9185f8f337d}-hover_AxisCameras.png</ZipFileName>
+              <DestinationFilename>%Skin%\Blue3wide\Media\hover_AxisCameras.png</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
+      <GroupItem Name="StreamedMP">
+        <ParentGroup />
+        <DisplayName>StreamedMP skin support</DisplayName>
+        <DefaulChecked>false</DefaulChecked>
+        <Description>Skin support for StreamedMP.
+
+Install only if you already have StreamedMP installed.</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras\Skin\StreamedMP\axiscameras.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{03a072a2-b25f-45fd-80a8-0a29076ab457}-axiscameras.xml</ZipFileName>
+              <DestinationFilename>%Skin%\StreamedMP\axiscameras.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras\Skin\StreamedMP\Media\hoover_AxisCameras.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{afe3a00d-5ccc-4086-b8b5-62b66e27173b}-hoover_AxisCameras.png</ZipFileName>
+              <DestinationFilename>%Skin%\StreamedMP\Media\hoover_AxisCameras.png</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
+      <GroupItem Name="Axis binaries">
+        <ParentGroup />
+        <DisplayName>Axis binaries</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>Binaries from Axis making it possible to view live video from any Axis network device in MediaPortal.</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Externals\Axis\AxisRTPSrcFilter.ax</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{6fc1c1f8-c430-4227-988c-d5d91017148c}-AxisRTPSrcFilter.ax</ZipFileName>
+              <DestinationFilename>%Temp%\AxisRTPSrcFilter.ax</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
+      <GroupItem Name="Settings">
+        <ParentGroup />
+        <DisplayName>Settings</DisplayName>
+        <DefaulChecked>false</DefaulChecked>
+        <Description>The plugin settings</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>Settings\extension_settings.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{11000da4-8342-4db4-ac7b-076c0a188cca}-extension_settings.xml</ZipFileName>
+              <DestinationFilename>%Base%\extension_settings.xml</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
+    </Items>
+  </Groups>
+  <Sections>
+    <Items>
+      <SectionItem Guid="2c3c5e68-b5be-4fc5-b994-9a304e80db82" Name="Welcome Screen" ConditionGroup="">
+        <Params>
+          <Items>
+            <SectionParam Name="Header text">
+              <Value>Welcome to the Extension Installer for [Name].</Value>
+              <ValueType>String</ValueType>
+              <Description />
+            </SectionParam>
+            <SectionParam Name="Description">
+              <Value>This will install [Name] version [Version] on your computer.
+
+It is recommended that you close all other applications before continuing.
+
+Click Next to continue, or Cancel to exit Setup.</Value>
+              <ValueType>String</ValueType>
+              <Description />
+            </SectionParam>
+            <SectionParam Name="Left part image">
+              <Value>Icons\Welcome_left.png</Value>
+              <ValueType>File</ValueType>
+              <Description />
+            </SectionParam>
+            <SectionParam Name="Header image">
+              <Value />
+              <ValueType>File</ValueType>
+              <Description>Image in upper right part</Description>
+            </SectionParam>
+          </Items>
+        </Params>
+        <Actions>
+          <Items />
+        </Actions>
+        <IncludedGroups />
+        <PanelName>Welcome Screen</PanelName>
+        <WizardButtonsEnum>NextCancel</WizardButtonsEnum>
+      </SectionItem>
+      <SectionItem Guid="2941e573-1f36-43a3-99b7-112bcb9175e9" Name="Tree View Selector" ConditionGroup="">
+        <Params>
+          <Items>
+            <SectionParam Name="Header Title">
+              <Value>Select Components</Value>
+              <ValueType>String</ValueType>
+              <Description>Header title</Description>
+            </SectionParam>
+            <SectionParam Name="Header description">
+              <Value>Which components should be installed?</Value>
+              <ValueType>String</ValueType>
+              <Description>Description of section, shown in under section title</Description>
+            </SectionParam>
+            <SectionParam Name="Header image">
+              <Value>Icons\Setup_icon.png</Value>
+              <ValueType>File</ValueType>
+              <Description>Image in upper right part</Description>
+            </SectionParam>
+            <SectionParam Name="Description ">
+              <Value>Select the components you want to install; clear the components you do not want to install. Click Next when you are ready to continue,</Value>
+              <ValueType>String</ValueType>
+              <Description>Description of this operation</Description>
+            </SectionParam>
+          </Items>
+        </Params>
+        <Actions>
+          <Items />
+        </Actions>
+        <IncludedGroups>
+          <string>StreamedMP</string>
+        </IncludedGroups>
+        <PanelName>Tree View Selector</PanelName>
+        <WizardButtonsEnum>BackNextCancel</WizardButtonsEnum>
+      </SectionItem>
+      <SectionItem Guid="d61deab3-28fd-4d85-9088-76ffa14334a2" Name="Install Section" ConditionGroup="">
+        <Params>
+          <Items>
+            <SectionParam Name="Header Title">
+              <Value>Installing</Value>
+              <ValueType>String</ValueType>
+              <Description>Header title</Description>
+            </SectionParam>
+            <SectionParam Name="Header description">
+              <Value>Please wait while Setup installs [Name] on yor computer,</Value>
+              <ValueType>String</ValueType>
+              <Description>Description of section, shown in under section title</Description>
+            </SectionParam>
+            <SectionParam Name="Header image">
+              <Value>Icons\Setup_icon.png</Value>
+              <ValueType>File</ValueType>
+              <Description>Image in upper right part</Description>
+            </SectionParam>
+          </Items>
+        </Params>
+        <Actions>
+          <Items>
+            <ActionItem Name="InstallFiles" ActionType="InstallFiles" ConditionGroup="">
+              <Params>
+                <Items />
+              </Params>
+              <ExecuteLocation>AfterPanelShow</ExecuteLocation>
+            </ActionItem>
+            <ActionItem Name="Script" ActionType="Script" ConditionGroup="">
+              <Params>
+                <Items>
+                  <SectionParam Name="Script">
+                    <Value>//css_reference "MpeCore.dll";
+
+using System;
+using System.Diagnostics;
+using System.IO;
+using Microsoft.Win32;
+using MpeCore;
+using MpeCore.Classes;
+
+public class Script
+{
+    public static void Main(PackageClass packageClass, ActionItem actionItem)
+    {
+        FileVersionInfo axisRtpSourceFilterFileVersion = GetVersionFromClsid(AxisRtpSrcFilter.Clsid);
+
+        if (axisRtpSourceFilterFileVersion != null)
+        {
+            // Axis RTP source filter is registered, determine if its version is same or newer
+            Version registeredVersion = new Version(axisRtpSourceFilterFileVersion.ProductVersion);
+            if (registeredVersion &gt;= AxisRtpSrcFilter.ProductVersion)
+            {
+                // Registered version is same or newer, do nothing
+                return;
+            }
+        }
+
+        // Move source filter to correct location
+        if (MoveAxisRtpSourceFilter())
+        {
+            // Register source filter
+            RegisterAxisRtpSourceFilter();
+        }
+    }
+
+
+    /// &lt;summary&gt;
+    /// Moves the Axis RTP source filter from the temp directory to the correct Axis components
+    /// folder.
+    /// &lt;/summary&gt;
+    /// &lt;returns&gt;true if source filter was moved successfully; otherwise false.&lt;/returns&gt;
+    private static bool MoveAxisRtpSourceFilter()
+    {
+        string sourceFileName = Path.Combine(
+            MpeInstaller.TransformInRealPath("%Temp%"),
+            "AxisRTPSrcFilter.ax");
+
+        string destDirectory = AxisComponentsFolder;
+
+        string destFileName = Path.Combine(
+            destDirectory,
+            "AxisRTPSrcFilter.ax");
+
+        try
+        {
+            if (!Directory.Exists(destDirectory))
+            {
+                // Create directory if it doesn't exist
+                Directory.CreateDirectory(destDirectory);
+            }
+            else if (File.Exists(destFileName))
+            {
+                // Delete file if it already exists
+                File.Delete(destFileName);
+            }
+
+            File.Move(sourceFileName, destFileName);
+
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+
+    /// &lt;summary&gt;
+    /// Is registering the Axis RTP source filter.
+    /// &lt;/summary&gt;
+    private static void RegisterAxisRtpSourceFilter()
+    {
+        string fileName = Path.Combine(
+            AxisComponentsFolder,
+            "AxisRTPSrcFilter.ax");
+
+        ProcessStartInfo startInfo = new ProcessStartInfo();
+        startInfo.FileName = "regsvr32.exe";
+        startInfo.Arguments = "/s \"" + fileName + "\"";
+
+        try
+        {
+            using (Process process = Process.Start(startInfo))
+            {
+                process.WaitForExit();
+            }
+        }
+        catch
+        {
+        }
+    }
+
+
+    /// &lt;summary&gt;
+    /// Gets the file version of registered assembly based on specified CLSID.
+    /// &lt;/summary&gt;
+    /// &lt;param name="clsid"&gt;The CLSID of the registered assembly.&lt;/param&gt;
+    /// &lt;returns&gt;
+    /// The file version of the registered assembly if successful; otherwise null.
+    /// &lt;/returns&gt;
+    private static FileVersionInfo GetVersionFromClsid(string clsid)
+    {
+        if (clsid == null) throw new ArgumentNullException("clsid");
+
+        string registryPath = @"SOFTWARE\Classes\CLSID\{" + clsid + @"}\InprocServer32";
+
+        // Get file path from CLSID
+        string filePath;
+
+        try
+        {
+            using (RegistryKey registryKey = Registry.LocalMachine.OpenSubKey(registryPath, false))
+            {
+                filePath = registryKey.GetValue(null) as string;
+            }
+        }
+        catch
+        {
+            // CLSID is not registered
+            return null;
+        }
+
+        // Get version from file
+        try
+        {
+            return FileVersionInfo.GetVersionInfo(filePath);
+        }
+        catch
+        {
+            // Unable to get version from file. Most probable answer is that the file doesn't exist
+            return null;
+        }
+    }
+
+
+    /// &lt;summary&gt;
+    /// Gets the Axis components folder.
+    /// &lt;/summary&gt;
+    private static string AxisComponentsFolder
+    {
+        get
+        {
+            return Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),
+                @"Axis Communications\Components");
+        }
+    }
+
+
+    /// &lt;summary&gt;
+    /// Class describing the properties of AxisRTPSrcFilter.
+    /// &lt;/summary&gt;
+    static class AxisRtpSrcFilter
+    {
+        /// &lt;summary&gt;
+        /// Gets the CLSID.
+        /// &lt;/summary&gt;
+        public static string Clsid = "4F1D0C59-5ECC-4028-87F3-482191D2230F";
+
+
+        /// &lt;summary&gt;
+        /// Gets the version of the AxisRTPSrcFilter.
+        /// &lt;/summary&gt;
+        public static Version ProductVersion = new Version(2, 9, 1, 0);
+    }	
+}
+</Value>
+                    <ValueType>Script</ValueType>
+                    <Description />
+                  </SectionParam>
+                  <SectionParam Name="Uninstall Script">
+                    <Value>//css_reference "MpeCore.dll";
+
+using MpeCore.Classes;
+using MpeCore;
+
+public class Script
+{
+    public static void Main(PackageClass packageClass, UnInstallItem item)
+    {
+        return;
+    }
+}
+</Value>
+                    <ValueType>Script</ValueType>
+                    <Description />
+                  </SectionParam>
+                </Items>
+              </Params>
+              <ExecuteLocation>AfterPanelShow</ExecuteLocation>
+            </ActionItem>
+            <ActionItem Name="ClearSkinCache" ActionType="ClearSkinCache" ConditionGroup="">
+              <Params>
+                <Items />
+              </Params>
+              <ExecuteLocation>AfterPanelShow</ExecuteLocation>
+            </ActionItem>
+          </Items>
+        </Actions>
+        <IncludedGroups />
+        <PanelName>Install Section</PanelName>
+        <WizardButtonsEnum>Next</WizardButtonsEnum>
+      </SectionItem>
+      <SectionItem Guid="a63c0ac3-4c9d-44ba-bdad-b2eb135792fd" Name="Setup Complete" ConditionGroup="">
+        <Params>
+          <Items>
+            <SectionParam Name="Header text">
+              <Value>The Extension Installer Wizard has successfully installed [Name].</Value>
+              <ValueType>String</ValueType>
+              <Description />
+            </SectionParam>
+            <SectionParam Name="Left part image">
+              <Value>Icons\Welcome_left.png</Value>
+              <ValueType>File</ValueType>
+              <Description />
+            </SectionParam>
+            <SectionParam Name="Show radio buttons">
+              <Value />
+              <ValueType>Bool</ValueType>
+              <Description>Use radiobutton in place of combobox</Description>
+            </SectionParam>
+            <SectionParam Name="Header image">
+              <Value />
+              <ValueType>File</ValueType>
+              <Description>Image in upper right part</Description>
+            </SectionParam>
+          </Items>
+        </Params>
+        <Actions>
+          <Items />
+        </Actions>
+        <IncludedGroups />
+        <PanelName>Setup Complete</PanelName>
+        <WizardButtonsEnum>Finish</WizardButtonsEnum>
+      </SectionItem>
+    </Items>
+  </Sections>
+  <Dependencies>
+    <Items />
+  </Dependencies>
+  <GeneralInfo>
+    <Name>Axis Cameras</Name>
+    <Id>7295daa1-612d-4896-8672-443bd5ce5ba0</Id>
+    <Author>Mattias Kindborg</Author>
+    <HomePage>http://code.google.com/p/axis-camera-mpplugin/</HomePage>
+    <ForumPage>http://forum.team-mediaportal.com/mediaportal-plugins-47/axis-camera-mpplugin-93277/</ForumPage>
+    <UpdateUrl>http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/update.xml</UpdateUrl>
+    <Version>
+      <Major>1</Major>
+      <Minor>1</Minor>
+      <Build>1</Build>
+      <Revision>0</Revision>
+    </Version>
+    <ExtensionDescription>Plugin making it possible to watch live video from any Axis network camera in MediaPortal.</ExtensionDescription>
+    <VersionDescription>[MEDIAPORTAL]: Plugin is now compatible with MediaPortal 1.2.0. DUE TO BREAKING CHANGES IN MEDIAPORTAL, THIS VERSION OF THE PLUGIN IS NOT COMPATIBLE WITH OLDER VERSIONS OF MEDIAPORTAL
+
+[FEATURE]: Navigate between cameras while watching live video without having to go back to the camera list by selecting the previous/next chapter on the remote control or pressing F7/F8 on the keyboard</VersionDescription>
+    <DevelopmentStatus>Stable</DevelopmentStatus>
+    <OnlineLocation>http://axis-camera-mpplugin.googlecode.com/files/AxisCameras_1.1.1.0.mpe1</OnlineLocation>
+    <ReleaseDate>2011-03-28T21:00:06</ReleaseDate>
+    <Tags>axis,cameras,camera,live,video</Tags>
+    <Location>.\AxisCameras_[Version].mpe1</Location>
+    <Params>
+      <Items>
+        <SectionParam Name="Icon">
+          <Value>Icons\Setup_icon.png</Value>
+          <ValueType>File</ValueType>
+          <Description>The icon file of the package (jpg,png,bmp)</Description>
+        </SectionParam>
+        <SectionParam Name="Online Icon">
+          <Value>http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Icons/Setup_icon.png</Value>
+          <ValueType>String</ValueType>
+          <Description>The icon file of the package stored online (jpg,png,bmp)</Description>
+        </SectionParam>
+        <SectionParam Name="Configuration file">
+          <Value>%Plugins%\Windows\AxisCameras.dll</Value>
+          <ValueType>Template</ValueType>
+          <Description>The file used to configure the extension.
+ If have .exe extension the will be executed
+ If have .dll extension used like MP plugin configuration</Description>
+        </SectionParam>
+        <SectionParam Name="Online Screenshots">
+          <Value>http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/1.0.0.0/Blue3wide.png;http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/1.0.0.0/StreamedMP.png;http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/1.1.0.0/Config_Cameras.png;http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/1.1.0.0/Config_Edit_WP1.png;http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/1.1.0.0/Config_Edit_WP2.png;http://axis-camera-mpplugin.googlecode.com/svn/trunk/Source/Setup/Screenshots/1.1.0.0/Config_Edit_WP3.png</Value>
+          <ValueType>String</ValueType>
+          <Description>Online stored screenshot urls separated by ; </Description>
+        </SectionParam>
+        <SectionParam Name="Force to uninstall on update">
+          <Value>yes</Value>
+          <ValueType>Bool</ValueType>
+          <Description>Show dialog and force to uninstall previous version when updating an extension. Should only be disabled if you are using an NSIS/MSI installer.</Description>
+        </SectionParam>
+      </Items>
+    </Params>
+  </GeneralInfo>
+  <UniqueFileList>
+    <Items>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras\bin\Release\AxisCameras.dll</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{03f4a14b-f6c7-4e6e-ae74-cdade74f83a8}-AxisCameras.dll</ZipFileName>
+        <DestinationFilename>%Plugins%\Windows\AxisCameras.dll</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras\bin\Release\AxisCameras.dll.config</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{9f2111ae-b790-4964-b85e-343da23cb053}-AxisCameras.dll.config</ZipFileName>
+        <DestinationFilename>%Plugins%\Windows\AxisCameras.dll.config</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras.Configuration\bin\Release\AxisCameras.Configuration.dll</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{9ae95e92-df7a-4ccb-9fdd-73d06cd17fee}-AxisCameras.Configuration.dll</ZipFileName>
+        <DestinationFilename>%Plugins%\Windows\AxisCameras.Configuration.dll</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras.Core\bin\Release\AxisCameras.Core.dll</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{d11f23a3-f067-456e-a9c0-7b550d96584f}-AxisCameras.Core.dll</ZipFileName>
+        <DestinationFilename>%Plugins%\Windows\AxisCameras.Core.dll</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras.Data\bin\Release\AxisCameras.Data.dll</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{742afa38-8374-4cfb-affe-c97cf277d203}-AxisCameras.Data.dll</ZipFileName>
+        <DestinationFilename>%Plugins%\Windows\AxisCameras.Data.dll</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras.Mvvm\bin\Release\AxisCameras.Mvvm.dll</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{31129be6-45c9-46e9-8031-6686bc7370c1}-AxisCameras.Mvvm.dll</ZipFileName>
+        <DestinationFilename>%Plugins%\Windows\AxisCameras.Mvvm.dll</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\Externals\Autofac\Autofac.dll</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{24d522a9-daf1-4c67-8dfd-1d722d13a806}-Autofac.dll</ZipFileName>
+        <DestinationFilename>%Plugins%\Windows\Autofac.dll</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\Externals\Reactive Extensions\System.Threading.dll</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{b900e8e0-9c8a-4fca-b9a3-13e81091e56e}-System.Threading.dll</ZipFileName>
+        <DestinationFilename>%Plugins%\Windows\System.Threading.dll</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras\Thumbs\AxisCameras\CameraPortrait.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{63d869a0-63e2-4bd6-be9b-130d4dbd80d5}-CameraPortrait.png</ZipFileName>
+        <DestinationFilename>%Thumbs%\AxisCameras\CameraPortrait.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras\Thumbs\AxisCameras\DefaultSnapshot.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{7d06173f-a64f-4eac-8115-bb1bffcd8e8a}-DefaultSnapshot.png</ZipFileName>
+        <DestinationFilename>%Thumbs%\AxisCameras\DefaultSnapshot.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras\Skin\Blue3\axiscameras.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{c3c95a35-e850-41c4-9ae4-28ca5f373d0a}-axiscameras.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Blue3\axiscameras.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras\Skin\Blue3\Media\AxisCameras_logo.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{39e8529a-c79a-44b0-bbbc-0169f34dd270}-AxisCameras_logo.png</ZipFileName>
+        <DestinationFilename>%Skin%\Blue3\Media\AxisCameras_logo.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras\Skin\Blue3\Media\hover_AxisCameras.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{24c632ce-b6d0-4947-b95b-e427f0074381}-hover_AxisCameras.png</ZipFileName>
+        <DestinationFilename>%Skin%\Blue3\Media\hover_AxisCameras.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras\Skin\Blue3wide\axiscameras.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{40b23c57-8545-4fb9-ad94-667d7cc8694c}-axiscameras.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Blue3wide\axiscameras.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras\Skin\Blue3wide\Media\AxisCameras_logo.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{8c66a3bd-31c6-4d87-bfeb-eee321c7d9ab}-AxisCameras_logo.png</ZipFileName>
+        <DestinationFilename>%Skin%\Blue3wide\Media\AxisCameras_logo.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras\Skin\Blue3wide\Media\hover_AxisCameras.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{92c1aa16-732d-48eb-a333-e9185f8f337d}-hover_AxisCameras.png</ZipFileName>
+        <DestinationFilename>%Skin%\Blue3wide\Media\hover_AxisCameras.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras\Skin\StreamedMP\axiscameras.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{03a072a2-b25f-45fd-80a8-0a29076ab457}-axiscameras.xml</ZipFileName>
+        <DestinationFilename>%Skin%\StreamedMP\axiscameras.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras\Skin\StreamedMP\Media\hoover_AxisCameras.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{afe3a00d-5ccc-4086-b8b5-62b66e27173b}-hoover_AxisCameras.png</ZipFileName>
+        <DestinationFilename>%Skin%\StreamedMP\Media\hoover_AxisCameras.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Externals\Axis\AxisRTPSrcFilter.ax</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{6fc1c1f8-c430-4227-988c-d5d91017148c}-AxisRTPSrcFilter.ax</ZipFileName>
+        <DestinationFilename>%Temp%\AxisRTPSrcFilter.ax</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Settings\extension_settings.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{11000da4-8342-4db4-ac7b-076c0a188cca}-extension_settings.xml</ZipFileName>
+        <DestinationFilename>%Base%\extension_settings.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Icons\Welcome_left.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{a64e9f8d-76c9-4788-a9de-fda7ed97b7f5}-Welcome_left.png</ZipFileName>
+        <DestinationFilename />
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>Icons\Setup_icon.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{c6d0a06b-9c37-4bd6-828e-2b2cfa96162a}-Setup_icon.png</ZipFileName>
+        <DestinationFilename />
+      </FileItem>
+    </Items>
+  </UniqueFileList>
+  <ProjectSettings>
+    <FolderGroups>
+      <FolderGroup InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName />
+        <ZipFileName>Installer{CopyFile}\{4042f6b1-d6d5-4a32-8459-83321f4be5ba}-</ZipFileName>
+        <DestinationFilename>%Skin%\Blue3</DestinationFilename>
+        <Folder>..\AxisCameras\Skin\Blue3</Folder>
+        <Group>Blue3</Group>
+        <Recursive>true</Recursive>
+      </FolderGroup>
+      <FolderGroup InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName />
+        <ZipFileName>Installer{CopyFile}\{b2f0e82b-b79a-4411-b338-e5b931e23fe6}-</ZipFileName>
+        <DestinationFilename>%Thumbs%\AxisCameras</DestinationFilename>
+        <Folder>..\AxisCameras\Thumbs\AxisCameras</Folder>
+        <Group>Thumbs</Group>
+        <Recursive>true</Recursive>
+      </FolderGroup>
+      <FolderGroup InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName />
+        <ZipFileName>Installer{CopyFile}\{ba368f55-3f32-4b39-840a-df8b0d785ab4}-</ZipFileName>
+        <DestinationFilename>%Skin%\Blue3wide</DestinationFilename>
+        <Folder>..\AxisCameras\Skin\Blue3wide</Folder>
+        <Group>Blue3wide</Group>
+        <Recursive>true</Recursive>
+      </FolderGroup>
+      <FolderGroup InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName />
+        <ZipFileName>Installer{CopyFile}\{08648c3c-b25e-456d-9257-863dc2d3ae89}-</ZipFileName>
+        <DestinationFilename>%Skin%\StreamedMP</DestinationFilename>
+        <Folder>..\AxisCameras\Skin\StreamedMP</Folder>
+        <Group>StreamedMP</Group>
+        <Recursive>true</Recursive>
+      </FolderGroup>
+    </FolderGroups>
+    <ProjectFilename>C:\Users\Mattias\Desktop\Axis Cameras\trunk\Source\Setup\AxisCameras.xmp2</ProjectFilename>
+    <UpdatePath1>.\update.xml</UpdatePath1>
+    <UpdatePath2 />
+    <UpdatePath3 />
+  </ProjectSettings>
+</PackageClass>
