@@ -80,7 +80,7 @@ namespace AxisCameras.Core
 		/// </summary>
 		public static void Error(string message, Exception exception)
 		{
-			MediaPortalLog.Error(Prefix(message) + " " + exception.ToString());
+			MediaPortalLog.Error(Prefix(message) + " " + exception);
 		}
 
 
