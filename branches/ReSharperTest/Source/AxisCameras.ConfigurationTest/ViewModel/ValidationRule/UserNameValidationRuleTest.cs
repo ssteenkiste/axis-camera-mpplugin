@@ -28,7 +28,7 @@ namespace AxisCameras.ConfigurationTest.ViewModel.ValidationRule
 		[Test]
 		public void ValidationSuccessful()
 		{
-			UserNameValidationRule validationRule = new UserNameValidationRule();
+			var validationRule = new UserNameValidationRule();
 
 			Assert.That(validationRule.Validate("a"), Is.True);
 			Assert.That(validationRule.Validate("z"), Is.True);
@@ -42,7 +42,7 @@ namespace AxisCameras.ConfigurationTest.ViewModel.ValidationRule
 		[Test]
 		public void ValidationFailed()
 		{
-			UserNameValidationRule validationRule = new UserNameValidationRule();
+			var validationRule = new UserNameValidationRule();
 
 			Assert.That(validationRule.Validate("1"), Is.False);
 			Assert.That(validationRule.Validate("1user"), Is.False);

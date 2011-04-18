@@ -34,7 +34,7 @@ namespace AxisCameras.ConfigurationTest.ViewModel.Data
 		[Test]
 		public void Clone()
 		{
-			ConfigurableCamera camera = new ConfigurableCamera(Guid.NewGuid())
+			var camera = new ConfigurableCamera(Guid.NewGuid())
 			{
 				Name = "Name",
 				Address = "192.168.0.90",
