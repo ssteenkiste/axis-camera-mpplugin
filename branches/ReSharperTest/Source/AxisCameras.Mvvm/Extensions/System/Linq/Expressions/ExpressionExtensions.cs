@@ -32,14 +32,14 @@ namespace AxisCameras.Mvvm.Extensions.System.Linq.Expressions
 		/// <typeparam name="T">The property type.</typeparam>
 		/// <param name="nameExpression">The name expression.</param>
 		/// <returns>The name of the expression.</returns>
-		public static string GetName<T>(this Expression<T> extension)
+		public static string GetName<T>(this Expression<T> nameExpression)
 		{
-			UnaryExpression unaryExpression = extension.Body as UnaryExpression;
+			var unaryExpression = nameExpression.Body as UnaryExpression;
 
 			// Convert name expression into MemberExpression
 			MemberExpression memberExpression = unaryExpression != null ?
 				(MemberExpression)unaryExpression.Operand :
-				(MemberExpression)extension.Body;
+				(MemberExpression)nameExpression.Body;
 
 			return memberExpression.Member.Name;
 		}

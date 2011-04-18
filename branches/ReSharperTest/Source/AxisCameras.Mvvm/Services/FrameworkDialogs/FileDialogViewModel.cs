@@ -36,7 +36,7 @@ namespace AxisCameras.Mvvm.Services.FrameworkDialogs
 			CheckPathExists = true;
 			DefaultExt = string.Empty;
 			FileName = string.Empty;
-			FileNames = new string[] { string.Empty };
+			FileNames = new[] { string.Empty };
 			Filter = string.Empty;
 			InitialDirectory = string.Empty;
 			Title = string.Empty;

@@ -80,7 +80,7 @@ namespace AxisCameras.Mvvm
 			DependencyObject target,
 			DependencyPropertyChangedEventArgs e)
 		{
-			ListBox listBox = target as ListBox;
+			var listBox = target as ListBox;
 			if (listBox == null)
 			{
 				return;
@@ -89,11 +89,11 @@ namespace AxisCameras.Mvvm
 			if (e.NewValue != null)
 			{
 				Add(listBox, listBox.SelectedItems);
-				listBox.SelectionChanged += ListBox_SelectionChanged;
+				listBox.SelectionChanged += ListBoxSelectionChanged;
 			}
 			else
 			{
-				listBox.SelectionChanged -= ListBox_SelectionChanged;
+				listBox.SelectionChanged -= ListBoxSelectionChanged;
 			}
 		}
 
@@ -103,9 +103,9 @@ namespace AxisCameras.Mvvm
 		/// </summary>
 		/// <param name="sender">The source of the event.</param>
 		/// <param name="e">The event args.</param>
-		private static void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		private static void ListBoxSelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			DependencyObject target = sender as DependencyObject;
+			var target = sender as DependencyObject;
 			if (target == null)
 			{
 				return;
