@@ -18,17 +18,16 @@
 
 #endregion
 using System.Windows;
-using AxisCameras;
 
 namespace AxisCameras.Configuration.Starter
 {
-	public partial class App : Application
+	public partial class App
 	{
 		protected override void OnStartup(StartupEventArgs e)
 		{
 			base.OnStartup(e);
 
-			SetupForm setupForm = new SetupForm();
+			var setupForm = new SetupForm();
 			setupForm.ShowPlugin();
 		}
 	}
