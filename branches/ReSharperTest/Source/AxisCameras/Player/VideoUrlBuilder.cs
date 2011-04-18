@@ -52,7 +52,7 @@ namespace AxisCameras.Player
 			int videoSource)
 		{
 			if (string.IsNullOrEmpty(address)) throw new ArgumentNullException("address");
-			if (port < 0 || port > 65535) throw new ArgumentException("Port must be between 0-65535", "port");
+			if (port < 0 || port > 65535) throw new ArgumentException("Port must be between 0-65535.", "port");
 			if (string.IsNullOrEmpty(userName)) throw new ArgumentNullException("userName");
 			if (string.IsNullOrEmpty(password)) throw new ArgumentNullException("password");
 			if (string.IsNullOrEmpty(firmwareVersion)) throw new ArgumentNullException("firmwareVersion");
