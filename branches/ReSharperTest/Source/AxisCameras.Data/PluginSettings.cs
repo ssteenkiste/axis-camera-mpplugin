@@ -81,9 +81,9 @@ namespace AxisCameras.Data
 
 			if (!string.IsNullOrEmpty(value))
 			{
-				using (StringReader reader = new StringReader(value))
+				using (var reader = new StringReader(value))
 				{
-					XmlSerializer serializer = new XmlSerializer(typeof(List<Camera>));
+					var serializer = new XmlSerializer(typeof(List<Camera>));
 					return (List<Camera>)serializer.Deserialize(reader);
 				}
 			}
@@ -103,9 +103,9 @@ namespace AxisCameras.Data
 
 			Log.Debug("Saving cameras to disk");
 
-			using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
+			using (var writer = new StringWriter(CultureInfo.InvariantCulture))
 			{
-				XmlSerializer serializer = new XmlSerializer(typeof(List<Camera>));
+				var serializer = new XmlSerializer(typeof(List<Camera>));
 				serializer.Serialize(writer, cameras.ToList());
 
 				settings.SetValue(
