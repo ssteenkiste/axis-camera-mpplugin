@@ -41,14 +41,14 @@ namespace AxisCameras.Configuration.View
 		/// <returns>A bitmap image.</returns>
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
-			IEnumerable<byte> imageBytes = value as IEnumerable<byte>;
+			var imageBytes = value as IEnumerable<byte>;
 
 			if (imageBytes == null) return Binding.DoNothing;
 			if (targetType != typeof(ImageSource)) return Binding.DoNothing;
 
-			MemoryStream stream = new MemoryStream(imageBytes.ToArray());
+			var stream = new MemoryStream(imageBytes.ToArray());
 
-			BitmapImage image = new BitmapImage();
+			var image = new BitmapImage();
 			image.BeginInit();
 			image.StreamSource = stream;
 			image.EndInit();

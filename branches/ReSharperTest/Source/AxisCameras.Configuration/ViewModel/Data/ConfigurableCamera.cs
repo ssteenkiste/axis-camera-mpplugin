@@ -34,7 +34,6 @@ namespace AxisCameras.Configuration.ViewModel.Data
 		/// <param name="id">The camera id.</param>
 		public ConfigurableCamera(Guid id)
 		{
-			if (id == null) throw new ArgumentNullException("id");
 			if (id == Guid.Empty) throw new ArgumentException("ID cannot be Guid.Empty");
 
 			Id = id;

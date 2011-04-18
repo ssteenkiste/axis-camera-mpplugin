@@ -24,10 +24,10 @@ namespace AxisCameras.Configuration.View
 	/// <summary>
 	/// Wizard used when adding or editing a camera.
 	/// </summary>
-	public partial class WizardDialog : Window
+	public partial class WizardDialog
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Wizard"/> class.
+		/// Initializes a new instance of the <see cref="WizardDialog"/> class.
 		/// </summary>
 		public WizardDialog()
 		{

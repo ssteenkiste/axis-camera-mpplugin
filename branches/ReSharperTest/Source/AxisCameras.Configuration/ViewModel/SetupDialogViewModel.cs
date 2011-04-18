@@ -150,7 +150,7 @@ namespace AxisCameras.Configuration.ViewModel
 		/// </summary>
 		private void Add(object parameter)
 		{
-			ConfigurableCamera camera = new ConfigurableCamera(Guid.NewGuid())
+			var camera = new ConfigurableCamera(Guid.NewGuid())
 			{
 				Port = 80,
 				UserName = "root",
@@ -175,7 +175,7 @@ namespace AxisCameras.Configuration.ViewModel
 		/// </summary>
 		private void Edit(object parameter)
 		{
-			CameraViewModel selectedViewModel = (CameraViewModel)SelectedItems.Single();
+			var selectedViewModel = (CameraViewModel)SelectedItems.Single();
 
 			IWizardDialogViewModel wizard = wizardProvider.Provide(
 				Resources.EditCamera_Title,
@@ -214,7 +214,7 @@ namespace AxisCameras.Configuration.ViewModel
 
 			if (result == MessageBoxResult.Yes)
 			{
-				ICameraViewModel camera = (ICameraViewModel)SelectedItems.Single();
+				var camera = (ICameraViewModel)SelectedItems.Single();
 
 				Log.Debug("Removed camera {0}", camera.Camera.Name);
 

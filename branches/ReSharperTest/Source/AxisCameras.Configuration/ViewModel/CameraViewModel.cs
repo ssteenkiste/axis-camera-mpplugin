@@ -23,7 +23,6 @@ using System.Globalization;
 using System.Windows.Input;
 using AxisCameras.Configuration.Service;
 using AxisCameras.Configuration.ViewModel.Data;
-using AxisCameras.Data;
 using AxisCameras.Mvvm;
 
 namespace AxisCameras.Configuration.ViewModel

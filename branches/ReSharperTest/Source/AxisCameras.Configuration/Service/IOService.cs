@@ -63,7 +63,6 @@ namespace AxisCameras.Configuration.Service
 		/// </returns>
 		public string GetThumbFileName(Guid cameraId)
 		{
-			if (cameraId == null) throw new ArgumentNullException("id");
 			if (cameraId == Guid.Empty) throw new ArgumentException("ID cannot be Guid.Empty");
 
 			Log.Debug("Get file name of thumb from camera with id {0}", cameraId);
@@ -100,7 +99,6 @@ namespace AxisCameras.Configuration.Service
 		/// <returns>The thumb if existing; otherwise the default thumb.</returns>
 		public byte[] GetThumb(Guid cameraId)
 		{
-			if (cameraId == null) throw new ArgumentNullException("id");
 			if (cameraId == Guid.Empty) throw new ArgumentException("ID cannot be Guid.Empty");
 
 			Log.Debug("Get thumb from camera with id {0}", cameraId);
@@ -119,7 +117,6 @@ namespace AxisCameras.Configuration.Service
 		/// <returns>The file name where the thumb is saved.</returns>
 		public string SaveThumb(Guid cameraId, byte[] image)
 		{
-			if (cameraId == null) throw new ArgumentNullException("id");
 			if (cameraId == Guid.Empty) throw new ArgumentException("ID cannot be Guid.Empty");
 			if (image == null) throw new ArgumentNullException("image");
 
@@ -146,7 +143,6 @@ namespace AxisCameras.Configuration.Service
 		/// <param name="cameraId">The camera id.</param>
 		public void DeleteThumb(Guid cameraId)
 		{
-			if (cameraId == null) throw new ArgumentNullException("id");
 			if (cameraId == Guid.Empty) throw new ArgumentException("ID cannot be Guid.Empty");
 
 			Log.Debug("Delete thumb of camera with id {0}", cameraId);

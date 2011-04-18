@@ -98,7 +98,7 @@ namespace AxisCameras.Configuration.ViewModel
 					{
 						Log.Error("Error when getting parameters from camera.", t.Exception.InnerException);
 
-						/// Close dialog unsuccessfully
+						// Close dialog unsuccessfully
 						DialogResultCommand.Execute(false);
 					}
 					else

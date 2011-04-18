@@ -33,7 +33,7 @@ namespace AxisCameras.Configuration.Service
 		/// <returns>A dictionary with parameter name as key, and parameter value as value.</returns>
 		public IDictionary<string, string> Parse(string parameters)
 		{
-			Dictionary<string, string> parsedParameters = new Dictionary<string, string>();
+			var parsedParameters = new Dictionary<string, string>();
 
 			foreach (string parameter in parameters.Split('\n'))
 			{
