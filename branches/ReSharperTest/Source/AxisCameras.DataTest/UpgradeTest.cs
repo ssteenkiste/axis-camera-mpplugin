@@ -42,7 +42,7 @@ namespace AxisCameras.DataTest
 		{
 			Assembly assembly = Assembly.Load("AxisCameras.Data");
 
-			ContainerBuilder builder = new ContainerBuilder();
+			var builder = new ContainerBuilder();
 			builder
 				.RegisterAssemblyTypes(assembly);
 			builder
@@ -71,8 +71,8 @@ namespace AxisCameras.DataTest
 			// Copy file of version 1
 			File.Copy(version1FileName, DataPersistenceInformation.FileName);
 
-			UpgradeData upgradeData = container.Resolve<UpgradeData>();
-			ISettings settings = container.Resolve<ISettings>();
+			var upgradeData = container.Resolve<UpgradeData>();
+			var settings = container.Resolve<ISettings>();
 
 			// Upgrade from version 1 to 2	
 			Assert.That(upgradeData.IsUpgradeRequired, Is.True);
