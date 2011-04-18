@@ -588,7 +588,7 @@ public class Script
     <Version>
       <Major>1</Major>
       <Minor>1</Minor>
-      <Build>1</Build>
+      <Build>2</Build>
       <Revision>0</Revision>
     </Version>
     <ExtensionDescription>Plugin making it possible to watch live video from any Axis network camera in MediaPortal.</ExtensionDescription>
@@ -778,14 +778,14 @@ public class Script
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{eb8103d0-8a90-49fd-b3f5-d7baf6bdab7e}-Welcome_left.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{8a252e6e-82a5-4770-b8de-bb49ba1b427c}-Welcome_left.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{01706c2a-dab0-4367-b9a2-5f48e4d23e6c}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{4b49cab0-0a21-4d3c-a845-e4786ea9bdf6}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>

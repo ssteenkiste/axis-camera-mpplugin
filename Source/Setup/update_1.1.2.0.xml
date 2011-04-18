@@ -299,18 +299,18 @@
               <Items />
             </Files>
           </GroupItem>
-          <GroupItem Name="Blue3">
-            <DisplayName>Blue3</DisplayName>
+          <GroupItem Name="Default">
+            <DisplayName>Default</DisplayName>
             <DefaulChecked>true</DefaulChecked>
-            <Description>Blue3</Description>
+            <Description>Default</Description>
             <Files>
               <Items />
             </Files>
           </GroupItem>
-          <GroupItem Name="Blue3wide">
-            <DisplayName>Blue3wide</DisplayName>
+          <GroupItem Name="DefaultWide">
+            <DisplayName>DefaultWide</DisplayName>
             <DefaulChecked>true</DefaulChecked>
-            <Description>Blue3wide</Description>
+            <Description>DefaultWide</Description>
             <Files>
               <Items />
             </Files>
@@ -357,11 +357,11 @@
         <Version>
           <Major>1</Major>
           <Minor>1</Minor>
-          <Build>1</Build>
+          <Build>2</Build>
           <Revision>0</Revision>
         </Version>
         <ExtensionDescription>Plugin making it possible to watch live video from any Axis network camera in MediaPortal.</ExtensionDescription>
-        <VersionDescription>[MEDIAPORTAL]: Plugin is now compatible with upcoming 1.2.0 release of MediaPortal
+        <VersionDescription>[MEDIAPORTAL]: Plugin is now compatible with MediaPortal 1.2.0. DUE TO BREAKING CHANGES IN MEDIAPORTAL, THIS VERSION OF THE PLUGIN IS NOT COMPATIBLE WITH OLDER VERSIONS OF MEDIAPORTAL
 
 [FEATURE]: Navigate between cameras while watching live video without having to go back to the camera list by selecting the previous/next chapter on the remote control or pressing F7/F8 on the keyboard</VersionDescription>
         <DevelopmentStatus>Stable</DevelopmentStatus>
