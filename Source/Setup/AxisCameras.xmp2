@@ -8,7 +8,29 @@
         <DefaulChecked>true</DefaulChecked>
         <Description>Default</Description>
         <Files>
-          <Items />
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras\Skin\Default\axiscameras.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{730472e5-0179-489f-a90e-6c26655bb213}-axiscameras.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Default\axiscameras.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras\Skin\Default\Media\AxisCameras_logo.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{9005a636-0e43-4d96-b204-49eb87700f16}-AxisCameras_logo.png</ZipFileName>
+              <DestinationFilename>%Skin%\Default\Media\AxisCameras_logo.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras\Skin\Default\Media\hover_AxisCameras.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{be4c67ca-8ac6-4f64-98a0-b80943908dcc}-hover_AxisCameras.png</ZipFileName>
+              <DestinationFilename>%Skin%\Default\Media\hover_AxisCameras.png</DestinationFilename>
+            </FileItem>
+          </Items>
         </Files>
       </GroupItem>
       <GroupItem Name="Binaries">
@@ -101,64 +123,42 @@
           </Items>
         </Files>
       </GroupItem>
-      <GroupItem Name="Blue3">
+      <GroupItem Name="Default">
         <ParentGroup />
-        <DisplayName>Blue3 skin support</DisplayName>
+        <DisplayName>Default skin support</DisplayName>
         <DefaulChecked>true</DefaulChecked>
-        <Description>Skin support for Blue3.</Description>
+        <Description>Skin support for Default.</Description>
         <Files>
-          <Items>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameras\Skin\Blue3\axiscameras.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{c3c95a35-e850-41c4-9ae4-28ca5f373d0a}-axiscameras.xml</ZipFileName>
-              <DestinationFilename>%Skin%\Blue3\axiscameras.xml</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameras\Skin\Blue3\Media\AxisCameras_logo.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{39e8529a-c79a-44b0-bbbc-0169f34dd270}-AxisCameras_logo.png</ZipFileName>
-              <DestinationFilename>%Skin%\Blue3\Media\AxisCameras_logo.png</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameras\Skin\Blue3\Media\hover_AxisCameras.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{24c632ce-b6d0-4947-b95b-e427f0074381}-hover_AxisCameras.png</ZipFileName>
-              <DestinationFilename>%Skin%\Blue3\Media\hover_AxisCameras.png</DestinationFilename>
-            </FileItem>
-          </Items>
+          <Items />
         </Files>
       </GroupItem>
-      <GroupItem Name="Blue3wide">
+      <GroupItem Name="DefaultWide">
         <ParentGroup />
-        <DisplayName>Blue3wide skin support</DisplayName>
+        <DisplayName>DefaultWide skin support</DisplayName>
         <DefaulChecked>true</DefaulChecked>
-        <Description>Skin support for Blue3wide.</Description>
+        <Description>Skin support for DefaultWide.</Description>
         <Files>
           <Items>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameras\Skin\Blue3wide\axiscameras.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{40b23c57-8545-4fb9-ad94-667d7cc8694c}-axiscameras.xml</ZipFileName>
-              <DestinationFilename>%Skin%\Blue3wide\axiscameras.xml</DestinationFilename>
+              <LocalFileName>..\AxisCameras\Skin\DefaultWide\axiscameras.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{b59af0b5-6e10-432c-8984-b9cf3c6bc73e}-axiscameras.xml</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\axiscameras.xml</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameras\Skin\Blue3wide\Media\AxisCameras_logo.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{8c66a3bd-31c6-4d87-bfeb-eee321c7d9ab}-AxisCameras_logo.png</ZipFileName>
-              <DestinationFilename>%Skin%\Blue3wide\Media\AxisCameras_logo.png</DestinationFilename>
+              <LocalFileName>..\AxisCameras\Skin\DefaultWide\Media\AxisCameras_logo.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{16c035a8-af60-4eae-9bb9-8797f1ca0b01}-AxisCameras_logo.png</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Media\AxisCameras_logo.png</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameras\Skin\Blue3wide\Media\hover_AxisCameras.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{92c1aa16-732d-48eb-a333-e9185f8f337d}-hover_AxisCameras.png</ZipFileName>
-              <DestinationFilename>%Skin%\Blue3wide\Media\hover_AxisCameras.png</DestinationFilename>
+              <LocalFileName>..\AxisCameras\Skin\DefaultWide\Media\hover_AxisCameras.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{8f715f02-0028-4fca-8201-67d13d8d4e48}-hover_AxisCameras.png</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Media\hover_AxisCameras.png</DestinationFilename>
             </FileItem>
           </Items>
         </Files>
@@ -634,6 +634,27 @@ public class Script
   </GeneralInfo>
   <UniqueFileList>
     <Items>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras\Skin\Default\axiscameras.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{730472e5-0179-489f-a90e-6c26655bb213}-axiscameras.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Default\axiscameras.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras\Skin\Default\Media\AxisCameras_logo.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{9005a636-0e43-4d96-b204-49eb87700f16}-AxisCameras_logo.png</ZipFileName>
+        <DestinationFilename>%Skin%\Default\Media\AxisCameras_logo.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras\Skin\Default\Media\hover_AxisCameras.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{be4c67ca-8ac6-4f64-98a0-b80943908dcc}-hover_AxisCameras.png</ZipFileName>
+        <DestinationFilename>%Skin%\Default\Media\hover_AxisCameras.png</DestinationFilename>
+      </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
@@ -707,44 +728,23 @@ public class Script
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameras\Skin\Blue3\axiscameras.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{c3c95a35-e850-41c4-9ae4-28ca5f373d0a}-axiscameras.xml</ZipFileName>
-        <DestinationFilename>%Skin%\Blue3\axiscameras.xml</DestinationFilename>
+        <LocalFileName>..\AxisCameras\Skin\DefaultWide\axiscameras.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{b59af0b5-6e10-432c-8984-b9cf3c6bc73e}-axiscameras.xml</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\axiscameras.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameras\Skin\Blue3\Media\AxisCameras_logo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{39e8529a-c79a-44b0-bbbc-0169f34dd270}-AxisCameras_logo.png</ZipFileName>
-        <DestinationFilename>%Skin%\Blue3\Media\AxisCameras_logo.png</DestinationFilename>
+        <LocalFileName>..\AxisCameras\Skin\DefaultWide\Media\AxisCameras_logo.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{16c035a8-af60-4eae-9bb9-8797f1ca0b01}-AxisCameras_logo.png</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Media\AxisCameras_logo.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameras\Skin\Blue3\Media\hover_AxisCameras.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{24c632ce-b6d0-4947-b95b-e427f0074381}-hover_AxisCameras.png</ZipFileName>
-        <DestinationFilename>%Skin%\Blue3\Media\hover_AxisCameras.png</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameras\Skin\Blue3wide\axiscameras.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{40b23c57-8545-4fb9-ad94-667d7cc8694c}-axiscameras.xml</ZipFileName>
-        <DestinationFilename>%Skin%\Blue3wide\axiscameras.xml</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameras\Skin\Blue3wide\Media\AxisCameras_logo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{8c66a3bd-31c6-4d87-bfeb-eee321c7d9ab}-AxisCameras_logo.png</ZipFileName>
-        <DestinationFilename>%Skin%\Blue3wide\Media\AxisCameras_logo.png</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameras\Skin\Blue3wide\Media\hover_AxisCameras.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{92c1aa16-732d-48eb-a333-e9185f8f337d}-hover_AxisCameras.png</ZipFileName>
-        <DestinationFilename>%Skin%\Blue3wide\Media\hover_AxisCameras.png</DestinationFilename>
+        <LocalFileName>..\AxisCameras\Skin\DefaultWide\Media\hover_AxisCameras.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{8f715f02-0028-4fca-8201-67d13d8d4e48}-hover_AxisCameras.png</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Media\hover_AxisCameras.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
@@ -778,14 +778,14 @@ public class Script
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{a64e9f8d-76c9-4788-a9de-fda7ed97b7f5}-Welcome_left.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{eb8103d0-8a90-49fd-b3f5-d7baf6bdab7e}-Welcome_left.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{c6d0a06b-9c37-4bd6-828e-2b2cfa96162a}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{01706c2a-dab0-4367-b9a2-5f48e4d23e6c}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
@@ -797,9 +797,9 @@ public class Script
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName />
         <ZipFileName>Installer{CopyFile}\{4042f6b1-d6d5-4a32-8459-83321f4be5ba}-</ZipFileName>
-        <DestinationFilename>%Skin%\Blue3</DestinationFilename>
-        <Folder>..\AxisCameras\Skin\Blue3</Folder>
-        <Group>Blue3</Group>
+        <DestinationFilename>%Skin%\Default</DestinationFilename>
+        <Folder>..\AxisCameras\Skin\Default</Folder>
+        <Group>Default</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
       <FolderGroup InstallType="CopyFile" SystemFile="false" Modified="true">
@@ -817,9 +817,9 @@ public class Script
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName />
         <ZipFileName>Installer{CopyFile}\{ba368f55-3f32-4b39-840a-df8b0d785ab4}-</ZipFileName>
-        <DestinationFilename>%Skin%\Blue3wide</DestinationFilename>
-        <Folder>..\AxisCameras\Skin\Blue3wide</Folder>
-        <Group>Blue3wide</Group>
+        <DestinationFilename>%Skin%\DefaultWide</DestinationFilename>
+        <Folder>..\AxisCameras\Skin\DefaultWide</Folder>
+        <Group>DefaultWide</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
       <FolderGroup InstallType="CopyFile" SystemFile="false" Modified="true">
