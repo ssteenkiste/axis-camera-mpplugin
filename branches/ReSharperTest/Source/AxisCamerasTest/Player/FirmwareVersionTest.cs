@@ -36,7 +36,7 @@ namespace AxisCamerasTest.Player
 			Assert.Throws<ArgumentException>(() => new FirmwareVersion("text4.40"));
 			Assert.Throws<ArgumentException>(() => new FirmwareVersion("text 4.40"));
 
-			FirmwareVersion firmwareVersion = new FirmwareVersion("4.1");
+			var firmwareVersion = new FirmwareVersion("4.1");
 			Assert.That(firmwareVersion.Major, Is.EqualTo(4));
 			Assert.That(firmwareVersion.Minor, Is.EqualTo(1));
 			Assert.That(firmwareVersion.Build, Is.EqualTo(0));
