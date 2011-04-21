@@ -1,0 +1,19 @@
+BUILD SETUP INSTRUCTIONS
+========================
+
+1. Increment "AssemblyVersion" and "AssemblyFileVersion" in "GlobalAssemblyInfo.cs"
+2. Run "BuildSetup.bat"
+  2.1. In MpeMaker, update:
+    - Extension Informations
+      - Version
+      - Status
+      - Release date
+      - Tags
+      - Extension description
+      - This version description
+  2.2. Build the setup
+  2.3. Generate update xml
+3. Update changelog.txt
+4. Upload the setup to Google Code (http://code.google.com/p/axis-camera-mpplugin/downloads/list)
+5. Commit changes
+6. Create tag (create it from the Log)
