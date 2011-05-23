@@ -58,6 +58,8 @@ namespace AxisCameras.DataTest
 		[TearDown]
 		public void TearDown()
 		{
+			container.Resolve<ISettings>().Clear();
+
 			File.Delete(DataPersistenceInformation.FileName);
 		}
 

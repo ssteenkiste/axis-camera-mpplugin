@@ -85,6 +85,15 @@ namespace AxisCameras.Data.MediaPortal
 		}
 
 
+		/// <summary>
+		/// Clear the settings.
+		/// </summary>
+		public void Clear()
+		{
+			MediaPortalSettings.ClearCache();
+		}
+
+
 		#region IDisposable Members
 
 		/// <summary>
