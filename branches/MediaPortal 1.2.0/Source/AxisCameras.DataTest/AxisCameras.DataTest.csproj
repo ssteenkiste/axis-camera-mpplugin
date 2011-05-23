@@ -59,6 +59,10 @@
     <Compile Include="UpgradeTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AxisCameras.Core\AxisCameras.Core.csproj">
+      <Project>{BA65EA0C-E460-437E-A56C-CCF118D3DBE0}</Project>
+      <Name>AxisCameras.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AxisCameras.Data\AxisCameras.Data.csproj">
       <Project>{CCBED050-F912-4D87-8702-0CE8864293E3}</Project>
       <Name>AxisCameras.Data</Name>
