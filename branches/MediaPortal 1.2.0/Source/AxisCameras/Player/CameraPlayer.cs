@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AxisCameras.Core;
+using AxisCameras.Core.Contracts;
 using AxisCameras.Data;
 using AxisCameras.Properties;
 using MediaPortal.Playlists;
@@ -45,8 +46,8 @@ namespace AxisCameras.Player
 			IMediaPortalPlayer mediaPortalPlayer,
 			IVideoUrlBuilder videoUrlBuilder)
 		{
-			if (mediaPortalPlayer == null) throw new ArgumentNullException("mediaPortalPlayer");
-			if (videoUrlBuilder == null) throw new ArgumentNullException("videoUrlBuilder");
+			Requires.NotNull(mediaPortalPlayer);
+			Requires.NotNull(videoUrlBuilder);
 
 			this.mediaPortalPlayer = mediaPortalPlayer;
 			this.videoUrlBuilder = videoUrlBuilder;
@@ -59,7 +60,7 @@ namespace AxisCameras.Player
 		/// <param name="camera">The camera.</param>
 		public void PlayLiveVideo(Camera camera)
 		{
-			if (camera == null) throw new ArgumentNullException("camera");
+			Requires.NotNull(camera);
 
 			Log.Info("Play live video from {0}", camera.Name);
 
@@ -80,8 +81,8 @@ namespace AxisCameras.Player
 		/// </remarks>
 		public void PlayLiveVideo(IEnumerable<Camera> cameras)
 		{
-			if (cameras == null) throw new ArgumentNullException("cameras");
-			if (!cameras.Any()) throw new ArgumentException("Sequence must contain at least one camera");
+			Requires.NotNull(cameras);
+			Requires.IsTrue(cameras.Any(), "Sequence must contain at least one camera");
 
 			if (cameras.Count() == 1)
 			{

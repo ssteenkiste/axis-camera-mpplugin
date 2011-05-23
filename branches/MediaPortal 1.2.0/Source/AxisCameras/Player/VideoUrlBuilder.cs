@@ -20,6 +20,7 @@
 
 using System;
 using System.Web;
+using AxisCameras.Core.Contracts;
 using AxisCameras.Data;
 
 namespace AxisCameras.Player
@@ -50,11 +51,11 @@ namespace AxisCameras.Player
 			VideoCapabilities videoCapabilities,
 			int videoSource)
 		{
-			if (string.IsNullOrEmpty(address)) throw new ArgumentNullException("address");
-			if (port < 0 || port > 65535) throw new ArgumentException("Port must be between 0-65535", "port");
-			if (string.IsNullOrEmpty(userName)) throw new ArgumentNullException("userName");
-			if (string.IsNullOrEmpty(password)) throw new ArgumentNullException("password");
-			if (videoSource < 1) throw new ArgumentException("Video source must be at least 1.");
+			Requires.IsNotNullOrEmpty(address);
+			Requires.IsTrue(port >= 0 && port < 65536, "Port must be between 0-65535");
+			Requires.IsNotNullOrEmpty(userName);
+			Requires.IsNotNullOrEmpty(password);
+			Requires.IsTrue(videoSource >= 1, "Video source must be at least 1.");
 
 			string urlFormat = GetUrlFormat(videoCapabilities);
 
@@ -89,9 +90,7 @@ namespace AxisCameras.Player
 				return Vapix.Version2.MjpegVideoUrl;
 			}
 
-			throw new ArgumentException(
-				"Unsupported video capability: " + videoCapabilities,
-				"videoCapabilities");
+			return Requires.Throw<string>("Unsupported video capability: " + videoCapabilities);
 		}
 
 

@@ -28,11 +28,23 @@ namespace AxisCameras.Core.Contracts
 		/// <summary>
 		/// Requires that specified action is true.
 		/// </summary>
-		public static void IsTrue(bool condition)
+		public static void IsTrue(bool condition, string errorMessage = null)
 		{
 			if (!condition)
 			{
-				throw new RequiresException();
+				Throw(errorMessage);
+			}
+		}
+
+
+		/// <summary>
+		/// Requires that specified value isn't null or empty.
+		/// </summary>
+		public static void IsNotNullOrEmpty(string value)
+		{
+			if (string.IsNullOrEmpty(value))
+			{
+				Throw(string.Empty);
 			}
 		}
 
@@ -44,8 +56,32 @@ namespace AxisCameras.Core.Contracts
 		{
 			if (value == null)
 			{
-				throw new RequiresException();
+				Throw(string.Empty);
 			}
+		}
+
+
+		/// <summary>
+		/// Throws an <see cref="RequiresException"/> with specified error message.
+		/// </summary>
+		/// <param name="errorMessage">The error message.</param>
+		public static void Throw(string errorMessage)
+		{
+			Throw<object>(errorMessage);
+		}
+
+
+		/// <summary>
+		/// Throws an <see cref="RequiresException"/> with specified error message.
+		/// </summary>
+		/// <typeparam name="T">
+		/// The type of object returned. Is only semantic since the method always will throw an
+		/// <see cref="RequiresException"/>.
+		/// </typeparam>
+		/// <param name="errorMessage">The error message.</param>
+		public static T Throw<T>(string errorMessage)
+		{
+			throw new RequiresException(errorMessage);
 		}
 	}
 }
