@@ -17,8 +17,35 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System.Diagnostics.CodeAnalysis;
 
-[module: SuppressMessage("Microsoft.Design", "CA2210:AssembliesShouldHaveValidStrongNames")]
-[module: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "AxisCameras.Core")]
-[module: SuppressMessage("Microsoft.Design", "CA1020:AvoidNamespacesWithFewTypes", Scope = "namespace", Target = "AxisCameras.Core.Contracts")]
+namespace AxisCameras.Core.Contracts
+{
+	/// <summary>
+	/// Class used when defining requirements, i.e. simplifies validating arguments.
+	/// </summary>
+	public static class Requires
+	{
+		/// <summary>
+		/// Requires that specified action is true.
+		/// </summary>
+		public static void IsTrue(bool condition)
+		{
+			if (!condition)
+			{
+				throw new RequiresException();
+			}
+		}
+
+
+		/// <summary>
+		/// Requires that specified value isn't null.
+		/// </summary>
+		public static void NotNull<T>(T value) where T : class
+		{
+			if (value == null)
+			{
+				throw new RequiresException();
+			}
+		}
+	}
+}
