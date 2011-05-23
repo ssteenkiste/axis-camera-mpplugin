@@ -18,6 +18,8 @@
 
 #endregion
 
+using AxisCameras.Data;
+
 namespace AxisCameras.Configuration.Service
 {
 	/// <summary>
@@ -26,22 +28,24 @@ namespace AxisCameras.Configuration.Service
 	class CameraParameters
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="CameraParameters"/>
-		/// class.
+		/// Initializes a new instance of the <see cref="CameraParameters"/> class.
 		/// </summary>
 		/// <param name="friendlyName">The friendly name.</param>
 		/// <param name="firmwareVersion">The firmware version.</param>
 		/// <param name="videoSourceCount">
 		/// The video source count, i.e. the number of video source this camera (device actually) has.
 		/// </param>
+		/// <param name="videoCapabilities">The supported video capabilities.</param>
 		public CameraParameters(
 			string friendlyName,
 			string firmwareVersion,
-			int videoSourceCount)
+			int videoSourceCount,
+			VideoCapabilities videoCapabilities)
 		{
 			FriendlyName = friendlyName;
 			FirmwareVersion = firmwareVersion;
 			VideoSourceCount = videoSourceCount;
+			VideoCapabilities = videoCapabilities;
 		}
 
 
@@ -58,9 +62,15 @@ namespace AxisCameras.Configuration.Service
 
 
 		/// <summary>
-		/// Gets or sets the video source count, i.e. the number of video source this camera (device
-		/// actually) has.
+		/// Gets the video source count, i.e. the number of video source this camera (device actually)
+		/// has.
 		/// </summary>
 		public int VideoSourceCount { get; private set; }
+
+
+		/// <summary>
+		/// Gets the supported video capabilities.
+		/// </summary>
+		public VideoCapabilities VideoCapabilities { get; private set; }
 	}
 }

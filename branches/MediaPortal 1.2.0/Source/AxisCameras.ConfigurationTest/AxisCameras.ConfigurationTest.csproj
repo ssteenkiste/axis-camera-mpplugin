@@ -60,6 +60,10 @@
       <Project>{A9EB29F7-45D9-4528-AD57-98CCECFC5E51}</Project>
       <Name>AxisCameras.Configuration</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AxisCameras.Data\AxisCameras.Data.csproj">
+      <Project>{CCBED050-F912-4D87-8702-0CE8864293E3}</Project>
+      <Name>AxisCameras.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AxisCameras.Mvvm\AxisCameras.Mvvm.csproj">
       <Project>{442C117D-98D8-41A8-843B-716B66D60B97}</Project>
       <Name>AxisCameras.Mvvm</Name>

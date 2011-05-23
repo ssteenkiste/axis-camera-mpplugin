@@ -20,6 +20,7 @@
 using System;
 using System.Reflection;
 using AxisCameras.Configuration.ViewModel.Data;
+using AxisCameras.Data;
 using NUnit.Framework;
 
 namespace AxisCameras.ConfigurationTest.ViewModel.Data
@@ -41,6 +42,7 @@ namespace AxisCameras.ConfigurationTest.ViewModel.Data
 				Port = 80,
 				VideoSource = 1,
 				VideoSourceCount = 1,
+				VideoCapabilities = VideoCapabilities.H264 | VideoCapabilities.Mpeg4,
 				UserName = "root",
 				Password = "pass",
 				FirmwareVersion = "5.0",
