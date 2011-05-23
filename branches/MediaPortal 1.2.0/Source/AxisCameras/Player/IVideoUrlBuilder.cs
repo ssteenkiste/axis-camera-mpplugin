@@ -19,6 +19,7 @@
 #endregion
 
 using System.Diagnostics.CodeAnalysis;
+using AxisCameras.Data;
 
 namespace AxisCameras.Player
 {
@@ -34,7 +35,7 @@ namespace AxisCameras.Player
 		/// <param name="port">The network port.</param>
 		/// <param name="userName">The user name.</param>
 		/// <param name="password">The password.</param>
-		/// <param name="firmwareVersion">The firmware version.</param>
+		/// <param name="videoCapabilities">The video capabilities.</param>
 		/// <param name="videoSource">
 		/// The video source of the camera. This property should always be 1 on cameras, but can be
 		/// other than 1 on video servers with multiple camera inputs.
@@ -48,7 +49,7 @@ namespace AxisCameras.Player
 			int port,
 			string userName,
 			string password,
-			string firmwareVersion,
+			VideoCapabilities videoCapabilities,
 			int videoSource);
 	}
 }

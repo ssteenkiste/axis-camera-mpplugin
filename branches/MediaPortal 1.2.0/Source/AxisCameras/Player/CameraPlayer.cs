@@ -118,7 +118,7 @@ namespace AxisCameras.Player
 				camera.Port,
 				camera.UserName,
 				camera.Password,
-				camera.FirmwareVersion,
+				camera.VideoCapabilities,
 				camera.VideoSource);
 		}
 	}
