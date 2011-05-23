@@ -75,12 +75,7 @@ namespace AxisCameras.Data
 				result = new FirmwareVersion(input);
 				return true;
 			}
-			catch (ArgumentNullException)
-			{
-				result = new FirmwareVersion("0.0");
-				return false;
-			}
-			catch (ArgumentException)
+			catch (RequiresException)
 			{
 				result = new FirmwareVersion("0.0");
 				return false;

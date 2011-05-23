@@ -17,7 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System;
+using AxisCameras.Core.Contracts;
 using AxisCameras.Data;
 using NUnit.Framework;
 
@@ -29,12 +29,12 @@ namespace AxisCameras.DataTest
 		[Test]
 		public void Ctor()
 		{
-			Assert.Throws<ArgumentNullException>(() => new FirmwareVersion(null));
-			Assert.Throws<ArgumentException>(() => new FirmwareVersion(string.Empty));
-			Assert.Throws<ArgumentException>(() => new FirmwareVersion("4"));
-			Assert.Throws<ArgumentException>(() => new FirmwareVersion("text"));
-			Assert.Throws<ArgumentException>(() => new FirmwareVersion("text4.40"));
-			Assert.Throws<ArgumentException>(() => new FirmwareVersion("text 4.40"));
+			Assert.Throws<RequiresException>(() => new FirmwareVersion(null));
+			Assert.Throws<RequiresException>(() => new FirmwareVersion(string.Empty));
+			Assert.Throws<RequiresException>(() => new FirmwareVersion("4"));
+			Assert.Throws<RequiresException>(() => new FirmwareVersion("text"));
+			Assert.Throws<RequiresException>(() => new FirmwareVersion("text4.40"));
+			Assert.Throws<RequiresException>(() => new FirmwareVersion("text 4.40"));
 
 			FirmwareVersion firmwareVersion = new FirmwareVersion("4.1");
 			Assert.That(firmwareVersion.Major, Is.EqualTo(4));
