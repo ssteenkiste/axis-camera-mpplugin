@@ -17,10 +17,10 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System;
 using System.Globalization;
 using System.IO;
 using System.Xml.Serialization;
+using AxisCameras.Core.Contracts;
 using AxisCameras.Data.MediaPortal;
 
 namespace AxisCameras.Data.Upgrades
@@ -39,7 +39,7 @@ namespace AxisCameras.Data.Upgrades
 		/// <param name="settings">The MediaPortal settings.</param>
 		protected PartialUpgrade(ISettings settings)
 		{
-			if (settings == null) throw new ArgumentNullException("settings");
+			Requires.NotNull(settings);
 
 			this.settings = settings;
 		}

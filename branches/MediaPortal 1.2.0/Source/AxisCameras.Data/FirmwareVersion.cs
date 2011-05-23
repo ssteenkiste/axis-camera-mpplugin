@@ -20,6 +20,7 @@
 using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using AxisCameras.Core.Contracts;
 
 namespace AxisCameras.Data
 {
@@ -40,15 +41,12 @@ namespace AxisCameras.Data
 		/// <param name="version">The firmware version.</param>
 		public FirmwareVersion(string version)
 		{
-			if (version == null)
-			{
-				throw new ArgumentNullException("version");
-			}
+			Requires.NotNull(version);
 
 			Match match = FirmwareVersionRegex.Match(version);
 			if (!match.Success)
 			{
-				throw new ArgumentException("Error when parsing firmware version.", "version");
+				Requires.Throw("Error when parsing firmware version.");
 			}
 
 			this.version = new Version(
