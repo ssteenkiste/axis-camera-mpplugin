@@ -77,7 +77,7 @@ namespace AxisCameras.Data
 		/// <summary>
 		/// Gets or sets the video capabilities.
 		/// </summary>
-		public VideoCapability VideoCapabilities { get; set; }
+		public VideoCapabilities VideoCapabilities { get; set; }
 
 
 		/// <summary>

@@ -25,7 +25,7 @@ namespace AxisCameras.Data
 	/// Enum describing the video capability of a <see cref="Camera"/>.
 	/// </summary>
 	[Flags]
-	public enum VideoCapability
+	public enum VideoCapabilities
 	{
 		/// <summary>
 		/// Camera has no video capabilities.

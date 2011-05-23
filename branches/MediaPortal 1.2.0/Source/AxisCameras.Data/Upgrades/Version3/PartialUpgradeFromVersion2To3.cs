@@ -109,7 +109,7 @@ namespace AxisCameras.Data.Upgrades.Version3
 		/// <summary>
 		/// Determines the video capabilities based on the firmware version.
 		/// </summary>
-		private static VideoCapability GetVideoCapabilities(string firmwareVersionText)
+		private static VideoCapabilities GetVideoCapabilities(string firmwareVersionText)
 		{
 			FirmwareVersion firmwareVersion;
 
@@ -122,8 +122,8 @@ namespace AxisCameras.Data.Upgrades.Version3
 			// Firmware version 5.0 or newer means that the camera supports H.264, firmware version
 			// below 5.0 means that the camera supports MPEG-4
 			return firmwareVersion.Major >= 5 ?
-				VideoCapability.H264 :
-				VideoCapability.Mpeg4;
+				VideoCapabilities.H264 :
+				VideoCapabilities.Mpeg4;
 		}
 	}
 }

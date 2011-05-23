@@ -71,7 +71,7 @@
     <Compile Include="Upgrades\Version2\Camera.cs" />
     <Compile Include="Upgrades\Version2\PartialUpgradeFromVersion1To2.cs" />
     <Compile Include="Upgrades\Version3\PartialUpgradeFromVersion2To3.cs" />
-    <Compile Include="VideoCapability.cs" />
+    <Compile Include="VideoCapabilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AxisCameras.Core\AxisCameras.Core.csproj">
