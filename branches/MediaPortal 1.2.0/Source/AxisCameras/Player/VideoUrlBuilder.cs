@@ -22,6 +22,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Web;
 using AxisCameras.Core;
+using AxisCameras.Data;
 
 namespace AxisCameras.Player
 {

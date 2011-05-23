@@ -21,12 +21,12 @@ using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
-namespace AxisCameras.Player
+namespace AxisCameras.Data
 {
 	/// <summary>
 	/// Represents the version number of a camera firmware.
 	/// </summary>
-	class FirmwareVersion
+	public class FirmwareVersion
 	{
 		private static readonly Regex FirmwareVersionRegex = new Regex(
 			@"^(?<major>\d+)\.(?<minor>\d+)(\.(?<build>\d+))?(\.(?<revision>\d+))?");
@@ -40,7 +40,10 @@ namespace AxisCameras.Player
 		/// <param name="version">The firmware version.</param>
 		public FirmwareVersion(string version)
 		{
-			if (version == null) throw new ArgumentNullException("version");
+			if (version == null)
+			{
+				throw new ArgumentNullException("version");
+			}
 
 			Match match = FirmwareVersionRegex.Match(version);
 			if (!match.Success)

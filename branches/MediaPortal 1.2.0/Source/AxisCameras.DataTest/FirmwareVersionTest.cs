@@ -18,10 +18,10 @@
 
 #endregion
 using System;
-using AxisCameras.Player;
+using AxisCameras.Data;
 using NUnit.Framework;
 
-namespace AxisCamerasTest.Player
+namespace AxisCameras.DataTest
 {
 	[TestFixture]
 	public class FirmwareVersionTest

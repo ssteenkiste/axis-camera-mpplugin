@@ -93,7 +93,7 @@ namespace AxisCameras.Data.Upgrades.Version2
 					});
 
 				// Serialize version 2 cameras
-				string serializedVersion2Cameras = Serialize<List<Camera>>(version2Cameras.ToList());
+				string serializedVersion2Cameras = Serialize(version2Cameras.ToList());
 
 				// Save version 2 cameras to file
 				SetValue(
