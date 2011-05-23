@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using AxisCameras.Configuration.Service;
 using AxisCameras.Configuration.ViewModel;
 using AxisCameras.Core;
+using AxisCameras.Core.Contracts;
 using AxisCameras.Mvvm.Services;
 
 namespace AxisCameras.Configuration.Provider
@@ -57,11 +58,11 @@ namespace AxisCameras.Configuration.Provider
 			IIOService ioService,
 			IDispatcherService dispatcherService)
 		{
-			if (windowService == null) throw new ArgumentNullException("windowService");
-			if (cameraParametersProvider == null) throw new ArgumentNullException("cameraParametersProvider");
-			if (cameraSnapshotProvider == null) throw new ArgumentNullException("cameraSnapshotProvider");
-			if (ioService == null) throw new ArgumentNullException("ioService");
-			if (dispatcherService == null) throw new ArgumentNullException("dispatcherService");
+			Requires.NotNull(windowService);
+			Requires.NotNull(cameraParametersProvider);
+			Requires.NotNull(cameraSnapshotProvider);
+			Requires.NotNull(ioService);
+			Requires.NotNull(dispatcherService);
 
 			this.windowService = windowService;
 			this.cameraParametersProvider = cameraParametersProvider;

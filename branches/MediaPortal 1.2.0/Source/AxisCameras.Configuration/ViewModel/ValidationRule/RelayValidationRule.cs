@@ -18,6 +18,7 @@
 
 #endregion
 using System;
+using AxisCameras.Core.Contracts;
 using AxisCameras.Mvvm.Validation;
 
 namespace AxisCameras.Configuration.ViewModel.ValidationRule
@@ -36,7 +37,7 @@ namespace AxisCameras.Configuration.ViewModel.ValidationRule
 		/// <param name="rule">The validation rule function.</param>
 		public RelayValidationRule(Func<bool> rule)
 		{
-			if (rule == null) throw new ArgumentNullException("rule");
+			Requires.NotNull(rule);
 
 			this.rule = rule;
 		}

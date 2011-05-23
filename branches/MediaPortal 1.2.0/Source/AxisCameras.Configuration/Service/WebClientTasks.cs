@@ -21,6 +21,7 @@ using System;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using AxisCameras.Core.Contracts;
 
 namespace AxisCameras.Configuration.Service
 {
@@ -49,7 +50,7 @@ namespace AxisCameras.Configuration.Service
 			CancellationToken cancellationToken = default(CancellationToken),
 			object state = null)
 		{
-			if (address == null) throw new ArgumentNullException("address");
+			Requires.NotNull(address);
 
 			var task = new TaskCompletionSource<string>(state);
 			var webClient = new WebClient

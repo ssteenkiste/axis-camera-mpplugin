@@ -21,6 +21,7 @@ using System;
 using AxisCameras.Configuration.ViewModel;
 using AxisCameras.Configuration.ViewModel.Data;
 using AxisCameras.Core;
+using AxisCameras.Core.Contracts;
 
 namespace AxisCameras.Configuration.Provider
 {
@@ -38,7 +39,7 @@ namespace AxisCameras.Configuration.Provider
 		/// <param name="wizardPagesProvider">The wizard pages provider.</param>
 		public WizardDialogViewModelProvider(IWizardPageViewModelsProvider wizardPagesProvider)
 		{
-			if (wizardPagesProvider == null) throw new ArgumentNullException("wizardPagesProvider");
+			Requires.NotNull(wizardPagesProvider);
 
 			this.wizardPagesProvider = wizardPagesProvider;
 		}
@@ -53,8 +54,8 @@ namespace AxisCameras.Configuration.Provider
 			string title,
 			ConfigurableCamera camera)
 		{
-			if (title == null) throw new ArgumentNullException("title");
-			if (camera == null) throw new ArgumentNullException("camera");
+			Requires.NotNull(title);
+			Requires.NotNull(camera);
 
 			Log.Debug("Provide a IWizardDialogViewModel");
 

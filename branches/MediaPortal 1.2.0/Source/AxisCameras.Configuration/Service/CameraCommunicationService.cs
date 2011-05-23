@@ -24,6 +24,7 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using AxisCameras.Core;
+using AxisCameras.Core.Contracts;
 using AxisCameras.Data;
 
 namespace AxisCameras.Configuration.Service
@@ -42,7 +43,7 @@ namespace AxisCameras.Configuration.Service
 		/// <param name="parameterParser">The parameter parser.</param>
 		public CameraCommunicationService(IParameterParser parameterParser)
 		{
-			if (parameterParser == null) throw new ArgumentNullException("parameterParser");
+			Requires.NotNull(parameterParser);
 
 			this.parameterParser = parameterParser;
 		}
@@ -58,7 +59,7 @@ namespace AxisCameras.Configuration.Service
 			NetworkEndpoint networkEndpoint,
 			CancellationToken cancellationToken = default(CancellationToken))
 		{
-			if (networkEndpoint == null) throw new ArgumentNullException("networkEndpoint");
+			Requires.NotNull(networkEndpoint);
 
 			Log.Debug(
 				"Getting camera parameters from {0}:{1}",
@@ -127,8 +128,8 @@ namespace AxisCameras.Configuration.Service
 			int videoSource,
 			CancellationToken cancellationToken = default(CancellationToken))
 		{
-			if (networkEndpoint == null) throw new ArgumentNullException("networkEndpoint");
-			if (videoSource < 1) throw new ArgumentException("Video source must be 1 or greater.", "videoSource");
+			Requires.NotNull(networkEndpoint);
+			Requires.IsTrue(videoSource >= 1, "Video source must be 1 or greater.");
 
 			Log.Debug(
 				"Getting camera parameters from {0}:{1}, video source {2}",

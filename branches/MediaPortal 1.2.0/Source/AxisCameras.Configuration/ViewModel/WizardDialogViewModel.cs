@@ -23,6 +23,7 @@ using System.Linq;
 using System.Windows.Input;
 using AxisCameras.Configuration.Provider;
 using AxisCameras.Configuration.ViewModel.Data;
+using AxisCameras.Core.Contracts;
 using AxisCameras.Mvvm;
 
 namespace AxisCameras.Configuration.ViewModel
@@ -46,9 +47,9 @@ namespace AxisCameras.Configuration.ViewModel
 			ConfigurableCamera camera,
 			IWizardPageViewModelsProvider wizardPagesProvider)
 		{
-			if (title == null) throw new ArgumentNullException("title");
-			if (camera == null) throw new ArgumentNullException("camera");
-			if (wizardPagesProvider == null) throw new ArgumentNullException("wizardPagesProvider");
+			Requires.NotNull(title);
+			Requires.NotNull(camera);
+			Requires.NotNull(wizardPagesProvider);
 
 			pages = new List<IWizardPageViewModel>(wizardPagesProvider.Provide());
 

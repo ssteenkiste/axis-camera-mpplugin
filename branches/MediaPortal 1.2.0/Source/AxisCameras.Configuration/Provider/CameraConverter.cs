@@ -22,6 +22,7 @@ using System.Linq;
 using AxisCameras.Configuration.Service;
 using AxisCameras.Configuration.ViewModel.Data;
 using AxisCameras.Core;
+using AxisCameras.Core.Contracts;
 using AxisCameras.Data;
 
 namespace AxisCameras.Configuration.Provider
@@ -40,7 +41,7 @@ namespace AxisCameras.Configuration.Provider
 		/// <param name="ioService">The I/O service.</param>
 		public CameraConverter(IIOService ioService)
 		{
-			if (ioService == null) throw new ArgumentNullException("ioService");
+			Requires.NotNull(ioService);
 
 			this.ioService = ioService;
 		}
@@ -52,7 +53,7 @@ namespace AxisCameras.Configuration.Provider
 		/// <param name="camera">The camera to turn into a ConfigurableCamera.</param>
 		public ConfigurableCamera ToConfigurableCamera(Camera camera)
 		{
-			if (camera == null) throw new ArgumentNullException("camera");
+			Requires.NotNull(camera);
 
 			Log.Debug("Convert a Camera to a ConfigurableCamera");
 
@@ -78,7 +79,7 @@ namespace AxisCameras.Configuration.Provider
 		/// <param name="configurableCamera">The configurable camera to turn into a Camera.</param>
 		public Camera ToCamera(ConfigurableCamera configurableCamera)
 		{
-			if (configurableCamera == null) throw new ArgumentNullException("configurableCamera");
+			Requires.NotNull(configurableCamera);
 
 			Log.Debug("Convert a ConfigurableCamera to a Camera");
 

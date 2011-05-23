@@ -21,6 +21,7 @@ using System;
 using AxisCameras.Configuration.Service;
 using AxisCameras.Configuration.ViewModel;
 using AxisCameras.Core;
+using AxisCameras.Core.Contracts;
 
 namespace AxisCameras.Configuration.Provider
 {
@@ -40,7 +41,7 @@ namespace AxisCameras.Configuration.Provider
 		public CameraSnapshotDialogViewModelProvider(
 			Func<ICameraCommunicationService> cameraCommunicationService)
 		{
-			if (cameraCommunicationService == null) throw new ArgumentNullException("cameraCommunicationService");
+			Requires.NotNull(cameraCommunicationService);
 
 			this.cameraCommunicationService = cameraCommunicationService;
 		}
@@ -53,8 +54,8 @@ namespace AxisCameras.Configuration.Provider
 		/// <param name="videoSource">The video source to get snapshot from.</param>
 		public ICameraSnapshotDialogViewModel Provide(NetworkEndpoint cameraEndpoint, int videoSource)
 		{
-			if (cameraEndpoint == null) throw new ArgumentNullException("cameraEndpoint");
-			if (videoSource < 1) throw new ArgumentException("Video source must be 1 or greater.", "videoSource");
+			Requires.NotNull(cameraEndpoint);
+			Requires.IsTrue(videoSource >= 1, "Video source must be 1 or greater.");
 
 			Log.Debug("Provide a ICameraSnapshotDialogViewModel");
 

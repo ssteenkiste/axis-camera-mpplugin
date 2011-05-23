@@ -18,6 +18,7 @@
 
 #endregion
 using System;
+using AxisCameras.Core.Contracts;
 
 namespace AxisCameras.Configuration.Service
 {
@@ -35,10 +36,10 @@ namespace AxisCameras.Configuration.Service
 		/// <param name="password">The password.</param>
 		public NetworkEndpoint(string address, int port, string userName, string password)
 		{
-			if (string.IsNullOrEmpty(address)) throw new ArgumentNullException("address");
-			if (port < 1 || port > 65535) throw new ArgumentOutOfRangeException("port");
-			if (string.IsNullOrEmpty(userName)) throw new ArgumentNullException("userName");
-			if (string.IsNullOrEmpty(password)) throw new ArgumentNullException("password");
+			Requires.IsNotNullOrEmpty(address);
+			Requires.IsTrue(port >= 1 && port < 65536);
+			Requires.IsNotNullOrEmpty(userName);
+			Requires.IsNotNullOrEmpty(password);
 
 			Address = address;
 			Port = port;

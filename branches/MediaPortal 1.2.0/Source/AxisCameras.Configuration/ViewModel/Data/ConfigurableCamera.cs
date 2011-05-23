@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AxisCameras.Core.Contracts;
 using AxisCameras.Data;
 
 namespace AxisCameras.Configuration.ViewModel.Data
@@ -35,8 +36,7 @@ namespace AxisCameras.Configuration.ViewModel.Data
 		/// <param name="id">The camera id.</param>
 		public ConfigurableCamera(Guid id)
 		{
-			if (id == null) throw new ArgumentNullException("id");
-			if (id == Guid.Empty) throw new ArgumentException("ID cannot be Guid.Empty");
+			Requires.IsTrue(id != Guid.Empty, "ID cannot be Guid.Empty");
 
 			Id = id;
 		}

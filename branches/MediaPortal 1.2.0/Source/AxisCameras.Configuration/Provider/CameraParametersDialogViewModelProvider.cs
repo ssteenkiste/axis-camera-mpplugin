@@ -21,6 +21,7 @@ using System;
 using AxisCameras.Configuration.Service;
 using AxisCameras.Configuration.ViewModel;
 using AxisCameras.Core;
+using AxisCameras.Core.Contracts;
 
 namespace AxisCameras.Configuration.Provider
 {
@@ -40,7 +41,7 @@ namespace AxisCameras.Configuration.Provider
 		public CameraParametersDialogViewModelProvider(
 			Func<ICameraCommunicationService> cameraCommunicationService)
 		{
-			if (cameraCommunicationService == null) throw new ArgumentNullException("cameraCommunicationService");
+			Requires.NotNull(cameraCommunicationService);
 
 			this.cameraCommunicationService = cameraCommunicationService;
 		}
@@ -52,7 +53,7 @@ namespace AxisCameras.Configuration.Provider
 		/// <param name="cameraEndpoint">The camera network endpoint.</param>
 		public ICameraParametersDialogViewModel Provide(NetworkEndpoint cameraEndpoint)
 		{
-			if (cameraEndpoint == null) throw new ArgumentNullException("cameraEndpoint");
+			Requires.NotNull(cameraEndpoint);
 
 			Log.Debug("Provide a ICameraParametersDialogViewModel");
 
