@@ -203,6 +203,13 @@ Install only if you already have StreamedMP installed.</Description>
               <ZipFileName>Installer{CopyFile}\{6fc1c1f8-c430-4227-988c-d5d91017148c}-AxisRTPSrcFilter.ax</ZipFileName>
               <DestinationFilename>%Temp%\AxisRTPSrcFilter.ax</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Externals\Axis\AxisHTTPMPSrcFilter.ax</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{1305d725-a4c6-43f1-81d0-5846d0d3b99e}-AxisHTTPMPSrcFilter.ax</ZipFileName>
+              <DestinationFilename>%Temp%\AxisHTTPMPSrcFilter.ax</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -340,171 +347,259 @@ using MpeCore.Classes;
 
 public class Script
 {
-    public static void Main(PackageClass packageClass, ActionItem actionItem)
+  public static void Main(PackageClass packageClass, ActionItem actionItem)
+  {
+    InstallIfNeeded(new AxisRtpSrcFilter());
+    InstallIfNeeded(new AxisHTTPMPSrcFilter());
+  }
+
+
+  /// &lt;summary&gt;
+  /// Installs specified decoder if needed.
+  /// &lt;/summary&gt;
+  private static void InstallIfNeeded(IDecoder decoder)
+  {
+    Version installedVersion = GetVersionFromClsid(decoder.Clsid);
+
+    if (installedVersion == null)
     {
-        FileVersionInfo axisRtpSourceFilterFileVersion = GetVersionFromClsid(AxisRtpSrcFilter.Clsid);
+      // Decoder is not installed, install it
+      Install(GetBundledDecoderFileName(decoder.FileName));
+    }
+    else
+    {
+      // Decoder is installed, determine if it needs upgrading
+      string bundledDecoderFileName = GetBundledDecoderFileName(decoder.FileName);
 
-        if (axisRtpSourceFilterFileVersion != null)
-        {
-            // Axis RTP source filter is registered, determine if its version is same or newer
-            Version registeredVersion = new Version(axisRtpSourceFilterFileVersion.ProductVersion);
-            if (registeredVersion &gt;= AxisRtpSrcFilter.ProductVersion)
-            {
-                // Registered version is same or newer, do nothing
-                return;
-            }
-        }
+      Version bundledDecoderVersion = GetVersionFromFile(bundledDecoderFileName);
+      if (bundledDecoderVersion != null &amp;&amp; bundledDecoderVersion &gt; installedVersion)
+      {
+        Install(bundledDecoderFileName);
+      }
+    }
+  }
 
-        // Move source filter to correct location
-        if (MoveAxisRtpSourceFilter())
-        {
-            // Register source filter
-            RegisterAxisRtpSourceFilter();
-        }
+
+  /// &lt;summary&gt;
+  /// Installs the decoder specified by its file name.
+  /// &lt;/summary&gt;
+  private static void Install(string fileName)
+  {
+    string destFileName = Path.Combine(
+      AxisComponentsFolder,
+      Path.GetFileName(fileName));
+
+    // Move decoder to correct location
+    if (Move(fileName, destFileName))
+    {
+      // Register decoder
+      Register(destFileName);
+    }
+  }
+
+
+  /// &lt;summary&gt;
+  /// Moves the specified file.
+  /// &lt;/summary&gt;
+  /// &lt;param name="sourceFileName"&gt;The source file name.&lt;/param&gt;
+  /// &lt;param name="destFileName"&gt;The destination file name.&lt;/param&gt;
+  /// &lt;returns&gt;true if source file was moved successfully; otherwise false.&lt;/returns&gt;
+  private static bool Move(string sourceFileName, string destFileName)
+  {
+    try
+    {
+      string destDirectory = Path.GetDirectoryName(destFileName);
+
+      if (!Directory.Exists(destDirectory))
+      {
+        // Create directory if it doesn't exist
+        Directory.CreateDirectory(destDirectory);
+      }
+      else if (File.Exists(destFileName))
+      {
+        // Delete file if it already exists
+        File.Delete(destFileName);
+      }
+
+      File.Move(sourceFileName, destFileName);
+
+      return true;
+    }
+    catch
+    {
+      return false;
+    }
+  }
+
+
+  /// &lt;summary&gt;
+  /// Is registering the Axis RTP source filter.
+  /// &lt;/summary&gt;
+  private static void Register(string fileName)
+  {
+    ProcessStartInfo startInfo = new ProcessStartInfo();
+    startInfo.FileName = "regsvr32.exe";
+    startInfo.Arguments = "/s \"" + fileName + "\"";
+
+    try
+    {
+      using (Process process = Process.Start(startInfo))
+      {
+        process.WaitForExit();
+      }
+    }
+    catch
+    {
+    }
+  }
+
+
+  /// &lt;summary&gt;
+  /// Gets the version of registered assembly based on specified CLSID.
+  /// &lt;/summary&gt;
+  /// &lt;param name="clsid"&gt;The CLSID of the registered assembly.&lt;/param&gt;
+  /// &lt;returns&gt;
+  /// The version of the registered assembly if successful; otherwise null.
+  /// &lt;/returns&gt;
+  private static Version GetVersionFromClsid(string clsid)
+  {
+    if (clsid == null) throw new ArgumentNullException("clsid");
+
+    string registryPath = @"SOFTWARE\Classes\CLSID\{" + clsid + @"}\InprocServer32";
+
+    // Get file path from CLSID
+    string filePath;
+
+    try
+    {
+      using (RegistryKey registryKey = Registry.LocalMachine.OpenSubKey(registryPath, false))
+      {
+        filePath = registryKey.GetValue(null) as string;
+      }
+    }
+    catch
+    {
+      // CLSID is not registered
+      return null;
+    }
+
+    // Get version from file
+    return GetVersionFromFile(filePath);
+  }
+
+
+  /// &lt;summary&gt;
+  /// Gets the version from a file on disk.
+  /// &lt;/summary&gt;
+  /// &lt;returns&gt;The version of the file if existing; otherwise null.&lt;/returns&gt;
+  private static Version GetVersionFromFile(string fileName)
+  {
+    if (fileName == null) throw new ArgumentNullException("fileName");
+
+    try
+    {
+      return new Version(FileVersionInfo.GetVersionInfo(fileName).ProductVersion);
+    }
+    catch
+    {
+      // Unable to get version from file. Most probable answer is that the file doesn't exist
+      return null;
+    }
+  }
+
+
+  /// &lt;summary&gt;
+  /// Gets the file name of the decoder in the TEMP directory.
+  /// &lt;/summary&gt;
+  private static string GetBundledDecoderFileName(string decoderName)
+  {
+    if (decoderName == null) throw new ArgumentNullException("decoderName");
+
+    return Path.Combine(
+      MpeInstaller.TransformInRealPath("%Temp%"),
+      decoderName);
+  }
+
+
+  /// &lt;summary&gt;
+  /// Gets the Axis components folder.
+  /// &lt;/summary&gt;
+  private static string AxisComponentsFolder
+  {
+    get
+    {
+      return Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),
+        @"Axis Communications\Components");
+    }
+  }
+
+
+  /// &lt;summary&gt;
+  /// Interface describing a decoder to register.
+  /// &lt;/summary&gt;
+  interface IDecoder
+  {
+    /// &lt;summary&gt;
+    /// Gets the file name.
+    /// &lt;/summary&gt;
+    string FileName { get; }
+
+
+    /// &lt;summary&gt;
+    /// Gets the CLSID.
+    /// &lt;/summary&gt;
+    string Clsid { get; }
+  }
+
+
+  /// &lt;summary&gt;
+  /// Class describing the properties of AxisRTPSrcFilter.
+  /// &lt;/summary&gt;
+  class AxisRtpSrcFilter : IDecoder
+  {
+    /// &lt;summary&gt;
+    /// Gets the file name.
+    /// &lt;/summary&gt;
+    public string FileName
+    {
+      get { return "AxisRTPSrcFilter.ax"; }
     }
 
 
     /// &lt;summary&gt;
-    /// Moves the Axis RTP source filter from the temp directory to the correct Axis components
-    /// folder.
+    /// Gets the CLSID.
     /// &lt;/summary&gt;
-    /// &lt;returns&gt;true if source filter was moved successfully; otherwise false.&lt;/returns&gt;
-    private static bool MoveAxisRtpSourceFilter()
+    public string Clsid
     {
-        string sourceFileName = Path.Combine(
-            MpeInstaller.TransformInRealPath("%Temp%"),
-            "AxisRTPSrcFilter.ax");
+      get { return "4F1D0C59-5ECC-4028-87F3-482191D2230F"; }
+    }
+  }
 
-        string destDirectory = AxisComponentsFolder;
 
-        string destFileName = Path.Combine(
-            destDirectory,
-            "AxisRTPSrcFilter.ax");
-
-        try
-        {
-            if (!Directory.Exists(destDirectory))
-            {
-                // Create directory if it doesn't exist
-                Directory.CreateDirectory(destDirectory);
-            }
-            else if (File.Exists(destFileName))
-            {
-                // Delete file if it already exists
-                File.Delete(destFileName);
-            }
-
-            File.Move(sourceFileName, destFileName);
-
-            return true;
-        }
-        catch
-        {
-            return false;
-        }
+  /// &lt;summary&gt;
+  /// Class describing the properties of AxisHTTPMPSrcFilter.
+  /// &lt;/summary&gt;
+  class AxisHTTPMPSrcFilter : IDecoder
+  {
+    /// &lt;summary&gt;
+    /// Gets the file name.
+    /// &lt;/summary&gt;
+    public string FileName
+    {
+      get { return "AxisHTTPMPSrcFilter.ax"; }
     }
 
 
     /// &lt;summary&gt;
-    /// Is registering the Axis RTP source filter.
+    /// Gets the CLSID.
     /// &lt;/summary&gt;
-    private static void RegisterAxisRtpSourceFilter()
+    public string Clsid
     {
-        string fileName = Path.Combine(
-            AxisComponentsFolder,
-            "AxisRTPSrcFilter.ax");
-
-        ProcessStartInfo startInfo = new ProcessStartInfo();
-        startInfo.FileName = "regsvr32.exe";
-        startInfo.Arguments = "/s \"" + fileName + "\"";
-
-        try
-        {
-            using (Process process = Process.Start(startInfo))
-            {
-                process.WaitForExit();
-            }
-        }
-        catch
-        {
-        }
+      get { return "1A643A97-F45E-40BD-82BB-3DA946A249EB"; }
     }
-
-
-    /// &lt;summary&gt;
-    /// Gets the file version of registered assembly based on specified CLSID.
-    /// &lt;/summary&gt;
-    /// &lt;param name="clsid"&gt;The CLSID of the registered assembly.&lt;/param&gt;
-    /// &lt;returns&gt;
-    /// The file version of the registered assembly if successful; otherwise null.
-    /// &lt;/returns&gt;
-    private static FileVersionInfo GetVersionFromClsid(string clsid)
-    {
-        if (clsid == null) throw new ArgumentNullException("clsid");
-
-        string registryPath = @"SOFTWARE\Classes\CLSID\{" + clsid + @"}\InprocServer32";
-
-        // Get file path from CLSID
-        string filePath;
-
-        try
-        {
-            using (RegistryKey registryKey = Registry.LocalMachine.OpenSubKey(registryPath, false))
-            {
-                filePath = registryKey.GetValue(null) as string;
-            }
-        }
-        catch
-        {
-            // CLSID is not registered
-            return null;
-        }
-
-        // Get version from file
-        try
-        {
-            return FileVersionInfo.GetVersionInfo(filePath);
-        }
-        catch
-        {
-            // Unable to get version from file. Most probable answer is that the file doesn't exist
-            return null;
-        }
-    }
-
-
-    /// &lt;summary&gt;
-    /// Gets the Axis components folder.
-    /// &lt;/summary&gt;
-    private static string AxisComponentsFolder
-    {
-        get
-        {
-            return Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),
-                @"Axis Communications\Components");
-        }
-    }
-
-
-    /// &lt;summary&gt;
-    /// Class describing the properties of AxisRTPSrcFilter.
-    /// &lt;/summary&gt;
-    static class AxisRtpSrcFilter
-    {
-        /// &lt;summary&gt;
-        /// Gets the CLSID.
-        /// &lt;/summary&gt;
-        public static string Clsid = "4F1D0C59-5ECC-4028-87F3-482191D2230F";
-
-
-        /// &lt;summary&gt;
-        /// Gets the version of the AxisRTPSrcFilter.
-        /// &lt;/summary&gt;
-        public static Version ProductVersion = new Version(2, 9, 1, 0);
-    }	
-}
-</Value>
+  }
+}</Value>
                     <ValueType>Script</ValueType>
                     <Description />
                   </SectionParam>
@@ -769,6 +864,13 @@ public class Script
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Externals\Axis\AxisHTTPMPSrcFilter.ax</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{1305d725-a4c6-43f1-81d0-5846d0d3b99e}-AxisHTTPMPSrcFilter.ax</ZipFileName>
+        <DestinationFilename>%Temp%\AxisHTTPMPSrcFilter.ax</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Settings\extension_settings.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{11000da4-8342-4db4-ac7b-076c0a188cca}-extension_settings.xml</ZipFileName>
@@ -778,14 +880,14 @@ public class Script
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{8a252e6e-82a5-4770-b8de-bb49ba1b427c}-Welcome_left.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{2a2dc401-e1ab-4572-bc44-8126aaa4da75}-Welcome_left.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{4b49cab0-0a21-4d3c-a845-e4786ea9bdf6}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{3b8527a6-b248-4329-8df0-febcd8c48135}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
