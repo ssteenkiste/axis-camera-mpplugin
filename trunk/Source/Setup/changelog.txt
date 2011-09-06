@@ -9,6 +9,8 @@ Upcoming release (Version 1.1.2.0)
                  selecting the previous/next chapter on the remote
                  control or pressing F7/F8 on the keyboard
 
+  [BUGFIX]       Fixed problem displaying H.264 live video streams
+
 
 Version 1.1.0.0
   [FEATURE]:     Show live video streams from Axis network video servers
