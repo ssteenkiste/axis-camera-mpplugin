@@ -54,7 +54,7 @@ namespace AxisCameras.Player
 			/// <summary>
 			/// The H.264 live video URL.
 			/// </summary>
-			internal const string H264VideoUrl = "axrtsphttp://{0}:{1}@{2}:{3}/axis-media/{4}/media.amp?videocodec=h264";
+			internal const string H264VideoUrl = "axrtsphttp://{0}:{1}@{2}:{3}/axis-media/media.amp?videocodec=h264&camera={4}";
 		}
 	}
 }
