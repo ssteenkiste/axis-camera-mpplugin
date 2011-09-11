@@ -11,44 +11,63 @@ public class Script
 {
 	public static void Main(PackageClass packageClass, ActionItem actionItem)
 	{
-		FileVersionInfo axisRtpSourceFilterFileVersion = GetVersionFromClsid(AxisRtpSrcFilter.Clsid);
+		// Install Axis RTP source filter
+		Install(
+			AxisRtpSrcFilter.FileName,
+			AxisRtpSrcFilter.Clsid,
+			AxisRtpSrcFilter.ProductVersion);
 
-		if (axisRtpSourceFilterFileVersion != null)
+		// Install embedded Axis RTP source filter
+		Install(
+			EmbeddedAxisRtpSrcFilter.FileName,
+			EmbeddedAxisRtpSrcFilter.Clsid,
+			EmbeddedAxisRtpSrcFilter.ProductVersion);
+	}
+
+
+	/// <summary>
+	/// Installs the specified file with specified CLSID and version
+	/// </summary>
+	private static void Install(string fileName, string clsid, Version version)
+	{
+		FileVersionInfo fileVersionInfo = GetVersionFromClsid(clsid);
+
+		if (fileVersionInfo != null)
 		{
-			// Axis RTP source filter is registered, determine if its version is same or newer
-			Version registeredVersion = new Version(axisRtpSourceFilterFileVersion.ProductVersion);
-			if (registeredVersion >= AxisRtpSrcFilter.ProductVersion)
+			// File is registered, determine if its version is the same or newer than the one supplied by
+			// the installation
+			Version registeredVersion = new Version(fileVersionInfo.ProductVersion);
+			if (registeredVersion >= version)
 			{
-				// Registered version is same or newer, do nothing
 				return;
 			}
 		}
 
-		// Move source filter to correct location
-		if (MoveAxisRtpSourceFilter())
+		// Move file
+		string newFileName = Move(fileName);
+		if (newFileName != null)
 		{
-			// Register source filter
-			RegisterAxisRtpSourceFilter();
+			// Register file
+			Register(newFileName);
 		}
 	}
 
 
 	/// <summary>
-	/// Moves the Axis RTP source filter from the temp directory to the correct Axis components
-	/// folder.
+	/// Moves the specified file from the temp directory to the correct Axis components folder.
 	/// </summary>
-	/// <returns>true if source filter was moved successfully; otherwise false.</returns>
-	private static bool MoveAxisRtpSourceFilter()
+	/// <returns>The path of the moved file if successfully; otherwise null.</returns>
+	private static string Move(string fileName)
 	{
 		string sourceFileName = Path.Combine(
 			MpeInstaller.TransformInRealPath("%Temp%"),
-			"AxisRTPSrcFilter.ax");
+			fileName);
 
 		string destDirectory = AxisComponentsFolder;
 
 		string destFileName = Path.Combine(
 			destDirectory,
-			"AxisRTPSrcFilter.ax");
+			fileName);
 
 		try
 		{
@@ -65,24 +84,20 @@ public class Script
 
 			File.Move(sourceFileName, destFileName);
 
-			return true;
+			return destFileName;
 		}
 		catch
 		{
-			return false;
+			return null;
 		}
 	}
 
 
 	/// <summary>
-	/// Is registering the Axis RTP source filter.
+	/// Is registering the specified file.
 	/// </summary>
-	private static void RegisterAxisRtpSourceFilter()
+	private static void Register(string fileName)
 	{
-		string fileName = Path.Combine(
-			AxisComponentsFolder,
-			"AxisRTPSrcFilter.ax");
-
 		ProcessStartInfo startInfo = new ProcessStartInfo();
 		startInfo.FileName = "regsvr32.exe";
 		startInfo.Arguments = "/s \"" + fileName + "\"";
@@ -162,14 +177,44 @@ public class Script
 	static class AxisRtpSrcFilter
 	{
 		/// <summary>
+		/// Gets the file name.
+		/// </summary>
+		public static string FileName = "AxisRTPSrcFilter.ax";
+
+
+		/// <summary>
 		/// Gets the CLSID.
 		/// </summary>
-		public static string Clsid = "4F1D0C59-5ECC-4028-87F3-482191D2230F";
+		public static readonly string Clsid = "4F1D0C59-5ECC-4028-87F3-482191D2230F";
 
 
 		/// <summary>
 		/// Gets the version of the AxisRTPSrcFilter.
 		/// </summary>
-		public static Version ProductVersion = new Version(2, 9, 1, 0);
+		public static readonly Version ProductVersion = new Version(3, 0, 4, 2);
+	}
+
+
+	/// <summary>
+	/// Class describing the properties of the embedded version of AxisRTPSrcFilter.
+	/// </summary>
+	static class EmbeddedAxisRtpSrcFilter
+	{
+		/// <summary>
+		/// Gets the file name.
+		/// </summary>
+		public static string FileName = "AxisRTPSrcFilterEmb.ax";
+
+
+		/// <summary>
+		/// Gets the CLSID.
+		/// </summary>
+		public static readonly string Clsid = "67B1A88A-B5D2-48B1-BF93-EB74D6FCB077";
+
+
+		/// <summary>
+		/// Gets the version of the AxisRTPSrcFilter.
+		/// </summary>
+		public static readonly Version ProductVersion = new Version(3, 0, 4, 2);
 	}
 }
