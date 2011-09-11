@@ -694,7 +694,7 @@ public class Script
 [BUGFIX]: Fixed problem showing live video when embedded RTP source filter was registered after plugin was installed</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
     <OnlineLocation>http://axis-camera-mpplugin.googlecode.com/files/AxisCameras_1.1.1.0.mpe1</OnlineLocation>
-    <ReleaseDate>2011-09-10T21:00:06</ReleaseDate>
+    <ReleaseDate>2011-09-11T21:00:06</ReleaseDate>
     <Tags>axis,cameras,camera,live,video</Tags>
     <Location>.\AxisCameras_[Version].mpe1</Location>
     <Params>
@@ -882,14 +882,14 @@ public class Script
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{579370ce-d7af-4753-9d4f-765f8bdde3f7}-Welcome_left.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{643b10ba-33d7-4496-9133-fecdf02f9f53}-Welcome_left.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{8af8b0c3-e24a-40a1-95f2-ba4f98835315}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{4f32a022-e722-4bae-b104-574f613a5173}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
