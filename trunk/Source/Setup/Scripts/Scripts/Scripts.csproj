@@ -32,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MpeCore">
-      <HintPath>..\..\..\Externals\MediaPortal\MpeCore.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,6 +42,12 @@
   <ItemGroup>
     <Compile Include="InstallAxisRtpSrcFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Externals\MediaPortal\mediaportal\MPE\MpeCore\MpeCore.csproj">
+      <Project>{4458F642-6022-4A3F-996F-E8AA510FB7E8}</Project>
+      <Name>MpeCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
