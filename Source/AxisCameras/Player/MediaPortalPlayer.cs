@@ -20,6 +20,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AxisCameras.Core.Contracts;
 using MediaPortal.Player;
 using MediaPortal.Playlists;
 
@@ -38,7 +39,7 @@ namespace AxisCameras.Player
 		/// <returns>true if playback started successfully; otherwise false.</returns>
 		public bool PlayVideoStreamInFullScreen(string url, string name)
 		{
-			if (string.IsNullOrEmpty(url)) throw new ArgumentNullException("url");
+			Requires.IsNotNullOrEmpty(url);
 
 			// Stop player if already playing
 			if (g_Player.Playing)
@@ -59,15 +60,15 @@ namespace AxisCameras.Player
 		/// <summary>
 		/// Starts playing the first video stream in the specified sequence of playlist items.
 		/// </summary>
-		/// <param name="playlist">The sequence of playlist items to play.</param>
+		/// <param name="playlistItems">The sequence of playlist items to play.</param>
 		/// <param name="playlistName">The name of the playlist.</param>
 		/// <returns>true if playback started successfully; otherwise false.</returns>
 		public bool PlayVideoStreamsInFullScreen(
 			IEnumerable<PlayListItem> playlistItems,
 			string playlistName)
 		{
-			if (playlistItems == null) throw new ArgumentNullException("playlistItems");
-			if (!playlistItems.Any()) throw new ArgumentException("Playlist must contain at least one item.");
+			Requires.NotNull(playlistItems);
+			Requires.IsTrue(playlistItems.Any(), "Playlist must contain at least one item.");
 
 			// By using the music video playlist we are forcing MediaPortal to play the playlist as a
 			// video stream, which is the preferred way of playing live video from cameras. The code 

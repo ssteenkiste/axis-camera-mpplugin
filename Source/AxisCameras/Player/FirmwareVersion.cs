@@ -20,6 +20,7 @@
 using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using AxisCameras.Core.Contracts;
 
 namespace AxisCameras.Player
 {
@@ -40,13 +41,10 @@ namespace AxisCameras.Player
 		/// <param name="version">The firmware version.</param>
 		public FirmwareVersion(string version)
 		{
-			if (version == null) throw new ArgumentNullException("version");
+			Requires.IsNotNullOrEmpty(version);
 
 			Match match = FirmwareVersionRegex.Match(version);
-			if (!match.Success)
-			{
-				throw new ArgumentException("Error when parsing firmware version.", "version");
-			}
+			Requires.IsTrue(match.Success, "Error when parsing firmware version.");
 
 			this.version = new Version(
 				GetGroupValue(match, "major"),
@@ -74,12 +72,7 @@ namespace AxisCameras.Player
 				result = new FirmwareVersion(input);
 				return true;
 			}
-			catch (ArgumentNullException)
-			{
-				result = new FirmwareVersion("0.0");
-				return false;
-			}
-			catch (ArgumentException)
+			catch (RequiresException)
 			{
 				result = new FirmwareVersion("0.0");
 				return false;

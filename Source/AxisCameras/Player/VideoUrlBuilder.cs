@@ -22,6 +22,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Web;
 using AxisCameras.Core;
+using AxisCameras.Core.Contracts;
 
 namespace AxisCameras.Player
 {
@@ -51,12 +52,12 @@ namespace AxisCameras.Player
 			string firmwareVersion,
 			int videoSource)
 		{
-			if (string.IsNullOrEmpty(address)) throw new ArgumentNullException("address");
-			if (port < 0 || port > 65535) throw new ArgumentException("Port must be between 0-65535", "port");
-			if (string.IsNullOrEmpty(userName)) throw new ArgumentNullException("userName");
-			if (string.IsNullOrEmpty(password)) throw new ArgumentNullException("password");
-			if (string.IsNullOrEmpty(firmwareVersion)) throw new ArgumentNullException("firmwareVersion");
-			if (videoSource < 1) throw new ArgumentException("Video source must be at least 1.");
+			Requires.IsNotNullOrEmpty(address);
+			Requires.IsTrue(port >= 0 && port <= 65535, "Port must be between 0-65535");
+			Requires.IsNotNullOrEmpty(userName);
+			Requires.IsNotNullOrEmpty(password);
+			Requires.IsNotNullOrEmpty(firmwareVersion);
+			Requires.IsTrue(videoSource >= 1, "Video source must be at least 1.");
 
 			FirmwareVersion version = ParseFirmwareVersion(firmwareVersion);
 

@@ -62,24 +62,20 @@ namespace AxisCameras.Core.Contracts
 
 
 		/// <summary>
-		/// Throws an <see cref="RequiresException"/> with specified error message.
+		/// Marks that requirements have failed.
 		/// </summary>
 		/// <param name="errorMessage">The error message.</param>
-		public static void Throw(string errorMessage)
+		public static void Fail(string errorMessage)
 		{
-			Throw<object>(errorMessage);
+			Throw(errorMessage);
 		}
 
 
 		/// <summary>
 		/// Throws an <see cref="RequiresException"/> with specified error message.
 		/// </summary>
-		/// <typeparam name="T">
-		/// The type of object returned. Is only semantic since the method always will throw an
-		/// <see cref="RequiresException"/>.
-		/// </typeparam>
 		/// <param name="errorMessage">The error message.</param>
-		public static T Throw<T>(string errorMessage)
+		private static void Throw(string errorMessage)
 		{
 			throw new RequiresException(errorMessage);
 		}
