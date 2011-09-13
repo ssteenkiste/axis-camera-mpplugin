@@ -64,6 +64,7 @@ namespace AxisCameras.Configuration.Provider
 				Port = camera.Port,
 				VideoSource = camera.VideoSource,
 				VideoSourceCount = camera.VideoSourceCount,
+				VideoCapabilities = camera.VideoCapabilities,
 				UserName = camera.UserName,
 				Password = camera.Password,
 				FirmwareVersion = camera.FirmwareVersion,
@@ -93,6 +94,7 @@ namespace AxisCameras.Configuration.Provider
 				Port = configurableCamera.Port,
 				VideoSource = configurableCamera.VideoSource,
 				VideoSourceCount = configurableCamera.VideoSourceCount,
+				VideoCapabilities = configurableCamera.VideoCapabilities,
 				UserName = configurableCamera.UserName,
 				Password = configurableCamera.Password,
 				FirmwareVersion = configurableCamera.FirmwareVersion

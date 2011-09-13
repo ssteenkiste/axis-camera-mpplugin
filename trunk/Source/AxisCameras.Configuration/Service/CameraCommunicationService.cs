@@ -19,11 +19,13 @@
 #endregion
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using AxisCameras.Core;
 using AxisCameras.Core.Contracts;
+using AxisCameras.Data;
 
 namespace AxisCameras.Configuration.Service
 {
@@ -71,7 +73,8 @@ namespace AxisCameras.Configuration.Service
 				{
 					Vapix.Parameters.FriendlyName,
 					Vapix.Parameters.FirmwareVersion,
-					Vapix.Parameters.NbrOfImageSources
+					Vapix.Parameters.NbrOfImageSources,
+					Vapix.Parameters.ImageFormats
 				})));
 
 			// Task getting parameters
@@ -95,13 +98,20 @@ namespace AxisCameras.Configuration.Service
 					string friendlyName = GetValue(Vapix.Parameters.FriendlyName, parameters);
 					string firmwareVersion = GetValue(Vapix.Parameters.FirmwareVersion, parameters);
 					int videoSourceCount = GetValueAsInteger(Vapix.Parameters.NbrOfImageSources, parameters);
+					VideoCapabilities videoCapabilities = GetVideoCapabilities(parameters);
 
-					Log.Debug("Get camera parameters from camera completed. [{0}|{1}|{2}]",
+					Log.Debug(
+						"Get camera parameters from camera completed. [{0}|{1}|{2}|{3}]",
 						friendlyName,
 						firmwareVersion,
-						videoSourceCount);
+						videoSourceCount,
+						videoCapabilities);
 
-					return new CameraParameters(friendlyName, firmwareVersion, videoSourceCount);
+					return new CameraParameters(
+						friendlyName,
+						firmwareVersion,
+						videoSourceCount,
+						videoCapabilities);
 				});
 		}
 
@@ -174,6 +184,39 @@ namespace AxisCameras.Configuration.Service
 			}
 
 			return 0;
+		}
+
+
+		/// <summary>
+		/// Gets the video capabilities from specified dictionary of parameter name/value pairs.
+		/// </summary>
+		/// <returns>The supported video capabilities.</returns>
+		private static VideoCapabilities GetVideoCapabilities(IDictionary<string, string> parameters)
+		{
+			VideoCapabilities capabilities = VideoCapabilities.None;
+
+			string parameterValueText = GetValue(Vapix.Parameters.ImageFormats, parameters);
+			if (parameterValueText != null)
+			{
+				string[] videoFormats = parameterValueText.Split(',');
+
+				if (videoFormats.Contains(Vapix.Values.H264))
+				{
+					capabilities |= VideoCapabilities.H264;
+				}
+
+				if (videoFormats.Contains(Vapix.Values.Mpeg4))
+				{
+					capabilities |= VideoCapabilities.Mpeg4;
+				}
+
+				if (videoFormats.Contains(Vapix.Values.Mjpeg))
+				{
+					capabilities |= VideoCapabilities.Mjpeg;
+				}
+			}
+
+			return capabilities;
 		}
 	}
 }
