@@ -39,7 +39,7 @@ namespace AxisCameras.Player
 		/// <returns>true if playback started successfully; otherwise false.</returns>
 		public bool PlayVideoStreamInFullScreen(string url, string name)
 		{
-			Requires.IsNotNullOrEmpty(url);
+			Requires.NotNullOrEmpty(url);
 
 			// Stop player if already playing
 			if (g_Player.Playing)
@@ -68,7 +68,7 @@ namespace AxisCameras.Player
 			string playlistName)
 		{
 			Requires.NotNull(playlistItems);
-			Requires.IsTrue(playlistItems.Any(), "Playlist must contain at least one item.");
+			Requires.True(playlistItems.Any(), "Playlist must contain at least one item.");
 
 			// By using the music video playlist we are forcing MediaPortal to play the playlist as a
 			// video stream, which is the preferred way of playing live video from cameras. The code 

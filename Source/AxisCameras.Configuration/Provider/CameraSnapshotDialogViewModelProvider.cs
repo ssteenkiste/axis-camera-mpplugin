@@ -56,7 +56,7 @@ namespace AxisCameras.Configuration.Provider
 		public ICameraSnapshotDialogViewModel Provide(NetworkEndpoint cameraEndpoint, int videoSource)
 		{
 			Requires.NotNull(cameraEndpoint);
-			Requires.IsTrue(videoSource >= 1, "Video source must be 1 or greater.");
+			Requires.True(videoSource >= 1, "Video source must be 1 or greater.");
 
 			Log.Debug("Provide a ICameraSnapshotDialogViewModel");
 

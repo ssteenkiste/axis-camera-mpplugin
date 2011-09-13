@@ -54,7 +54,7 @@ namespace AxisCameras.Configuration.Provider
 			string title,
 			ConfigurableCamera camera)
 		{
-			Requires.IsNotNullOrEmpty(title);
+			Requires.NotNullOrEmpty(title);
 			Requires.NotNull(camera);
 
 			Log.Debug("Provide a IWizardDialogViewModel");

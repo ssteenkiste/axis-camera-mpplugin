@@ -41,10 +41,10 @@ namespace AxisCameras.Player
 		/// <param name="version">The firmware version.</param>
 		public FirmwareVersion(string version)
 		{
-			Requires.IsNotNullOrEmpty(version);
+			Requires.NotNullOrEmpty(version);
 
 			Match match = FirmwareVersionRegex.Match(version);
-			Requires.IsTrue(match.Success, "Error when parsing firmware version.");
+			Requires.True(match.Success, "Error when parsing firmware version.");
 
 			this.version = new Version(
 				GetGroupValue(match, "major"),

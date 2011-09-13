@@ -49,7 +49,7 @@ namespace AxisCameras.Configuration.ViewModel
 		{
 			Requires.NotNull(cameraCommunicationService);
 			Requires.NotNull(cameraEndpoint);
-			Requires.IsTrue(videoSource >= 1, "Video source must be 1 or greater.");
+			Requires.True(videoSource >= 1, "Video source must be 1 or greater.");
 
 			this.cameraCommunicationService = cameraCommunicationService;
 			this.cameraEndpoint = cameraEndpoint;

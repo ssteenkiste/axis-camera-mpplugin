@@ -47,7 +47,7 @@ namespace AxisCameras.Configuration.ViewModel
 			ConfigurableCamera camera,
 			IWizardPageViewModelsProvider wizardPagesProvider)
 		{
-			Requires.IsNotNullOrEmpty(title);
+			Requires.NotNullOrEmpty(title);
 			Requires.NotNull(camera);
 			Requires.NotNull(wizardPagesProvider);
 

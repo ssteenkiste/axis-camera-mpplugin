@@ -28,7 +28,7 @@ namespace AxisCameras.Core.Contracts
 		/// <summary>
 		/// Requires that specified action is true.
 		/// </summary>
-		public static void IsTrue(bool condition, string errorMessage = null)
+		public static void True(bool condition, string errorMessage = null)
 		{
 			if (!condition)
 			{
@@ -40,7 +40,7 @@ namespace AxisCameras.Core.Contracts
 		/// <summary>
 		/// Requires that specified value isn't null or empty.
 		/// </summary>
-		public static void IsNotNullOrEmpty(string value)
+		public static void NotNullOrEmpty(string value)
 		{
 			if (string.IsNullOrEmpty(value))
 			{
