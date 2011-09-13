@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AxisCameras.Core.Contracts;
+using AxisCameras.Data;
 
 namespace AxisCameras.Configuration.ViewModel.Data
 {
@@ -80,6 +81,12 @@ namespace AxisCameras.Configuration.ViewModel.Data
 
 
 		/// <summary>
+		/// Gets or sets the video capabilities.
+		/// </summary>
+		public VideoCapabilities VideoCapabilities { get; set; }
+
+
+		/// <summary>
 		/// Gets or sets the user name.
 		/// </summary>
 		public string UserName { get; set; }
@@ -118,6 +125,7 @@ namespace AxisCameras.Configuration.ViewModel.Data
 				Port = Port,
 				VideoSource = VideoSource,
 				VideoSourceCount = VideoSourceCount,
+				VideoCapabilities = VideoCapabilities,
 				UserName = UserName,
 				Password = Password,
 				FirmwareVersion = FirmwareVersion,

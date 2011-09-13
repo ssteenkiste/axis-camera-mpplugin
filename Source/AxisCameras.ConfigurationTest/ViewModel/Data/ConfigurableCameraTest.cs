@@ -20,6 +20,7 @@
 using System;
 using System.Reflection;
 using AxisCameras.Configuration.ViewModel.Data;
+using AxisCameras.Data;
 using NUnit.Framework;
 
 namespace AxisCameras.ConfigurationTest.ViewModel.Data
@@ -34,13 +35,14 @@ namespace AxisCameras.ConfigurationTest.ViewModel.Data
 		[Test]
 		public void Clone()
 		{
-			ConfigurableCamera camera = new ConfigurableCamera(Guid.NewGuid())
+			var camera = new ConfigurableCamera(Guid.NewGuid())
 			{
 				Name = "Name",
 				Address = "192.168.0.90",
 				Port = 80,
 				VideoSource = 1,
 				VideoSourceCount = 1,
+				VideoCapabilities = VideoCapabilities.H264 | VideoCapabilities.Mpeg4,
 				UserName = "root",
 				Password = "pass",
 				FirmwareVersion = "5.0",
