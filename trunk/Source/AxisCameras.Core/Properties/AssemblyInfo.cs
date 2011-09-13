@@ -19,6 +19,7 @@
 #endregion
 using System;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
@@ -37,3 +38,6 @@ using System.Runtime.InteropServices;
 [assembly: Guid("fc3287af-871c-47e0-9b7f-f3e77e28db8f")]
 
 [assembly: CLSCompliant(true)]
+
+// Provide access to internal types and methods to test functions
+[assembly: InternalsVisibleTo("AxisCameras.CoreTest")]
