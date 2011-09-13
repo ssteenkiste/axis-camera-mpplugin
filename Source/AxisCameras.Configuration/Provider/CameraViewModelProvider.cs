@@ -22,6 +22,7 @@ using AxisCameras.Configuration.Service;
 using AxisCameras.Configuration.ViewModel;
 using AxisCameras.Configuration.ViewModel.Data;
 using AxisCameras.Core;
+using AxisCameras.Core.Contracts;
 
 namespace AxisCameras.Configuration.Provider
 {
@@ -39,7 +40,7 @@ namespace AxisCameras.Configuration.Provider
 		/// <param name="browserService">The browser service.</param>
 		public CameraViewModelProvider(IBrowserService browserService)
 		{
-			if (browserService == null) throw new ArgumentNullException("browserService");
+			Requires.NotNull(browserService);
 
 			this.browserService = browserService;
 		}
@@ -51,7 +52,7 @@ namespace AxisCameras.Configuration.Provider
 		/// <param name="camera">The camera to turn into a ICameraViewModel.</param>
 		public ICameraViewModel Provide(ConfigurableCamera camera)
 		{
-			if (camera == null) throw new ArgumentNullException("camera");
+			Requires.NotNull(camera);
 
 			Log.Debug("Provide a ICameraViewModel");
 

@@ -21,6 +21,7 @@ using System;
 using System.Threading.Tasks;
 using AxisCameras.Configuration.Service;
 using AxisCameras.Core;
+using AxisCameras.Core.Contracts;
 
 namespace AxisCameras.Configuration.ViewModel
 {
@@ -43,8 +44,8 @@ namespace AxisCameras.Configuration.ViewModel
 			ICameraCommunicationService cameraCommunicationService,
 			NetworkEndpoint cameraEndpoint)
 		{
-			if (cameraCommunicationService == null) throw new ArgumentNullException("cameraCommunicationService");
-			if (cameraEndpoint == null) throw new ArgumentNullException("cameraEndpoint");
+			Requires.NotNull(cameraCommunicationService);
+			Requires.NotNull(cameraEndpoint);
 
 			this.cameraCommunicationService = cameraCommunicationService;
 			this.cameraEndpoint = cameraEndpoint;
@@ -98,7 +99,7 @@ namespace AxisCameras.Configuration.ViewModel
 					{
 						Log.Error("Error when getting parameters from camera.", t.Exception.InnerException);
 
-						/// Close dialog unsuccessfully
+						// Close dialog unsuccessfully
 						DialogResultCommand.Execute(false);
 					}
 					else

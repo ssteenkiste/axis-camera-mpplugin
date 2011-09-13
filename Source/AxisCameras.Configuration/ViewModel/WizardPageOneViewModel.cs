@@ -27,6 +27,7 @@ using AxisCameras.Configuration.Service;
 using AxisCameras.Configuration.View;
 using AxisCameras.Configuration.ViewModel.Data;
 using AxisCameras.Configuration.ViewModel.ValidationRule;
+using AxisCameras.Core.Contracts;
 using AxisCameras.Mvvm.Services;
 
 namespace AxisCameras.Configuration.ViewModel
@@ -58,8 +59,8 @@ namespace AxisCameras.Configuration.ViewModel
 			IWindowService windowService,
 			ICameraParametersDialogViewModelProvider cameraParametersProvider)
 		{
-			if (windowService == null) throw new ArgumentNullException("windowService");
-			if (cameraParametersProvider == null) throw new ArgumentNullException("cameraParametersProvider");
+			Requires.NotNull(windowService);
+			Requires.NotNull(cameraParametersProvider);
 
 			this.windowService = windowService;
 			this.cameraParametersProvider = cameraParametersProvider;
@@ -132,7 +133,7 @@ namespace AxisCameras.Configuration.ViewModel
 		/// <param name="camera">The camera to load page properties from.</param>
 		public override void Load(ConfigurableCamera camera)
 		{
-			if (camera == null) throw new ArgumentNullException("camera");
+			Requires.NotNull(camera);
 
 			friendlyName = camera.Name;
 			firmwareVersion = camera.FirmwareVersion;
@@ -159,7 +160,7 @@ namespace AxisCameras.Configuration.ViewModel
 		/// <param name="camera">The camera to save page properties to.</param>
 		public override void Save(ConfigurableCamera camera)
 		{
-			if (camera == null) throw new ArgumentNullException("camera");
+			Requires.NotNull(camera);
 
 			camera.Name = friendlyName;
 			camera.FirmwareVersion = firmwareVersion;

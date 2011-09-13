@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using AxisCameras.Configuration.Service;
 using AxisCameras.Configuration.ViewModel;
 using AxisCameras.Core;
+using AxisCameras.Core.Contracts;
 using AxisCameras.Mvvm.Services;
 
 namespace AxisCameras.Configuration.Provider
@@ -53,11 +54,11 @@ namespace AxisCameras.Configuration.Provider
 			ICameraViewModelProvider cameraProvider,
 			WizardDialogViewModelProvider wizardProvider)
 		{
-			if (windowService == null) throw new ArgumentNullException("windowService");
-			if (ioService == null) throw new ArgumentNullException("ioService");
-			if (productInformation == null) throw new ArgumentNullException("productInformation");
-			if (cameraProvider == null) throw new ArgumentNullException("cameraProvider");
-			if (wizardProvider == null) throw new ArgumentNullException("wizardProvider");
+			Requires.NotNull(windowService);
+			Requires.NotNull(ioService);
+			Requires.NotNull(productInformation);
+			Requires.NotNull(cameraProvider);
+			Requires.NotNull(wizardProvider);
 
 			this.windowService = windowService;
 			this.ioService = ioService;
@@ -73,7 +74,7 @@ namespace AxisCameras.Configuration.Provider
 		/// <param name="cameras">The cameras.</param>
 		public ISetupDialogViewModel Provide(IEnumerable<ICameraViewModel> cameras)
 		{
-			if (cameras == null) throw new ArgumentNullException("cameras");
+			Requires.NotNull(cameras);
 
 			Log.Debug("Provide a ISetupDialogViewModel");
 

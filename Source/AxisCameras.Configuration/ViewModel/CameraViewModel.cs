@@ -23,6 +23,7 @@ using System.Globalization;
 using System.Windows.Input;
 using AxisCameras.Configuration.Service;
 using AxisCameras.Configuration.ViewModel.Data;
+using AxisCameras.Core.Contracts;
 using AxisCameras.Data;
 using AxisCameras.Mvvm;
 
@@ -45,8 +46,8 @@ namespace AxisCameras.Configuration.ViewModel
 		/// <param name="browserService">The browser service.</param>
 		public CameraViewModel(ConfigurableCamera camera, IBrowserService browserService)
 		{
-			if (camera == null) throw new ArgumentNullException("camera");
-			if (browserService == null) throw new ArgumentNullException("browserService");
+			Requires.NotNull(camera);
+			Requires.NotNull(browserService);
 
 			this.browserService = browserService;
 

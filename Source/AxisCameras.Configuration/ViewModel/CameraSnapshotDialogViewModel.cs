@@ -21,6 +21,7 @@ using System;
 using System.Threading.Tasks;
 using AxisCameras.Configuration.Service;
 using AxisCameras.Core;
+using AxisCameras.Core.Contracts;
 
 namespace AxisCameras.Configuration.ViewModel
 {
@@ -46,9 +47,9 @@ namespace AxisCameras.Configuration.ViewModel
 			NetworkEndpoint cameraEndpoint,
 			int videoSource)
 		{
-			if (cameraCommunicationService == null) throw new ArgumentNullException("cameraCommunicationService");
-			if (cameraEndpoint == null) throw new ArgumentNullException("cameraEndpoint");
-			if (videoSource < 1) throw new ArgumentException("Video source must be 1 or greater.", "videoSource");
+			Requires.NotNull(cameraCommunicationService);
+			Requires.NotNull(cameraEndpoint);
+			Requires.IsTrue(videoSource >= 1, "Video source must be 1 or greater.");
 
 			this.cameraCommunicationService = cameraCommunicationService;
 			this.cameraEndpoint = cameraEndpoint;

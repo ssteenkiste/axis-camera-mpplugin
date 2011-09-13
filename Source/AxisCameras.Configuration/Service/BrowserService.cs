@@ -20,6 +20,7 @@
 using System;
 using System.Diagnostics;
 using System.Threading;
+using AxisCameras.Core.Contracts;
 
 namespace AxisCameras.Configuration.Service
 {
@@ -34,7 +35,7 @@ namespace AxisCameras.Configuration.Service
 		/// <param name="url">The URL to open.</param>
 		public void Open(string url)
 		{
-			if (string.IsNullOrEmpty(url)) throw new ArgumentNullException("url");
+			Requires.IsNotNullOrEmpty(url);
 
 			ThreadPool.QueueUserWorkItem(state => Process.Start(new ProcessStartInfo(url)));
 		}

@@ -22,6 +22,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using AxisCameras.Configuration.Properties;
 using AxisCameras.Configuration.ViewModel.Data;
+using AxisCameras.Core.Contracts;
 
 namespace AxisCameras.Configuration.ViewModel
 {
@@ -74,7 +75,7 @@ namespace AxisCameras.Configuration.ViewModel
 		/// <param name="camera">The camera to load page properties from.</param>
 		public override void Load(ConfigurableCamera camera)
 		{
-			if (camera == null) throw new ArgumentNullException("camera");
+			Requires.NotNull(camera);
 
 			VideoSources = new ReadOnlyObservableCollection<int>(
 				new ObservableCollection<int>(
@@ -90,7 +91,7 @@ namespace AxisCameras.Configuration.ViewModel
 		/// <param name="camera">The camera to save page properties to.</param>
 		public override void Save(ConfigurableCamera camera)
 		{
-			if (camera == null) throw new ArgumentNullException("camera");
+			Requires.NotNull(camera);
 
 			if (camera.VideoSource != SelectedVideoSource)
 			{
