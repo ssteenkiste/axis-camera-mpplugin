@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
+using AxisCameras.Core.Contracts;
 using AxisCameras.Mvvm.Extensions.System.Linq.Expressions;
 
 namespace AxisCameras.Mvvm.Validation
@@ -51,8 +52,8 @@ namespace AxisCameras.Mvvm.Validation
 		[SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
 		public void Add(Expression<Func<object>> nameExpression, IValidationRule validationRule)
 		{
-			if (nameExpression == null) throw new ArgumentNullException("nameExpression");
-			if (validationRule == null) throw new ArgumentNullException("validationRule");
+			Requires.NotNull(nameExpression);
+			Requires.NotNull(validationRule);
 
 			rules.Add(new ValidationData(nameExpression, validationRule));
 		}
@@ -65,8 +66,7 @@ namespace AxisCameras.Mvvm.Validation
 		/// <returns>The error message for the property. The default is an empty string ("").</returns>
 		public string Validate(string propertyName)
 		{
-			if (string.IsNullOrEmpty(propertyName))
-				throw new ArgumentException("Property name cannot be null or empty.", "propertyName");
+			Requires.IsNotNullOrEmpty(propertyName);
 
 			IEnumerable<ValidationData> relevantRules = rules.Where(r => r.Name == propertyName);
 

@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using AxisCameras.Core.Contracts;
 
 namespace AxisCameras.Mvvm.Services
 {
@@ -132,9 +133,8 @@ namespace AxisCameras.Mvvm.Services
 		/// <param name="view">The registered View.</param>
 		private static void Register(FrameworkElement view)
 		{
-			if (view == null) throw new ArgumentNullException("view");
-			if (views.Contains(view))
-				throw new ArgumentException("View has already been registered.", "view");
+			Requires.NotNull(view);
+			Requires.IsTrue(!views.Contains(view), "View has already been registered.");
 
 			// Get owner window
 			Window owner = view as Window ?? Window.GetWindow(view);
@@ -161,9 +161,8 @@ namespace AxisCameras.Mvvm.Services
 		/// <param name="view">The unregistered View.</param>
 		private static void Unregister(FrameworkElement view)
 		{
-			if (view == null) throw new ArgumentNullException("view");
-			if (!views.Contains(view))
-				throw new ArgumentException("View has not been registered.", "view");
+			Requires.NotNull(view);
+			Requires.IsTrue(views.Contains(view), "View has not been registered.");
 
 			views.Remove(view);
 		}
