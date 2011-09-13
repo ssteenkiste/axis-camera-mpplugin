@@ -11,66 +11,73 @@ public class Script
 {
 	public static void Main(PackageClass packageClass, ActionItem actionItem)
 	{
-		// Install Axis RTP source filter
-		Install(
+		// Install if needed the Axis RTP source filter
+		InstallIfNeeded(
 			AxisRtpSrcFilter.FileName,
-			AxisRtpSrcFilter.Clsid,
-			AxisRtpSrcFilter.ProductVersion);
+			AxisRtpSrcFilter.Clsid);
 
-		// Install embedded Axis RTP source filter
-		Install(
+		// Install if needed the embedded Axis RTP source filter
+		InstallIfNeeded(
 			EmbeddedAxisRtpSrcFilter.FileName,
-			EmbeddedAxisRtpSrcFilter.Clsid,
-			EmbeddedAxisRtpSrcFilter.ProductVersion);
+			EmbeddedAxisRtpSrcFilter.Clsid);
 	}
 
 
 	/// <summary>
-	/// Installs the specified file with specified CLSID and version
+	/// Installs if needed the specified filter with specified CLSID.
 	/// </summary>
-	private static void Install(string fileName, string clsid, Version version)
+	private static void InstallIfNeeded(string filterName, string clsid)
 	{
-		FileVersionInfo fileVersionInfo = GetVersionFromClsid(clsid);
+		Version installedVersion = GetVersionFromClsid(clsid);
+		string bundledFilterFileName = GetBundledFilterFileName(filterName);
 
-		if (fileVersionInfo != null)
+		if (installedVersion == null)
 		{
-			// File is registered, determine if its version is the same or newer than the one supplied by
-			// the installation
-			Version registeredVersion = new Version(fileVersionInfo.ProductVersion);
-			if (registeredVersion >= version)
+			// Filter is not installed, install it
+			Install(bundledFilterFileName);
+		}
+		else
+		{
+			// Filter is installed, determine if it needs upgrading
+			Version bundledVersion = GetVersionFromFile(bundledFilterFileName);
+			if (bundledVersion != null && bundledVersion > installedVersion)
 			{
-				return;
+				Install(bundledFilterFileName);
 			}
 		}
+	}
 
-		// Move file
-		string newFileName = Move(fileName);
-		if (newFileName != null)
+
+	/// <summary>
+	/// Installs the filter specified by its file name.
+	/// </summary>
+	private static void Install(string fileName)
+	{
+		string destFileName = Path.Combine(
+			AxisComponentsFolder,
+			Path.GetFileName(fileName));
+
+		// Move filter to correct location
+		if (Move(fileName, destFileName))
 		{
-			// Register file
-			Register(newFileName);
+			// Register filter
+			Register(destFileName);
 		}
 	}
 
 
 	/// <summary>
-	/// Moves the specified file from the temp directory to the correct Axis components folder.
+	/// Moves the specified file.
 	/// </summary>
-	/// <returns>The path of the moved file if successfully; otherwise null.</returns>
-	private static string Move(string fileName)
+	/// <param name="sourceFileName">The source file name.</param>
+	/// <param name="destFileName">The destination file name.</param>
+	/// <returns>true if source file was moved successfully; otherwise false.</returns>
+	private static bool Move(string sourceFileName, string destFileName)
 	{
-		string sourceFileName = Path.Combine(
-			MpeInstaller.TransformInRealPath("%Temp%"),
-			fileName);
-
-		string destDirectory = AxisComponentsFolder;
-
-		string destFileName = Path.Combine(
-			destDirectory,
-			fileName);
-
 		try
 		{
+			string destDirectory = Path.GetDirectoryName(destFileName);
+
 			if (!Directory.Exists(destDirectory))
 			{
 				// Create directory if it doesn't exist
@@ -84,11 +91,11 @@ public class Script
 
 			File.Move(sourceFileName, destFileName);
 
-			return destFileName;
+			return true;
 		}
 		catch
 		{
-			return null;
+			return false;
 		}
 	}
 
@@ -116,13 +123,13 @@ public class Script
 
 
 	/// <summary>
-	/// Gets the file version of registered assembly based on specified CLSID.
+	/// Gets the version of registered assembly based on specified CLSID.
 	/// </summary>
 	/// <param name="clsid">The CLSID of the registered assembly.</param>
 	/// <returns>
-	/// The file version of the registered assembly if successful; otherwise null.
+	/// The version of the registered assembly if successful; otherwise null.
 	/// </returns>
-	private static FileVersionInfo GetVersionFromClsid(string clsid)
+	private static Version GetVersionFromClsid(string clsid)
 	{
 		if (clsid == null) throw new ArgumentNullException("clsid");
 
@@ -145,15 +152,40 @@ public class Script
 		}
 
 		// Get version from file
+		return GetVersionFromFile(filePath);
+	}
+
+
+	/// <summary>
+	/// Gets the version from a file on disk.
+	/// </summary>
+	/// <returns>The version of the file if existing; otherwise null.</returns>
+	private static Version GetVersionFromFile(string fileName)
+	{
+		if (fileName == null) throw new ArgumentNullException("fileName");
+
 		try
 		{
-			return FileVersionInfo.GetVersionInfo(filePath);
+			return new Version(FileVersionInfo.GetVersionInfo(fileName).ProductVersion);
 		}
 		catch
 		{
 			// Unable to get version from file. Most probable answer is that the file doesn't exist
 			return null;
 		}
+	}
+
+
+	/// <summary>
+	/// Gets the file name of the filter in the TEMP directory.
+	/// </summary>
+	private static string GetBundledFilterFileName(string filterName)
+	{
+		if (filterName == null) throw new ArgumentNullException("filterName");
+
+		return Path.Combine(
+			MpeInstaller.TransformInRealPath("%Temp%"),
+			filterName);
 	}
 
 
@@ -186,12 +218,6 @@ public class Script
 		/// Gets the CLSID.
 		/// </summary>
 		public static readonly string Clsid = "4F1D0C59-5ECC-4028-87F3-482191D2230F";
-
-
-		/// <summary>
-		/// Gets the version of the AxisRTPSrcFilter.
-		/// </summary>
-		public static readonly Version ProductVersion = new Version(3, 0, 4, 2);
 	}
 
 
@@ -210,11 +236,5 @@ public class Script
 		/// Gets the CLSID.
 		/// </summary>
 		public static readonly string Clsid = "67B1A88A-B5D2-48B1-BF93-EB74D6FCB077";
-
-
-		/// <summary>
-		/// Gets the version of the AxisRTPSrcFilter.
-		/// </summary>
-		public static readonly Version ProductVersion = new Version(3, 0, 4, 2);
 	}
 }
