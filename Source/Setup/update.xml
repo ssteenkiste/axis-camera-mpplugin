@@ -419,7 +419,7 @@
 
 [BUGFIX]: Fixed problem showing live video when embedded RTP source filter was registered after plugin was installed</VersionDescription>
         <DevelopmentStatus>Stable</DevelopmentStatus>
-        <OnlineLocation>http://axis-camera-mpplugin.googlecode.com/files/AxisCameras_1.1.1.0.mpe1</OnlineLocation>
+        <OnlineLocation>http://axis-camera-mpplugin.googlecode.com/files/AxisCameras_1.1.2.0.mpe1</OnlineLocation>
         <ReleaseDate>2011-09-11T21:00:06</ReleaseDate>
         <Tags>axis,cameras,camera,live,video</Tags>
         <Location>.\AxisCameras_[Version].mpe1</Location>
