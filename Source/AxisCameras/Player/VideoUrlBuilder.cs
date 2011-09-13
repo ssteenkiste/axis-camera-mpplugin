@@ -19,9 +19,7 @@
 #endregion
 
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Web;
-using AxisCameras.Core;
 using AxisCameras.Core.Contracts;
 using AxisCameras.Data;
 
@@ -39,7 +37,7 @@ namespace AxisCameras.Player
 		/// <param name="port">The network port.</param>
 		/// <param name="userName">The user name.</param>
 		/// <param name="password">The password.</param>
-		/// <param name="firmwareVersion">The firmware version.</param>
+		/// <param name="videoCapabilities">The video capabilities.</param>
 		/// <param name="videoSource">
 		/// The video source of the camera. This property should always be 1 on cameras, but can be
 		/// other than 1 on video servers with multiple camera inputs.
@@ -50,31 +48,16 @@ namespace AxisCameras.Player
 			int port,
 			string userName,
 			string password,
-			string firmwareVersion,
+			VideoCapabilities videoCapabilities,
 			int videoSource)
 		{
 			Requires.NotNullOrEmpty(address);
-			Requires.True(port >= 0 && port <= 65535, "Port must be between 0-65535");
+			Requires.True(port >= 0 && port < 65536, "Port must be between 0-65535");
 			Requires.NotNullOrEmpty(userName);
 			Requires.NotNullOrEmpty(password);
-			Requires.NotNullOrEmpty(firmwareVersion);
 			Requires.True(videoSource >= 1, "Video source must be at least 1.");
 
-			FirmwareVersion version = ParseFirmwareVersion(firmwareVersion);
-
-			string urlFormat;
-			if (version.Major >= 5)
-			{
-				// Firmware version 5.0 or newer means that the camera supports H.264
-				Log.Debug("Camera firmware version is {0}, use H.264.", firmwareVersion);
-				urlFormat = Vapix.Version3.H264VideoUrl;
-			}
-			else
-			{
-				// Firmware version below 5.0 means that the camera supports MPEG-4
-				Log.Debug("Camera firmware version is {0}, use MPEG-4.", firmwareVersion);
-				urlFormat = Vapix.Version2.Mpeg4VideoUrl;
-			}
+			string urlFormat = GetUrlFormat(videoCapabilities);
 
 			return urlFormat.InvariantFormat(
 				HttpUtility.UrlEncode(userName),
@@ -86,29 +69,43 @@ namespace AxisCameras.Player
 
 
 		/// <summary>
-		/// Parses the firmware version.
+		/// Gets the video URL format based on specified video capabilities.
 		/// </summary>
-		/// <param name="firmwareVersion">The firmware version.</param>
-		/// <returns>
-		/// The firmware version if successfully parsed; otherwise defaulting to version 5.0, i.e.
-		/// camera supports VAPIX 3.
-		/// </returns>
-		[SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes",
-			Justification = "Easier to catch general exception instead of specifying all unique.")]
-		private static FirmwareVersion ParseFirmwareVersion(string firmwareVersion)
+		/// <param name="videoCapabilities">The video capabilities.</param>
+		/// <returns>The video URL format based on specified video capabilities.</returns>
+		private static string GetUrlFormat(VideoCapabilities videoCapabilities)
 		{
-			FirmwareVersion parsedFirmwareVersion;
-			if (FirmwareVersion.TryParse(firmwareVersion, out parsedFirmwareVersion))
+			if (HasFlag(VideoCapabilities.H264, videoCapabilities))
 			{
-				// Firmware version successfully parsed
-				return parsedFirmwareVersion;
+				return Vapix.Version3.H264VideoUrl;
 			}
 
-			// If firmware version cannot be parsed, assume it is a new beta, i.e. the VAPIX 3 live
-			// video URL should be used
-			Log.Error("VideoUrlBuilder - Unable to parse firmware version '{0}', defaulting to 5.0.",
-				firmwareVersion);
-			return new FirmwareVersion("5.0");
+			if (HasFlag(VideoCapabilities.Mpeg4, videoCapabilities))
+			{
+				return Vapix.Version2.Mpeg4VideoUrl;
+			}
+
+			if (HasFlag(VideoCapabilities.Mjpeg, videoCapabilities))
+			{
+				return Vapix.Version2.MjpegVideoUrl;
+			}
+
+			Requires.Fail("Unsupported video capability: " + videoCapabilities);
+			return null;
+		}
+
+
+		/// <summary>
+		/// Determines whether specified video capability is among the supported video capabilities.
+		/// </summary>
+		/// <param name="videoCapability">The video capability to investigate support for.</param>
+		/// <param name="supportedCapabilities">The supported video capabilities.</param>
+		/// <returns>true if video capability is among the supported video capabilities.</returns>
+		private static bool HasFlag(
+			VideoCapabilities videoCapability,
+			VideoCapabilities supportedCapabilities)
+		{
+			return (videoCapability & supportedCapabilities) == videoCapability;
 		}
 	}
 }
