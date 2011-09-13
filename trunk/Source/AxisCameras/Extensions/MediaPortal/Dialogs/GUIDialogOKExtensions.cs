@@ -19,6 +19,7 @@
 #endregion
 using System;
 using System.Diagnostics.CodeAnalysis;
+using AxisCameras.Core.Contracts;
 
 namespace MediaPortal.Dialogs
 {
@@ -42,7 +43,7 @@ namespace MediaPortal.Dialogs
 			Justification = "Method setting single line is called SetLine, only appropriate to call this method SetLines.")]
 		public static void SetLines(this GUIDialogOK dialog, string message)
 		{
-			if (message == null) throw new ArgumentNullException("message");
+			Requires.IsNotNullOrEmpty(message);
 
 			string[] lines = message.Split(new[] { "\n", "\\n" }, StringSplitOptions.None);
 
@@ -54,7 +55,7 @@ namespace MediaPortal.Dialogs
 					"The GUIDialogOK dialog supports maximum {0} lines, the specified message has {1}.";
 				string errorMessage = errorMessageFormat.InvariantFormat(maxLineCount, lines.Length);
 
-				throw new ArgumentException(errorMessage, "message");
+				Requires.Fail(errorMessage);
 			}
 
 			for (int row = 1; row <= Math.Min(lines.Length, maxLineCount); row++)
