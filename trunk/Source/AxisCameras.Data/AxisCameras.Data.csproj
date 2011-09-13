@@ -45,6 +45,7 @@
     </Compile>
     <Compile Include="Camera.cs" />
     <Compile Include="DataPersistenceInformation.cs" />
+    <Compile Include="FirmwareVersion.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IO\IIOService.cs">
       <DependentUpon>IOService.cs</DependentUpon>
@@ -67,7 +68,10 @@
     <Compile Include="Upgrades\PartialUpgrade.cs" />
     <Compile Include="Upgrades\UpgradeChainException.cs" />
     <Compile Include="Upgrades\Version1\Camera.cs" />
+    <Compile Include="Upgrades\Version2\Camera.cs" />
     <Compile Include="Upgrades\Version2\PartialUpgradeFromVersion1To2.cs" />
+    <Compile Include="Upgrades\Version3\PartialUpgradeFromVersion2To3.cs" />
+    <Compile Include="VideoCapabilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AxisCameras.Core\AxisCameras.Core.csproj">
