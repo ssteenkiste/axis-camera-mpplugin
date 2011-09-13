@@ -21,6 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using AxisCameras.Core.Contracts;
 using AxisCameras.Data.IO;
 using AxisCameras.Data.MediaPortal;
 using AxisCameras.Data.Upgrades;
@@ -52,9 +53,9 @@ namespace AxisCameras.Data
 			IEnumerable<IPartialUpgrade> partialUpgrades,
 			IIOService ioService)
 		{
-			if (settings == null) throw new ArgumentNullException("settings");
-			if (partialUpgrades == null) throw new ArgumentNullException("partialUpgrades");
-			if (ioService == null) throw new ArgumentNullException("ioService");
+			Requires.NotNull(settings);
+			Requires.NotNull(partialUpgrades);
+			Requires.NotNull(ioService);
 
 			this.settings = settings;
 			this.partialUpgrades = partialUpgrades;

@@ -24,6 +24,7 @@ using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 using AxisCameras.Core;
+using AxisCameras.Core.Contracts;
 using AxisCameras.Data.MediaPortal;
 
 namespace AxisCameras.Data
@@ -44,8 +45,8 @@ namespace AxisCameras.Data
 		/// <param name="upgradeData">Responsible for upgrading the data.</param>
 		public PluginSettings(ISettings settings, IUpgradeData upgradeData)
 		{
-			if (settings == null) throw new ArgumentNullException("settings");
-			if (upgradeData == null) throw new ArgumentNullException("upgradeData");
+			Requires.NotNull(settings);
+			Requires.NotNull(upgradeData);
 
 			this.settings = settings;
 			this.upgradeData = upgradeData;
@@ -99,7 +100,7 @@ namespace AxisCameras.Data
 		/// <param name="cameras">The cameras.</param>
 		private void SetCameras(IEnumerable<Camera> cameras)
 		{
-			if (cameras == null) throw new ArgumentNullException("cameras");
+			Requires.NotNull(cameras);
 
 			Log.Debug("Saving cameras to disk");
 
