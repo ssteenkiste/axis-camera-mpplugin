@@ -19,7 +19,7 @@
 #endregion
 using System;
 
-namespace AxisCameras.Data
+namespace AxisCameras.Data.Upgrades.Version2
 {
 	/// <summary>
 	/// Class describing the properties of a camera.
@@ -72,12 +72,6 @@ namespace AxisCameras.Data
 		/// actually) has.
 		/// </summary>
 		public int VideoSourceCount { get; set; }
-
-
-		/// <summary>
-		/// Gets or sets the video capabilities.
-		/// </summary>
-		public VideoCapabilities VideoCapabilities { get; set; }
 
 
 		/// <summary>

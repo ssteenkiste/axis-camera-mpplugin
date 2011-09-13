@@ -42,7 +42,7 @@ namespace AxisCameras.DataTest
 		{
 			Assembly assembly = Assembly.Load("AxisCameras.Data");
 
-			ContainerBuilder builder = new ContainerBuilder();
+			var builder = new ContainerBuilder();
 			builder
 				.RegisterAssemblyTypes(assembly);
 			builder
@@ -58,23 +58,25 @@ namespace AxisCameras.DataTest
 		[TearDown]
 		public void TearDown()
 		{
+			container.Resolve<ISettings>().Clear();
+
 			File.Delete(DataPersistenceInformation.FileName);
 		}
 
 
 		[Test]
-		public void UpgradeFromVersion1To2()
+		public void UpgradeFromVersion1To3()
 		{
 			string version1FileName = Path.Combine(OutputPath, @"Versions\Version1\AxisCameras.xml");
-			string version2FileName = Path.Combine(OutputPath, @"Versions\Version2\AxisCameras.xml");
+			string version3FileName = Path.Combine(OutputPath, @"Versions\Version3\AxisCameras.xml");
 
 			// Copy file of version 1
 			File.Copy(version1FileName, DataPersistenceInformation.FileName);
 
-			UpgradeData upgradeData = container.Resolve<UpgradeData>();
-			ISettings settings = container.Resolve<ISettings>();
+			var upgradeData = container.Resolve<UpgradeData>();
+			var settings = container.Resolve<ISettings>();
 
-			// Upgrade from version 1 to 2	
+			// Upgrade from version 1 to 3
 			Assert.That(upgradeData.IsUpgradeRequired, Is.True);
 			Assert.That(upgradeData.Upgrade(), Is.True);
 
@@ -84,7 +86,33 @@ namespace AxisCameras.DataTest
 			// Upgrade is now finished, validate with file known to be correct
 			Assert.That(
 				File.ReadAllText(DataPersistenceInformation.FileName),
-				Is.EqualTo(File.ReadAllText(version2FileName)));
+				Is.EqualTo(File.ReadAllText(version3FileName)));
+		}
+
+
+		[Test]
+		public void UpgradeFromVersion2To3()
+		{
+			string version2FileName = Path.Combine(OutputPath, @"Versions\Version2\AxisCameras.xml");
+			string version3FileName = Path.Combine(OutputPath, @"Versions\Version3\AxisCameras.xml");
+
+			// Copy file of version 2
+			File.Copy(version2FileName, DataPersistenceInformation.FileName);
+
+			var upgradeData = container.Resolve<UpgradeData>();
+			var settings = container.Resolve<ISettings>();
+
+			// Upgrade from version 2 to 3	
+			Assert.That(upgradeData.IsUpgradeRequired, Is.True);
+			Assert.That(upgradeData.Upgrade(), Is.True);
+
+			// Save settings to disk
+			settings.Save();
+
+			// Upgrade is now finished, validate with file known to be correct
+			Assert.That(
+				File.ReadAllText(DataPersistenceInformation.FileName),
+				Is.EqualTo(File.ReadAllText(version3FileName)));
 		}
 
 

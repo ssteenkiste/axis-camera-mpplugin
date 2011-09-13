@@ -23,6 +23,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Web;
 using AxisCameras.Core;
 using AxisCameras.Core.Contracts;
+using AxisCameras.Data;
 
 namespace AxisCameras.Player
 {

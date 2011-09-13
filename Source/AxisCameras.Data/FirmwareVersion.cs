@@ -22,12 +22,12 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using AxisCameras.Core.Contracts;
 
-namespace AxisCameras.Player
+namespace AxisCameras.Data
 {
 	/// <summary>
 	/// Represents the version number of a camera firmware.
 	/// </summary>
-	class FirmwareVersion
+	public class FirmwareVersion
 	{
 		private static readonly Regex FirmwareVersionRegex = new Regex(
 			@"^(?<major>\d+)\.(?<minor>\d+)(\.(?<build>\d+))?(\.(?<revision>\d+))?");

@@ -61,5 +61,11 @@ namespace AxisCameras.Data.MediaPortal
 		/// Saves the settings to disk.
 		/// </summary>
 		void Save();
+
+
+		/// <summary>
+		/// Clear the settings.
+		/// </summary>
+		void Clear();
 	}
 }
