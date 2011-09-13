@@ -13,13 +13,18 @@ public class Script
 	{
 		// Install if needed the Axis RTP source filter
 		InstallIfNeeded(
-			AxisRtpSrcFilter.FileName,
+			AxisRtpSrcFilter.FilterName,
 			AxisRtpSrcFilter.Clsid);
 
 		// Install if needed the embedded Axis RTP source filter
 		InstallIfNeeded(
-			EmbeddedAxisRtpSrcFilter.FileName,
+			EmbeddedAxisRtpSrcFilter.FilterName,
 			EmbeddedAxisRtpSrcFilter.Clsid);
+
+		// Install if needed the HTTP MP source filter
+		InstallIfNeeded(
+			AxisHttpMpSrcFilter.FilterName,
+			AxisHttpMpSrcFilter.Clsid);
 	}
 
 
@@ -209,9 +214,9 @@ public class Script
 	static class AxisRtpSrcFilter
 	{
 		/// <summary>
-		/// Gets the file name.
+		/// Gets the filter name.
 		/// </summary>
-		public static string FileName = "AxisRTPSrcFilter.ax";
+		public static string FilterName = "AxisRTPSrcFilter.ax";
 
 
 		/// <summary>
@@ -227,14 +232,32 @@ public class Script
 	static class EmbeddedAxisRtpSrcFilter
 	{
 		/// <summary>
-		/// Gets the file name.
+		/// Gets the filter name.
 		/// </summary>
-		public static string FileName = "AxisRTPSrcFilterEmb.ax";
+		public static string FilterName = "AxisRTPSrcFilterEmb.ax";
 
 
 		/// <summary>
 		/// Gets the CLSID.
 		/// </summary>
 		public static readonly string Clsid = "67B1A88A-B5D2-48B1-BF93-EB74D6FCB077";
+	}
+
+
+	/// <summary>
+	/// Class describing the properties of AxisHTTPMPSrcFilter. 
+	/// </summary>
+	static class AxisHttpMpSrcFilter
+	{
+		/// <summary>
+		/// Gets the filter name.
+		/// </summary>
+		public static string FilterName = "AxisHTTPMPSrcFilter.ax";
+
+
+		/// <summary>
+		/// Gets the CLSID.
+		/// </summary>
+		public static readonly string Clsid = "1A643A97-F45E-40BD-82BB-3DA946A249EB";
 	}
 }
