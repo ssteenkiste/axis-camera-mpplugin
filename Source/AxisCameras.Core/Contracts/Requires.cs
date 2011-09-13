@@ -65,7 +65,7 @@ namespace AxisCameras.Core.Contracts
 		/// Marks that requirements have failed.
 		/// </summary>
 		/// <param name="errorMessage">The error message.</param>
-		public static void Fail(string errorMessage)
+		public static void Fail(string errorMessage = null)
 		{
 			Throw(errorMessage);
 		}
