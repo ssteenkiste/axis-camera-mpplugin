@@ -134,7 +134,7 @@ namespace AxisCameras.Mvvm.Services
 		private static void Register(FrameworkElement view)
 		{
 			Requires.NotNull(view);
-			Requires.IsTrue(!views.Contains(view), "View has already been registered.");
+			Requires.True(!views.Contains(view), "View has already been registered.");
 
 			// Get owner window
 			Window owner = view as Window ?? Window.GetWindow(view);
@@ -162,7 +162,7 @@ namespace AxisCameras.Mvvm.Services
 		private static void Unregister(FrameworkElement view)
 		{
 			Requires.NotNull(view);
-			Requires.IsTrue(views.Contains(view), "View has not been registered.");
+			Requires.True(views.Contains(view), "View has not been registered.");
 
 			views.Remove(view);
 		}

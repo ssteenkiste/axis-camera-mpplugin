@@ -111,7 +111,7 @@ namespace AxisCameras.Mvvm.Services
 			where T : Window
 		{
 			Requires.NotNull(viewModel);
-			Requires.IsTrue(ownerHandle != IntPtr.Zero);
+			Requires.True(ownerHandle != IntPtr.Zero);
 
 			// Create dialog and set properties
 			T dialog = Activator.CreateInstance<T>();
@@ -156,7 +156,7 @@ namespace AxisCameras.Mvvm.Services
 			MessageBoxOptions options = MessageBoxOptions.None)
 		{
 			Requires.NotNull(ownerViewModel);
-			Requires.IsNotNullOrEmpty(messageBoxText);
+			Requires.NotNullOrEmpty(messageBoxText);
 
 			return MessageBox.Show(
 				FindOwnerWindow(ownerViewModel),

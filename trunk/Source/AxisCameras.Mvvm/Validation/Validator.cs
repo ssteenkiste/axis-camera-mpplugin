@@ -66,7 +66,7 @@ namespace AxisCameras.Mvvm.Validation
 		/// <returns>The error message for the property. The default is an empty string ("").</returns>
 		public string Validate(string propertyName)
 		{
-			Requires.IsNotNullOrEmpty(propertyName);
+			Requires.NotNullOrEmpty(propertyName);
 
 			IEnumerable<ValidationData> relevantRules = rules.Where(r => r.Name == propertyName);
 

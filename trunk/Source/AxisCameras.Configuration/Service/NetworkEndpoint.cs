@@ -36,10 +36,10 @@ namespace AxisCameras.Configuration.Service
 		/// <param name="password">The password.</param>
 		public NetworkEndpoint(string address, int port, string userName, string password)
 		{
-			Requires.IsNotNullOrEmpty(address);
-			Requires.IsTrue(port >= 1 && port <= 65535);
-			Requires.IsNotNullOrEmpty(userName);
-			Requires.IsNotNullOrEmpty(password);
+			Requires.NotNullOrEmpty(address);
+			Requires.True(port >= 1 && port <= 65535);
+			Requires.NotNullOrEmpty(userName);
+			Requires.NotNullOrEmpty(password);
 
 			Address = address;
 			Port = port;

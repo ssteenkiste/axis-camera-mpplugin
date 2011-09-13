@@ -35,7 +35,7 @@ namespace AxisCameras.Configuration.Service
 		/// <param name="url">The URL to open.</param>
 		public void Open(string url)
 		{
-			Requires.IsNotNullOrEmpty(url);
+			Requires.NotNullOrEmpty(url);
 
 			ThreadPool.QueueUserWorkItem(state => Process.Start(new ProcessStartInfo(url)));
 		}

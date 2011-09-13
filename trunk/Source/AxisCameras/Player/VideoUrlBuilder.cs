@@ -52,12 +52,12 @@ namespace AxisCameras.Player
 			string firmwareVersion,
 			int videoSource)
 		{
-			Requires.IsNotNullOrEmpty(address);
-			Requires.IsTrue(port >= 0 && port <= 65535, "Port must be between 0-65535");
-			Requires.IsNotNullOrEmpty(userName);
-			Requires.IsNotNullOrEmpty(password);
-			Requires.IsNotNullOrEmpty(firmwareVersion);
-			Requires.IsTrue(videoSource >= 1, "Video source must be at least 1.");
+			Requires.NotNullOrEmpty(address);
+			Requires.True(port >= 0 && port <= 65535, "Port must be between 0-65535");
+			Requires.NotNullOrEmpty(userName);
+			Requires.NotNullOrEmpty(password);
+			Requires.NotNullOrEmpty(firmwareVersion);
+			Requires.True(videoSource >= 1, "Video source must be at least 1.");
 
 			FirmwareVersion version = ParseFirmwareVersion(firmwareVersion);
 

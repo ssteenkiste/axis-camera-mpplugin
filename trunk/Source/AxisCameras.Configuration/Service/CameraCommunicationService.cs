@@ -119,7 +119,7 @@ namespace AxisCameras.Configuration.Service
 			CancellationToken cancellationToken = default(CancellationToken))
 		{
 			Requires.NotNull(networkEndpoint);
-			Requires.IsTrue(videoSource >= 1, "Video source must be 1 or greater.");
+			Requires.True(videoSource >= 1, "Video source must be 1 or greater.");
 
 			Log.Debug(
 				"Getting camera parameters from {0}:{1}, video source {2}",
