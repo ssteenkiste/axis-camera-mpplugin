@@ -27,6 +27,7 @@ using AxisCameras.Configuration.Service;
 using AxisCameras.Configuration.View;
 using AxisCameras.Configuration.ViewModel;
 using AxisCameras.Core;
+using AxisCameras.Core.Contracts;
 using AxisCameras.Data;
 using AxisCameras.Mvvm.Services;
 
@@ -64,12 +65,12 @@ namespace AxisCameras.Configuration
 			ICameraConverter cameraConverter,
 			ICameraViewModelProvider cameraViewModelProvider)
 		{
-			if (windowService == null) throw new ArgumentNullException("windowService");
-			if (pluginSettingsProvider == null) throw new ArgumentNullException("pluginSettingsProvider");
-			if (currentProcessService == null) throw new ArgumentNullException("currentProcessService");
-			if (setupProvider == null) throw new ArgumentNullException("setupProvider");
-			if (cameraConverter == null) throw new ArgumentNullException("cameraConverter");
-			if (cameraViewModelProvider == null) throw new ArgumentNullException("cameraViewModelProvider");
+			Requires.NotNull(windowService);
+			Requires.NotNull(pluginSettingsProvider);
+			Requires.NotNull(currentProcessService);
+			Requires.NotNull(setupProvider);
+			Requires.NotNull(cameraConverter);
+			Requires.NotNull(cameraViewModelProvider);
 
 			this.windowService = windowService;
 			this.pluginSettingsProvider = pluginSettingsProvider;

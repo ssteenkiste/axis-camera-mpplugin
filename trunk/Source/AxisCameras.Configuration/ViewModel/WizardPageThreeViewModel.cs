@@ -28,6 +28,7 @@ using AxisCameras.Configuration.View;
 using AxisCameras.Configuration.ViewModel.Data;
 using AxisCameras.Configuration.ViewModel.ValidationRule;
 using AxisCameras.Core;
+using AxisCameras.Core.Contracts;
 using AxisCameras.Mvvm;
 using AxisCameras.Mvvm.Services;
 
@@ -63,10 +64,10 @@ namespace AxisCameras.Configuration.ViewModel
 			ICameraSnapshotDialogViewModelProvider cameraSnapshotProvider,
 			IIOService ioService)
 		{
-			if (windowService == null) throw new ArgumentNullException("windowService");
-			if (dispatcherService == null) throw new ArgumentNullException("dispatcherService");
-			if (cameraSnapshotProvider == null) throw new ArgumentNullException("cameraSnapshotProvider");
-			if (ioService == null) throw new ArgumentNullException("ioService");
+			Requires.NotNull(windowService);
+			Requires.NotNull(dispatcherService);
+			Requires.NotNull(cameraSnapshotProvider);
+			Requires.NotNull(ioService);
 
 			this.windowService = windowService;
 			this.dispatcherService = dispatcherService;
@@ -144,7 +145,7 @@ namespace AxisCameras.Configuration.ViewModel
 		/// <param name="camera">The camera to load page properties from.</param>
 		public override void Load(ConfigurableCamera camera)
 		{
-			if (camera == null) throw new ArgumentNullException("camera");
+			Requires.NotNull(camera);
 
 			cameraEndpoint = new NetworkEndpoint(
 				camera.Address,
@@ -164,7 +165,7 @@ namespace AxisCameras.Configuration.ViewModel
 		/// <param name="camera">The camera to save page properties to.</param>
 		public override void Save(ConfigurableCamera camera)
 		{
-			if (camera == null) throw new ArgumentNullException("camera");
+			Requires.NotNull(camera);
 
 			camera.Name = Name;
 			camera.Snapshot = Snapshot;
