@@ -19,6 +19,7 @@
 #endregion
 using System;
 using System.Windows.Forms;
+using AxisCameras.Core.Contracts;
 using WinFormsFolderBrowserDialog = System.Windows.Forms.FolderBrowserDialog;
 
 namespace AxisCameras.Mvvm.Services.FrameworkDialogs.FolderBrowse
@@ -38,7 +39,7 @@ namespace AxisCameras.Mvvm.Services.FrameworkDialogs.FolderBrowse
 		/// <param name="viewModel">The ViewModel representing the folder browser dialog.</param>
 		public FolderBrowserDialog(FolderBrowserDialogViewModel viewModel)
 		{
-			if (viewModel == null) throw new ArgumentNullException("viewModel");
+			Requires.NotNull(viewModel);
 
 			this.viewModel = viewModel;
 
@@ -65,7 +66,7 @@ namespace AxisCameras.Mvvm.Services.FrameworkDialogs.FolderBrowse
 		/// </returns>
 		public DialogResult ShowDialog(IWin32Window owner)
 		{
-			if (owner == null) throw new ArgumentNullException("owner");
+			Requires.NotNull(owner);
 
 			DialogResult result = folderBrowserDialog.ShowDialog(owner);
 

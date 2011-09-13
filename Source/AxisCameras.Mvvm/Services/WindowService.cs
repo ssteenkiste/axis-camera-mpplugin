@@ -21,6 +21,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 using System.Windows.Interop;
+using AxisCameras.Core.Contracts;
 using AxisCameras.Mvvm.Services.FrameworkDialogs;
 using AxisCameras.Mvvm.Services.FrameworkDialogs.FolderBrowse;
 using AxisCameras.Mvvm.Services.FrameworkDialogs.OpenFile;
@@ -49,7 +50,7 @@ namespace AxisCameras.Mvvm.Services
 		public void Show<T>(IViewModelBase viewModel, IViewModelBase ownerViewModel = null)
 			where T : Window
 		{
-			if (viewModel == null) throw new ArgumentNullException("viewModel");
+			Requires.NotNull(viewModel);
 
 			// Create window and set properties
 			T dialog = Activator.CreateInstance<T>();
@@ -80,8 +81,8 @@ namespace AxisCameras.Mvvm.Services
 		public bool? ShowDialog<T>(IDialogViewModelBase viewModel, IViewModelBase ownerViewModel)
 			where T : Window
 		{
-			if (viewModel == null) throw new ArgumentNullException("viewModel");
-			if (ownerViewModel == null) throw new ArgumentNullException("ownerViewModel");
+			Requires.NotNull(viewModel);
+			Requires.NotNull(ownerViewModel);
 
 			// Create dialog and set properties
 			T dialog = Activator.CreateInstance<T>();
@@ -109,8 +110,8 @@ namespace AxisCameras.Mvvm.Services
 		public bool? ShowDialog<T>(IDialogViewModelBase viewModel, IntPtr ownerHandle)
 			where T : Window
 		{
-			if (viewModel == null) throw new ArgumentNullException("viewModel");
-			if (ownerHandle == null) throw new ArgumentNullException("ownerHandle");
+			Requires.NotNull(viewModel);
+			Requires.IsTrue(ownerHandle != IntPtr.Zero);
 
 			// Create dialog and set properties
 			T dialog = Activator.CreateInstance<T>();
@@ -154,9 +155,8 @@ namespace AxisCameras.Mvvm.Services
 			MessageBoxResult defaultResult = MessageBoxResult.OK,
 			MessageBoxOptions options = MessageBoxOptions.None)
 		{
-			if (ownerViewModel == null) throw new ArgumentNullException("ownerViewModel");
-			if (string.IsNullOrEmpty(messageBoxText))
-				throw new ArgumentException("MessageBox text cannot be null or empty.", "messageBoxText");
+			Requires.NotNull(ownerViewModel);
+			Requires.IsNotNullOrEmpty(messageBoxText);
 
 			return MessageBox.Show(
 				FindOwnerWindow(ownerViewModel),
@@ -181,8 +181,8 @@ namespace AxisCameras.Mvvm.Services
 			FolderBrowserDialogViewModel viewModel,
 			IViewModelBase ownerViewModel)
 		{
-			if (viewModel == null) throw new ArgumentNullException("viewModel");
-			if (ownerViewModel == null) throw new ArgumentNullException("ownerViewModel");
+			Requires.NotNull(viewModel);
+			Requires.NotNull(ownerViewModel);
 
 			// Create FolderBrowserDialog with specified ViewModel
 			using (FolderBrowserDialog dialog = new FolderBrowserDialog(viewModel))
@@ -205,8 +205,8 @@ namespace AxisCameras.Mvvm.Services
 			OpenFileDialogViewModel viewModel,
 			IViewModelBase ownerViewModel)
 		{
-			if (viewModel == null) throw new ArgumentNullException("viewModel");
-			if (ownerViewModel == null) throw new ArgumentNullException("ownerViewModel");
+			Requires.NotNull(viewModel);
+			Requires.NotNull(ownerViewModel);
 
 			// Create OpenFileDialog with specified ViewModel
 			using (OpenFileDialog dialog = new OpenFileDialog(viewModel))

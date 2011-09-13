@@ -19,6 +19,7 @@
 #endregion
 using System;
 using System.Windows.Forms;
+using AxisCameras.Core.Contracts;
 using WinFormsOpenFileDialog = System.Windows.Forms.OpenFileDialog;
 
 namespace AxisCameras.Mvvm.Services.FrameworkDialogs.OpenFile
@@ -38,7 +39,7 @@ namespace AxisCameras.Mvvm.Services.FrameworkDialogs.OpenFile
 		/// <param name="viewModel">The ViewModel representing the open file dialog.</param>
 		public OpenFileDialog(OpenFileDialogViewModel viewModel)
 		{
-			if (viewModel == null) throw new ArgumentNullException("viewModel");
+			Requires.NotNull(viewModel);
 
 			this.viewModel = viewModel;
 
@@ -67,7 +68,7 @@ namespace AxisCameras.Mvvm.Services.FrameworkDialogs.OpenFile
 		/// otherwise, System.Windows.Forms.DialogResult.Cancel.</returns>
 		public DialogResult ShowDialog(IWin32Window owner)
 		{
-			if (owner == null) throw new ArgumentNullException("owner");
+			Requires.NotNull(owner);
 
 			DialogResult result = openFileDialog.ShowDialog(owner);
 
