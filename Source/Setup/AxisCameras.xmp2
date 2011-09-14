@@ -210,6 +210,13 @@ Install only if you already have StreamedMP installed.</Description>
               <ZipFileName>Installer{CopyFile}\{9eedfc1b-15a2-4228-a0e8-23fa37d54380}-AxisRTPSrcFilterEmb.ax</ZipFileName>
               <DestinationFilename>%Temp%\AxisRTPSrcFilterEmb.ax</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>AlwaysOverwrite</UpdateOption>
+              <LocalFileName>..\Externals\Axis\AxisHTTPMPSrcFilter.ax</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{23e970d9-83fd-4a15-b100-7ca7b3a558ff}-AxisHTTPMPSrcFilter.ax</ZipFileName>
+              <DestinationFilename>%Temp%\AxisHTTPMPSrcFilter.ax</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -349,66 +356,78 @@ public class Script
 {
 	public static void Main(PackageClass packageClass, ActionItem actionItem)
 	{
-		// Install Axis RTP source filter
-		Install(
-			AxisRtpSrcFilter.FileName,
-			AxisRtpSrcFilter.Clsid,
-			AxisRtpSrcFilter.ProductVersion);
+		// Install if needed the Axis RTP source filter
+		InstallIfNeeded(
+			AxisRtpSrcFilter.FilterName,
+			AxisRtpSrcFilter.Clsid);
 
-		// Install embedded Axis RTP source filter
-		Install(
-			EmbeddedAxisRtpSrcFilter.FileName,
-			EmbeddedAxisRtpSrcFilter.Clsid,
-			EmbeddedAxisRtpSrcFilter.ProductVersion);
+		// Install if needed the embedded Axis RTP source filter
+		InstallIfNeeded(
+			EmbeddedAxisRtpSrcFilter.FilterName,
+			EmbeddedAxisRtpSrcFilter.Clsid);
+
+		// Install if needed the HTTP MP source filter
+		InstallIfNeeded(
+			AxisHttpMpSrcFilter.FilterName,
+			AxisHttpMpSrcFilter.Clsid);
 	}
 
 
 	/// &lt;summary&gt;
-	/// Installs the specified file with specified CLSID and version
+	/// Installs if needed the specified filter with specified CLSID.
 	/// &lt;/summary&gt;
-	private static void Install(string fileName, string clsid, Version version)
+	private static void InstallIfNeeded(string filterName, string clsid)
 	{
-		FileVersionInfo fileVersionInfo = GetVersionFromClsid(clsid);
+		Version installedVersion = GetVersionFromClsid(clsid);
+		string bundledFilterFileName = GetBundledFilterFileName(filterName);
 
-		if (fileVersionInfo != null)
+		if (installedVersion == null)
 		{
-			// File is registered, determine if its version is the same or newer than the one supplied by
-			// the installation
-			Version registeredVersion = new Version(fileVersionInfo.ProductVersion);
-			if (registeredVersion &gt;= version)
+			// Filter is not installed, install it
+			Install(bundledFilterFileName);
+		}
+		else
+		{
+			// Filter is installed, determine if it needs upgrading
+			Version bundledVersion = GetVersionFromFile(bundledFilterFileName);
+			if (bundledVersion != null &amp;&amp; bundledVersion &gt; installedVersion)
 			{
-				return;
+				Install(bundledFilterFileName);
 			}
 		}
+	}
 
-		// Move file
-		string newFileName = Move(fileName);
-		if (newFileName != null)
+
+	/// &lt;summary&gt;
+	/// Installs the filter specified by its file name.
+	/// &lt;/summary&gt;
+	private static void Install(string fileName)
+	{
+		string destFileName = Path.Combine(
+			AxisComponentsFolder,
+			Path.GetFileName(fileName));
+
+		// Move filter to correct location
+		if (Move(fileName, destFileName))
 		{
-			// Register file
-			Register(newFileName);
+			// Register filter
+			Register(destFileName);
 		}
 	}
 
 
 	/// &lt;summary&gt;
-	/// Moves the specified file from the temp directory to the correct Axis components folder.
+	/// Moves the specified file.
 	/// &lt;/summary&gt;
-	/// &lt;returns&gt;The path of the moved file if successfully; otherwise null.&lt;/returns&gt;
-	private static string Move(string fileName)
+	/// &lt;param name="sourceFileName"&gt;The source file name.&lt;/param&gt;
+	/// &lt;param name="destFileName"&gt;The destination file name.&lt;/param&gt;
+	/// &lt;returns&gt;true if source file was moved successfully; otherwise false.&lt;/returns&gt;
+	private static bool Move(string sourceFileName, string destFileName)
 	{
-		string sourceFileName = Path.Combine(
-			MpeInstaller.TransformInRealPath("%Temp%"),
-			fileName);
-
-		string destDirectory = AxisComponentsFolder;
-
-		string destFileName = Path.Combine(
-			destDirectory,
-			fileName);
-
 		try
 		{
+			string destDirectory = Path.GetDirectoryName(destFileName);
+
 			if (!Directory.Exists(destDirectory))
 			{
 				// Create directory if it doesn't exist
@@ -422,11 +441,11 @@ public class Script
 
 			File.Move(sourceFileName, destFileName);
 
-			return destFileName;
+			return true;
 		}
 		catch
 		{
-			return null;
+			return false;
 		}
 	}
 
@@ -454,13 +473,13 @@ public class Script
 
 
 	/// &lt;summary&gt;
-	/// Gets the file version of registered assembly based on specified CLSID.
+	/// Gets the version of registered assembly based on specified CLSID.
 	/// &lt;/summary&gt;
 	/// &lt;param name="clsid"&gt;The CLSID of the registered assembly.&lt;/param&gt;
 	/// &lt;returns&gt;
-	/// The file version of the registered assembly if successful; otherwise null.
+	/// The version of the registered assembly if successful; otherwise null.
 	/// &lt;/returns&gt;
-	private static FileVersionInfo GetVersionFromClsid(string clsid)
+	private static Version GetVersionFromClsid(string clsid)
 	{
 		if (clsid == null) throw new ArgumentNullException("clsid");
 
@@ -483,15 +502,40 @@ public class Script
 		}
 
 		// Get version from file
+		return GetVersionFromFile(filePath);
+	}
+
+
+	/// &lt;summary&gt;
+	/// Gets the version from a file on disk.
+	/// &lt;/summary&gt;
+	/// &lt;returns&gt;The version of the file if existing; otherwise null.&lt;/returns&gt;
+	private static Version GetVersionFromFile(string fileName)
+	{
+		if (fileName == null) throw new ArgumentNullException("fileName");
+
 		try
 		{
-			return FileVersionInfo.GetVersionInfo(filePath);
+			return new Version(FileVersionInfo.GetVersionInfo(fileName).ProductVersion);
 		}
 		catch
 		{
 			// Unable to get version from file. Most probable answer is that the file doesn't exist
 			return null;
 		}
+	}
+
+
+	/// &lt;summary&gt;
+	/// Gets the file name of the filter in the TEMP directory.
+	/// &lt;/summary&gt;
+	private static string GetBundledFilterFileName(string filterName)
+	{
+		if (filterName == null) throw new ArgumentNullException("filterName");
+
+		return Path.Combine(
+			MpeInstaller.TransformInRealPath("%Temp%"),
+			filterName);
 	}
 
 
@@ -515,21 +559,15 @@ public class Script
 	static class AxisRtpSrcFilter
 	{
 		/// &lt;summary&gt;
-		/// Gets the file name.
+		/// Gets the filter name.
 		/// &lt;/summary&gt;
-		public static string FileName = "AxisRTPSrcFilter.ax";
+		public static string FilterName = "AxisRTPSrcFilter.ax";
 
 
 		/// &lt;summary&gt;
 		/// Gets the CLSID.
 		/// &lt;/summary&gt;
 		public static readonly string Clsid = "4F1D0C59-5ECC-4028-87F3-482191D2230F";
-
-
-		/// &lt;summary&gt;
-		/// Gets the version of the AxisRTPSrcFilter.
-		/// &lt;/summary&gt;
-		public static readonly Version ProductVersion = new Version(3, 0, 4, 2);
 	}
 
 
@@ -539,21 +577,33 @@ public class Script
 	static class EmbeddedAxisRtpSrcFilter
 	{
 		/// &lt;summary&gt;
-		/// Gets the file name.
+		/// Gets the filter name.
 		/// &lt;/summary&gt;
-		public static string FileName = "AxisRTPSrcFilterEmb.ax";
+		public static string FilterName = "AxisRTPSrcFilterEmb.ax";
 
 
 		/// &lt;summary&gt;
 		/// Gets the CLSID.
 		/// &lt;/summary&gt;
 		public static readonly string Clsid = "67B1A88A-B5D2-48B1-BF93-EB74D6FCB077";
+	}
+
+
+	/// &lt;summary&gt;
+	/// Class describing the properties of AxisHTTPMPSrcFilter. 
+	/// &lt;/summary&gt;
+	static class AxisHttpMpSrcFilter
+	{
+		/// &lt;summary&gt;
+		/// Gets the filter name.
+		/// &lt;/summary&gt;
+		public static string FilterName = "AxisHTTPMPSrcFilter.ax";
 
 
 		/// &lt;summary&gt;
-		/// Gets the version of the AxisRTPSrcFilter.
+		/// Gets the CLSID.
 		/// &lt;/summary&gt;
-		public static readonly Version ProductVersion = new Version(3, 0, 4, 2);
+		public static readonly string Clsid = "1A643A97-F45E-40BD-82BB-3DA946A249EB";
 	}
 }</Value>
                     <ValueType>Script</ValueType>
@@ -662,9 +712,9 @@ public class Script
         </CompatibleVersion>
         <SubSystemsUsed>
           <Items>
+            <SubSystemItem Name="MP.SkinEngine.Dialogs" />
             <SubSystemItem Name="MP.SkinEngine.Controls" />
             <SubSystemItem Name="MP.Players.Video" />
-            <SubSystemItem Name="MP.SkinEngine.Dialogs" />
             <SubSystemItem Name="MP.Config" />
           </Items>
         </SubSystemsUsed>
@@ -873,6 +923,13 @@ public class Script
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
+        <UpdateOption>AlwaysOverwrite</UpdateOption>
+        <LocalFileName>..\Externals\Axis\AxisHTTPMPSrcFilter.ax</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{23e970d9-83fd-4a15-b100-7ca7b3a558ff}-AxisHTTPMPSrcFilter.ax</ZipFileName>
+        <DestinationFilename>%Temp%\AxisHTTPMPSrcFilter.ax</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Settings\extension_settings.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{11000da4-8342-4db4-ac7b-076c0a188cca}-extension_settings.xml</ZipFileName>
@@ -882,14 +939,14 @@ public class Script
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{643b10ba-33d7-4496-9133-fecdf02f9f53}-Welcome_left.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{7188d6e0-34bc-4df9-adba-27ed4cdad9c5}-Welcome_left.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{4f32a022-e722-4bae-b104-574f613a5173}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{52686b38-8bdc-40de-898f-0a5e7f67e0b1}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>

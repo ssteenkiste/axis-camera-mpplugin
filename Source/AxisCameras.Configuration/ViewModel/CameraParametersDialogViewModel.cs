@@ -22,6 +22,7 @@ using System.Threading.Tasks;
 using AxisCameras.Configuration.Service;
 using AxisCameras.Core;
 using AxisCameras.Core.Contracts;
+using AxisCameras.Data;
 
 namespace AxisCameras.Configuration.ViewModel
 {
@@ -85,6 +86,16 @@ namespace AxisCameras.Configuration.ViewModel
 
 
 		/// <summary>
+		/// Gets the video capabilities.
+		/// </summary>
+		public VideoCapabilities VideoCapabilities
+		{
+			get { return Property(() => VideoCapabilities); }
+			private set { Property(() => VideoCapabilities, value); }
+		}
+
+
+		/// <summary>
 		/// Executes the Loaded command.
 		/// </summary>
 		protected override void Loaded(object parameter)
@@ -107,6 +118,7 @@ namespace AxisCameras.Configuration.ViewModel
 						FriendlyName = t.Result.FriendlyName;
 						FirmwareVersion = t.Result.FirmwareVersion;
 						VideoSourceCount = t.Result.VideoSourceCount;
+						VideoCapabilities = t.Result.VideoCapabilities;
 
 						// Close dialog successfully
 						DialogResultCommand.Execute(true);

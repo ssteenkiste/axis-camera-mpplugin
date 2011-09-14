@@ -18,6 +18,7 @@
 
 #endregion
 using System;
+using AxisCameras.Data;
 using AxisCameras.Mvvm;
 
 namespace AxisCameras.Configuration.ViewModel
@@ -44,5 +45,11 @@ namespace AxisCameras.Configuration.ViewModel
 		/// has.
 		/// </summary>
 		int VideoSourceCount { get; }
+
+
+		/// <summary>
+		/// Gets the video capabilities.
+		/// </summary>
+		VideoCapabilities VideoCapabilities { get; }
 	}
 }

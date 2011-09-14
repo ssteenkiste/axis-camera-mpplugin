@@ -28,6 +28,7 @@ using AxisCameras.Configuration.View;
 using AxisCameras.Configuration.ViewModel.Data;
 using AxisCameras.Configuration.ViewModel.ValidationRule;
 using AxisCameras.Core.Contracts;
+using AxisCameras.Data;
 using AxisCameras.Mvvm.Services;
 
 namespace AxisCameras.Configuration.ViewModel
@@ -43,6 +44,7 @@ namespace AxisCameras.Configuration.ViewModel
 		private DirtyState dirtyState;
 		private string friendlyName;
 		private string firmwareVersion;
+		private VideoCapabilities videoCapabilities;
 		private IEnumerable<byte> snapshot;
 		private int videoSource;
 		private int videoSourceCount;
@@ -140,6 +142,7 @@ namespace AxisCameras.Configuration.ViewModel
 			snapshot = camera.Snapshot;
 			videoSource = camera.VideoSource;
 			videoSourceCount = camera.VideoSourceCount;
+			videoCapabilities = camera.VideoCapabilities;
 
 			Address = camera.Address;
 			Port = camera.Port.ToString(CultureInfo.CurrentCulture);
@@ -167,6 +170,7 @@ namespace AxisCameras.Configuration.ViewModel
 			camera.Snapshot = snapshot;
 			camera.VideoSource = videoSource;
 			camera.VideoSourceCount = videoSourceCount;
+			camera.VideoCapabilities = videoCapabilities;
 
 			camera.Address = Address;
 			camera.Port = int.Parse(Port, CultureInfo.CurrentCulture);
@@ -216,6 +220,7 @@ namespace AxisCameras.Configuration.ViewModel
 						// Update the following parameters regardless, it won't hurt
 						firmwareVersion = cameraParametersDialogViewModel.FirmwareVersion;
 						videoSourceCount = cameraParametersDialogViewModel.VideoSourceCount;
+						videoCapabilities = cameraParametersDialogViewModel.VideoCapabilities;
 					}
 					else
 					{
