@@ -111,8 +111,7 @@ namespace AxisCameras.Mvvm.Services
 			where T : Window
 		{
 			Requires.NotNull(viewModel);
-			Requires.True(ownerHandle != IntPtr.Zero);
-
+			
 			// Create dialog and set properties
 			T dialog = Activator.CreateInstance<T>();
 			new WindowInteropHelper(dialog).Owner = ownerHandle;

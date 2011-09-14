@@ -35,7 +35,7 @@ namespace AxisCameras.Player
 			/// <summary>
 			/// The M-JPEG live view URL.
 			/// </summary>
-			internal const string MjpegVideoUrl = "axrtsphttp://{0}:{1}@{2}:{3}/mjpg/{4}/video.mjpg";
+			internal const string MjpegVideoUrl = "axmphttp://{0}:{1}@{2}:{3}/axis-cgi/mjpg/video.cgi?camera={4}";
 
 
 			/// <summary>
