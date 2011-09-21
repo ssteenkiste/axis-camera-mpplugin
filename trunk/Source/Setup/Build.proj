@@ -8,7 +8,14 @@
 		<SolutionName>AxisCameras</SolutionName>
 		<SolutionFile>$(SolutionPath)\$(SolutionName).sln</SolutionFile>
 		
-		<!-- MPE Maker -->
+		<!-- Externals -->
+		<MediaPortal_Common_Utils>$(SolutionPath)\Externals\MediaPortal\Common-MP-TVE3\Common.Utils\Common.Utils.csproj</MediaPortal_Common_Utils>
+		<MediaPortla_Core>$(SolutionPath)\Externals\MediaPortal\mediaportal\Core\Core.csproj</MediaPortla_Core>
+		<MediaPortal_Dialogs>$(SolutionPath)\Externals\MediaPortal\mediaportal\Dialogs\Dialogs.csproj</MediaPortal_Dialogs>
+		<MediaPortal_Utils>$(SolutionPath)\Externals\MediaPortal\mediaportal\Utils\Utils.csproj</MediaPortal_Utils>
+		<MediaPortal_Common_Utils>$(SolutionPath)\Externals\MediaPortal\Common-MP-TVE3\Common.Utils\Common.Utils.csproj</MediaPortal_Common_Utils>
+
+			<!-- MPE Maker -->
 		<SetupScriptFile>AxisCameras.xmp2</SetupScriptFile>
 		<MpeMakerFile>$(ProgramFiles)\Team MediaPortal\MediaPortal\MpeMaker.exe</MpeMakerFile>
 
@@ -32,7 +39,7 @@
 	<Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets" />
 
 	<!-- Is building the solution in debug mode -->
-	<Target Name="BuildDebug">
+	<Target Name="BuildDebug" DependsOnTargets="BuildExternalsDebug">
 		<Message Text="Start building $(SolutionName) in debug mode" />
 		<MSBuild Projects="$(SolutionFile)" Targets="Clean" Properties="Configuration=Debug" />
 		<MSBuild Projects="$(SolutionFile)" Targets="Build" Properties="Configuration=Debug" />
@@ -40,7 +47,7 @@
 	</Target>
 
 	<!-- Is building the solution in release mode -->
-	<Target Name="BuildRelease">
+	<Target Name="BuildRelease" DependsOnTargets="BuildExternalsRelease">
 		<Message Text="Start building $(SolutionName) in release mode" />
 		<MSBuild Projects="$(SolutionFile)" Targets="Clean" Properties="Configuration=Release" />
 		<MSBuild Projects="$(SolutionFile)" Targets="Build" Properties="Configuration=Release" />
@@ -103,5 +110,40 @@
 		<Message Text="Start building setup" />
 		<Exec Command="&quot;$(MpeMakerFile)&quot; $(SetupScriptFile)" />
 		<Message Text="Finished building setup" />
+	</Target>
+
+	<!-- Is building the externals in debug and release -->
+	<Target Name="BuildExternals" DependsOnTargets="BuildExternalsDebug;BuildExternalsRelease" />
+
+	<!-- Is building the externals in release -->
+	<Target Name="BuildExternalsDebug">
+		<Message Text="Start building externals" />
+		<MSBuild Projects="$(MediaPortal_Common_Utils)" Targets="Clean" Properties="Configuration=Debug" />
+		<MSBuild Projects="$(MediaPortal_Common_Utils)" Targets="Build" Properties="Configuration=Debug" />
+		<MSBuild Projects="$(MediaPortla_Core)" Targets="Clean" Properties="Configuration=Debug" />
+		<MSBuild Projects="$(MediaPortla_Core)" Targets="Build" Properties="Configuration=Debug" />
+		<MSBuild Projects="$(MediaPortal_Dialogs)" Targets="Clean" Properties="Configuration=Debug" />
+		<MSBuild Projects="$(MediaPortal_Dialogs)" Targets="Build" Properties="Configuration=Debug" />
+		<MSBuild Projects="$(MediaPortal_Utils)" Targets="Clean" Properties="Configuration=Debug" />
+		<MSBuild Projects="$(MediaPortal_Utils)" Targets="Build" Properties="Configuration=Debug" />
+		<MSBuild Projects="$(MediaPortal_Common_Utils)" Targets="Clean" Properties="Configuration=Debug" />
+		<MSBuild Projects="$(MediaPortal_Common_Utils)" Targets="Build" Properties="Configuration=Debug" />		
+		<Message Text="Finished building externals" />
+	</Target>
+	
+	<!-- Is building the externals in release -->
+	<Target Name="BuildExternalsRelease">
+		<Message Text="Start building externals" />
+		<MSBuild Projects="$(MediaPortal_Common_Utils)" Targets="Clean" Properties="Configuration=Release" />
+		<MSBuild Projects="$(MediaPortal_Common_Utils)" Targets="Build" Properties="Configuration=Release" />
+		<MSBuild Projects="$(MediaPortla_Core)" Targets="Clean" Properties="Configuration=Release" />
+		<MSBuild Projects="$(MediaPortla_Core)" Targets="Build" Properties="Configuration=Release" />
+		<MSBuild Projects="$(MediaPortal_Dialogs)" Targets="Clean" Properties="Configuration=Release" />
+		<MSBuild Projects="$(MediaPortal_Dialogs)" Targets="Build" Properties="Configuration=Release" />
+		<MSBuild Projects="$(MediaPortal_Utils)" Targets="Clean" Properties="Configuration=Release" />
+		<MSBuild Projects="$(MediaPortal_Utils)" Targets="Build" Properties="Configuration=Release" />
+		<MSBuild Projects="$(MediaPortal_Common_Utils)" Targets="Clean" Properties="Configuration=Release" />
+		<MSBuild Projects="$(MediaPortal_Common_Utils)" Targets="Build" Properties="Configuration=Release" />
+		<Message Text="Finished building externals" />
 	</Target>
 </Project>
