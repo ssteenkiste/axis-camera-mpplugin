@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AxisCameras.Configuration.Starter</RootNamespace>
     <AssemblyName>AxisCameras.Configuration.Starter</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -42,13 +42,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Common.Utils">
-      <HintPath>..\Externals\MediaPortal\Common-MP-TVE3\Common.Utils\bin\$(Configuration)\Common.Utils.dll</HintPath>
+      <HintPath>..\Externals\MediaPortal\Common.Utils.dll</HintPath>
     </Reference>
     <Reference Include="Core">
-      <HintPath>..\Externals\MediaPortal\mediaportal\Core\bin\$(Configuration)\Core.dll</HintPath>
+      <HintPath>..\Externals\MediaPortal\Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
