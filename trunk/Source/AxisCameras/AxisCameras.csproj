@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AxisCameras</RootNamespace>
     <AssemblyName>AxisCameras</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -22,6 +22,7 @@
     <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\surveillance-camera.ico</ApplicationIcon>
@@ -40,24 +42,21 @@
     </Reference>
     <Reference Include="Common.Utils, Version=1.2.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Externals\MediaPortal\Common-MP-TVE3\Common.Utils\bin\$(Configuration)\Common.Utils.dll</HintPath>
+      <HintPath>..\Externals\MediaPortal\Common.Utils.dll</HintPath>
     </Reference>
     <Reference Include="Core, Version=1.2.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Externals\MediaPortal\mediaportal\Core\bin\$(Configuration)\Core.dll</HintPath>
+      <HintPath>..\Externals\MediaPortal\Core.dll</HintPath>
     </Reference>
     <Reference Include="Dialogs, Version=1.2.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Externals\MediaPortal\mediaportal\Dialogs\bin\$(Configuration)\Dialogs.dll</HintPath>
+      <HintPath>..\Externals\MediaPortal\Dialogs.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Threading">
-      <HintPath>..\Externals\Reactive Extensions\System.Threading.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -65,7 +64,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="Utils, Version=1.2.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Externals\MediaPortal\mediaportal\Utils\bin\$(Configuration)\Utils.dll</HintPath>
+      <HintPath>..\Externals\MediaPortal\Utils.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
