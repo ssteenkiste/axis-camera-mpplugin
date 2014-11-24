@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCameras", "AxisCameras\AxisCameras.csproj", "{A2B1464E-D965-4DE3-8EA2-5E4463E40262}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCameras.Configuration", "AxisCameras.Configuration\AxisCameras.Configuration.csproj", "{A9EB29F7-45D9-4528-AD57-98CCECFC5E51}"
@@ -20,6 +22,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCameras.DataTest", "AxisCameras.DataTest\AxisCameras.DataTest.csproj", "{3EDF16AB-0ED4-4C8C-BB1E-28FAF6B469D7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCameras.CoreTest", "AxisCameras.CoreTest\AxisCameras.CoreTest.csproj", "{DD578397-5A1A-48B7-B3A6-5C27C93A94BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C4DEC253-62B4-4AD0-A1B4-8FB747E661DE}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
