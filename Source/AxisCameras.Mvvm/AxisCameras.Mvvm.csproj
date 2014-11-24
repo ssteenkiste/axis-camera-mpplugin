@@ -23,6 +23,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\AxisCameras.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +34,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\AxisCameras.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -52,7 +56,6 @@
     </Compile>
     <Compile Include="DialogViewModelBase.cs" />
     <Compile Include="Extensions\System\Linq\Expressions\ExpressionExtensions.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IDialogViewModelBase.cs" />
     <Compile Include="IViewModelBase.cs" />
     <Compile Include="LifetimeBehaviors.cs" />
@@ -86,6 +89,11 @@
     <None Include="..\.nuget\NuGet.Config">
       <Link>NuGet.Config</Link>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\CustomDictionary.xml">
+      <Link>CustomDictionary.xml</Link>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
