@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="Axis Cameras MediaPortal Plugin Rules" Description="This rule set contains the rules relevant to this application." ToolsVersion="12.0">
+  <IncludeAll Action="Warning" />
+</RuleSet>
