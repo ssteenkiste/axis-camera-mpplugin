@@ -39,7 +39,7 @@
       <HintPath>..\Externals\Autofac\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
-      <HintPath>..\Externals\Moq\Moq.dll</HintPath>
+      <HintPath>..\packages\Moq.4.2.1409.1722\lib\net40\Moq.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
