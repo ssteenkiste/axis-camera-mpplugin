@@ -103,6 +103,9 @@
     <Compile Include="SetupForm.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\.nuget\NuGet.Config">
+      <Link>NuGet.Config</Link>
+    </None>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
