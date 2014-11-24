@@ -25,7 +25,7 @@ using System.Reflection;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Axis Cameras MediaPortal Plugin")]
-[assembly: AssemblyCopyright("Copyright © Mattias Kindborg 2010")]
+[assembly: AssemblyCopyright("Copyright © Mattias Kindborg 2010-2014")]
 [assembly: AssemblyTrademark("")]
 
 // Version information for an assembly consists of the following four values:
