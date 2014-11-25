@@ -34,7 +34,7 @@ namespace AxisCameras.Mvvm.Services
 		/// <summary>
 		/// The registered views.
 		/// </summary>
-		private static HashSet<FrameworkElement> views = new HashSet<FrameworkElement>();
+		private static readonly HashSet<FrameworkElement> Views = new HashSet<FrameworkElement>();
 
 
 		/// <summary>
@@ -73,7 +73,7 @@ namespace AxisCameras.Mvvm.Services
 		/// <returns>The view if found; otherwise null.</returns>
 		internal static FrameworkElement FindView(INotifyPropertyChanged viewModel)
 		{
-			return views.SingleOrDefault(view => ReferenceEquals(view.DataContext, viewModel));
+			return Views.SingleOrDefault(view => ReferenceEquals(view.DataContext, viewModel));
 		}
 
 
@@ -134,7 +134,7 @@ namespace AxisCameras.Mvvm.Services
 		private static void Register(FrameworkElement view)
 		{
 			Requires.NotNull(view);
-			Requires.True(!views.Contains(view), "View has already been registered.");
+			Requires.True(!Views.Contains(view), "View has already been registered.");
 
 			// Get owner window
 			Window owner = view as Window ?? Window.GetWindow(view);
@@ -151,7 +151,7 @@ namespace AxisCameras.Mvvm.Services
 			// preventing memory leaks
 			owner.Closed += OwnerClosed;
 
-			views.Add(view);
+			Views.Add(view);
 		}
 
 
@@ -162,9 +162,9 @@ namespace AxisCameras.Mvvm.Services
 		private static void Unregister(FrameworkElement view)
 		{
 			Requires.NotNull(view);
-			Requires.True(views.Contains(view), "View has not been registered.");
+			Requires.True(Views.Contains(view), "View has not been registered.");
 
-			views.Remove(view);
+			Views.Remove(view);
 		}
 
 
@@ -197,7 +197,7 @@ namespace AxisCameras.Mvvm.Services
 			{
 				// Find Views acting within closed window
 				IEnumerable<FrameworkElement> windowViews =
-					from view in views
+					from view in Views
 					where Window.GetWindow(view) == owner
 					select view;
 

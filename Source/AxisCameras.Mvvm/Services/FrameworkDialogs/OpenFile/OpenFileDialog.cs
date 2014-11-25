@@ -29,8 +29,8 @@ namespace AxisCameras.Mvvm.Services.FrameworkDialogs.OpenFile
 	/// </summary>
 	public class OpenFileDialog : IDisposable
 	{
+		private readonly OpenFileDialogViewModel viewModel;
 		private WinFormsOpenFileDialog openFileDialog;
-		private OpenFileDialogViewModel viewModel;
 
 
 		/// <summary>

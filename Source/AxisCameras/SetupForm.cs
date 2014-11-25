@@ -57,7 +57,7 @@ namespace AxisCameras
 		/// The facade layout containing cameras.
 		/// </summary>
 		[SkinControl(50)]
-		private GUIFacadeControl facadeLayout = null;
+		private readonly GUIFacadeControl facadeLayout = null;
 
 
 		/// <summary>

@@ -29,8 +29,8 @@ namespace AxisCameras.Mvvm.Services.FrameworkDialogs.FolderBrowse
 	/// </summary>
 	public class FolderBrowserDialog : IDisposable
 	{
+		private readonly FolderBrowserDialogViewModel viewModel;
 		private WinFormsFolderBrowserDialog folderBrowserDialog;
-		private FolderBrowserDialogViewModel viewModel;
 
 
 		/// <summary>
