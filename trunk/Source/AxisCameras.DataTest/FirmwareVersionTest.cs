@@ -17,7 +17,6 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System;
 using AxisCameras.Core.Contracts;
 using AxisCameras.Data;
 using NUnit.Framework;

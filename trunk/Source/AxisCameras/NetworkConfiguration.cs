@@ -19,7 +19,6 @@
 #endregion
 using System;
 using System.Globalization;
-using System.Net;
 using System.Net.Configuration;
 using System.Reflection;
 using AxisCameras.Core;

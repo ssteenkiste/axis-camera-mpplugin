@@ -18,7 +18,6 @@
 
 #endregion
 using System.Windows;
-using AxisCameras;
 
 namespace AxisCameras.Configuration.Starter
 {

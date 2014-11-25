@@ -17,7 +17,6 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using AxisCameras.Configuration.Properties;
