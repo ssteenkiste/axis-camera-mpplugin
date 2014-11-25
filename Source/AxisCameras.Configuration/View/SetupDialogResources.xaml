@@ -1,8 +1,12 @@
 ﻿<ResourceDictionary
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:local="clr-namespace:AxisCameras.Configuration.View"
-	xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase">
+	xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+	xmlns:viewmodel="clr-namespace:AxisCameras.Configuration.ViewModel"
+	mc:Ignorable="d">
 	
 	<!-- Merged resources -->
 	<ResourceDictionary.MergedDictionaries>
@@ -22,6 +26,7 @@
 	<!-- A camera template -->
 	<DataTemplate x:Key="CameraTemplate">
 		<Grid
+			d:DataContext="{d:DesignInstance Type=viewmodel:CameraViewModel}"
 			Margin="3"
 			Height="120"
 			Width="160">
