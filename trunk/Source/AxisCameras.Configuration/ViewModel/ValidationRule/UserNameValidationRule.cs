@@ -17,58 +17,56 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System.Text.RegularExpressions;
 using AxisCameras.Configuration.Properties;
 using AxisCameras.Mvvm.Validation;
 
 namespace AxisCameras.Configuration.ViewModel.ValidationRule
 {
-	/// <summary>
-	/// Validation rule that validates the user name of a camera.
-	/// </summary>
-	class UserNameValidationRule : IValidationRule
-	{
-		private readonly Regex userNameRegex;
+    /// <summary>
+    /// Validation rule that validates the user name of a camera.
+    /// </summary>
+    internal class UserNameValidationRule : IValidationRule
+    {
+        private readonly Regex userNameRegex;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserNameValidationRule"/> class.
+        /// </summary>
+        public UserNameValidationRule()
+        {
+            userNameRegex = new Regex("^[A-Za-z]+[A-Za-z0-9_]*$");
+        }
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="UserNameValidationRule"/> class.
-		/// </summary>
-		public UserNameValidationRule()
-		{
-			userNameRegex = new Regex("^[A-Za-z]+[A-Za-z0-9_]*$");
-		}
+        /// <summary>
+        /// Validates the specified user name.
+        /// </summary>
+        /// <param name="value">The value to validate.</param>
+        /// <returns>true if validation is successful; otherwise false.</returns>
+        public bool Validate(object value)
+        {
+            string userName = value as string;
+            if (string.IsNullOrEmpty(userName))
+            {
+                return false;
+            }
 
+            if (userName.Length > 14)
+            {
+                return false;
+            }
 
-		/// <summary>
-		/// Validates the specified user name.
-		/// </summary>
-		/// <param name="value">The value to validate.</param>
-		/// <returns>true if validation is successful; otherwise false.</returns>
-		public bool Validate(object value)
-		{
-			string userName = value as string;
-			if (string.IsNullOrEmpty(userName))
-			{
-				return false;
-			}
+            // Make sure a user name starts with a letter and only contains letters and digits
+            return userNameRegex.IsMatch(userName);
+        }
 
-			if (userName.Length > 14)
-			{
-				return false;
-			}
-
-			// Make sure a user name starts with a letter and only contains letters and digits
-			return userNameRegex.IsMatch(userName);
-		}
-
-
-		/// <summary>
-		/// Gets the error message.
-		/// </summary>
-		public string ErrorMessage
-		{
-			get { return Resources.Validation_Failed_UserName; }
-		}
-	}
+        /// <summary>
+        /// Gets the error message.
+        /// </summary>
+        public string ErrorMessage
+        {
+            get { return Resources.Validation_Failed_UserName; }
+        }
+    }
 }

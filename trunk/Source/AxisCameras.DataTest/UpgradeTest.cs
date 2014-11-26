@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System.IO;
 using System.Reflection;
 using Autofac;
@@ -26,99 +27,94 @@ using NUnit.Framework;
 
 namespace AxisCameras.DataTest
 {
-	/// <summary>
-	/// This class does not contain the usual unit tests, the name of the file does not even match
-	/// any class in the AxisCameras.Data namespace. It is containing function tests, verifying
-	/// that the data is upgraded correctly between the very real versions of the plugin.
-	/// </summary>
-	[TestFixture]
-	public class UpgradeTest
-	{
-		private IContainer container;
+    /// <summary>
+    /// This class does not contain the usual unit tests, the name of the file does not even match
+    /// any class in the AxisCameras.Data namespace. It is containing function tests, verifying
+    /// that the data is upgraded correctly between the very real versions of the plugin.
+    /// </summary>
+    [TestFixture]
+    public class UpgradeTest
+    {
+        private IContainer container;
 
+        [TestFixtureSetUp]
+        public void TestFixtureSetUp()
+        {
+            Assembly assembly = Assembly.Load("AxisCameras.Data");
 
-		[TestFixtureSetUp]
-		public void TestFixtureSetUp()
-		{
-			Assembly assembly = Assembly.Load("AxisCameras.Data");
+            var builder = new ContainerBuilder();
+            builder
+                .RegisterAssemblyTypes(assembly);
+            builder
+                .RegisterAssemblyTypes(assembly)
+                .AsImplementedInterfaces();
 
-			var builder = new ContainerBuilder();
-			builder
-				.RegisterAssemblyTypes(assembly);
-			builder
-				.RegisterAssemblyTypes(assembly)
-				.AsImplementedInterfaces();
+            container = builder.Build();
 
-			container = builder.Build();
+            DataPersistenceInformation.FileName = Path.Combine(OutputPath, "AxisCameras.xml");
+        }
 
-			DataPersistenceInformation.FileName = Path.Combine(OutputPath, "AxisCameras.xml");
-		}
+        [TearDown]
+        public void TearDown()
+        {
+            container.Resolve<ISettings>().Clear();
 
+            File.Delete(DataPersistenceInformation.FileName);
+        }
 
-		[TearDown]
-		public void TearDown()
-		{
-			container.Resolve<ISettings>().Clear();
+        [Test]
+        public void UpgradeFromVersion1To3()
+        {
+            string version1FileName = Path.Combine(OutputPath, @"Versions\Version1\AxisCameras.xml");
+            string version3FileName = Path.Combine(OutputPath, @"Versions\Version3\AxisCameras.xml");
 
-			File.Delete(DataPersistenceInformation.FileName);
-		}
+            // Copy file of version 1
+            File.Copy(version1FileName, DataPersistenceInformation.FileName);
 
+            var upgradeData = container.Resolve<UpgradeData>();
+            var settings = container.Resolve<ISettings>();
 
-		[Test]
-		public void UpgradeFromVersion1To3()
-		{
-			string version1FileName = Path.Combine(OutputPath, @"Versions\Version1\AxisCameras.xml");
-			string version3FileName = Path.Combine(OutputPath, @"Versions\Version3\AxisCameras.xml");
+            // Upgrade from version 1 to 3
+            Assert.That(upgradeData.IsUpgradeRequired, Is.True);
+            Assert.That(upgradeData.Upgrade(), Is.True);
 
-			// Copy file of version 1
-			File.Copy(version1FileName, DataPersistenceInformation.FileName);
+            // Save settings to disk
+            settings.Save();
 
-			var upgradeData = container.Resolve<UpgradeData>();
-			var settings = container.Resolve<ISettings>();
+            // Upgrade is now finished, validate with file known to be correct
+            Assert.That(
+                File.ReadAllText(DataPersistenceInformation.FileName),
+                Is.EqualTo(File.ReadAllText(version3FileName)));
+        }
 
-			// Upgrade from version 1 to 3
-			Assert.That(upgradeData.IsUpgradeRequired, Is.True);
-			Assert.That(upgradeData.Upgrade(), Is.True);
+        [Test]
+        public void UpgradeFromVersion2To3()
+        {
+            string version2FileName = Path.Combine(OutputPath, @"Versions\Version2\AxisCameras.xml");
+            string version3FileName = Path.Combine(OutputPath, @"Versions\Version3\AxisCameras.xml");
 
-			// Save settings to disk
-			settings.Save();
+            // Copy file of version 2
+            File.Copy(version2FileName, DataPersistenceInformation.FileName);
 
-			// Upgrade is now finished, validate with file known to be correct
-			Assert.That(
-				File.ReadAllText(DataPersistenceInformation.FileName),
-				Is.EqualTo(File.ReadAllText(version3FileName)));
-		}
+            var upgradeData = container.Resolve<UpgradeData>();
+            var settings = container.Resolve<ISettings>();
 
+            // Upgrade from version 2 to 3	
+            Assert.That(upgradeData.IsUpgradeRequired, Is.True);
+            Assert.That(upgradeData.Upgrade(), Is.True);
 
-		[Test]
-		public void UpgradeFromVersion2To3()
-		{
-			string version2FileName = Path.Combine(OutputPath, @"Versions\Version2\AxisCameras.xml");
-			string version3FileName = Path.Combine(OutputPath, @"Versions\Version3\AxisCameras.xml");
+            // Save settings to disk
+            settings.Save();
 
-			// Copy file of version 2
-			File.Copy(version2FileName, DataPersistenceInformation.FileName);
+            // Upgrade is now finished, validate with file known to be correct
+            Assert.That(
+                File.ReadAllText(DataPersistenceInformation.FileName),
+                Is.EqualTo(File.ReadAllText(version3FileName)));
+        }
 
-			var upgradeData = container.Resolve<UpgradeData>();
-			var settings = container.Resolve<ISettings>();
-
-			// Upgrade from version 2 to 3	
-			Assert.That(upgradeData.IsUpgradeRequired, Is.True);
-			Assert.That(upgradeData.Upgrade(), Is.True);
-
-			// Save settings to disk
-			settings.Save();
-
-			// Upgrade is now finished, validate with file known to be correct
-			Assert.That(
-				File.ReadAllText(DataPersistenceInformation.FileName),
-				Is.EqualTo(File.ReadAllText(version3FileName)));
-		}
-
-
-		private static string OutputPath
-		{
-			get { return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location); }
-		}
-	}
+        private static string OutputPath
+        {
+            get { return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location); }
+        }
+    }
 }

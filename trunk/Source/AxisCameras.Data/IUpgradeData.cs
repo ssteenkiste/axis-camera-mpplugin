@@ -20,21 +20,20 @@
 
 namespace AxisCameras.Data
 {
-	/// <summary>
-	/// Interface responsible for upgrading the data between version of the plugin.
-	/// </summary>
-	public interface IUpgradeData
-	{
-		/// <summary>
-		/// Gets a value indicating whether upgrading the data is required.
-		/// </summary>
-		bool IsUpgradeRequired { get; }
+    /// <summary>
+    /// Interface responsible for upgrading the data between version of the plugin.
+    /// </summary>
+    public interface IUpgradeData
+    {
+        /// <summary>
+        /// Gets a value indicating whether upgrading the data is required.
+        /// </summary>
+        bool IsUpgradeRequired { get; }
 
-
-		/// <summary>
-		/// Upgrades the data.
-		/// </summary>
-		/// <returns>true if upgrade was successful; otherwise false.</returns>
-		bool Upgrade();
-	}
+        /// <summary>
+        /// Upgrades the data.
+        /// </summary>
+        /// <returns>true if upgrade was successful; otherwise false.</returns>
+        bool Upgrade();
+    }
 }

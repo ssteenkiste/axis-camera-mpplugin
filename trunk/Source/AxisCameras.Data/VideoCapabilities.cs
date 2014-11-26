@@ -17,37 +17,35 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System;
 
 namespace AxisCameras.Data
 {
-	/// <summary>
-	/// Enum describing the video capability of a <see cref="Camera"/>.
-	/// </summary>
-	[Flags]
-	public enum VideoCapabilities
-	{
-		/// <summary>
-		/// Camera has no video capabilities.
-		/// </summary>
-		None = 0,
+    /// <summary>
+    /// Enum describing the video capability of a <see cref="Camera"/>.
+    /// </summary>
+    [Flags]
+    public enum VideoCapabilities
+    {
+        /// <summary>
+        /// Camera has no video capabilities.
+        /// </summary>
+        None = 0,
 
+        /// <summary>
+        /// Camera has support for M-JPEG.
+        /// </summary>
+        Mjpeg = 1,
 
-		/// <summary>
-		/// Camera has support for M-JPEG.
-		/// </summary>
-		Mjpeg = 1,
+        /// <summary>
+        /// Camera has support for MPEG-4.
+        /// </summary>
+        Mpeg4 = 2,
 
-
-		/// <summary>
-		/// Camera has support for MPEG-4.
-		/// </summary>
-		Mpeg4 = 2,
-
-
-		/// <summary>
-		/// Camera has support for h.264.
-		/// </summary>
-		H264 = 4
-	}
+        /// <summary>
+        /// Camera has support for h.264.
+        /// </summary>
+        H264 = 4
+    }
 }

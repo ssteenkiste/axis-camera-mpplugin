@@ -20,15 +20,15 @@
 
 namespace AxisCameras.Configuration.Service
 {
-	/// <summary>
-	/// Interface responsible for opening URLs in the default browser.
-	/// </summary>
-	interface IBrowserService
-	{
-		/// <summary>
-		/// Opens specified URL in default browser.
-		/// </summary>
-		/// <param name="url">The URL to open.</param>
-		void Open(string url);
-	}
+    /// <summary>
+    /// Interface responsible for opening URLs in the default browser.
+    /// </summary>
+    internal interface IBrowserService
+    {
+        /// <summary>
+        /// Opens specified URL in default browser.
+        /// </summary>
+        /// <param name="url">The URL to open.</param>
+        void Open(string url);
+    }
 }

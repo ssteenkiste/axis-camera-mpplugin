@@ -17,42 +17,42 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using AxisCameras.Configuration.ViewModel.ValidationRule;
 using NUnit.Framework;
 
 namespace AxisCameras.ConfigurationTest.ViewModel.ValidationRule
 {
-	[TestFixture]
-	public class UserNameValidationRuleTest
-	{
-		[Test]
-		public void ValidationSuccessful()
-		{
-			UserNameValidationRule validationRule = new UserNameValidationRule();
+    [TestFixture]
+    public class UserNameValidationRuleTest
+    {
+        [Test]
+        public void ValidationSuccessful()
+        {
+            UserNameValidationRule validationRule = new UserNameValidationRule();
 
-			Assert.That(validationRule.Validate("a"), Is.True);
-			Assert.That(validationRule.Validate("z"), Is.True);
-			Assert.That(validationRule.Validate("A"), Is.True);
-			Assert.That(validationRule.Validate("Z"), Is.True);
-			Assert.That(validationRule.Validate("azAZ09_"), Is.True);
-			Assert.That(validationRule.Validate("abcdefghijklmn"), Is.True);
-		}
+            Assert.That(validationRule.Validate("a"), Is.True);
+            Assert.That(validationRule.Validate("z"), Is.True);
+            Assert.That(validationRule.Validate("A"), Is.True);
+            Assert.That(validationRule.Validate("Z"), Is.True);
+            Assert.That(validationRule.Validate("azAZ09_"), Is.True);
+            Assert.That(validationRule.Validate("abcdefghijklmn"), Is.True);
+        }
 
+        [Test]
+        public void ValidationFailed()
+        {
+            UserNameValidationRule validationRule = new UserNameValidationRule();
 
-		[Test]
-		public void ValidationFailed()
-		{
-			UserNameValidationRule validationRule = new UserNameValidationRule();
-
-			Assert.That(validationRule.Validate("1"), Is.False);
-			Assert.That(validationRule.Validate("1user"), Is.False);
-			Assert.That(validationRule.Validate("9"), Is.False);
-			Assert.That(validationRule.Validate("9user"), Is.False);
-			Assert.That(validationRule.Validate("1"), Is.False);
-			Assert.That(validationRule.Validate("abcdefghijklmno"), Is.False);
-			Assert.That(validationRule.Validate(null), Is.False);
-			Assert.That(validationRule.Validate(string.Empty), Is.False);
-			Assert.That(validationRule.Validate(new object()), Is.False);
-		}
-	}
+            Assert.That(validationRule.Validate("1"), Is.False);
+            Assert.That(validationRule.Validate("1user"), Is.False);
+            Assert.That(validationRule.Validate("9"), Is.False);
+            Assert.That(validationRule.Validate("9user"), Is.False);
+            Assert.That(validationRule.Validate("1"), Is.False);
+            Assert.That(validationRule.Validate("abcdefghijklmno"), Is.False);
+            Assert.That(validationRule.Validate(null), Is.False);
+            Assert.That(validationRule.Validate(string.Empty), Is.False);
+            Assert.That(validationRule.Validate(new object()), Is.False);
+        }
+    }
 }

@@ -20,64 +20,60 @@
 
 namespace AxisCameras.Core.Contracts
 {
-	/// <summary>
-	/// Class used when defining requirements, i.e. simplifies validating arguments.
-	/// </summary>
-	public static class Requires
-	{
-		/// <summary>
-		/// Requires that specified action is true.
-		/// </summary>
-		public static void True(bool condition, string errorMessage = null)
-		{
-			if (!condition)
-			{
-				Throw(errorMessage);
-			}
-		}
+    /// <summary>
+    /// Class used when defining requirements, i.e. simplifies validating arguments.
+    /// </summary>
+    public static class Requires
+    {
+        /// <summary>
+        /// Requires that specified action is true.
+        /// </summary>
+        public static void True(bool condition, string errorMessage = null)
+        {
+            if (!condition)
+            {
+                Throw(errorMessage);
+            }
+        }
 
+        /// <summary>
+        /// Requires that specified value isn't null or empty.
+        /// </summary>
+        public static void NotNullOrEmpty(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                Throw(string.Empty);
+            }
+        }
 
-		/// <summary>
-		/// Requires that specified value isn't null or empty.
-		/// </summary>
-		public static void NotNullOrEmpty(string value)
-		{
-			if (string.IsNullOrEmpty(value))
-			{
-				Throw(string.Empty);
-			}
-		}
+        /// <summary>
+        /// Requires that specified value isn't null.
+        /// </summary>
+        public static void NotNull<T>(T value) where T : class
+        {
+            if (value == null)
+            {
+                Throw(string.Empty);
+            }
+        }
 
+        /// <summary>
+        /// Marks that requirements have failed.
+        /// </summary>
+        /// <param name="errorMessage">The error message.</param>
+        public static void Fail(string errorMessage = null)
+        {
+            Throw(errorMessage);
+        }
 
-		/// <summary>
-		/// Requires that specified value isn't null.
-		/// </summary>
-		public static void NotNull<T>(T value) where T : class
-		{
-			if (value == null)
-			{
-				Throw(string.Empty);
-			}
-		}
-
-
-		/// <summary>
-		/// Marks that requirements have failed.
-		/// </summary>
-		/// <param name="errorMessage">The error message.</param>
-		public static void Fail(string errorMessage = null)
-		{
-			Throw(errorMessage);
-		}
-
-
-		/// <summary>
-		/// Throws an <see cref="RequiresException"/> with specified error message.
-		/// </summary>
-		/// <param name="errorMessage">The error message.</param>
-		private static void Throw(string errorMessage)
-		{
-			throw new RequiresException(errorMessage);
-		}
-	}
+        /// <summary>
+        /// Throws an <see cref="RequiresException"/> with specified error message.
+        /// </summary>
+        /// <param name="errorMessage">The error message.</param>
+        private static void Throw(string errorMessage)
+        {
+            throw new RequiresException(errorMessage);
+        }
+    }
 }

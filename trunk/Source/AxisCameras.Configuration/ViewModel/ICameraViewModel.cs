@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System.Collections.Generic;
 using System.Windows.Input;
 using AxisCameras.Configuration.ViewModel.Data;
@@ -24,32 +25,29 @@ using AxisCameras.Mvvm;
 
 namespace AxisCameras.Configuration.ViewModel
 {
-	/// <summary>
-	/// Interface for CameraViewModel.
-	/// </summary>
-	public interface ICameraViewModel : IViewModelBase
-	{
-		/// <summary>
-		/// Gets the name of the camera.
-		/// </summary>
-		string Name { get; }
+    /// <summary>
+    /// Interface for CameraViewModel.
+    /// </summary>
+    public interface ICameraViewModel : IViewModelBase
+    {
+        /// <summary>
+        /// Gets the name of the camera.
+        /// </summary>
+        string Name { get; }
 
+        /// <summary>
+        /// Gets the snapshot.
+        /// </summary>
+        IEnumerable<byte> Snapshot { get; }
 
-		/// <summary>
-		/// Gets the snapshot.
-		/// </summary>
-		IEnumerable<byte> Snapshot { get; }
+        /// <summary>
+        /// Gets the browse command.
+        /// </summary>
+        ICommand BrowseCommand { get; }
 
-
-		/// <summary>
-		/// Gets the browse command.
-		/// </summary>
-		ICommand BrowseCommand { get; }
-
-
-		/// <summary>
-		/// Gets the camera.
-		/// </summary>
-		ConfigurableCamera Camera { get; }
-	}
+        /// <summary>
+        /// Gets the camera.
+        /// </summary>
+        ConfigurableCamera Camera { get; }
+    }
 }

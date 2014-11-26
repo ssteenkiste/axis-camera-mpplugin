@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,194 +30,193 @@ using AxisCameras.Data;
 
 namespace AxisCameras.Configuration.Service
 {
-	/// <summary>
-	/// Interface responsible for communicating with a camera.
-	/// </summary>
-	class CameraCommunicationService : ICameraCommunicationService
-	{
-		private readonly IParameterParser parameterParser;
+    /// <summary>
+    /// Interface responsible for communicating with a camera.
+    /// </summary>
+    internal class CameraCommunicationService : ICameraCommunicationService
+    {
+        private readonly IParameterParser parameterParser;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CameraCommunicationService"/> class.
+        /// </summary>
+        /// <param name="parameterParser">The parameter parser.</param>
+        public CameraCommunicationService(IParameterParser parameterParser)
+        {
+            Requires.NotNull(parameterParser);
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="CameraCommunicationService"/> class.
-		/// </summary>
-		/// <param name="parameterParser">The parameter parser.</param>
-		public CameraCommunicationService(IParameterParser parameterParser)
-		{
-			Requires.NotNull(parameterParser);
+            this.parameterParser = parameterParser;
+        }
 
-			this.parameterParser = parameterParser;
-		}
+        /// <summary>
+        /// Gets camera parameters from specified camera network endpoint asynchronously.
+        /// </summary>
+        /// <param name="networkEndpoint">The network endpoint.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A task getting camera parameters.</returns>
+        public Task<CameraParameters> GetCameraParametersAsync(
+            NetworkEndpoint networkEndpoint,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            Requires.NotNull(networkEndpoint);
 
+            Log.Debug(
+                "Getting camera parameters from {0}:{1}",
+                networkEndpoint.Address,
+                networkEndpoint.Port);
 
-		/// <summary>
-		/// Gets camera parameters from specified camera network endpoint asynchronously.
-		/// </summary>
-		/// <param name="networkEndpoint">The network endpoint.</param>
-		/// <param name="cancellationToken">The cancellation token.</param>
-		/// <returns>A task getting camera parameters.</returns>
-		public Task<CameraParameters> GetCameraParametersAsync(
-			NetworkEndpoint networkEndpoint,
-			CancellationToken cancellationToken = default(CancellationToken))
-		{
-			Requires.NotNull(networkEndpoint);
+            var parameterUri = new Uri(
+                Vapix.Cgi.Parameter.InvariantFormat(
+                    networkEndpoint.Address,
+                    networkEndpoint.Port,
+                    string.Join(
+                        ",",
+                        new[]
+                        {
+                            Vapix.Parameters.FriendlyName,
+                            Vapix.Parameters.FirmwareVersion,
+                            Vapix.Parameters.NbrOfImageSources,
+                            Vapix.Parameters.ImageFormats
+                        })));
 
-			Log.Debug(
-				"Getting camera parameters from {0}:{1}",
-				networkEndpoint.Address,
-				networkEndpoint.Port);
+            // Task getting parameters
+            Task<string> getParametersTask = WebClientTasks.DownloadStringAsync(
+                parameterUri,
+                new NetworkCredential(networkEndpoint.UserName, networkEndpoint.Password),
+                cancellationToken);
 
-			var parameterUri = new Uri(Vapix.Cgi.Parameter.InvariantFormat(
-				networkEndpoint.Address,
-				networkEndpoint.Port,
-				string.Join(",", new[]
-				{
-					Vapix.Parameters.FriendlyName,
-					Vapix.Parameters.FirmwareVersion,
-					Vapix.Parameters.NbrOfImageSources,
-					Vapix.Parameters.ImageFormats
-				})));
+            // Task parsing result
+            return getParametersTask.ContinueWith(
+                t =>
+                {
+                    if (t.IsFaulted)
+                    {
+                        Log.Error("Error when getting parameters.", t.Exception.InnerException);
+                        throw t.Exception.InnerException;
+                    }
 
-			// Task getting parameters
-			Task<string> getParametersTask = WebClientTasks.DownloadStringAsync(
-				parameterUri,
-				new NetworkCredential(networkEndpoint.UserName, networkEndpoint.Password),
-				cancellationToken);
+                    // Parse result
+                    IDictionary<string, string> parameters = parameterParser.Parse(t.Result);
 
-			// Task parsing result
-			return getParametersTask.ContinueWith(t =>
-				{
-					if (t.IsFaulted)
-					{
-						Log.Error("Error when getting parameters.", t.Exception.InnerException);
-						throw t.Exception.InnerException;
-					}
+                    string friendlyName = GetValue(Vapix.Parameters.FriendlyName, parameters);
+                    string firmwareVersion = GetValue(Vapix.Parameters.FirmwareVersion, parameters);
+                    int videoSourceCount = GetValueAsInteger(Vapix.Parameters.NbrOfImageSources, parameters);
+                    VideoCapabilities videoCapabilities = GetVideoCapabilities(parameters);
 
-					// Parse result
-					IDictionary<string, string> parameters = parameterParser.Parse(t.Result);
+                    Log.Debug(
+                        "Get camera parameters from camera completed. [{0}|{1}|{2}|{3}]",
+                        friendlyName,
+                        firmwareVersion,
+                        videoSourceCount,
+                        videoCapabilities);
 
-					string friendlyName = GetValue(Vapix.Parameters.FriendlyName, parameters);
-					string firmwareVersion = GetValue(Vapix.Parameters.FirmwareVersion, parameters);
-					int videoSourceCount = GetValueAsInteger(Vapix.Parameters.NbrOfImageSources, parameters);
-					VideoCapabilities videoCapabilities = GetVideoCapabilities(parameters);
+                    return new CameraParameters(
+                        friendlyName,
+                        firmwareVersion,
+                        videoSourceCount,
+                        videoCapabilities);
+                });
+        }
 
-					Log.Debug(
-						"Get camera parameters from camera completed. [{0}|{1}|{2}|{3}]",
-						friendlyName,
-						firmwareVersion,
-						videoSourceCount,
-						videoCapabilities);
+        /// <summary>
+        /// Gets camera snapshot from specified camera network endpoint asynchronously.
+        /// </summary>
+        /// <param name="networkEndpoint">The network endpoint.</param>
+        /// <param name="videoSource">The video source to get snapshot from.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A task getting a camera snapshot.</returns>
+        public Task<byte[]> GetSnapshotAsync(
+            NetworkEndpoint networkEndpoint,
+            int videoSource,
+            CancellationToken cancellationToken = default(CancellationToken))
+        {
+            Requires.NotNull(networkEndpoint);
+            Requires.True(videoSource >= 1, "Video source must be 1 or greater.");
 
-					return new CameraParameters(
-						friendlyName,
-						firmwareVersion,
-						videoSourceCount,
-						videoCapabilities);
-				});
-		}
+            Log.Debug(
+                "Getting camera parameters from {0}:{1}, video source {2}",
+                networkEndpoint.Address,
+                networkEndpoint.Port,
+                videoSource);
 
+            var snapshotUri = new Uri(
+                Vapix.Cgi.Snapshot.InvariantFormat(
+                    networkEndpoint.Address,
+                    networkEndpoint.Port,
+                    videoSource));
 
-		/// <summary>
-		/// Gets camera snapshot from specified camera network endpoint asynchronously.
-		/// </summary>
-		/// <param name="networkEndpoint">The network endpoint.</param>
-		/// <param name="videoSource">The video source to get snapshot from.</param>
-		/// <param name="cancellationToken">The cancellation token.</param>
-		/// <returns>A task getting a camera snapshot.</returns>
-		public Task<byte[]> GetSnapshotAsync(
-			NetworkEndpoint networkEndpoint,
-			int videoSource,
-			CancellationToken cancellationToken = default(CancellationToken))
-		{
-			Requires.NotNull(networkEndpoint);
-			Requires.True(videoSource >= 1, "Video source must be 1 or greater.");
+            return WebClientTasks.DownloadDataAsync(
+                snapshotUri,
+                new NetworkCredential(networkEndpoint.UserName, networkEndpoint.Password),
+                cancellationToken);
+        }
 
-			Log.Debug(
-				"Getting camera parameters from {0}:{1}, video source {2}",
-				networkEndpoint.Address,
-				networkEndpoint.Port,
-				videoSource);
+        /// <summary>
+        /// Gets a value with specified name from specified dictionary of parameter name/value pairs.
+        /// </summary>
+        /// <returns>The parameter value if existing; otherwise null.</returns>
+        private static string GetValue(string parameterName, IDictionary<string, string> parameters)
+        {
+            string parameterValue;
+            if (parameters.TryGetValue(parameterName, out parameterValue))
+            {
+                return parameterValue;
+            }
 
-			var snapshotUri = new Uri(Vapix.Cgi.Snapshot.InvariantFormat(
-				networkEndpoint.Address,
-				networkEndpoint.Port,
-				videoSource));
+            return null;
+        }
 
-			return WebClientTasks.DownloadDataAsync(
-				snapshotUri,
-				new NetworkCredential(networkEndpoint.UserName, networkEndpoint.Password),
-				cancellationToken);
-		}
+        /// <summary>
+        /// Gets a value with specified name from specified dictionary of parameter name/value pairs.
+        /// </summary>
+        /// <returns>The parameter value if existing; otherwise 0.</returns>
+        private static int GetValueAsInteger(
+            string parameterName,
+            IDictionary<string, string> parameters)
+        {
+            string parameterValueText = GetValue(parameterName, parameters);
+            if (parameterValueText != null)
+            {
+                int parameterValue;
+                if (int.TryParse(parameterValueText, out parameterValue))
+                {
+                    return parameterValue;
+                }
+            }
 
+            return 0;
+        }
 
-		/// <summary>
-		/// Gets a value with specified name from specified dictionary of parameter name/value pairs.
-		/// </summary>
-		/// <returns>The parameter value if existing; otherwise null.</returns>
-		private static string GetValue(string parameterName, IDictionary<string, string> parameters)
-		{
-			string parameterValue;
-			if (parameters.TryGetValue(parameterName, out parameterValue))
-			{
-				return parameterValue;
-			}
+        /// <summary>
+        /// Gets the video capabilities from specified dictionary of parameter name/value pairs.
+        /// </summary>
+        /// <returns>The supported video capabilities.</returns>
+        private static VideoCapabilities GetVideoCapabilities(IDictionary<string, string> parameters)
+        {
+            VideoCapabilities capabilities = VideoCapabilities.None;
 
-			return null;
-		}
+            string parameterValueText = GetValue(Vapix.Parameters.ImageFormats, parameters);
+            if (parameterValueText != null)
+            {
+                string[] videoFormats = parameterValueText.Split(',');
 
+                if (videoFormats.Contains(Vapix.Values.H264))
+                {
+                    capabilities |= VideoCapabilities.H264;
+                }
 
-		/// <summary>
-		/// Gets a value with specified name from specified dictionary of parameter name/value pairs.
-		/// </summary>
-		/// <returns>The parameter value if existing; otherwise 0.</returns>
-		private static int GetValueAsInteger(
-			string parameterName,
-			IDictionary<string, string> parameters)
-		{
-			string parameterValueText = GetValue(parameterName, parameters);
-			if (parameterValueText != null)
-			{
-				int parameterValue;
-				if (int.TryParse(parameterValueText, out parameterValue))
-				{
-					return parameterValue;
-				}
-			}
+                if (videoFormats.Contains(Vapix.Values.Mpeg4))
+                {
+                    capabilities |= VideoCapabilities.Mpeg4;
+                }
 
-			return 0;
-		}
+                if (videoFormats.Contains(Vapix.Values.Mjpeg))
+                {
+                    capabilities |= VideoCapabilities.Mjpeg;
+                }
+            }
 
-
-		/// <summary>
-		/// Gets the video capabilities from specified dictionary of parameter name/value pairs.
-		/// </summary>
-		/// <returns>The supported video capabilities.</returns>
-		private static VideoCapabilities GetVideoCapabilities(IDictionary<string, string> parameters)
-		{
-			VideoCapabilities capabilities = VideoCapabilities.None;
-
-			string parameterValueText = GetValue(Vapix.Parameters.ImageFormats, parameters);
-			if (parameterValueText != null)
-			{
-				string[] videoFormats = parameterValueText.Split(',');
-
-				if (videoFormats.Contains(Vapix.Values.H264))
-				{
-					capabilities |= VideoCapabilities.H264;
-				}
-
-				if (videoFormats.Contains(Vapix.Values.Mpeg4))
-				{
-					capabilities |= VideoCapabilities.Mpeg4;
-				}
-
-				if (videoFormats.Contains(Vapix.Values.Mjpeg))
-				{
-					capabilities |= VideoCapabilities.Mjpeg;
-				}
-			}
-
-			return capabilities;
-		}
-	}
+            return capabilities;
+        }
+    }
 }

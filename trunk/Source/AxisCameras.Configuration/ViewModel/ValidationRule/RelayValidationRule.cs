@@ -17,46 +17,44 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System;
 using AxisCameras.Core.Contracts;
 using AxisCameras.Mvvm.Validation;
 
 namespace AxisCameras.Configuration.ViewModel.ValidationRule
 {
-	/// <summary>
-	/// Validation rule that validates a specified relay function.
-	/// </summary>
-	class RelayValidationRule : IValidationRule
-	{
-		private readonly Func<bool> rule;
+    /// <summary>
+    /// Validation rule that validates a specified relay function.
+    /// </summary>
+    internal class RelayValidationRule : IValidationRule
+    {
+        private readonly Func<bool> rule;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RelayValidationRule"/> class.
+        /// </summary>
+        /// <param name="rule">The validation rule function.</param>
+        public RelayValidationRule(Func<bool> rule)
+        {
+            Requires.NotNull(rule);
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="RelayValidationRule"/> class.
-		/// </summary>
-		/// <param name="rule">The validation rule function.</param>
-		public RelayValidationRule(Func<bool> rule)
-		{
-			Requires.NotNull(rule);
+            this.rule = rule;
+        }
 
-			this.rule = rule;
-		}
+        /// <summary>
+        /// Validates rule specified in construct.
+        /// </summary>
+        /// <param name="value">Is not used.</param>
+        /// <returns>true if validation is successful; otherwise false.</returns>
+        public bool Validate(object value)
+        {
+            return rule();
+        }
 
-
-		/// <summary>
-		/// Validates rule specified in construct.
-		/// </summary>
-		/// <param name="value">Is not used.</param>
-		/// <returns>true if validation is successful; otherwise false.</returns>
-		public bool Validate(object value)
-		{
-			return rule();
-		}
-
-
-		/// <summary>
-		/// Gets or sets the error message.
-		/// </summary>
-		public string ErrorMessage { get; set; }
-	}
+        /// <summary>
+        /// Gets or sets the error message.
+        /// </summary>
+        public string ErrorMessage { get; set; }
+    }
 }

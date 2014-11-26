@@ -17,60 +17,54 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System;
 
 namespace AxisCameras.Data.Upgrades.Version1
 {
-	/// <summary>
-	/// Class describing the properties of a camera of version 1.
-	/// </summary>
-	public class Camera
-	{
-		/// <summary>
-		/// Gets or sets the Id.
-		/// </summary>
-		public Guid Id { get; set; }
+    /// <summary>
+    /// Class describing the properties of a camera of version 1.
+    /// </summary>
+    public class Camera
+    {
+        /// <summary>
+        /// Gets or sets the Id.
+        /// </summary>
+        public Guid Id { get; set; }
 
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        public string Name { get; set; }
 
-		/// <summary>
-		/// Gets or sets the name.
-		/// </summary>
-		public string Name { get; set; }
+        /// <summary>
+        /// Gets or sets the address.
+        /// </summary>
+        public string Address { get; set; }
 
+        /// <summary>
+        /// Gets or sets the HTTP port.
+        /// </summary>
+        public int Port { get; set; }
 
-		/// <summary>
-		/// Gets or sets the address.
-		/// </summary>
-		public string Address { get; set; }
+        /// <summary>
+        /// Gets or sets the user name.
+        /// </summary>
+        public string UserName { get; set; }
 
+        /// <summary>
+        /// Gets or sets the password.
+        /// </summary>
+        public string Password { get; set; }
 
-		/// <summary>
-		/// Gets or sets the HTTP port.
-		/// </summary>
-		public int Port { get; set; }
+        /// <summary>
+        /// Gets or sets the firmware version.
+        /// </summary>
+        public string FirmwareVersion { get; set; }
 
-
-		/// <summary>
-		/// Gets or sets the user name.
-		/// </summary>
-		public string UserName { get; set; }
-
-
-		/// <summary>
-		/// Gets or sets the password.
-		/// </summary>
-		public string Password { get; set; }
-
-
-		/// <summary>
-		/// Gets or sets the firmware version.
-		/// </summary>
-		public string FirmwareVersion { get; set; }
-
-
-		/// <summary>
-		/// Gets or sets the snapshot path.
-		/// </summary>
-		public string SnapshotPath { get; set; }
-	}
+        /// <summary>
+        /// Gets or sets the snapshot path.
+        /// </summary>
+        public string SnapshotPath { get; set; }
+    }
 }

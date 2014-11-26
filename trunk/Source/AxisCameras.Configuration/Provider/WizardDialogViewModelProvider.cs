@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using AxisCameras.Configuration.ViewModel;
 using AxisCameras.Configuration.ViewModel.Data;
 using AxisCameras.Core;
@@ -24,44 +25,42 @@ using AxisCameras.Core.Contracts;
 
 namespace AxisCameras.Configuration.Provider
 {
-	/// <summary>
-	/// Class describing a provider that provides a IWizardDialogViewModel.
-	/// </summary>
-	class WizardDialogViewModelProvider : IWizardDialogViewModelProvider
-	{
-		private readonly IWizardPageViewModelsProvider wizardPagesProvider;
+    /// <summary>
+    /// Class describing a provider that provides a IWizardDialogViewModel.
+    /// </summary>
+    internal class WizardDialogViewModelProvider : IWizardDialogViewModelProvider
+    {
+        private readonly IWizardPageViewModelsProvider wizardPagesProvider;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WizardDialogViewModelProvider"/> class.
+        /// </summary>
+        /// <param name="wizardPagesProvider">The wizard pages provider.</param>
+        public WizardDialogViewModelProvider(IWizardPageViewModelsProvider wizardPagesProvider)
+        {
+            Requires.NotNull(wizardPagesProvider);
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="WizardDialogViewModelProvider"/> class.
-		/// </summary>
-		/// <param name="wizardPagesProvider">The wizard pages provider.</param>
-		public WizardDialogViewModelProvider(IWizardPageViewModelsProvider wizardPagesProvider)
-		{
-			Requires.NotNull(wizardPagesProvider);
+            this.wizardPagesProvider = wizardPagesProvider;
+        }
 
-			this.wizardPagesProvider = wizardPagesProvider;
-		}
+        /// <summary>
+        /// Returns a IWizardDialogViewModel.
+        /// </summary>
+        /// <param name="title">The title of the dialog.</param>
+        /// <param name="camera">The camera configured by the wizard.</param>
+        public IWizardDialogViewModel Provide(
+            string title,
+            ConfigurableCamera camera)
+        {
+            Requires.NotNullOrEmpty(title);
+            Requires.NotNull(camera);
 
+            Log.Debug("Provide a IWizardDialogViewModel");
 
-		/// <summary>
-		/// Returns a IWizardDialogViewModel.
-		/// </summary>
-		/// <param name="title">The title of the dialog.</param>
-		/// <param name="camera">The camera configured by the wizard.</param>
-		public IWizardDialogViewModel Provide(
-			string title,
-			ConfigurableCamera camera)
-		{
-			Requires.NotNullOrEmpty(title);
-			Requires.NotNull(camera);
-
-			Log.Debug("Provide a IWizardDialogViewModel");
-
-			return new WizardDialogViewModel(
-				title,
-				camera,
-				wizardPagesProvider);
-		}
-	}
+            return new WizardDialogViewModel(
+                title,
+                camera,
+                wizardPagesProvider);
+        }
+    }
 }

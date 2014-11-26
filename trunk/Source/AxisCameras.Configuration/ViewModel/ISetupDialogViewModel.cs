@@ -17,19 +17,20 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System.Collections.ObjectModel;
 using AxisCameras.Mvvm;
 
 namespace AxisCameras.Configuration.ViewModel
 {
-	/// <summary>
-	/// Interface for SetupDialogViewModel.
-	/// </summary>
-	public interface ISetupDialogViewModel : IDialogViewModelBase
-	{
-		/// <summary>
-		/// Gets the cameras.
-		/// </summary>
-		ObservableCollection<ICameraViewModel> Cameras { get; }
-	}
+    /// <summary>
+    /// Interface for SetupDialogViewModel.
+    /// </summary>
+    public interface ISetupDialogViewModel : IDialogViewModelBase
+    {
+        /// <summary>
+        /// Gets the cameras.
+        /// </summary>
+        ObservableCollection<ICameraViewModel> Cameras { get; }
+    }
 }

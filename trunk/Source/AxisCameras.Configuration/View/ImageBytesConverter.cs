@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -28,41 +29,42 @@ using System.Windows.Media.Imaging;
 
 namespace AxisCameras.Configuration.View
 {
-	/// <summary>
-	/// Converts from a byte sequence to a bitmap image.
-	/// </summary>
-	[ValueConversion(typeof(IEnumerable<byte>), typeof(BitmapImage))]
-	class ImageBytesConverter : IValueConverter
-	{
-		/// <summary>
-		/// Converts a sequence of bytes to a bitmap image.
-		/// </summary>
-		/// <param name="value">The sequence of bytes.</param>
-		/// <returns>A bitmap image.</returns>
-		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-		{
-			IEnumerable<byte> imageBytes = value as IEnumerable<byte>;
+    /// <summary>
+    /// Converts from a byte sequence to a bitmap image.
+    /// </summary>
+    [ValueConversion(typeof(IEnumerable<byte>), typeof(BitmapImage))]
+    internal class ImageBytesConverter : IValueConverter
+    {
+        /// <summary>
+        /// Converts a sequence of bytes to a bitmap image.
+        /// </summary>
+        /// <param name="value">The sequence of bytes.</param>
+        /// <returns>A bitmap image.</returns>
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            IEnumerable<byte> imageBytes = value as IEnumerable<byte>;
 
-			if (imageBytes == null) return Binding.DoNothing;
-			if (targetType != typeof(ImageSource)) return Binding.DoNothing;
+            if (imageBytes == null)
+                return Binding.DoNothing;
+            if (targetType != typeof(ImageSource))
+                return Binding.DoNothing;
 
-			MemoryStream stream = new MemoryStream(imageBytes.ToArray());
+            MemoryStream stream = new MemoryStream(imageBytes.ToArray());
 
-			BitmapImage image = new BitmapImage();
-			image.BeginInit();
-			image.StreamSource = stream;
-			image.EndInit();
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            image.StreamSource = stream;
+            image.EndInit();
 
-			return image;
-		}
+            return image;
+        }
 
-
-		/// <summary>
-		/// Not supported.
-		/// </summary>
-		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-		{
-			throw new NotSupportedException();
-		}
-	}
+        /// <summary>
+        /// Not supported.
+        /// </summary>
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotSupportedException();
+        }
+    }
 }

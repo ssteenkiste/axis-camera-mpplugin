@@ -17,17 +17,18 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System.Diagnostics.CodeAnalysis;
 
 namespace AxisCameras.Core
 {
-	/// <summary>
-	/// Interface describing that inheriting classes or interfaces are to be treated as single
-	/// instances, i.e. Singleton.
-	/// </summary>
-	[SuppressMessage("Microsoft.Design", "CA1040:AvoidEmptyInterfaces",
-		Justification = "This interface is instructing Autofac to register a class as a Singleton")]
-	public interface ISingleInstance
-	{
-	}
+    /// <summary>
+    /// Interface describing that inheriting classes or interfaces are to be treated as single
+    /// instances, i.e. Singleton.
+    /// </summary>
+    [SuppressMessage("Microsoft.Design", "CA1040:AvoidEmptyInterfaces",
+        Justification = "This interface is instructing Autofac to register a class as a Singleton")]
+    public interface ISingleInstance
+    {
+    }
 }

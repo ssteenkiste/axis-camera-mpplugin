@@ -17,18 +17,19 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System;
 
 namespace AxisCameras.Configuration.Service
 {
-	/// <summary>
-	/// Interface providing information about the current process.
-	/// </summary>
-	public interface ICurrentProcessService
-	{
-		/// <summary>
-		/// Gets the window handle of the main window of the associated process.
-		/// </summary>
-		IntPtr MainWindowHandle { get; }
-	}
+    /// <summary>
+    /// Interface providing information about the current process.
+    /// </summary>
+    public interface ICurrentProcessService
+    {
+        /// <summary>
+        /// Gets the window handle of the main window of the associated process.
+        /// </summary>
+        IntPtr MainWindowHandle { get; }
+    }
 }

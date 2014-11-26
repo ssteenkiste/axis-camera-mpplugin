@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System;
 using System.Reflection;
 using System.Resources;
@@ -27,6 +28,7 @@ using MediaPortal.Common.Utils;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
+
 [assembly: AssemblyTitle("Axis Camera MP Plugin")]
 [assembly: AssemblyDescription("A Axis camera plugin for the MediaPortal media center application.")]
 [assembly: AssemblyCulture("")]
@@ -34,11 +36,12 @@ using MediaPortal.Common.Utils;
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
 // COM, set the ComVisible attribute to true on that type.
+
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("16cbf278-1df1-44ae-94f1-97b282718148")]
 
+[assembly: Guid("16cbf278-1df1-44ae-94f1-97b282718148")]
 [assembly: CLSCompliant(false)]
 [assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.MainAssembly)]
 
@@ -52,6 +55,7 @@ using MediaPortal.Common.Utils;
 //
 // The attribute can be applied to either the assemblies or classes. When applied to an assembly it
 // will affect all contained classes that do not have the same attribute applied upon them.
+
 [assembly: CompatibleVersion("1.1.6.27733", "1.1.6.27644")]
 
 // This attribute is used to specify which subsystems the plugin is using. This information
@@ -62,10 +66,12 @@ using MediaPortal.Common.Utils;
 // The attribute can be applied to either the assemblies or classes. When applied to an assembly it
 // will effectively be applied to all contained classes. If some of the contained classes are also
 // tagged with the same subsystem(s) the attribute applied to the classes takes precedence.
+
 [assembly: UsesSubsystem("MP.SkinEngine.Controls")]
 [assembly: UsesSubsystem("MP.SkinEngine.Dialogs")]
 [assembly: UsesSubsystem("MP.Players.Video")]
 [assembly: UsesSubsystem("MP.Config")]
 
 // Provide access to internal types and methods to test functions
+
 [assembly: InternalsVisibleTo("AxisCamerasTest")]

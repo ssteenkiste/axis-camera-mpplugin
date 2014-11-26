@@ -17,26 +17,27 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System.Diagnostics;
 using System.Threading;
 using AxisCameras.Core.Contracts;
 
 namespace AxisCameras.Configuration.Service
 {
-	/// <summary>
-	/// Class responsible for opening URLs in the default browser.
-	/// </summary>
-	class BrowserService : IBrowserService
-	{
-		/// <summary>
-		/// Opens specified URL in default browser.
-		/// </summary>
-		/// <param name="url">The URL to open.</param>
-		public void Open(string url)
-		{
-			Requires.NotNullOrEmpty(url);
+    /// <summary>
+    /// Class responsible for opening URLs in the default browser.
+    /// </summary>
+    internal class BrowserService : IBrowserService
+    {
+        /// <summary>
+        /// Opens specified URL in default browser.
+        /// </summary>
+        /// <param name="url">The URL to open.</param>
+        public void Open(string url)
+        {
+            Requires.NotNullOrEmpty(url);
 
-			ThreadPool.QueueUserWorkItem(state => Process.Start(new ProcessStartInfo(url)));
-		}
-	}
+            ThreadPool.QueueUserWorkItem(state => Process.Start(new ProcessStartInfo(url)));
+        }
+    }
 }

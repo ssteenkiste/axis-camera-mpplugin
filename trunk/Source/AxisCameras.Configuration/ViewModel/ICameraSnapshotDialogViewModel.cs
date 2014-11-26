@@ -17,19 +17,20 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System;
 using AxisCameras.Mvvm;
 
 namespace AxisCameras.Configuration.ViewModel
 {
-	/// <summary>
-	/// Interface responsible for reading parameters from a camera.
-	/// </summary>
-	interface ICameraSnapshotDialogViewModel : IDialogViewModelBase, IDisposable
-	{
-		/// <summary>
-		/// Gets the camera snapshot.
-		/// </summary>
-		byte[] Snapshot { get; }
-	}
+    /// <summary>
+    /// Interface responsible for reading parameters from a camera.
+    /// </summary>
+    internal interface ICameraSnapshotDialogViewModel : IDialogViewModelBase, IDisposable
+    {
+        /// <summary>
+        /// Gets the camera snapshot.
+        /// </summary>
+        byte[] Snapshot { get; }
+    }
 }

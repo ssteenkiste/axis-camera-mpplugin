@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System.Collections.ObjectModel;
 using System.Linq;
 using AxisCameras.Configuration.Properties;
@@ -25,92 +26,86 @@ using AxisCameras.Core.Contracts;
 
 namespace AxisCameras.Configuration.ViewModel
 {
-	/// <summary>
-	/// View model where video source is entered if specified device is a video server.
-	/// </summary>
-	class WizardPageTwoViewModel : WizardPageViewModel, IWizardPageTwoViewModel
-	{
-		/// <summary>
-		/// Gets the video sources.
-		/// </summary>
-		public ReadOnlyObservableCollection<int> VideoSources
-		{
-			get { return Property(() => VideoSources); }
-			private set { Property(() => VideoSources, value); }
-		}
+    /// <summary>
+    /// View model where video source is entered if specified device is a video server.
+    /// </summary>
+    internal class WizardPageTwoViewModel : WizardPageViewModel, IWizardPageTwoViewModel
+    {
+        /// <summary>
+        /// Gets the video sources.
+        /// </summary>
+        public ReadOnlyObservableCollection<int> VideoSources
+        {
+            get { return Property(() => VideoSources); }
+            private set { Property(() => VideoSources, value); }
+        }
 
+        /// <summary>
+        /// Gets the selected video source.
+        /// </summary>
+        public int SelectedVideoSource
+        {
+            get { return Property(() => SelectedVideoSource); }
+            set { Property(() => SelectedVideoSource, value); }
+        }
 
-		/// <summary>
-		/// Gets the selected video source.
-		/// </summary>
-		public int SelectedVideoSource
-		{
-			get { return Property(() => SelectedVideoSource); }
-			set { Property(() => SelectedVideoSource, value); }
-		}
+        /// <summary>
+        /// Gets the header of the wizard page.
+        /// </summary>
+        public override string Header
+        {
+            get { return Resources.WizardPageTwo_Header; }
+        }
 
+        /// <summary>
+        /// Gets the description of the wizard page.
+        /// </summary>
+        public override string Description
+        {
+            get { return Resources.WizardPageTwo_Description; }
+        }
 
-		/// <summary>
-		/// Gets the header of the wizard page.
-		/// </summary>
-		public override string Header
-		{
-			get { return Resources.WizardPageTwo_Header; }
-		}
+        /// <summary>
+        /// Loads page properties from specified camera.
+        /// </summary>
+        /// <param name="camera">The camera to load page properties from.</param>
+        public override void Load(ConfigurableCamera camera)
+        {
+            Requires.NotNull(camera);
 
+            VideoSources = new ReadOnlyObservableCollection<int>(
+                new ObservableCollection<int>(
+                    Enumerable.Range(1, camera.VideoSourceCount)));
 
-		/// <summary>
-		/// Gets the description of the wizard page.
-		/// </summary>
-		public override string Description
-		{
-			get { return Resources.WizardPageTwo_Description; }
-		}
+            SelectedVideoSource = camera.VideoSource;
+        }
 
+        /// <summary>
+        /// Saves page properties to specified camera.
+        /// </summary>
+        /// <param name="camera">The camera to save page properties to.</param>
+        public override void Save(ConfigurableCamera camera)
+        {
+            Requires.NotNull(camera);
 
-		/// <summary>
-		/// Loads page properties from specified camera.
-		/// </summary>
-		/// <param name="camera">The camera to load page properties from.</param>
-		public override void Load(ConfigurableCamera camera)
-		{
-			Requires.NotNull(camera);
+            if (camera.VideoSource != SelectedVideoSource)
+            {
+                camera.VideoSource = SelectedVideoSource;
 
-			VideoSources = new ReadOnlyObservableCollection<int>(
-				new ObservableCollection<int>(
-					Enumerable.Range(1, camera.VideoSourceCount)));
+                // Remove snapshot if another video source is selected
+                camera.Snapshot = null;
+            }
+        }
 
-			SelectedVideoSource = camera.VideoSource;
-		}
-
-
-		/// <summary>
-		/// Saves page properties to specified camera.
-		/// </summary>
-		/// <param name="camera">The camera to save page properties to.</param>
-		public override void Save(ConfigurableCamera camera)
-		{
-			Requires.NotNull(camera);
-
-			if (camera.VideoSource != SelectedVideoSource)
-			{
-				camera.VideoSource = SelectedVideoSource;
-
-				// Remove snapshot if another video source is selected
-				camera.Snapshot = null;
-			}
-		}
-
-
-		/// <summary>
-		/// Instruct the wizard whether wizard page should be skipped.
-		/// </summary>
-		/// <param name="camera">The camera displayed in the page.</param>
-		/// <returns>true to skip page; otherwise false.</returns>
-		public override bool ShouldSkipPage(ConfigurableCamera camera)
-		{
-			// Skip page if camera (device actually) only has one video source
-			return camera.VideoSourceCount <= 1;
-		}
-	}
+        /// <summary>
+        /// Instruct the wizard whether wizard page should be skipped.
+        /// </summary>
+        /// <param name="camera">The camera displayed in the page.</param>
+        /// <returns>true to skip page; otherwise false.</returns>
+        public override bool ShouldSkipPage(ConfigurableCamera camera)
+        {
+            // Skip page if camera (device actually) only has one video source
+            return camera.VideoSourceCount <= 1;
+        }
+    }
 }

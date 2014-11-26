@@ -17,21 +17,22 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System.Windows;
 
 namespace AxisCameras.Configuration.View
 {
-	/// <summary>
-	/// Wizard used when adding or editing a camera.
-	/// </summary>
-	public partial class WizardDialog : Window
-	{
-		/// <summary>
-		/// Initializes a new instance of the <see cref="Wizard"/> class.
-		/// </summary>
-		public WizardDialog()
-		{
-			InitializeComponent();
-		}
-	}
+    /// <summary>
+    /// Wizard used when adding or editing a camera.
+    /// </summary>
+    public partial class WizardDialog : Window
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Wizard"/> class.
+        /// </summary>
+        public WizardDialog()
+        {
+            InitializeComponent();
+        }
+    }
 }

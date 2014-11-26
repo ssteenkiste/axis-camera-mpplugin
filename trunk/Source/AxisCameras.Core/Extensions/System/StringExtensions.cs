@@ -17,44 +17,44 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System.Globalization;
 
 namespace System
 {
-	/// <summary>
-	/// Class containing extensions for the String class.
-	/// </summary>
-	public static class StringExtensions
-	{
-		/// <summary>
-		/// Replaces the format item in a specified String with the text equivalent of the value of a
-		/// corresponding invariant culture Object instance in a specified array.
-		/// </summary>
-		/// <param name="format">A composite format string.</param>
-		/// <param name="args">An Object array containing zero or more objects to format.</param>
-		/// <returns>
-		/// A copy of format in which the format items have been replaced by the String equivalent of
-		/// the corresponding instances of Object in args.
-		/// </returns>
-		public static string InvariantFormat(this string format, params object[] args)
-		{
-			return string.Format(CultureInfo.InvariantCulture, format, args);
-		}
+    /// <summary>
+    /// Class containing extensions for the String class.
+    /// </summary>
+    public static class StringExtensions
+    {
+        /// <summary>
+        /// Replaces the format item in a specified String with the text equivalent of the value of a
+        /// corresponding invariant culture Object instance in a specified array.
+        /// </summary>
+        /// <param name="format">A composite format string.</param>
+        /// <param name="args">An Object array containing zero or more objects to format.</param>
+        /// <returns>
+        /// A copy of format in which the format items have been replaced by the String equivalent of
+        /// the corresponding instances of Object in args.
+        /// </returns>
+        public static string InvariantFormat(this string format, params object[] args)
+        {
+            return string.Format(CultureInfo.InvariantCulture, format, args);
+        }
 
-
-		/// <summary>
-		/// Replaces the format item in a specified String with the text equivalent of the value of a
-		/// corresponding current culture Object instance in a specified array.
-		/// </summary>
-		/// <param name="format">A composite format string.</param>
-		/// <param name="args">An Object array containing zero or more objects to format.</param>
-		/// <returns>
-		/// A copy of format in which the format items have been replaced by the String equivalent of
-		/// the corresponding instances of Object in args.
-		/// </returns>
-		public static string CurrentFormat(this string format, params object[] args)
-		{
-			return string.Format(CultureInfo.CurrentCulture, format, args);
-		}
-	}
+        /// <summary>
+        /// Replaces the format item in a specified String with the text equivalent of the value of a
+        /// corresponding current culture Object instance in a specified array.
+        /// </summary>
+        /// <param name="format">A composite format string.</param>
+        /// <param name="args">An Object array containing zero or more objects to format.</param>
+        /// <returns>
+        /// A copy of format in which the format items have been replaced by the String equivalent of
+        /// the corresponding instances of Object in args.
+        /// </returns>
+        public static string CurrentFormat(this string format, params object[] args)
+        {
+            return string.Format(CultureInfo.CurrentCulture, format, args);
+        }
+    }
 }

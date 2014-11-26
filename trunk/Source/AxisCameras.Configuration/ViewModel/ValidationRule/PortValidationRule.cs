@@ -17,45 +17,45 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using AxisCameras.Configuration.Properties;
 using AxisCameras.Mvvm.Validation;
 
 namespace AxisCameras.Configuration.ViewModel.ValidationRule
 {
-	/// <summary>
-	/// Validation rule that validates a HTTP port.
-	/// </summary>
-	class PortValidationRule : IValidationRule
-	{
-		/// <summary>
-		/// Validates that specified value is a HTTP port.
-		/// </summary>
-		/// <param name="value">The value to validate.</param>
-		/// <returns>true if validation is successful; otherwise false.</returns>
-		public bool Validate(object value)
-		{
-			string portText = value as string;
-			if (string.IsNullOrEmpty(portText))
-			{
-				return false;
-			}
+    /// <summary>
+    /// Validation rule that validates a HTTP port.
+    /// </summary>
+    internal class PortValidationRule : IValidationRule
+    {
+        /// <summary>
+        /// Validates that specified value is a HTTP port.
+        /// </summary>
+        /// <param name="value">The value to validate.</param>
+        /// <returns>true if validation is successful; otherwise false.</returns>
+        public bool Validate(object value)
+        {
+            string portText = value as string;
+            if (string.IsNullOrEmpty(portText))
+            {
+                return false;
+            }
 
-			int port;
-			if (!int.TryParse(portText, out port))
-			{
-				return false;
-			}
+            int port;
+            if (!int.TryParse(portText, out port))
+            {
+                return false;
+            }
 
-			return port > 0 && port < 65536;
-		}
+            return port > 0 && port < 65536;
+        }
 
-
-		/// <summary>
-		/// Gets the error message.
-		/// </summary>
-		public string ErrorMessage
-		{
-			get { return Resources.Validation_Failed_Port; }
-		}
-	}
+        /// <summary>
+        /// Gets the error message.
+        /// </summary>
+        public string ErrorMessage
+        {
+            get { return Resources.Validation_Failed_Port; }
+        }
+    }
 }

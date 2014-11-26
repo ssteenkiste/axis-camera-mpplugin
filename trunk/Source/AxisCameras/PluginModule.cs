@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System.Reflection;
 using Autofac;
 using AxisCameras.Core;
@@ -24,53 +25,52 @@ using AutofacModule = Autofac.Module;
 
 namespace AxisCameras
 {
-	/// <summary>
-	/// Module responsible for configuring Autofac.
-	/// </summary>
-	class PluginModule : AutofacModule
-	{
-		/// <summary>
-		/// Override to add registrations to the container.
-		/// </summary>
-		/// <param name="builder">The builder through which components can be registered.</param>
-		/// <remarks>Note that the ContainerBuilder parameter is unique to this module.</remarks>
-		protected override void Load(ContainerBuilder builder)
-		{
-			base.Load(builder);
+    /// <summary>
+    /// Module responsible for configuring Autofac.
+    /// </summary>
+    internal class PluginModule : AutofacModule
+    {
+        /// <summary>
+        /// Override to add registrations to the container.
+        /// </summary>
+        /// <param name="builder">The builder through which components can be registered.</param>
+        /// <remarks>Note that the ContainerBuilder parameter is unique to this module.</remarks>
+        protected override void Load(ContainerBuilder builder)
+        {
+            base.Load(builder);
 
-			RegisterAssemblyTypes(
-				builder,
-				Assembly.GetExecutingAssembly(),
-				Assembly.Load("AxisCameras.Configuration"),
-				Assembly.Load("AxisCameras.Data"),
-				Assembly.Load("AxisCameras.Mvvm"));
-		}
+            RegisterAssemblyTypes(
+                builder,
+                Assembly.GetExecutingAssembly(),
+                Assembly.Load("AxisCameras.Configuration"),
+                Assembly.Load("AxisCameras.Data"),
+                Assembly.Load("AxisCameras.Mvvm"));
+        }
 
+        /// <summary>
+        /// Registers all the classes found in specified assemblies as the interfaces they implement.
+        /// </summary>
+        /// <param name="builder">The builder.</param>
+        /// <param name="assemblies">The assemblies.</param>
+        private static void RegisterAssemblyTypes(
+            ContainerBuilder builder,
+            params Assembly[] assemblies)
+        {
+            // Register all types 
+            builder
+                .RegisterAssemblyTypes(assemblies);
 
-		/// <summary>
-		/// Registers all the classes found in specified assemblies as the interfaces they implement.
-		/// </summary>
-		/// <param name="builder">The builder.</param>
-		/// <param name="assemblies">The assemblies.</param>
-		private static void RegisterAssemblyTypes(
-			ContainerBuilder builder,
-			params Assembly[] assemblies)
-		{
-			// Register all types 
-			builder
-				.RegisterAssemblyTypes(assemblies);
+            // Register all classes as the interfaces they implement
+            builder
+                .RegisterAssemblyTypes(assemblies)
+                .AsImplementedInterfaces();
 
-			// Register all classes as the interfaces they implement
-			builder
-				.RegisterAssemblyTypes(assemblies)
-				.AsImplementedInterfaces();
-
-			// Register all classes that implement ISingleInstance as SingleInstance.
-			builder
-				.RegisterAssemblyTypes(assemblies)
-				.AssignableTo<ISingleInstance>()
-				.AsImplementedInterfaces()
-				.SingleInstance();
-		}
-	}
+            // Register all classes that implement ISingleInstance as SingleInstance.
+            builder
+                .RegisterAssemblyTypes(assemblies)
+                .AssignableTo<ISingleInstance>()
+                .AsImplementedInterfaces()
+                .SingleInstance();
+        }
+    }
 }

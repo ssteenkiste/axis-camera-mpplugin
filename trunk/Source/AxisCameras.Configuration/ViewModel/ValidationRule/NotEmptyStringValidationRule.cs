@@ -17,30 +17,30 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using AxisCameras.Mvvm.Validation;
 
 namespace AxisCameras.Configuration.ViewModel.ValidationRule
 {
-	/// <summary>
-	/// Validation rule that validates that a string isn't null or empty.
-	/// </summary>
-	class NotEmptyStringValidationRule : IValidationRule
-	{
-		/// <summary>
-		/// Validates that specified value is a string, not being null or empty.
-		/// </summary>
-		/// <param name="value">The value to validate.</param>
-		/// <returns>true if validation is successful; otherwise false.</returns>
-		public bool Validate(object value)
-		{
-			string text = value as string;
-			return !string.IsNullOrEmpty(text);
-		}
+    /// <summary>
+    /// Validation rule that validates that a string isn't null or empty.
+    /// </summary>
+    internal class NotEmptyStringValidationRule : IValidationRule
+    {
+        /// <summary>
+        /// Validates that specified value is a string, not being null or empty.
+        /// </summary>
+        /// <param name="value">The value to validate.</param>
+        /// <returns>true if validation is successful; otherwise false.</returns>
+        public bool Validate(object value)
+        {
+            string text = value as string;
+            return !string.IsNullOrEmpty(text);
+        }
 
-
-		/// <summary>
-		/// Gets or sets the error message.
-		/// </summary>
-		public string ErrorMessage { get; set; }
-	}
+        /// <summary>
+        /// Gets or sets the error message.
+        /// </summary>
+        public string ErrorMessage { get; set; }
+    }
 }

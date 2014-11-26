@@ -17,24 +17,24 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System.Windows.Input;
 
 namespace AxisCameras.Mvvm
 {
-	/// <summary>
-	/// Interface for all ViewModels representing a modal dialog.
-	/// </summary>
-	public interface IDialogViewModelBase : IViewModelBase
-	{
-		/// <summary>
-		/// Gets or sets the command for setting the DialogResult of a dialog.
-		/// </summary>
-		ICommand DialogResultCommand { get; set; }
+    /// <summary>
+    /// Interface for all ViewModels representing a modal dialog.
+    /// </summary>
+    public interface IDialogViewModelBase : IViewModelBase
+    {
+        /// <summary>
+        /// Gets or sets the command for setting the DialogResult of a dialog.
+        /// </summary>
+        ICommand DialogResultCommand { get; set; }
 
-
-		/// <summary>
-		/// Gets the command responsible for OK click.
-		/// </summary>
-		ICommand OkCommand { get; }
-	}
+        /// <summary>
+        /// Gets the command responsible for OK click.
+        /// </summary>
+        ICommand OkCommand { get; }
+    }
 }

@@ -17,20 +17,21 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using AxisCameras.Configuration.ViewModel;
 using AxisCameras.Configuration.ViewModel.Data;
 
 namespace AxisCameras.Configuration.Provider
 {
-	/// <summary>
-	/// Interface describing a provider that provides a ICameraViewModel.
-	/// </summary>
-	public interface ICameraViewModelProvider
-	{
-		/// <summary>
-		/// Returns a ICameraViewModel created from a ConfigurableCamera.
-		/// </summary>
-		/// <param name="camera">The camera to turn into a ICameraViewModel.</param>
-		ICameraViewModel Provide(ConfigurableCamera camera);
-	}
+    /// <summary>
+    /// Interface describing a provider that provides a ICameraViewModel.
+    /// </summary>
+    public interface ICameraViewModelProvider
+    {
+        /// <summary>
+        /// Returns a ICameraViewModel created from a ConfigurableCamera.
+        /// </summary>
+        /// <param name="camera">The camera to turn into a ICameraViewModel.</param>
+        ICameraViewModel Provide(ConfigurableCamera camera);
+    }
 }

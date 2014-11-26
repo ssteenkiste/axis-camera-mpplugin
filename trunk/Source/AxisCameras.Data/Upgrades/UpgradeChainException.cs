@@ -17,63 +17,61 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System;
 using System.Runtime.Serialization;
 
 namespace AxisCameras.Data.Upgrades
 {
-	/// <summary>
-	/// Exception thrown when there are gaps in the sequence of upgrades. A valid chain should be
-	/// linked together by the FromVersion and ToVersion of IPartialUpgrade.
-	/// </summary>
-	[Serializable]
-	public class UpgradeChainException : Exception
-	{
-		/// <summary>
-		/// Initializes a new instance of the <see cref="UpgradeChainException"/> class.
-		/// </summary>
-		public UpgradeChainException()
-		{
-		}
+    /// <summary>
+    /// Exception thrown when there are gaps in the sequence of upgrades. A valid chain should be
+    /// linked together by the FromVersion and ToVersion of IPartialUpgrade.
+    /// </summary>
+    [Serializable]
+    public class UpgradeChainException : Exception
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpgradeChainException"/> class.
+        /// </summary>
+        public UpgradeChainException()
+        {
+        }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpgradeChainException"/> class.
+        /// </summary>
+        /// <param name="message">The message that describes the error.</param>
+        public UpgradeChainException(string message)
+            : base(message)
+        {
+        }
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="UpgradeChainException"/> class.
-		/// </summary>
-		/// <param name="message">The message that describes the error.</param>
-		public UpgradeChainException(string message)
-			: base(message)
-		{
-		}
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpgradeChainException"/> class.
+        /// </summary>
+        /// <param name="message">The error message that explains the reason for the exception.</param>
+        /// <param name="innerException">
+        /// The exception that is the cause of the current exception, or a null reference if no inner
+        /// exception is specified.
+        /// </param>
+        public UpgradeChainException(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
 
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="UpgradeChainException"/> class.
-		/// </summary>
-		/// <param name="message">The error message that explains the reason for the exception.</param>
-		/// <param name="innerException">
-		/// The exception that is the cause of the current exception, or a null reference if no inner
-		/// exception is specified.
-		/// </param>
-		public UpgradeChainException(string message, Exception innerException)
-			: base(message, innerException)
-		{
-		}
-
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="UpgradeChainException"/> class.
-		/// </summary>
-		/// <param name="info">
-		/// The SerializationInfo that holds the serialized object data about the exception being
-		/// thrown.
-		/// </param>
-		/// <param name="context">
-		/// The StreamingContext that contains contextual information about the source or destination.
-		/// </param>
-		protected UpgradeChainException(SerializationInfo info, StreamingContext context)
-			: base(info, context)
-		{
-		}
-	}
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpgradeChainException"/> class.
+        /// </summary>
+        /// <param name="info">
+        /// The SerializationInfo that holds the serialized object data about the exception being
+        /// thrown.
+        /// </param>
+        /// <param name="context">
+        /// The StreamingContext that contains contextual information about the source or destination.
+        /// </param>
+        protected UpgradeChainException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        {
+        }
+    }
 }

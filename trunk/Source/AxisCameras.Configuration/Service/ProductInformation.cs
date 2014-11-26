@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -24,32 +25,31 @@ using System.Reflection;
 
 namespace AxisCameras.Configuration.Service
 {
-	/// <summary>
-	/// Class describing information about the product.
-	/// </summary>
-	public class ProductInformation : IProductInformation
-	{
-		private readonly Lazy<FileVersionInfo> fileVersionInfo;
+    /// <summary>
+    /// Class describing information about the product.
+    /// </summary>
+    public class ProductInformation : IProductInformation
+    {
+        private readonly Lazy<FileVersionInfo> fileVersionInfo;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProductInformation"/> class.
+        /// </summary>
+        public ProductInformation()
+        {
+            fileVersionInfo = new Lazy<FileVersionInfo>(
+                () =>
+                    FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location));
+        }
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="ProductInformation"/> class.
-		/// </summary>
-		public ProductInformation()
-		{
-			fileVersionInfo = new Lazy<FileVersionInfo>(() =>
-				FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location));
-		}
-
-
-		/// <summary>
-		/// Gets the product version.
-		/// </summary>
-		[SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands",
-			Justification = "I am not sure on how to fix this actually.")]
-		public string Version
-		{
-			get { return fileVersionInfo.Value.ProductVersion; }
-		}
-	}
+        /// <summary>
+        /// Gets the product version.
+        /// </summary>
+        [SuppressMessage("Microsoft.Security", "CA2122:DoNotIndirectlyExposeMethodsWithLinkDemands",
+            Justification = "I am not sure on how to fix this actually.")]
+        public string Version
+        {
+            get { return fileVersionInfo.Value.ProductVersion; }
+        }
+    }
 }

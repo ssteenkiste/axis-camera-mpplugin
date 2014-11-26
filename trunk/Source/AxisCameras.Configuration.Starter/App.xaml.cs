@@ -17,18 +17,19 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System.Windows;
 
 namespace AxisCameras.Configuration.Starter
 {
-	public partial class App : Application
-	{
-		protected override void OnStartup(StartupEventArgs e)
-		{
-			base.OnStartup(e);
+    public partial class App : Application
+    {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
 
-			SetupForm setupForm = new SetupForm();
-			setupForm.ShowPlugin();
-		}
-	}
+            SetupForm setupForm = new SetupForm();
+            setupForm.ShowPlugin();
+        }
+    }
 }
