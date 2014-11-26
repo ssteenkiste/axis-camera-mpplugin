@@ -106,7 +106,9 @@ namespace AxisCameras.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to To add cameras, exit MediaPortal and\nconfigure the plugin in the MediaPortal\nConfiguration application..
+        ///   Looks up a localized string similar to To add cameras, exit MediaPortal and
+        ///configure the plugin in the MediaPortal
+        ///Configuration application..
         /// </summary>
         internal static string SetupForm_AddCameras {
             get {
