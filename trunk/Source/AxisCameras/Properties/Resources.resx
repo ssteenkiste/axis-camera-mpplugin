@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Module_Name" xml:space="preserve">
     <value>Axis cameras</value>
@@ -133,7 +133,9 @@
     <value>Axis Cameras</value>
   </data>
   <data name="SetupForm_AddCameras" xml:space="preserve">
-    <value>To add cameras, exit MediaPortal and\nconfigure the plugin in the MediaPortal\nConfiguration application.</value>
+    <value>To add cameras, exit MediaPortal and
+configure the plugin in the MediaPortal
+Configuration application.</value>
   </data>
   <data name="SetupForm_AddCameras_Title" xml:space="preserve">
     <value>No Cameras</value>

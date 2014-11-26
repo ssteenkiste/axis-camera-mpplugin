@@ -38,6 +38,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FxCop", "FxCop", "{4A6FC938-CCC6-4D63-8577-3AB84EF239AB}"
 	ProjectSection(SolutionItems) = preProject
 		AxisCameras.ruleset = AxisCameras.ruleset
+		CustomDictionary.xml = CustomDictionary.xml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{D865B6CC-748A-4039-936B-5E00BD795C89}"
