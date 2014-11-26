@@ -17,20 +17,21 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System;
 using System.Collections.Generic;
 using AxisCameras.Core;
 
 namespace AxisCameras.Data
 {
-	/// <summary>
-	/// Interface responsible for reading and saving settings.
-	/// </summary>
-	public interface IPluginSettings : ISingleInstance, IDisposable
-	{
-		/// <summary>
-		/// Gets or sets the cameras.
-		/// </summary>
-		IEnumerable<Camera> Cameras { get; set; }
-	}
+    /// <summary>
+    /// Interface responsible for reading and saving settings.
+    /// </summary>
+    public interface IPluginSettings : ISingleInstance, IDisposable
+    {
+        /// <summary>
+        /// Gets or sets the cameras.
+        /// </summary>
+        IEnumerable<Camera> Cameras { get; set; }
+    }
 }

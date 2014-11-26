@@ -17,34 +17,33 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using AxisCameras.Configuration.ViewModel.ValidationRule;
 using NUnit.Framework;
 
-
 namespace AxisCameras.ConfigurationTest.ViewModel.ValidationRule
 {
-	[TestFixture]
-	public class RelayValidationRuleTest
-	{
-		[Test]
-		public void ValidationSuccessful()
-		{
-			RelayValidationRule validationRule = new RelayValidationRule(() => true);
+    [TestFixture]
+    public class RelayValidationRuleTest
+    {
+        [Test]
+        public void ValidationSuccessful()
+        {
+            RelayValidationRule validationRule = new RelayValidationRule(() => true);
 
-			Assert.That(validationRule.Validate(null), Is.True);
-			Assert.That(validationRule.Validate("some text"), Is.True);
-			Assert.That(validationRule.Validate(new object()), Is.True);
-		}
+            Assert.That(validationRule.Validate(null), Is.True);
+            Assert.That(validationRule.Validate("some text"), Is.True);
+            Assert.That(validationRule.Validate(new object()), Is.True);
+        }
 
+        [Test]
+        public void ValidationFailed()
+        {
+            RelayValidationRule validationRule = new RelayValidationRule(() => false);
 
-		[Test]
-		public void ValidationFailed()
-		{
-			RelayValidationRule validationRule = new RelayValidationRule(() => false);
-
-			Assert.That(validationRule.Validate(null), Is.False);
-			Assert.That(validationRule.Validate("some text"), Is.False);
-			Assert.That(validationRule.Validate(new object()), Is.False);
-		}
-	}
+            Assert.That(validationRule.Validate(null), Is.False);
+            Assert.That(validationRule.Validate("some text"), Is.False);
+            Assert.That(validationRule.Validate(new object()), Is.False);
+        }
+    }
 }

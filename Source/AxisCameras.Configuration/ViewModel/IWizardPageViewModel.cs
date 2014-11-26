@@ -17,47 +17,44 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using AxisCameras.Configuration.ViewModel.Data;
 using AxisCameras.Mvvm;
 
 namespace AxisCameras.Configuration.ViewModel
 {
-	/// <summary>
-	/// Interface for WizardPageViewModel.
-	/// </summary>
-	interface IWizardPageViewModel : IViewModelBase
-	{
-		/// <summary>
-		/// Gets the header of the wizard page.
-		/// </summary>
-		string Header { get; }
+    /// <summary>
+    /// Interface for WizardPageViewModel.
+    /// </summary>
+    internal interface IWizardPageViewModel : IViewModelBase
+    {
+        /// <summary>
+        /// Gets the header of the wizard page.
+        /// </summary>
+        string Header { get; }
 
+        /// <summary>
+        /// Gets the description of the wizard page.
+        /// </summary>
+        string Description { get; }
 
-		/// <summary>
-		/// Gets the description of the wizard page.
-		/// </summary>
-		string Description { get; }
+        /// <summary>
+        /// Loads page properties from specified camera.
+        /// </summary>
+        /// <param name="camera">The camera to load page properties from.</param>
+        void Load(ConfigurableCamera camera);
 
+        /// <summary>
+        /// Saves page properties to specified camera.
+        /// </summary>
+        /// <param name="camera">The camera to save page properties to.</param>
+        void Save(ConfigurableCamera camera);
 
-		/// <summary>
-		/// Loads page properties from specified camera.
-		/// </summary>
-		/// <param name="camera">The camera to load page properties from.</param>
-		void Load(ConfigurableCamera camera);
-
-
-		/// <summary>
-		/// Saves page properties to specified camera.
-		/// </summary>
-		/// <param name="camera">The camera to save page properties to.</param>
-		void Save(ConfigurableCamera camera);
-
-
-		/// <summary>
-		/// Instruct the wizard whether wizard page should be skipped.
-		/// </summary>
-		/// <param name="camera">The camera displayed in the page.</param>
-		/// <returns>true to skip page; otherwise false.</returns>
-		bool ShouldSkipPage(ConfigurableCamera camera);
-	}
+        /// <summary>
+        /// Instruct the wizard whether wizard page should be skipped.
+        /// </summary>
+        /// <param name="camera">The camera displayed in the page.</param>
+        /// <returns>true to skip page; otherwise false.</returns>
+        bool ShouldSkipPage(ConfigurableCamera camera);
+    }
 }

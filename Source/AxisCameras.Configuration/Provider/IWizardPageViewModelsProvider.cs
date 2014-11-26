@@ -17,19 +17,20 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System.Collections.Generic;
 using AxisCameras.Configuration.ViewModel;
 
 namespace AxisCameras.Configuration.Provider
 {
-	/// <summary>
-	/// Interface describing a provider that provides a sequence of WizardPageViewModels.
-	/// </summary>
-	interface IWizardPageViewModelsProvider
-	{
-		/// <summary>
-		/// Returns a collection of WizardPageViewModels.
-		/// </summary>
-		IEnumerable<IWizardPageViewModel> Provide();
-	}
+    /// <summary>
+    /// Interface describing a provider that provides a sequence of WizardPageViewModels.
+    /// </summary>
+    internal interface IWizardPageViewModelsProvider
+    {
+        /// <summary>
+        /// Returns a collection of WizardPageViewModels.
+        /// </summary>
+        IEnumerable<IWizardPageViewModel> Provide();
+    }
 }

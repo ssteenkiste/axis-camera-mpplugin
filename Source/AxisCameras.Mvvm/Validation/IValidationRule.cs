@@ -20,22 +20,21 @@
 
 namespace AxisCameras.Mvvm.Validation
 {
-	/// <summary>
-	/// Interface describing a validation rule.
-	/// </summary>
-	public interface IValidationRule
-	{
-		/// <summary>
-		/// Validates a value.
-		/// </summary>
-		/// <param name="value">The value to validate.</param>
-		/// <returns>true if validation is successful; otherwise false.</returns>
-		bool Validate(object value);
+    /// <summary>
+    /// Interface describing a validation rule.
+    /// </summary>
+    public interface IValidationRule
+    {
+        /// <summary>
+        /// Validates a value.
+        /// </summary>
+        /// <param name="value">The value to validate.</param>
+        /// <returns>true if validation is successful; otherwise false.</returns>
+        bool Validate(object value);
 
-
-		/// <summary>
-		/// Gets the error message.
-		/// </summary>
-		string ErrorMessage { get; }
-	}
+        /// <summary>
+        /// Gets the error message.
+        /// </summary>
+        string ErrorMessage { get; }
+    }
 }

@@ -17,32 +17,32 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using AxisCameras.Configuration.ViewModel.ValidationRule;
 using NUnit.Framework;
 
 namespace AxisCameras.ConfigurationTest.ViewModel.ValidationRule
 {
-	[TestFixture]
-	public class NotEmptyStringValidationRuleTest
-	{
-		[Test]
-		public void ValidationSuccessful()
-		{
-			NotEmptyStringValidationRule validationRule = new NotEmptyStringValidationRule();
+    [TestFixture]
+    public class NotEmptyStringValidationRuleTest
+    {
+        [Test]
+        public void ValidationSuccessful()
+        {
+            NotEmptyStringValidationRule validationRule = new NotEmptyStringValidationRule();
 
-			Assert.That(validationRule.Validate("some text"), Is.True);
-			Assert.That(validationRule.Validate("123"), Is.True);
-		}
+            Assert.That(validationRule.Validate("some text"), Is.True);
+            Assert.That(validationRule.Validate("123"), Is.True);
+        }
 
+        [Test]
+        public void ValidationFailed()
+        {
+            NotEmptyStringValidationRule validationRule = new NotEmptyStringValidationRule();
 
-		[Test]
-		public void ValidationFailed()
-		{
-			NotEmptyStringValidationRule validationRule = new NotEmptyStringValidationRule();
-
-			Assert.That(validationRule.Validate(null), Is.False);
-			Assert.That(validationRule.Validate(string.Empty), Is.False);
-			Assert.That(validationRule.Validate(new object()), Is.False);
-		}
-	}
+            Assert.That(validationRule.Validate(null), Is.False);
+            Assert.That(validationRule.Validate(string.Empty), Is.False);
+            Assert.That(validationRule.Validate(new object()), Is.False);
+        }
+    }
 }

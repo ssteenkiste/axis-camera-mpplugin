@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System;
 using AxisCameras.Configuration.Service;
 using AxisCameras.Configuration.ViewModel;
@@ -25,42 +26,40 @@ using AxisCameras.Core.Contracts;
 
 namespace AxisCameras.Configuration.Provider
 {
-	/// <summary>
-	/// Class describing a provider that provides a ICameraParametersDialogViewModel.
-	/// </summary>
-	class CameraParametersDialogViewModelProvider : ICameraParametersDialogViewModelProvider
-	{
-		private readonly Func<ICameraCommunicationService> cameraCommunicationService;
+    /// <summary>
+    /// Class describing a provider that provides a ICameraParametersDialogViewModel.
+    /// </summary>
+    internal class CameraParametersDialogViewModelProvider : ICameraParametersDialogViewModelProvider
+    {
+        private readonly Func<ICameraCommunicationService> cameraCommunicationService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CameraParametersDialogViewModelProvider"/> class. 
+        /// </summary>
+        /// <param name="cameraCommunicationService">
+        /// The camera communication service.
+        /// </param>
+        public CameraParametersDialogViewModelProvider(
+            Func<ICameraCommunicationService> cameraCommunicationService)
+        {
+            Requires.NotNull(cameraCommunicationService);
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="CameraParametersDialogViewModelProvider"/> class. 
-		/// </summary>
-		/// <param name="cameraCommunicationService">
-		/// The camera communication service.
-		/// </param>
-		public CameraParametersDialogViewModelProvider(
-			Func<ICameraCommunicationService> cameraCommunicationService)
-		{
-			Requires.NotNull(cameraCommunicationService);
+            this.cameraCommunicationService = cameraCommunicationService;
+        }
 
-			this.cameraCommunicationService = cameraCommunicationService;
-		}
+        /// <summary>
+        /// Returns a ICameraParametersDialogViewModel from specified network endpoint.
+        /// </summary>
+        /// <param name="cameraEndpoint">The camera network endpoint.</param>
+        public ICameraParametersDialogViewModel Provide(NetworkEndpoint cameraEndpoint)
+        {
+            Requires.NotNull(cameraEndpoint);
 
+            Log.Debug("Provide a ICameraParametersDialogViewModel");
 
-		/// <summary>
-		/// Returns a ICameraParametersDialogViewModel from specified network endpoint.
-		/// </summary>
-		/// <param name="cameraEndpoint">The camera network endpoint.</param>
-		public ICameraParametersDialogViewModel Provide(NetworkEndpoint cameraEndpoint)
-		{
-			Requires.NotNull(cameraEndpoint);
-
-			Log.Debug("Provide a ICameraParametersDialogViewModel");
-
-			return new CameraParametersDialogViewModel(
-				cameraCommunicationService(),
-				cameraEndpoint);
-		}
-	}
+            return new CameraParametersDialogViewModel(
+                cameraCommunicationService(),
+                cameraEndpoint);
+        }
+    }
 }

@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System.Collections.Generic;
 using AxisCameras.Configuration.Service;
 using AxisCameras.Configuration.ViewModel;
@@ -26,64 +27,62 @@ using AxisCameras.Mvvm.Services;
 
 namespace AxisCameras.Configuration.Provider
 {
-	/// <summary>
-	/// Class describing a provider that provides a ISetupDialogViewModel.
-	/// </summary>
-	class SetupDialogViewModelProvider : ISetupDialogViewModelProvider
-	{
-		private readonly IWindowService windowService;
-		private readonly IIOService ioService;
-		private readonly IProductInformation productInformation;
-		private readonly ICameraViewModelProvider cameraProvider;
-		private readonly WizardDialogViewModelProvider wizardProvider;
+    /// <summary>
+    /// Class describing a provider that provides a ISetupDialogViewModel.
+    /// </summary>
+    internal class SetupDialogViewModelProvider : ISetupDialogViewModelProvider
+    {
+        private readonly IWindowService windowService;
+        private readonly IIOService ioService;
+        private readonly IProductInformation productInformation;
+        private readonly ICameraViewModelProvider cameraProvider;
+        private readonly WizardDialogViewModelProvider wizardProvider;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SetupDialogViewModelProvider"/> class.
+        /// </summary>
+        /// <param name="windowService">The window service.</param>
+        /// <param name="ioService">The I/O service.</param>
+        /// <param name="productInformation">The product information.</param>
+        /// <param name="cameraProvider">The camera name view model provider.</param>
+        /// <param name="wizardProvider">The wizard view model provider.</param>
+        public SetupDialogViewModelProvider(
+            IWindowService windowService,
+            IIOService ioService,
+            IProductInformation productInformation,
+            ICameraViewModelProvider cameraProvider,
+            WizardDialogViewModelProvider wizardProvider)
+        {
+            Requires.NotNull(windowService);
+            Requires.NotNull(ioService);
+            Requires.NotNull(productInformation);
+            Requires.NotNull(cameraProvider);
+            Requires.NotNull(wizardProvider);
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="SetupDialogViewModelProvider"/> class.
-		/// </summary>
-		/// <param name="windowService">The window service.</param>
-		/// <param name="ioService">The I/O service.</param>
-		/// <param name="productInformation">The product information.</param>
-		/// <param name="cameraProvider">The camera name view model provider.</param>
-		/// <param name="wizardProvider">The wizard view model provider.</param>
-		public SetupDialogViewModelProvider(
-			IWindowService windowService,
-			IIOService ioService,
-			IProductInformation productInformation,
-			ICameraViewModelProvider cameraProvider,
-			WizardDialogViewModelProvider wizardProvider)
-		{
-			Requires.NotNull(windowService);
-			Requires.NotNull(ioService);
-			Requires.NotNull(productInformation);
-			Requires.NotNull(cameraProvider);
-			Requires.NotNull(wizardProvider);
+            this.windowService = windowService;
+            this.ioService = ioService;
+            this.productInformation = productInformation;
+            this.cameraProvider = cameraProvider;
+            this.wizardProvider = wizardProvider;
+        }
 
-			this.windowService = windowService;
-			this.ioService = ioService;
-			this.productInformation = productInformation;
-			this.cameraProvider = cameraProvider;
-			this.wizardProvider = wizardProvider;
-		}
+        /// <summary>
+        /// Returns a ISetupDialogViewModel.
+        /// </summary>
+        /// <param name="cameras">The cameras.</param>
+        public ISetupDialogViewModel Provide(IEnumerable<ICameraViewModel> cameras)
+        {
+            Requires.NotNull(cameras);
 
+            Log.Debug("Provide a ISetupDialogViewModel");
 
-		/// <summary>
-		/// Returns a ISetupDialogViewModel.
-		/// </summary>
-		/// <param name="cameras">The cameras.</param>
-		public ISetupDialogViewModel Provide(IEnumerable<ICameraViewModel> cameras)
-		{
-			Requires.NotNull(cameras);
-
-			Log.Debug("Provide a ISetupDialogViewModel");
-
-			return new SetupDialogViewModel(
-				windowService,
-				ioService,
-				productInformation,
-				cameraProvider,
-				wizardProvider,
-				cameras);
-		}
-	}
+            return new SetupDialogViewModel(
+                windowService,
+                ioService,
+                productInformation,
+                cameraProvider,
+                wizardProvider,
+                cameras);
+        }
+    }
 }

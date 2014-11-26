@@ -20,14 +20,14 @@
 
 namespace AxisCameras.Configuration
 {
-	/// <summary>
-	/// Interface acting as entry point for configuring the plugin.
-	/// </summary>
-	public interface IConfigurationStarter
-	{
-		/// <summary>
-		/// Starts to configure the plugin.
-		/// </summary>
-		void Start();
-	}
+    /// <summary>
+    /// Interface acting as entry point for configuring the plugin.
+    /// </summary>
+    public interface IConfigurationStarter
+    {
+        /// <summary>
+        /// Starts to configure the plugin.
+        /// </summary>
+        void Start();
+    }
 }

@@ -20,27 +20,25 @@
 
 namespace AxisCameras.Data.Upgrades
 {
-	/// <summary>
-	/// Interface describing a partial upgrade between two consecutive versions.
-	/// </summary>
-	public interface IPartialUpgrade
-	{
-		/// <summary>
-		/// Gets the version before the upgrade.
-		/// </summary>
-		int FromVersion { get; }
+    /// <summary>
+    /// Interface describing a partial upgrade between two consecutive versions.
+    /// </summary>
+    public interface IPartialUpgrade
+    {
+        /// <summary>
+        /// Gets the version before the upgrade.
+        /// </summary>
+        int FromVersion { get; }
 
+        /// <summary>
+        /// Gets the version after the upgrade.
+        /// </summary>
+        int ToVersion { get; }
 
-		/// <summary>
-		/// Gets the version after the upgrade.
-		/// </summary>
-		int ToVersion { get; }
-
-
-		/// <summary>
-		/// Upgrades the data.
-		/// </summary>
-		/// <returns>true if upgrade was successful; otherwise false.</returns>
-		bool Upgrade();
-	}
+        /// <summary>
+        /// Upgrades the data.
+        /// </summary>
+        /// <returns>true if upgrade was successful; otherwise false.</returns>
+        bool Upgrade();
+    }
 }

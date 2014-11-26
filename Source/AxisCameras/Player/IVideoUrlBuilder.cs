@@ -23,33 +23,33 @@ using AxisCameras.Data;
 
 namespace AxisCameras.Player
 {
-	/// <summary>
-	/// Interface capable of creating video URLs.
-	/// </summary>
-	public interface IVideoUrlBuilder
-	{
-		/// <summary>
-		/// Builds a live video URL.
-		/// </summary>
-		/// <param name="address">The network address.</param>
-		/// <param name="port">The network port.</param>
-		/// <param name="userName">The user name.</param>
-		/// <param name="password">The password.</param>
-		/// <param name="videoCapabilities">The video capabilities.</param>
-		/// <param name="videoSource">
-		/// The video source of the camera. This property should always be 1 on cameras, but can be
-		/// other than 1 on video servers with multiple camera inputs.
-		/// </param>
-		/// <returns>The live video URL used when getting live video from the camera.</returns>
-		[SuppressMessage("Microsoft.Design", "CA1055:UriReturnValuesShouldNotBeStrings",
-			Justification = "I am building a URL, but since g_Player doesn't accept URLs but instead " +
-			"wants a string, I don't see the point in temporary converting it to a URL.")]
-		string BuildLiveVideoUrl(
-			string address,
-			int port,
-			string userName,
-			string password,
-			VideoCapabilities videoCapabilities,
-			int videoSource);
-	}
+    /// <summary>
+    /// Interface capable of creating video URLs.
+    /// </summary>
+    public interface IVideoUrlBuilder
+    {
+        /// <summary>
+        /// Builds a live video URL.
+        /// </summary>
+        /// <param name="address">The network address.</param>
+        /// <param name="port">The network port.</param>
+        /// <param name="userName">The user name.</param>
+        /// <param name="password">The password.</param>
+        /// <param name="videoCapabilities">The video capabilities.</param>
+        /// <param name="videoSource">
+        /// The video source of the camera. This property should always be 1 on cameras, but can be
+        /// other than 1 on video servers with multiple camera inputs.
+        /// </param>
+        /// <returns>The live video URL used when getting live video from the camera.</returns>
+        [SuppressMessage("Microsoft.Design", "CA1055:UriReturnValuesShouldNotBeStrings",
+            Justification = "I am building a URL, but since g_Player doesn't accept URLs but instead " +
+                            "wants a string, I don't see the point in temporary converting it to a URL.")]
+        string BuildLiveVideoUrl(
+            string address,
+            int port,
+            string userName,
+            string password,
+            VideoCapabilities videoCapabilities,
+            int videoSource);
+    }
 }

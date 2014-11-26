@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,177 +28,171 @@ using AxisCameras.Data.Upgrades;
 
 namespace AxisCameras.Data
 {
-	/// <summary>
-	/// Class responsible for upgrading the data between version of the plugin.
-	/// </summary>
-	class UpgradeData : IUpgradeData
-	{
-		private const string BackupFileNameFormat = "{0}.bak";
+    /// <summary>
+    /// Class responsible for upgrading the data between version of the plugin.
+    /// </summary>
+    internal class UpgradeData : IUpgradeData
+    {
+        private const string BackupFileNameFormat = "{0}.bak";
 
-		private readonly ISettings settings;
-		private readonly IEnumerable<IPartialUpgrade> partialUpgrades;
-		private readonly IIOService ioService;
+        private readonly ISettings settings;
+        private readonly IEnumerable<IPartialUpgrade> partialUpgrades;
+        private readonly IIOService ioService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UpgradeData"/> class.
+        /// </summary>
+        /// <param name="settings">The MediaPortal settings.</param>
+        /// <param name="partialUpgrades">
+        /// The partial upgrades, describing how to get from one version of the next.
+        /// </param>
+        /// <param name="ioService">The I/O service.</param>
+        public UpgradeData(
+            ISettings settings,
+            IEnumerable<IPartialUpgrade> partialUpgrades,
+            IIOService ioService)
+        {
+            Requires.NotNull(settings);
+            Requires.NotNull(partialUpgrades);
+            Requires.NotNull(ioService);
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="UpgradeData"/> class.
-		/// </summary>
-		/// <param name="settings">The MediaPortal settings.</param>
-		/// <param name="partialUpgrades">
-		/// The partial upgrades, describing how to get from one version of the next.
-		/// </param>
-		/// <param name="ioService">The I/O service.</param>
-		public UpgradeData(
-			ISettings settings,
-			IEnumerable<IPartialUpgrade> partialUpgrades,
-			IIOService ioService)
-		{
-			Requires.NotNull(settings);
-			Requires.NotNull(partialUpgrades);
-			Requires.NotNull(ioService);
+            this.settings = settings;
+            this.partialUpgrades = partialUpgrades;
+            this.ioService = ioService;
+        }
 
-			this.settings = settings;
-			this.partialUpgrades = partialUpgrades;
-			this.ioService = ioService;
-		}
+        /// <summary>
+        /// Gets a value indicating whether upgrading the data is required.
+        /// </summary>
+        public bool IsUpgradeRequired
+        {
+            get
+            {
+                if (ioService.FileExists(DataPersistenceInformation.FileName))
+                {
+                    // Get the maximum data version stipulated by the partial upgrades
+                    int newestVersion = partialUpgrades.Max(pu => pu.ToVersion);
 
+                    // Upgrade is required if current version is lower than newest
+                    return CurrentVersion < newestVersion;
+                }
 
-		/// <summary>
-		/// Gets a value indicating whether upgrading the data is required.
-		/// </summary>
-		public bool IsUpgradeRequired
-		{
-			get
-			{
-				if (ioService.FileExists(DataPersistenceInformation.FileName))
-				{
-					// Get the maximum data version stipulated by the partial upgrades
-					int newestVersion = partialUpgrades.Max(pu => pu.ToVersion);
+                // The data file doesn't exist
+                return false;
+            }
+        }
 
-					// Upgrade is required if current version is lower than newest
-					return CurrentVersion < newestVersion;
-				}
+        /// <summary>
+        /// Upgrades the data.
+        /// </summary>
+        /// <returns>true if upgrade was successful; otherwise false.</returns>
+        public bool Upgrade()
+        {
+            // Start upgrade by backing up current data
+            if (!Backup())
+            {
+                return false;
+            }
 
-				// The data file doesn't exist
-				return false;
-			}
-		}
+            // Find the partial upgrades relevant when upgrading current version, and order them
+            // according to version
+            var relevantPartialUpgrades = partialUpgrades
+                .Where(pu => pu.FromVersion >= CurrentVersion)
+                .OrderBy(pu => pu.FromVersion);
 
+            ValidateChainOfPartialUpgrades(relevantPartialUpgrades);
 
-		/// <summary>
-		/// Upgrades the data.
-		/// </summary>
-		/// <returns>true if upgrade was successful; otherwise false.</returns>
-		public bool Upgrade()
-		{
-			// Start upgrade by backing up current data
-			if (!Backup())
-			{
-				return false;
-			}
+            foreach (var relevantPartialUpgrade in relevantPartialUpgrades)
+            {
+                if (!relevantPartialUpgrade.Upgrade())
+                {
+                    // Upgrade failed
+                    return false;
+                }
 
-			// Find the partial upgrades relevant when upgrading current version, and order them
-			// according to version
-			var relevantPartialUpgrades = partialUpgrades
-				.Where(pu => pu.FromVersion >= CurrentVersion)
-				.OrderBy(pu => pu.FromVersion);
+                // Save the current version after partial upgrade finished successfully, because if the
+                // next upgrade fails, we would like to start upgrading from this version and not the
+                // original version the next time the upgrade is executed.
+                settings.SetValue(
+                    DataPersistenceInformation.DatabaseSection.Name,
+                    DataPersistenceInformation.DatabaseSection.VersionEntry,
+                    relevantPartialUpgrade.ToVersion);
+            }
 
-			ValidateChainOfPartialUpgrades(relevantPartialUpgrades);
+            // All partial upgrades finished successfully
+            return true;
+        }
 
-			foreach (var relevantPartialUpgrade in relevantPartialUpgrades)
-			{
-				if (!relevantPartialUpgrade.Upgrade())
-				{
-					// Upgrade failed
-					return false;
-				}
+        /// <summary>
+        /// Gets the current data version.
+        /// </summary>
+        private int CurrentVersion
+        {
+            get
+            {
+                return settings.GetValueAsInt(
+                    DataPersistenceInformation.DatabaseSection.Name,
+                    DataPersistenceInformation.DatabaseSection.VersionEntry,
+                    1);
+            }
+        }
 
-				// Save the current version after partial upgrade finished successfully, because if the
-				// next upgrade fails, we would like to start upgrading from this version and not the
-				// original version the next time the upgrade is executed.
-				settings.SetValue(
-					DataPersistenceInformation.DatabaseSection.Name,
-					DataPersistenceInformation.DatabaseSection.VersionEntry,
-					relevantPartialUpgrade.ToVersion);
-			}
+        /// <summary>
+        /// Is backing up data.
+        /// </summary>
+        /// <returns>true if backup succeeded; otherwise false.</returns>
+        private bool Backup()
+        {
+            string backupFileName = BackupFileNameFormat.InvariantFormat(
+                DataPersistenceInformation.FileName);
 
-			// All partial upgrades finished successfully
-			return true;
-		}
+            // Remove backup file if it exists
+            if (ioService.FileExists(backupFileName))
+            {
+                if (!ioService.DeleteFile(backupFileName))
+                {
+                    // Delete backup failed
+                    return false;
+                }
+            }
 
+            return ioService.CopyFile(DataPersistenceInformation.FileName, backupFileName);
+        }
 
-		/// <summary>
-		/// Gets the current data version.
-		/// </summary>
-		private int CurrentVersion
-		{
-			get
-			{
-				return settings.GetValueAsInt(
-					DataPersistenceInformation.DatabaseSection.Name,
-					DataPersistenceInformation.DatabaseSection.VersionEntry,
-					1);
-			}
-		}
+        /// <summary>
+        /// Validates that the chain of partial upgrades is connected.
+        /// </summary>
+        private void ValidateChainOfPartialUpgrades(IEnumerable<IPartialUpgrade> partialUpgrades)
+        {
+            if (partialUpgrades.Any())
+            {
+                var previous = partialUpgrades.First();
 
+                // Make sure the first partial upgrade works on current version
+                if (previous.FromVersion != CurrentVersion)
+                {
+                    string message =
+                        "First partial upgrade with version '{0}' doesn't match current version '{1}'"
+                            .InvariantFormat(previous.FromVersion, CurrentVersion);
 
-		/// <summary>
-		/// Is backing up data.
-		/// </summary>
-		/// <returns>true if backup succeeded; otherwise false.</returns>
-		private bool Backup()
-		{
-			string backupFileName = BackupFileNameFormat.InvariantFormat(
-				DataPersistenceInformation.FileName);
+                    throw new UpgradeChainException(message);
+                }
 
-			// Remove backup file if it exists
-			if (ioService.FileExists(backupFileName))
-			{
-				if (!ioService.DeleteFile(backupFileName))
-				{
-					// Delete backup failed
-					return false;
-				}
-			}
+                foreach (var current in partialUpgrades.Skip(1))
+                {
+                    // The current version cannot continue from the previous version
+                    if (previous.ToVersion != current.FromVersion)
+                    {
+                        string message = "From version '{0}' doesn't connect to version '{1}'".InvariantFormat(
+                            previous.ToVersion,
+                            current.FromVersion);
 
-			return ioService.CopyFile(DataPersistenceInformation.FileName, backupFileName);
-		}
+                        throw new UpgradeChainException(message);
+                    }
 
-
-		/// <summary>
-		/// Validates that the chain of partial upgrades is connected.
-		/// </summary>
-		private void ValidateChainOfPartialUpgrades(IEnumerable<IPartialUpgrade> partialUpgrades)
-		{
-			if (partialUpgrades.Any())
-			{
-				var previous = partialUpgrades.First();
-
-				// Make sure the first partial upgrade works on current version
-				if (previous.FromVersion != CurrentVersion)
-				{
-					string message =
-						"First partial upgrade with version '{0}' doesn't match current version '{1}'"
-						.InvariantFormat(previous.FromVersion, CurrentVersion);
-
-					throw new UpgradeChainException(message);
-				}
-
-				foreach (var current in partialUpgrades.Skip(1))
-				{
-					// The current version cannot continue from the previous version
-					if (previous.ToVersion != current.FromVersion)
-					{
-						string message = "From version '{0}' doesn't connect to version '{1}'".InvariantFormat(
-							previous.ToVersion,
-							current.FromVersion);
-
-						throw new UpgradeChainException(message);
-					}
-
-					previous = current;
-				}
-			}
-		}
-	}
+                    previous = current;
+                }
+            }
+        }
+    }
 }

@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using AxisCameras.Configuration.Service;
 using AxisCameras.Configuration.ViewModel;
 using AxisCameras.Configuration.ViewModel.Data;
@@ -25,37 +26,35 @@ using AxisCameras.Core.Contracts;
 
 namespace AxisCameras.Configuration.Provider
 {
-	/// <summary>
-	/// Class describing a provider that provides a ICameraViewModel.
-	/// </summary>
-	class CameraViewModelProvider : ICameraViewModelProvider
-	{
-		private readonly IBrowserService browserService;
+    /// <summary>
+    /// Class describing a provider that provides a ICameraViewModel.
+    /// </summary>
+    internal class CameraViewModelProvider : ICameraViewModelProvider
+    {
+        private readonly IBrowserService browserService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CameraViewModelProvider"/> class.
+        /// </summary>
+        /// <param name="browserService">The browser service.</param>
+        public CameraViewModelProvider(IBrowserService browserService)
+        {
+            Requires.NotNull(browserService);
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="CameraViewModelProvider"/> class.
-		/// </summary>
-		/// <param name="browserService">The browser service.</param>
-		public CameraViewModelProvider(IBrowserService browserService)
-		{
-			Requires.NotNull(browserService);
+            this.browserService = browserService;
+        }
 
-			this.browserService = browserService;
-		}
+        /// <summary>
+        /// Returns a ICameraViewModel created from a ConfigurableCamera.
+        /// </summary>
+        /// <param name="camera">The camera to turn into a ICameraViewModel.</param>
+        public ICameraViewModel Provide(ConfigurableCamera camera)
+        {
+            Requires.NotNull(camera);
 
+            Log.Debug("Provide a ICameraViewModel");
 
-		/// <summary>
-		/// Returns a ICameraViewModel created from a ConfigurableCamera.
-		/// </summary>
-		/// <param name="camera">The camera to turn into a ICameraViewModel.</param>
-		public ICameraViewModel Provide(ConfigurableCamera camera)
-		{
-			Requires.NotNull(camera);
-
-			Log.Debug("Provide a ICameraViewModel");
-
-			return new CameraViewModel(camera, browserService);
-		}
-	}
+            return new CameraViewModel(camera, browserService);
+        }
+    }
 }

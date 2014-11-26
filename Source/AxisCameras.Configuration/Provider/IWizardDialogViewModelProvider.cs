@@ -17,21 +17,22 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using AxisCameras.Configuration.ViewModel;
 using AxisCameras.Configuration.ViewModel.Data;
 
 namespace AxisCameras.Configuration.Provider
 {
-	/// <summary>
-	/// Interface describing a provider that provides a IWizardDialogViewModel.
-	/// </summary>
-	interface IWizardDialogViewModelProvider
-	{
-		/// <summary>
-		/// Returns a IWizardDialogViewModel.
-		/// </summary>
-		/// <param name="title">The title of the dialog.</param>
-		/// <param name="camera">The camera configured by the wizard.</param>
-		IWizardDialogViewModel Provide(string title, ConfigurableCamera camera);
-	}
+    /// <summary>
+    /// Interface describing a provider that provides a IWizardDialogViewModel.
+    /// </summary>
+    internal interface IWizardDialogViewModelProvider
+    {
+        /// <summary>
+        /// Returns a IWizardDialogViewModel.
+        /// </summary>
+        /// <param name="title">The title of the dialog.</param>
+        /// <param name="camera">The camera configured by the wizard.</param>
+        IWizardDialogViewModel Provide(string title, ConfigurableCamera camera);
+    }
 }

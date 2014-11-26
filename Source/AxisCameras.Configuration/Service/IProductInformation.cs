@@ -20,14 +20,14 @@
 
 namespace AxisCameras.Configuration.Service
 {
-	/// <summary>
-	/// Interface describing information about the product.
-	/// </summary>
-	public interface IProductInformation
-	{
-		/// <summary>
-		/// Gets the product version.
-		/// </summary>
-		string Version { get; }
-	}
+    /// <summary>
+    /// Interface describing information about the product.
+    /// </summary>
+    public interface IProductInformation
+    {
+        /// <summary>
+        /// Gets the product version.
+        /// </summary>
+        string Version { get; }
+    }
 }

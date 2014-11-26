@@ -17,19 +17,20 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using AxisCameras.Configuration.ViewModel.Data;
 using AxisCameras.Mvvm;
 
 namespace AxisCameras.Configuration.ViewModel
 {
-	/// <summary>
-	/// Interface for WizardDialogViewModel.
-	/// </summary>
-	interface IWizardDialogViewModel : IDialogViewModelBase
-	{
-		/// <summary>
-		/// Gets the camera.
-		/// </summary>
-		ConfigurableCamera Camera { get; }
-	}
+    /// <summary>
+    /// Interface for WizardDialogViewModel.
+    /// </summary>
+    internal interface IWizardDialogViewModel : IDialogViewModelBase
+    {
+        /// <summary>
+        /// Gets the camera.
+        /// </summary>
+        ConfigurableCamera Camera { get; }
+    }
 }

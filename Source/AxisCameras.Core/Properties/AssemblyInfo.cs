@@ -17,6 +17,7 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -25,6 +26,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
+
 [assembly: AssemblyTitle("AxisCameras.Core")]
 [assembly: AssemblyDescription("Core assembly of the plugin.")]
 [assembly: AssemblyCulture("")]
@@ -32,12 +34,14 @@ using System.Runtime.InteropServices;
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
 // COM, set the ComVisible attribute to true on that type.
+
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("fc3287af-871c-47e0-9b7f-f3e77e28db8f")]
 
+[assembly: Guid("fc3287af-871c-47e0-9b7f-f3e77e28db8f")]
 [assembly: CLSCompliant(true)]
 
 // Provide access to internal types and methods to test functions
+
 [assembly: InternalsVisibleTo("AxisCameras.CoreTest")]

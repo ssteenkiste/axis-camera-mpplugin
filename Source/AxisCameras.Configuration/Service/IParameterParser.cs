@@ -17,20 +17,21 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System.Collections.Generic;
 
 namespace AxisCameras.Configuration.Service
 {
-	/// <summary>
-	/// Interface responsible for parsing a camera parameter response.
-	/// </summary>
-	interface IParameterParser
-	{
-		/// <summary>
-		/// Parses the specified camera parameter response.
-		/// </summary>
-		/// <param name="parameters">The camera parameter response.</param>
-		/// <returns>A dictionary with parameter name as key, and parameter value as value.</returns>
-		IDictionary<string, string> Parse(string parameters);
-	}
+    /// <summary>
+    /// Interface responsible for parsing a camera parameter response.
+    /// </summary>
+    internal interface IParameterParser
+    {
+        /// <summary>
+        /// Parses the specified camera parameter response.
+        /// </summary>
+        /// <param name="parameters">The camera parameter response.</param>
+        /// <returns>A dictionary with parameter name as key, and parameter value as value.</returns>
+        IDictionary<string, string> Parse(string parameters);
+    }
 }

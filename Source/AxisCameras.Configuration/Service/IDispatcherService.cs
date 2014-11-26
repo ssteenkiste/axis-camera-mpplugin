@@ -17,31 +17,32 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System;
 using System.Windows.Threading;
 
 namespace AxisCameras.Configuration.Service
 {
-	/// <summary>
-	/// Interface wrapping the Dispatcher.
-	/// </summary>
-	interface IDispatcherService
-	{
-		/// <summary>
-		/// Executes the specified delegate asynchronously with the specified arguments on the thread
-		/// that the Dispatcher was created on.
-		/// </summary>
-		/// <param name="method">
-		/// The delegate to a method that takes parameters specified in args, which is pushed onto the
-		/// Dispatcher event queue.
-		/// </param>
-		/// <param name="args">
-		/// An array of objects to pass as arguments to the given method. Can be null.
-		/// </param>
-		/// <returns>
-		/// An object, which is returned immediately after BeginInvoke is called, that can be used to
-		/// interact with the delegate as it is pending execution in the event queue.
-		/// </returns>
-		DispatcherOperation BeginInvoke(Delegate method, params object[] args);
-	}
+    /// <summary>
+    /// Interface wrapping the Dispatcher.
+    /// </summary>
+    internal interface IDispatcherService
+    {
+        /// <summary>
+        /// Executes the specified delegate asynchronously with the specified arguments on the thread
+        /// that the Dispatcher was created on.
+        /// </summary>
+        /// <param name="method">
+        /// The delegate to a method that takes parameters specified in args, which is pushed onto the
+        /// Dispatcher event queue.
+        /// </param>
+        /// <param name="args">
+        /// An array of objects to pass as arguments to the given method. Can be null.
+        /// </param>
+        /// <returns>
+        /// An object, which is returned immediately after BeginInvoke is called, that can be used to
+        /// interact with the delegate as it is pending execution in the event queue.
+        /// </returns>
+        DispatcherOperation BeginInvoke(Delegate method, params object[] args);
+    }
 }

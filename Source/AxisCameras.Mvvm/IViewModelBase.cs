@@ -17,25 +17,25 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System.ComponentModel;
 
 namespace AxisCameras.Mvvm
 {
-	/// <summary>
-	/// Interface for all ViewModels.
-	/// </summary>
-	public interface IViewModelBase : INotifyPropertyChanged
-	{
-		/// <summary>
-		/// Validates all added validation rules.
-		/// </summary>
-		/// <returns>true if validation succeeds; otherwise false.</returns>
-		bool Validate();
+    /// <summary>
+    /// Interface for all ViewModels.
+    /// </summary>
+    public interface IViewModelBase : INotifyPropertyChanged
+    {
+        /// <summary>
+        /// Validates all added validation rules.
+        /// </summary>
+        /// <returns>true if validation succeeds; otherwise false.</returns>
+        bool Validate();
 
-
-		/// <summary>
-		/// Gets a value indicating whether the view model is valid.
-		/// </summary>
-		bool IsValid { get; }
-	}
+        /// <summary>
+        /// Gets a value indicating whether the view model is valid.
+        /// </summary>
+        bool IsValid { get; }
+    }
 }

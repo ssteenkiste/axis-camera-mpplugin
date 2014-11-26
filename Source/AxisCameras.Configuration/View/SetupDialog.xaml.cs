@@ -17,21 +17,22 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System.Windows;
 
 namespace AxisCameras.Configuration.View
 {
-	/// <summary>
-	/// Dialog displayed to the user when setting up the plugin.
-	/// </summary>
-	public partial class SetupDialog : Window
-	{
-		/// <summary>
-		/// Initializes a new instance of the <see cref="SetupDialog"/> class.
-		/// </summary>
-		public SetupDialog()
-		{
-			InitializeComponent();
-		}
-	}
+    /// <summary>
+    /// Dialog displayed to the user when setting up the plugin.
+    /// </summary>
+    public partial class SetupDialog : Window
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SetupDialog"/> class.
+        /// </summary>
+        public SetupDialog()
+        {
+            InitializeComponent();
+        }
+    }
 }

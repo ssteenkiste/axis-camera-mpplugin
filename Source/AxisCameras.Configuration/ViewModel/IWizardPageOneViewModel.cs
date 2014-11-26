@@ -20,10 +20,10 @@
 
 namespace AxisCameras.Configuration.ViewModel
 {
-	/// <summary>
-	/// Interface for WizardPageOneViewModel.
-	/// </summary>
-	interface IWizardPageOneViewModel : IWizardPageViewModel
-	{
-	}
+    /// <summary>
+    /// Interface for WizardPageOneViewModel.
+    /// </summary>
+    internal interface IWizardPageOneViewModel : IWizardPageViewModel
+    {
+    }
 }

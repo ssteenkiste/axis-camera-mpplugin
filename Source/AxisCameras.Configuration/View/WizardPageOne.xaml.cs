@@ -17,25 +17,26 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace AxisCameras.Configuration.View
 {
-	/// <summary>
-	/// The first page of the camera wizard.
-	/// </summary>
-	public partial class WizardPageOne : UserControl
-	{
-		/// <summary>
-		/// Initializes a new instance of the <see cref="WizardPageOne"/> class.
-		/// </summary>
-		public WizardPageOne()
-		{
-			InitializeComponent();
+    /// <summary>
+    /// The first page of the camera wizard.
+    /// </summary>
+    public partial class WizardPageOne : UserControl
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WizardPageOne"/> class.
+        /// </summary>
+        public WizardPageOne()
+        {
+            InitializeComponent();
 
-			// Set focus on the address text box
-			Loaded += (sender, e) => FocusManager.SetFocusedElement(this, addressTextBox);
-		}
-	}
+            // Set focus on the address text box
+            Loaded += (sender, e) => FocusManager.SetFocusedElement(this, addressTextBox);
+        }
+    }
 }

@@ -17,38 +17,38 @@
 // along with MediaPortal. If not, see <http://www.gnu.org/licenses/>.
 
 #endregion
+
 using AxisCameras.Configuration.ViewModel.ValidationRule;
 using NUnit.Framework;
 
 namespace AxisCameras.ConfigurationTest.ViewModel.ValidationRule
 {
-	[TestFixture]
-	public class PortValidationRuleTest
-	{
-		[Test]
-		public void ValidationSuccessful()
-		{
-			PortValidationRule validationRule = new PortValidationRule();
+    [TestFixture]
+    public class PortValidationRuleTest
+    {
+        [Test]
+        public void ValidationSuccessful()
+        {
+            PortValidationRule validationRule = new PortValidationRule();
 
-			Assert.That(validationRule.Validate("1"), Is.True);
-			Assert.That(validationRule.Validate("2"), Is.True);
-			Assert.That(validationRule.Validate("65534"), Is.True);
-			Assert.That(validationRule.Validate("65535"), Is.True);
-		}
+            Assert.That(validationRule.Validate("1"), Is.True);
+            Assert.That(validationRule.Validate("2"), Is.True);
+            Assert.That(validationRule.Validate("65534"), Is.True);
+            Assert.That(validationRule.Validate("65535"), Is.True);
+        }
 
+        [Test]
+        public void ValidationFailed()
+        {
+            PortValidationRule validationRule = new PortValidationRule();
 
-		[Test]
-		public void ValidationFailed()
-		{
-			PortValidationRule validationRule = new PortValidationRule();
-
-			Assert.That(validationRule.Validate("-1"), Is.False);
-			Assert.That(validationRule.Validate("0"), Is.False);
-			Assert.That(validationRule.Validate("65536"), Is.False);
-			Assert.That(validationRule.Validate("65537"), Is.False);
-			Assert.That(validationRule.Validate(null), Is.False);
-			Assert.That(validationRule.Validate(string.Empty), Is.False);
-			Assert.That(validationRule.Validate(new object()), Is.False);
-		}
-	}
+            Assert.That(validationRule.Validate("-1"), Is.False);
+            Assert.That(validationRule.Validate("0"), Is.False);
+            Assert.That(validationRule.Validate("65536"), Is.False);
+            Assert.That(validationRule.Validate("65537"), Is.False);
+            Assert.That(validationRule.Validate(null), Is.False);
+            Assert.That(validationRule.Validate(string.Empty), Is.False);
+            Assert.That(validationRule.Validate(new object()), Is.False);
+        }
+    }
 }

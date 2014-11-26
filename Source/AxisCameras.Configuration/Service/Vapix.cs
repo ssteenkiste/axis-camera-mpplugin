@@ -20,81 +20,73 @@
 
 namespace AxisCameras.Configuration.Service
 {
-	/// <summary>
-	/// Class describing the Axis VAPIX:
-	/// http://www.axis.com/techsup/cam_servers/dev/cam_http_api_index.php
-	/// </summary>
-	static class Vapix
-	{
-		/// <summary>
-		/// Class containing the VAPIX CGI.
-		/// </summary>
-		public static class Cgi
-		{
-			/// <summary>
-			/// CGI for listing parameters.
-			/// </summary>
-			public const string Parameter = "http://{0}:{1}/axis-cgi/admin/param.cgi?action=list&group={2}";
+    /// <summary>
+    /// Class describing the Axis VAPIX:
+    /// http://www.axis.com/techsup/cam_servers/dev/cam_http_api_index.php
+    /// </summary>
+    internal static class Vapix
+    {
+        /// <summary>
+        /// Class containing the VAPIX CGI.
+        /// </summary>
+        public static class Cgi
+        {
+            /// <summary>
+            /// CGI for listing parameters.
+            /// </summary>
+            public const string Parameter = "http://{0}:{1}/axis-cgi/admin/param.cgi?action=list&group={2}";
 
+            /// <summary>
+            /// CGI for requesting a snapshot.
+            /// </summary>
+            public const string Snapshot = "http://{0}:{1}/axis-cgi/jpg/image.cgi?camera={2}";
+        }
 
-			/// <summary>
-			/// CGI for requesting a snapshot.
-			/// </summary>
-			public const string Snapshot = "http://{0}:{1}/axis-cgi/jpg/image.cgi?camera={2}";
-		}
+        /// <summary>
+        /// Class containing the camera parameters.
+        /// </summary>
+        public static class Parameters
+        {
+            /// <summary>
+            /// UPnP friendly name parameter name.
+            /// </summary>
+            public const string FriendlyName = "Network.UPnP.FriendlyName";
 
+            /// <summary>
+            /// Firmware version parameter name.
+            /// </summary>
+            public const string FirmwareVersion = "Properties.Firmware.Version";
 
-		/// <summary>
-		/// Class containing the camera parameters.
-		/// </summary>
-		public static class Parameters
-		{
-			/// <summary>
-			/// UPnP friendly name parameter name.
-			/// </summary>
-			public const string FriendlyName = "Network.UPnP.FriendlyName";
+            /// <summary>
+            /// Number of video sources parameter name.
+            /// </summary>
+            public const string NbrOfImageSources = "ImageSource.NbrOfSources";
 
+            /// <summary>
+            /// The supported video capabilities.
+            /// </summary>
+            public const string ImageFormats = "Properties.Image.Format";
+        }
 
-			/// <summary>
-			/// Firmware version parameter name.
-			/// </summary>
-			public const string FirmwareVersion = "Properties.Firmware.Version";
+        /// <summary>
+        /// Class containing the parameter values.
+        /// </summary>
+        public static class Values
+        {
+            /// <summary>
+            /// M-JPEG parameter value.
+            /// </summary>
+            public const string Mjpeg = "mjpeg";
 
+            /// <summary>
+            /// M-JPEG parameter value.
+            /// </summary>
+            public const string Mpeg4 = "mpeg4";
 
-			/// <summary>
-			/// Number of video sources parameter name.
-			/// </summary>
-			public const string NbrOfImageSources = "ImageSource.NbrOfSources";
-
-
-			/// <summary>
-			/// The supported video capabilities.
-			/// </summary>
-			public const string ImageFormats = "Properties.Image.Format";
-		}
-
-
-		/// <summary>
-		/// Class containing the parameter values.
-		/// </summary>
-		public static class Values
-		{
-			/// <summary>
-			/// M-JPEG parameter value.
-			/// </summary>
-			public const string Mjpeg = "mjpeg";
-
-
-			/// <summary>
-			/// M-JPEG parameter value.
-			/// </summary>
-			public const string Mpeg4 = "mpeg4";
-
-
-			/// <summary>
-			/// M-JPEG parameter value.
-			/// </summary>
-			public const string H264 = "h264";
-		}
-	}
+            /// <summary>
+            /// M-JPEG parameter value.
+            /// </summary>
+            public const string H264 = "h264";
+        }
+    }
 }
