@@ -19,7 +19,6 @@
 #endregion
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using AxisCameras.Core.Contracts;
 using AxisCameras.Data.IO;
