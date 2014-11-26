@@ -166,10 +166,8 @@ namespace AxisCameras.Data
 
 
 		/// <summary>
-		/// Validates that the chain of partial upgrades is connected. This method is only run in debug
-		/// mode.
+		/// Validates that the chain of partial upgrades is connected.
 		/// </summary>
-		[Conditional("DEBUG")]
 		private void ValidateChainOfPartialUpgrades(IEnumerable<IPartialUpgrade> partialUpgrades)
 		{
 			if (partialUpgrades.Any())
