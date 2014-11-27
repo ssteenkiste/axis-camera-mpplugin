@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 
 namespace AxisCamerasDependencyChecker
 {
@@ -43,7 +44,7 @@ namespace AxisCamerasDependencyChecker
         /// </summary>
         internal void AddInformation(string name, string value)
         {
-            string message = string.Format("{0}: {1}", name, value);
+            string message = string.Format(CultureInfo.InvariantCulture, "{0}: {1}", name, value);
 
             AddInformation(message);
         }

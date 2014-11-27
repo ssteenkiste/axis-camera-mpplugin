@@ -100,7 +100,7 @@ namespace AxisCameras.Data
                 .Where(pu => pu.FromVersion >= CurrentVersion)
                 .OrderBy(pu => pu.FromVersion);
 
-            ValidateChainOfPartialUpgrades(relevantPartialUpgrades);
+            ValidateChainOfPartialUpgrades(relevantPartialUpgrades, CurrentVersion);
 
             foreach (var relevantPartialUpgrade in relevantPartialUpgrades)
             {
@@ -162,18 +162,20 @@ namespace AxisCameras.Data
         /// <summary>
         /// Validates that the chain of partial upgrades is connected.
         /// </summary>
-        private void ValidateChainOfPartialUpgrades(IEnumerable<IPartialUpgrade> partialUpgrades)
+        private static void ValidateChainOfPartialUpgrades(IEnumerable<IPartialUpgrade> partialUpgrades, int currentVersion)
         {
+            partialUpgrades = partialUpgrades.ToArray();
+
             if (partialUpgrades.Any())
             {
                 var previous = partialUpgrades.First();
 
                 // Make sure the first partial upgrade works on current version
-                if (previous.FromVersion != CurrentVersion)
+                if (previous.FromVersion != currentVersion)
                 {
                     string message =
                         "First partial upgrade with version '{0}' doesn't match current version '{1}'"
-                            .InvariantFormat(previous.FromVersion, CurrentVersion);
+                            .InvariantFormat(previous.FromVersion, currentVersion);
 
                     throw new UpgradeChainException(message);
                 }

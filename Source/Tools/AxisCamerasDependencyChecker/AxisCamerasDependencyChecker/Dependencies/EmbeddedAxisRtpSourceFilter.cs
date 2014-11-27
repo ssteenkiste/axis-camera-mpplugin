@@ -9,7 +9,7 @@ namespace AxisCamerasDependencyChecker.Dependencies
     /// </summary>
     internal class EmbeddedAxisRtpSourceFilter : IDependency
     {
-        private static readonly string Clsid = "67B1A88A-B5D2-48B1-BF93-EB74D6FCB077";
+        private const string Clsid = "67B1A88A-B5D2-48B1-BF93-EB74D6FCB077";
         private static readonly Version MinVersion = new Version(3, 0, 4, 2);
 
         private readonly Clsid clsid;

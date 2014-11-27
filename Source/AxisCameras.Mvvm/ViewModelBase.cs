@@ -25,6 +25,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
+using AxisCameras.Core.Contracts;
 using AxisCameras.Mvvm.Extensions.System.Linq.Expressions;
 using AxisCameras.Mvvm.Validation;
 
@@ -126,6 +127,8 @@ namespace AxisCameras.Mvvm
         /// <param name="e">A PropertyChangedEventArgs that contains the event data.</param>
         protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
         {
+            Requires.NotNull(e);
+
             VerifyPropertyName(e.PropertyName);
 
             PropertyChangedEventHandler handler = PropertyChanged;
@@ -152,6 +155,8 @@ namespace AxisCameras.Mvvm
         /// <param name="propertyNames">The properties to send notifications on.</param>
         protected void OnPropertiesChanged(IEnumerable<string> propertyNames)
         {
+            Requires.NotNull(propertyNames);
+
             foreach (string propertyName in propertyNames)
             {
                 OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
@@ -175,6 +180,8 @@ namespace AxisCameras.Mvvm
         [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
         protected T Property<T>(Expression<Func<T>> nameExpression)
         {
+            Requires.NotNull(nameExpression);
+
             PropertyItem p;
             if (properties.TryGetValue(nameExpression.ToString(), out p))
             {
@@ -193,6 +200,8 @@ namespace AxisCameras.Mvvm
         [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
         protected void Property<T>(Expression<Func<T>> nameExpression, T value)
         {
+            Requires.NotNull(nameExpression);
+
             // Get the key of the property
             string key = nameExpression.ToString();
 

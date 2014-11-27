@@ -76,6 +76,7 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Extensions\MediaPortal\Dialogs\GUIDialogOKExtensions.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="NetworkConfiguration.cs" />
     <Compile Include="Player\CameraPlayer.cs" />
     <Compile Include="Player\ICameraPlayer.cs">

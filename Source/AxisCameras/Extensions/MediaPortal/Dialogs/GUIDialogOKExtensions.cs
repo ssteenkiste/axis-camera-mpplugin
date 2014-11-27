@@ -44,6 +44,7 @@ namespace MediaPortal.Dialogs
             Justification = "Method setting single line is called SetLine, only appropriate to call this method SetLines.")]
         public static void SetLines(this GUIDialogOK dialog, string message)
         {
+            Requires.NotNull(dialog);
             Requires.NotNullOrEmpty(message);
 
             string[] lines = message.Split(

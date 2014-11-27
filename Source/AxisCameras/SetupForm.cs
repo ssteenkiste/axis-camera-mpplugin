@@ -26,6 +26,7 @@ using System.Linq;
 using Autofac;
 using AxisCameras.Configuration;
 using AxisCameras.Configuration.Service;
+using AxisCameras.Core.Contracts;
 using AxisCameras.Data;
 using AxisCameras.Player;
 using AxisCameras.Properties;
@@ -270,6 +271,8 @@ namespace AxisCameras
         /// <param name="actionType">Type of the action.</param>
         protected override void OnClicked(int controlId, GUIControl control, ActionType actionType)
         {
+            Requires.NotNull(control);
+
             base.OnClicked(controlId, control, actionType);
 
             if (control == facadeLayout && actionType == ActionType.ACTION_SELECT_ITEM)
