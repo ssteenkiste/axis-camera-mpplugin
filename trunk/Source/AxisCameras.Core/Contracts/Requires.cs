@@ -18,6 +18,9 @@
 
 #endregion
 
+using System.Diagnostics.CodeAnalysis;
+using JetBrains.Annotations;
+
 namespace AxisCameras.Core.Contracts
 {
     /// <summary>
@@ -28,6 +31,7 @@ namespace AxisCameras.Core.Contracts
         /// <summary>
         /// Requires that specified action is true.
         /// </summary>
+        [ContractAnnotation("condition:false => halt")]
         public static void True(bool condition, string errorMessage = null)
         {
             if (!condition)
@@ -39,7 +43,7 @@ namespace AxisCameras.Core.Contracts
         /// <summary>
         /// Requires that specified value isn't null or empty.
         /// </summary>
-        public static void NotNullOrEmpty(string value)
+        public static void NotNullOrEmpty([ValidatedNotNull] string value)
         {
             if (string.IsNullOrEmpty(value))
             {
@@ -50,7 +54,8 @@ namespace AxisCameras.Core.Contracts
         /// <summary>
         /// Requires that specified value isn't null.
         /// </summary>
-        public static void NotNull<T>(T value) where T : class
+        [ContractAnnotation("value:null => halt")]
+        public static void NotNull<T>([ValidatedNotNull] T value) where T : class
         {
             if (value == null)
             {
