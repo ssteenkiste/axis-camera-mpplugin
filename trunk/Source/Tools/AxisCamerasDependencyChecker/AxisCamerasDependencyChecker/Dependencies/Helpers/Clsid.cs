@@ -1,4 +1,7 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Security;
 using Microsoft.Win32;
 
 namespace AxisCamerasDependencyChecker.Dependencies.Helpers
@@ -19,32 +22,37 @@ namespace AxisCamerasDependencyChecker.Dependencies.Helpers
         {
             string registryPath = @"SOFTWARE\Classes\CLSID\{" + clsid + @"}\InprocServer32";
 
-            // Get file path from CLSID
-            string filePath;
-
             try
             {
                 using (RegistryKey registryKey = Registry.LocalMachine.OpenSubKey(registryPath, false))
                 {
-                    filePath = registryKey.GetValue(null) as string;
+                    if (registryKey != null)
+                    {
+                        // Get file path from CLSID
+                        var filePath = registryKey.GetValue(null) as string;
+
+                        if (filePath != null)
+                        {
+                            return FileVersionInfo.GetVersionInfo(filePath);    
+                        }
+                    }
                 }
             }
-            catch
+            catch (FileNotFoundException)
             {
-                // CLSID is not registered
-                return null;
+            }
+            catch (UnauthorizedAccessException)
+            {
+            }
+            catch (SecurityException)
+            {
+            }
+            catch (IOException)
+            {
             }
 
-            // Get version from file
-            try
-            {
-                return FileVersionInfo.GetVersionInfo(filePath);
-            }
-            catch
-            {
-                // Unable to get version from file. Most probable answer is that the file doesn't exist
-                return null;
-            }
+            // CLSID is not registered or it wasn't possible to get version from file
+            return null;
         }
     }
 }

@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+using System.Diagnostics.CodeAnalysis;
 
 namespace JetBrains.Annotations
 {
@@ -285,17 +286,20 @@ namespace JetBrains.Annotations
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
     public sealed class ContractAnnotationAttribute : Attribute
     {
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "fdt")]
         public ContractAnnotationAttribute([NotNull] string fdt)
             : this(fdt, false)
         {
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "fdt")]
         public ContractAnnotationAttribute([NotNull] string fdt, bool forceFullStates)
         {
             FDT = fdt;
             ForceFullStates = forceFullStates;
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "FDT")]
         public string FDT { get; private set; }
         public bool ForceFullStates { get; private set; }
     }
@@ -347,6 +351,7 @@ namespace JetBrains.Annotations
     /// {}
     /// </code>
     /// </example>
+    [SuppressMessage("Microsoft.Design", "CA1019:DefineAccessorsForAttributeArguments")]
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
     [BaseTypeRequired(typeof(Attribute))]
     public sealed class BaseTypeRequiredAttribute : Attribute
@@ -366,6 +371,7 @@ namespace JetBrains.Annotations
         /// <summary>
         /// Gets enumerations of specified base types
         /// </summary>
+        [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays")]
         public Type[] BaseTypes { get; private set; }
     }
 
@@ -382,6 +388,7 @@ namespace JetBrains.Annotations
         {
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Flags")]
         [UsedImplicitly]
         public UsedImplicitlyAttribute(ImplicitUseKindFlags useKindFlags, ImplicitUseTargetFlags targetFlags)
         {
@@ -389,24 +396,28 @@ namespace JetBrains.Annotations
             TargetFlags = targetFlags;
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Flags")]
         [UsedImplicitly]
         public UsedImplicitlyAttribute(ImplicitUseKindFlags useKindFlags)
             : this(useKindFlags, ImplicitUseTargetFlags.Default)
         {
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Flags")]
         [UsedImplicitly]
         public UsedImplicitlyAttribute(ImplicitUseTargetFlags targetFlags)
             : this(ImplicitUseKindFlags.Default, targetFlags)
         {
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Flags")]
         [UsedImplicitly]
         public ImplicitUseKindFlags UseKindFlags { get; private set; }
 
         /// <summary>
         /// Gets value indicating what is meant to be used
         /// </summary>
+        [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Flags")]
         [UsedImplicitly]
         public ImplicitUseTargetFlags TargetFlags { get; private set; }
     }
@@ -424,6 +435,7 @@ namespace JetBrains.Annotations
         {
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Flags")]
         [UsedImplicitly]
         public MeansImplicitUseAttribute(ImplicitUseKindFlags useKindFlags, ImplicitUseTargetFlags targetFlags)
         {
@@ -431,28 +443,33 @@ namespace JetBrains.Annotations
             TargetFlags = targetFlags;
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Flags")]
         [UsedImplicitly]
         public MeansImplicitUseAttribute(ImplicitUseKindFlags useKindFlags)
             : this(useKindFlags, ImplicitUseTargetFlags.Default)
         {
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Flags")]
         [UsedImplicitly]
         public MeansImplicitUseAttribute(ImplicitUseTargetFlags targetFlags)
             : this(ImplicitUseKindFlags.Default, targetFlags)
         {
         }
 
+        [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Flags")]
         [UsedImplicitly]
         public ImplicitUseKindFlags UseKindFlags { get; private set; }
 
         /// <summary>
         /// Gets value indicating what is meant to be used
         /// </summary>
+        [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Flags")]
         [UsedImplicitly]
         public ImplicitUseTargetFlags TargetFlags { get; private set; }
     }
 
+    [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Flags")]
     [Flags]
     public enum ImplicitUseKindFlags
     {
@@ -483,6 +500,7 @@ namespace JetBrains.Annotations
     /// <summary>
     /// Specify what is considered used implicitly when marked with <see cref="MeansImplicitUseAttribute"/> or <see cref="UsedImplicitlyAttribute"/>
     /// </summary>
+    [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Flags")]
     [Flags]
     public enum ImplicitUseTargetFlags
     {
@@ -504,6 +522,9 @@ namespace JetBrains.Annotations
     /// <summary>
     /// This attribute is intended to mark publicly available API which should not be removed and so is treated as used.
     /// </summary>
+    [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "API")]
+    [SuppressMessage("Microsoft.Design", "CA1018:MarkAttributesWithAttributeUsage")]
+    [SuppressMessage("Microsoft.Design", "CA1019:DefineAccessorsForAttributeArguments")]
     [MeansImplicitUse]
     public sealed class PublicAPIAttribute : Attribute
     {
@@ -511,6 +532,7 @@ namespace JetBrains.Annotations
         {
         }
 
+        [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "comment")]
         public PublicAPIAttribute(string comment)
         {
         }
@@ -554,7 +576,7 @@ namespace JetBrains.Annotations
     /// Indicates that a parameter is a path to a file or a folder within a web project.
     /// Path can be relative or absolute, starting from web root (~).
     /// </summary>
-    [AttributeUsage(AttributeTargets.Parameter)]
+    [SuppressMessage("Microsoft.Performance", "CA1813:AvoidUnsealedAttributes"), AttributeUsage(AttributeTargets.Parameter)]
     public class PathReferenceAttribute : Attribute
     {
         public PathReferenceAttribute()

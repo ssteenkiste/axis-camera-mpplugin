@@ -69,6 +69,7 @@
     <Compile Include="Dependencies\EmbeddedAxisRtpSourceFilter.cs" />
     <Compile Include="Dependencies\Helpers\Clsid.cs" />
     <Compile Include="DependencyResult.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IDependency.cs" />
     <Compile Include="Printer.cs" />
     <Compile Include="Program.cs" />

@@ -53,6 +53,7 @@
     </Compile>
     <Compile Include="DialogViewModelBase.cs" />
     <Compile Include="Extensions\System\Linq\Expressions\ExpressionExtensions.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IDialogViewModelBase.cs" />
     <Compile Include="IViewModelBase.cs" />
     <Compile Include="LifetimeBehaviors.cs" />
