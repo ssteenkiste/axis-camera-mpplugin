@@ -10,7 +10,7 @@
         
         <!-- MPE Maker -->
         <SetupScriptFile>AxisCameras.xmp2</SetupScriptFile>
-        <MpeMakerFile>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\MediaPortal@InstallPath)</MpeMakerFile>
+        <MpeMakerFile>$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\MediaPortal@InstallPath)\MpeMaker.exe</MpeMakerFile>
         
         <!-- FxCop -->
         <FxCopToolPath>$(SolutionPath)\Externals\Microsoft Visual Studio 12.0 FxCop</FxCopToolPath>
