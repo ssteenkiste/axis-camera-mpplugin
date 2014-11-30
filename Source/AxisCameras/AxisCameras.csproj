@@ -77,6 +77,7 @@
     </Compile>
     <Compile Include="Extensions\MediaPortal\Dialogs\GUIDialogOKExtensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="MediaPortalLog.cs" />
     <Compile Include="NetworkConfiguration.cs" />
     <Compile Include="Player\CameraPlayer.cs" />
     <Compile Include="Player\ICameraPlayer.cs">

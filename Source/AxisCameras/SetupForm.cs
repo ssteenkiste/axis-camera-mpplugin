@@ -26,6 +26,7 @@ using System.Linq;
 using Autofac;
 using AxisCameras.Configuration;
 using AxisCameras.Configuration.Service;
+using AxisCameras.Core;
 using AxisCameras.Core.Contracts;
 using AxisCameras.Data;
 using AxisCameras.Player;
@@ -63,8 +64,13 @@ namespace AxisCameras
         /// <summary>
         /// Initializes a new instance of the <see cref="SetupForm"/> class.
         /// </summary>
-        public SetupForm()
+        /// <param name="log">
+        /// The logger to be used in the plugin. If none is specified a
+        /// <see cref="MediaPortalLog"/> is used.
+        /// </param>
+        public SetupForm(ILog log = null)
         {
+            Log.SetLog(log ?? new MediaPortalLog());
             Log.Info("Version: {0}", new ProductInformation().Version);
         }
 
