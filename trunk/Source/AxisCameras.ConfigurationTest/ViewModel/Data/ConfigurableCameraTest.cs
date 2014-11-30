@@ -19,6 +19,7 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using AxisCameras.Configuration.ViewModel.Data;
 using AxisCameras.Data;
@@ -77,7 +78,7 @@ namespace AxisCameras.ConfigurationTest.ViewModel.Data
         /// <summary>
         /// Gets all public and internal properties of specified type.
         /// </summary>
-        private static PropertyInfo[] GetProperties(Type type)
+        private static IEnumerable<PropertyInfo> GetProperties(Type type)
         {
             return type.GetProperties(
                 BindingFlags.Public |

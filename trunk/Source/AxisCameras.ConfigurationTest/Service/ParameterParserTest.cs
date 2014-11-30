@@ -29,7 +29,7 @@ namespace AxisCameras.ConfigurationTest.Service
         [Test]
         public void SingleParameter()
         {
-            ParameterParser parser = new ParameterParser();
+            var parser = new ParameterParser();
             var result = parser.Parse("Network.UPnP.FriendlyName=AXIS 210 - 00408C6D796F\n");
 
             Assert.That(result.Count, Is.EqualTo(1));
@@ -40,7 +40,7 @@ namespace AxisCameras.ConfigurationTest.Service
         [Test]
         public void ParameterGroup()
         {
-            ParameterParser parser = new ParameterParser();
+            var parser = new ParameterParser();
             var result = parser.Parse(
                 "Network.UPnP.Enabled=yes\n" +
                 "Network.UPnP.FriendlyName=AXIS 210 - 00408C6D796F\n" +
@@ -74,7 +74,7 @@ namespace AxisCameras.ConfigurationTest.Service
         [Test]
         public void EqualSign()
         {
-            ParameterParser parser = new ParameterParser();
+            var parser = new ParameterParser();
             var result = parser.Parse("name=val=ue\n");
 
             Assert.That(result.Count, Is.EqualTo(1));
@@ -85,7 +85,7 @@ namespace AxisCameras.ConfigurationTest.Service
         [Test]
         public void WhiteSpaces()
         {
-            ParameterParser parser = new ParameterParser();
+            var parser = new ParameterParser();
             var result = parser.Parse(" name = value \n ");
 
             Assert.That(result.Count, Is.EqualTo(1));
