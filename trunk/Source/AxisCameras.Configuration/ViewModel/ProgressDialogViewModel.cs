@@ -110,6 +110,7 @@ namespace AxisCameras.Configuration.ViewModel
         /// true to release both managed and unmanaged resources; false to release only unmanaged
         /// resources.
         /// </param>
+// ReSharper disable once VirtualMemberNeverOverriden.Global
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)

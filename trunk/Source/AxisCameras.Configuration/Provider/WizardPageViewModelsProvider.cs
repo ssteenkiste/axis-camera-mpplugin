@@ -89,7 +89,7 @@ namespace AxisCameras.Configuration.Provider
 
             Log.Debug("Provide a sequence of IWizardPageViewModels");
 
-            return new IWizardPageViewModel[]
+            return new[]
             {
                 pageOne,
                 pageTwo,

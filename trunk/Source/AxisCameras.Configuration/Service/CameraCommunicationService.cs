@@ -91,6 +91,7 @@ namespace AxisCameras.Configuration.Service
                 {
                     if (t.IsFaulted)
                     {
+// ReSharper disable once PossibleNullReferenceException
                         Log.Error("Error when getting parameters.", t.Exception.InnerException);
                         throw t.Exception.InnerException;
                     }
@@ -115,7 +116,8 @@ namespace AxisCameras.Configuration.Service
                         firmwareVersion,
                         videoSourceCount,
                         videoCapabilities);
-                });
+                },
+                cancellationToken);
         }
 
         /// <summary>
@@ -193,7 +195,7 @@ namespace AxisCameras.Configuration.Service
         /// <returns>The supported video capabilities.</returns>
         private static VideoCapabilities GetVideoCapabilities(IDictionary<string, string> parameters)
         {
-            VideoCapabilities capabilities = VideoCapabilities.None;
+            var capabilities = VideoCapabilities.None;
 
             string parameterValueText = GetValue(Vapix.Parameters.ImageFormats, parameters);
             if (parameterValueText != null)

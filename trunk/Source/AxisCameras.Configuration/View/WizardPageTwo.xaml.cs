@@ -18,14 +18,12 @@
 
 #endregion
 
-using System.Windows.Controls;
-
 namespace AxisCameras.Configuration.View
 {
     /// <summary>
     /// The second page of the camera wizard.
     /// </summary>
-    public partial class WizardPageTwo : UserControl
+    public partial class WizardPageTwo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="WizardPageTwo"/> class.

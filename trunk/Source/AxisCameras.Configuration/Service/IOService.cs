@@ -122,6 +122,8 @@ namespace AxisCameras.Configuration.Service
 
             // Make sure thumb directory exists
             string thumbDirectory = Path.GetDirectoryName(thumbFileName);
+            Requires.NotNull(thumbDirectory);
+
             if (!Directory.Exists(thumbDirectory))
             {
                 Directory.CreateDirectory(thumbDirectory);

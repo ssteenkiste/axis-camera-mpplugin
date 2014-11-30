@@ -39,19 +39,22 @@ namespace AxisCameras.Configuration.View
         /// Converts a sequence of bytes to a bitmap image.
         /// </summary>
         /// <param name="value">The sequence of bytes.</param>
+        /// <param name="targetType">The type of the binding target property.</param>
+        /// <param name="parameter">The converter parameter to use.</param>
+        /// <param name="culture">The culture to use in the converter.</param>
         /// <returns>A bitmap image.</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            IEnumerable<byte> imageBytes = value as IEnumerable<byte>;
+            var imageBytes = value as IEnumerable<byte>;
 
             if (imageBytes == null)
                 return Binding.DoNothing;
             if (targetType != typeof(ImageSource))
                 return Binding.DoNothing;
 
-            using (MemoryStream stream = new MemoryStream(imageBytes.ToArray()))
+            using (var stream = new MemoryStream(imageBytes.ToArray()))
             {
-                BitmapImage image = new BitmapImage();
+                var image = new BitmapImage();
                 image.BeginInit();
                 image.CacheOption = BitmapCacheOption.OnLoad;
                 image.StreamSource = stream;

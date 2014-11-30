@@ -60,7 +60,7 @@ namespace AxisCameras.Configuration.Service
             };
 
             // Register a cancel handler, which will cancel the request if Cancel is triggered
-            var ctr = cancellationToken.Register(() => webClient.CancelAsync());
+            var ctr = cancellationToken.Register(webClient.CancelAsync);
 
             // Set up a completed event handler
             DownloadStringCompletedEventHandler handler = null;
@@ -121,7 +121,7 @@ namespace AxisCameras.Configuration.Service
             };
 
             // Register a cancel handler, which will cancel the request if Cancel is triggered
-            var ctr = cancellationToken.Register(() => webClient.CancelAsync());
+            var ctr = cancellationToken.Register(webClient.CancelAsync);
 
             // Set up a completed event handler
             DownloadDataCompletedEventHandler handler = null;
