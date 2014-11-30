@@ -49,14 +49,17 @@ namespace AxisCameras.Configuration.View
             if (targetType != typeof(ImageSource))
                 return Binding.DoNothing;
 
-            MemoryStream stream = new MemoryStream(imageBytes.ToArray());
+            using (MemoryStream stream = new MemoryStream(imageBytes.ToArray()))
+            {
+                BitmapImage image = new BitmapImage();
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.StreamSource = stream;
+                image.EndInit();
+                image.Freeze();
 
-            BitmapImage image = new BitmapImage();
-            image.BeginInit();
-            image.StreamSource = stream;
-            image.EndInit();
-
-            return image;
+                return image;
+            }
         }
 
         /// <summary>
