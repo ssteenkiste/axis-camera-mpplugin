@@ -3,29 +3,29 @@
 namespace AxisCamerasDependencyChecker
 {
     /// <summary>
-    /// Class printing to <see cref="Console"/>.
+    /// Class logging to <see cref="Console"/>.
     /// </summary>
-    internal class Printer
+    internal class Logger
     {
         private readonly ConsoleColor defaultForegroundColor;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Printer"/> class.
+        /// Initializes a new instance of the <see cref="Logger"/> class.
         /// </summary>
-        public Printer()
+        public Logger()
         {
             defaultForegroundColor = Console.ForegroundColor;
         }
 
         /// <summary>
-        /// Prints the outcome of the dependency result.
+        /// Logs the outcome of the dependency result.
         /// </summary>
-        internal void Print(DependencyResult result)
+        internal void Log(DependencyResult result)
         {
             // Change foreground color
-            Console.ForegroundColor = result.IsSuccess
-                ? ConsoleColor.Green
-                : ConsoleColor.Red;
+            Console.ForegroundColor = result.IsSuccess ?
+                ConsoleColor.Green :
+                ConsoleColor.Red;
 
             // Name
             Console.WriteLine(

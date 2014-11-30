@@ -52,7 +52,7 @@ namespace AxisCamerasDependencyChecker
         /// <summary>
         /// Adds additional information about the dependency check.
         /// </summary>
-        internal void AddInformation(string message)
+        private void AddInformation(string message)
         {
             information.Add(message);
         }
