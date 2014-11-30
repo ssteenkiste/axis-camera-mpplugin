@@ -67,6 +67,8 @@ namespace AxisCameras.Player
             string playlistName)
         {
             Requires.NotNull(playlistItems);
+            playlistItems = playlistItems.ToArray();
+
             Requires.True(playlistItems.Any(), "Playlist must contain at least one item.");
 
             // By using the music video playlist we are forcing MediaPortal to play the playlist as a
@@ -77,7 +79,7 @@ namespace AxisCameras.Player
             // add the amp-file extension (live video stream URL ends with media.amp) during installation
             // or make sure the MediaInfoWrapper is capable of parsing the video stream, which I don't
             // think it is capable of.
-            PlayListType playlistType = PlayListType.PLAYLIST_MUSIC_VIDEO;
+            var playlistType = PlayListType.PLAYLIST_MUSIC_VIDEO;
 
             PlayListPlayer player = PlayListPlayer.SingletonPlayer;
             PlayList playlist = player.GetPlaylist(playlistType);

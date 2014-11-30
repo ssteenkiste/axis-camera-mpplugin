@@ -33,7 +33,7 @@ namespace AxisCameras
         /// for .NET 1.1, but the internal structure of the framework have changed. It is the Vapix API
         /// that requires a specific format to be backward compatible with old versions. 
         /// </summary>
-        internal static bool SetAllowUnsafeHeaderParsing20()
+        internal static void SetAllowUnsafeHeaderParsing20()
         {
             Log.Debug("Disabling safe header parsing");
 
@@ -67,13 +67,10 @@ namespace AxisCameras
                         if (useUnsafeHeaderParsing != null)
                         {
                             useUnsafeHeaderParsing.SetValue(instance, true); //And that's it!
-                            return true;
                         }
                     }
                 }
             }
-
-            return false;
         }
     }
 }
