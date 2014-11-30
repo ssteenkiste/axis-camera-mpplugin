@@ -19,74 +19,42 @@
 #endregion
 
 using System;
-using AxisCameras.Core.Contracts;
-using MediaPortalLog = MediaPortal.GUI.Library.Log;
 
 namespace AxisCameras.Core
 {
     /// <summary>
-    /// Class acting as logger in the plugin.
+    /// Interface describing a logger in the plugin.
     /// </summary>
-    public static class Log
+    public interface ILog
     {
-        private static ILog log;
-
-        /// <summary>
-        /// Sets the logger responsible for logging all messages in the plugin.
-        /// </summary>
-        public static void SetLog(ILog log)
-        {
-            Requires.NotNull(log);
-
-            Log.log = log;
-        }
-
         /// <summary>
         /// Is logging with debug level.
         /// </summary>
-        public static void Debug(string format, params object[] arg)
-        {
-            log.Debug(format, arg);
-        }
+        void Debug(string format, params object[] arg);
 
         /// <summary>
         /// Is logging with information level.
         /// </summary>
-        public static void Info(string format, params object[] arg)
-        {
-            log.Info(format, arg);
-        }
+        void Info(string format, params object[] arg);
 
         /// <summary>
         /// Is logging with warning level.
         /// </summary>
-        public static void Warn(string format, params object[] arg)
-        {
-            log.Warn(format, arg);
-        }
+        void Warn(string format, params object[] arg);
 
         /// <summary>
         /// Is logging with error level.
         /// </summary>
-        public static void Error(string format, params object[] arg)
-        {
-            log.Error(format, arg);
-        }
+        void Error(string format, params object[] arg);
 
         /// <summary>
         /// Is logging a exception.
         /// </summary>
-        public static void Error(Exception exception)
-        {
-            log.Error(exception);
-        }
+        void Error(Exception exception);
 
         /// <summary>
         /// Is logging a message and exception with error level.
         /// </summary>
-        public static void Error(string message, Exception exception)
-        {
-            log.Error(message, exception);
-        }
+        void Error(string message, Exception exception);
     }
 }

@@ -19,74 +19,72 @@
 #endregion
 
 using System;
-using AxisCameras.Core.Contracts;
-using MediaPortalLog = MediaPortal.GUI.Library.Log;
+using AxisCameras.Core;
 
-namespace AxisCameras.Core
+namespace AxisCameras
 {
     /// <summary>
-    /// Class acting as logger in the plugin.
+    /// Logger logging to MediaPortal's log.
     /// </summary>
-    public static class Log
+    internal class MediaPortalLog : ILog
     {
-        private static ILog log;
-
-        /// <summary>
-        /// Sets the logger responsible for logging all messages in the plugin.
-        /// </summary>
-        public static void SetLog(ILog log)
-        {
-            Requires.NotNull(log);
-
-            Log.log = log;
-        }
+        private const string PluginName = "Axis Cameras";
 
         /// <summary>
         /// Is logging with debug level.
         /// </summary>
-        public static void Debug(string format, params object[] arg)
+        public void Debug(string format, params object[] arg)
         {
-            log.Debug(format, arg);
+            MediaPortal.GUI.Library.Log.Debug(Prefix(format), arg);
         }
 
         /// <summary>
         /// Is logging with information level.
         /// </summary>
-        public static void Info(string format, params object[] arg)
+        public void Info(string format, params object[] arg)
         {
-            log.Info(format, arg);
+            MediaPortal.GUI.Library.Log.Info(Prefix(format), arg);
         }
 
         /// <summary>
         /// Is logging with warning level.
         /// </summary>
-        public static void Warn(string format, params object[] arg)
+        public void Warn(string format, params object[] arg)
         {
-            log.Warn(format, arg);
+            MediaPortal.GUI.Library.Log.Warn(Prefix(format), arg);
         }
 
         /// <summary>
         /// Is logging with error level.
         /// </summary>
-        public static void Error(string format, params object[] arg)
+        public void Error(string format, params object[] arg)
         {
-            log.Error(format, arg);
+            MediaPortal.GUI.Library.Log.Error(Prefix(format), arg);
         }
 
         /// <summary>
         /// Is logging a exception.
         /// </summary>
-        public static void Error(Exception exception)
+        public void Error(Exception exception)
         {
-            log.Error(exception);
+            MediaPortal.GUI.Library.Log.Error(exception);
         }
 
         /// <summary>
         /// Is logging a message and exception with error level.
         /// </summary>
-        public static void Error(string message, Exception exception)
+        public void Error(string message, Exception exception)
         {
-            log.Error(message, exception);
+            MediaPortal.GUI.Library.Log.Error(Prefix(message) + " " + exception);
+        }
+
+        /// <summary>
+        /// Adds the plugin name as prefix to the format text.
+        /// </summary>
+        /// <param name="format">The format.</param>
+        private static string Prefix(string format)
+        {
+            return PluginName + ": " + format;
         }
     }
 }

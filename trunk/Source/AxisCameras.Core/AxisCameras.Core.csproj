@@ -59,6 +59,8 @@
     <Compile Include="Contracts\RequiresException.cs" />
     <Compile Include="Contracts\ResharperAnnotations.cs" />
     <Compile Include="Extensions\System\StringExtensions.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="ILog.cs" />
     <Compile Include="ISingleInstance.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

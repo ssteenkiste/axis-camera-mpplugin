@@ -28,7 +28,7 @@ namespace AxisCameras.Configuration.Starter
         {
             base.OnStartup(e);
 
-            SetupForm setupForm = new SetupForm();
+            SetupForm setupForm = new SetupForm(new TraceLog());
             setupForm.ShowPlugin();
         }
     }

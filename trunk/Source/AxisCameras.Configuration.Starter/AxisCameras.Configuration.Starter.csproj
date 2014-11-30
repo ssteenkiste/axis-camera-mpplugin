@@ -72,6 +72,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TraceLog.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -80,6 +81,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AxisCameras.Core\AxisCameras.Core.csproj">
+      <Project>{ba65ea0c-e460-437e-a56c-ccf118d3dbe0}</Project>
+      <Name>AxisCameras.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AxisCameras\AxisCameras.csproj">
       <Project>{A2B1464E-D965-4DE3-8EA2-5E4463E40262}</Project>
       <Name>AxisCameras</Name>
