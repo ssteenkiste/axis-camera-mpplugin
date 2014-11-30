@@ -33,10 +33,12 @@ namespace AxisCameras.CoreTest.Contracts
         public void True()
         {
             Requires.True(true);
+// ReSharper disable once RedundantArgumentDefaultValue
             Requires.True(true, null);
             Requires.True(true, "Error message");
 
             Assert.Throws<RequiresException>(() => Requires.True(false));
+// ReSharper disable once RedundantArgumentDefaultValue
             Assert.Throws<RequiresException>(() => Requires.True(false, null));
             Assert.Throws<RequiresException>(() => Requires.True(false, "Error message"));
         }
@@ -58,6 +60,7 @@ namespace AxisCameras.CoreTest.Contracts
             Requires.NotNull(new object());
 
             object value = null;
+// ReSharper disable once ExpressionIsAlwaysNull
             Assert.Throws<RequiresException>(() => Requires.NotNull(value));
         }
 
