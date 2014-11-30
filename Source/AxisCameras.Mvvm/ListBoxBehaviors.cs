@@ -78,7 +78,7 @@ namespace AxisCameras.Mvvm
             DependencyObject target,
             DependencyPropertyChangedEventArgs e)
         {
-            ListBox listBox = target as ListBox;
+            var listBox = target as ListBox;
             if (listBox == null)
             {
                 return;
@@ -102,7 +102,7 @@ namespace AxisCameras.Mvvm
         /// <param name="e">The event args.</param>
         private static void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            DependencyObject target = sender as DependencyObject;
+            var target = sender as DependencyObject;
             if (target == null)
             {
                 return;
