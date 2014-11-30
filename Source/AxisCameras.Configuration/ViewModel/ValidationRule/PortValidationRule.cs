@@ -35,7 +35,7 @@ namespace AxisCameras.Configuration.ViewModel.ValidationRule
         /// <returns>true if validation is successful; otherwise false.</returns>
         public bool Validate(object value)
         {
-            string portText = value as string;
+            var portText = value as string;
             if (string.IsNullOrEmpty(portText))
             {
                 return false;

@@ -80,9 +80,10 @@ namespace AxisCameras.Configuration.ViewModel
                 {
                     if (t.IsFaulted)
                     {
+// ReSharper disable once PossibleNullReferenceException
                         Log.Error("Error when getting snapshot from camera.", t.Exception.InnerException);
 
-                        /// Close dialog unsuccessfully
+                        // Close dialog unsuccessfully
                         DialogResultCommand.Execute(false);
                     }
                     else

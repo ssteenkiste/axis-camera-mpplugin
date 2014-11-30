@@ -46,7 +46,7 @@ namespace AxisCameras.Configuration.ViewModel.ValidationRule
         /// <returns>true if validation is successful; otherwise false.</returns>
         public bool Validate(object value)
         {
-            string userName = value as string;
+            var userName = value as string;
             if (string.IsNullOrEmpty(userName))
             {
                 return false;

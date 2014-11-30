@@ -181,7 +181,7 @@ namespace AxisCameras.Configuration.ViewModel
             // If view model is valid and camera properties are dirty, communicate with camera
             if (isValid && dirtyState.IsDirty(Address, Port, UserName, Password))
             {
-                NetworkEndpoint cameraEndpoint = new NetworkEndpoint(
+                var cameraEndpoint = new NetworkEndpoint(
                     Address,
                     int.Parse(Port, CultureInfo.CurrentCulture),
                     UserName,

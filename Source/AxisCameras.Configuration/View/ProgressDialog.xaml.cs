@@ -19,14 +19,13 @@
 #endregion
 
 using System.ComponentModel;
-using System.Windows;
 
 namespace AxisCameras.Configuration.View
 {
     /// <summary>
     /// Dialog displayed to the user when application is communicating with the camera.
     /// </summary>
-    public partial class ProgressDialog : Window
+    public partial class ProgressDialog
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ProgressDialog"/> class.

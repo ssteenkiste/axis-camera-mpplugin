@@ -18,7 +18,6 @@
 
 #endregion
 
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace AxisCameras.Configuration.View
@@ -26,7 +25,7 @@ namespace AxisCameras.Configuration.View
     /// <summary>
     /// The first page of the camera wizard.
     /// </summary>
-    public partial class WizardPageOne : UserControl
+    public partial class WizardPageOne
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="WizardPageOne"/> class.
