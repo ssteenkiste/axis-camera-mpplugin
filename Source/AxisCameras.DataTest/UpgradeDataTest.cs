@@ -295,7 +295,7 @@ namespace AxisCameras.DataTest
                 .Returns(currentVersion);
 
             // Setup a partial upgrade from version 3 to 4
-            Mock<IPartialUpgrade> upgradeToFourthVersion = new Mock<IPartialUpgrade>();
+            var upgradeToFourthVersion = new Mock<IPartialUpgrade>();
             upgradeToFourthVersion
                 .Setup(pu => pu.FromVersion)
                 .Returns(3);
