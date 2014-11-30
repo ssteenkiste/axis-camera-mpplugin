@@ -77,18 +77,14 @@ namespace AxisCameras.Mvvm
             DependencyObject d,
             DependencyPropertyChangedEventArgs e)
         {
-            PasswordBox passwordBox = d as PasswordBox;
+            var passwordBox = d as PasswordBox;
             if (passwordBox == null)
             {
                 // We only support attaching this property on PasswordBox objects.
                 return;
             }
 
-            string newValue = e.NewValue as string;
-            if (newValue != passwordBox.Password)
-            {
-                passwordBox.Password = newValue;
-            }
+            passwordBox.Password = e.NewValue as string;
         }
 
         /// <summary>
@@ -100,7 +96,7 @@ namespace AxisCameras.Mvvm
         /// instance containing the event data.</param>
         private static void PasswordBoxChanged(object sender, RoutedEventArgs e)
         {
-            PasswordBox passwordBox = sender as PasswordBox;
+            var passwordBox = (PasswordBox)sender;
             SetPassword(passwordBox, passwordBox.Password);
         }
     }

@@ -34,7 +34,7 @@ namespace AxisCameras.Mvvm
     /// <summary>
     /// Base class for all ViewModels.
     /// </summary>
-    public abstract class ViewModelBase : IViewModelBase, INotifyPropertyChanged, IDataErrorInfo
+    public abstract class ViewModelBase : IViewModelBase, IDataErrorInfo
     {
         private readonly Dictionary<string, PropertyItem> properties;
         private Validator validator;
@@ -86,7 +86,7 @@ namespace AxisCameras.Mvvm
             }
 
             // Get invalid properties
-            IEnumerable<string> propertyNamesWithErrors = validator.InvalidPropertyNames;
+            string[] propertyNamesWithErrors = validator.InvalidPropertyNames.ToArray();
 
             // Send events about invalid properties
             OnPropertiesChanged(propertyNamesWithErrors);
@@ -99,7 +99,7 @@ namespace AxisCameras.Mvvm
         /// </summary>
         public bool IsValid
         {
-            get { return validator != null ? validator.IsValid : true; }
+            get { return validator == null || validator.IsValid; }
         }
 
         /// <summary>

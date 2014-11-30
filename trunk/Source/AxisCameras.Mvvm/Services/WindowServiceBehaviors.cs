@@ -80,7 +80,7 @@ namespace AxisCameras.Mvvm.Services
         /// <returns>A window if an owner was found; otherwise null.</returns>
         internal static Window FindOwner(FrameworkElement view)
         {
-            Window window = view as Window;
+            var window = view as Window;
             if (window != null)
             {
                 return window;
@@ -105,10 +105,10 @@ namespace AxisCameras.Mvvm.Services
                 return;
             }
 
-            FrameworkElement view = target as FrameworkElement;
+            var view = target as FrameworkElement;
             if (view != null)
             {
-                bool newValue = (bool)e.NewValue;
+                var newValue = (bool)e.NewValue;
 
                 if (newValue)
                 {
@@ -166,7 +166,7 @@ namespace AxisCameras.Mvvm.Services
         /// </summary>
         private static void LateRegister(object sender, RoutedEventArgs e)
         {
-            FrameworkElement view = sender as FrameworkElement;
+            var view = sender as FrameworkElement;
             if (view != null)
             {
                 // Unregister loaded event
@@ -183,12 +183,13 @@ namespace AxisCameras.Mvvm.Services
         /// </summary>
         private static void OwnerClosed(object sender, EventArgs e)
         {
-            Window owner = sender as Window;
+            var owner = sender as Window;
             if (owner != null)
             {
                 // Find Views acting within closed window
                 IEnumerable<FrameworkElement> windowViews =
                     from view in Views
+// ReSharper disable once PossibleUnintendedReferenceComparison
                     where Window.GetWindow(view) == owner
                     select view;
 

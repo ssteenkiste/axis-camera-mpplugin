@@ -66,7 +66,9 @@ namespace AxisCameras.Mvvm.Validation
         {
             Requires.NotNullOrEmpty(propertyName);
 
-            IEnumerable<ValidationData> relevantRules = rules.Where(r => r.Name == propertyName);
+            ValidationData[] relevantRules = rules
+                .Where(r => r.Name == propertyName)
+                .ToArray();
 
             // Default error message indicating valid property
             string errorMessage = string.Empty;
