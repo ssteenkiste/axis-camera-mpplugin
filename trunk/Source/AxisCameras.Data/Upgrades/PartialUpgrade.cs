@@ -94,9 +94,9 @@ namespace AxisCameras.Data.Upgrades
         /// <returns>The serialized value.</returns>
         protected static string Serialize<T>(T value)
         {
-            using (StringWriter writer = new StringWriter(CultureInfo.InvariantCulture))
+            using (var writer = new StringWriter(CultureInfo.InvariantCulture))
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(T));
+                var serializer = new XmlSerializer(typeof(T));
                 serializer.Serialize(writer, value);
 
                 return writer.ToString();
@@ -111,9 +111,9 @@ namespace AxisCameras.Data.Upgrades
         /// <returns>The deserialized object.</returns>
         protected static T Deserialize<T>(string value)
         {
-            using (StringReader reader = new StringReader(value))
+            using (var reader = new StringReader(value))
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(T));
+                var serializer = new XmlSerializer(typeof(T));
                 return (T)serializer.Deserialize(reader);
             }
         }

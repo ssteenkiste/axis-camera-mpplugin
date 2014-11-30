@@ -66,7 +66,7 @@ namespace AxisCameras.Data.Upgrades.Version2
                     DataPersistenceInformation.CameraSection.CamerasEntry);
 
                 // Deserialize version 1 cameras
-                List<Version1Camera> version1Cameras = Deserialize<List<Version1Camera>>(
+                var version1Cameras = Deserialize<List<Version1Camera>>(
                     serializedVersion1Cameras);
 
                 // Convert version 1 cameras into version 2 cameras. New properties:
