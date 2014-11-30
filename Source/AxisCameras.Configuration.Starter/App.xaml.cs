@@ -22,13 +22,13 @@ using System.Windows;
 
 namespace AxisCameras.Configuration.Starter
 {
-    public partial class App : Application
+    public partial class App
     {
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
-            SetupForm setupForm = new SetupForm(new TraceLog());
+            var setupForm = new SetupForm(new TraceLog());
             setupForm.ShowPlugin();
         }
     }
