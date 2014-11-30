@@ -20,6 +20,7 @@
 
 using System.Globalization;
 
+// ReSharper disable once CheckNamespace
 namespace System
 {
     /// <summary>

@@ -16,6 +16,7 @@
  */
 using System.Diagnostics.CodeAnalysis;
 
+// ReSharper disable once CheckNamespace
 namespace JetBrains.Annotations
 {
     /// <summary>
@@ -288,11 +289,13 @@ namespace JetBrains.Annotations
     {
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "fdt")]
         public ContractAnnotationAttribute([NotNull] string fdt)
+// ReSharper disable once IntroduceOptionalParameters.Global
             : this(fdt, false)
         {
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "fdt")]
+// ReSharper disable once MemberCanBePrivate.Global
         public ContractAnnotationAttribute([NotNull] string fdt, bool forceFullStates)
         {
             FDT = fdt;
@@ -300,7 +303,12 @@ namespace JetBrains.Annotations
         }
 
         [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "FDT")]
+// ReSharper disable once InconsistentNaming
+// ReSharper disable once MemberCanBePrivate.Global
+// ReSharper disable once UnusedAutoPropertyAccessor.Global
         public string FDT { get; private set; }
+// ReSharper disable once MemberCanBePrivate.Global
+// ReSharper disable once UnusedAutoPropertyAccessor.Global
         public bool ForceFullStates { get; private set; }
     }
 
@@ -372,6 +380,8 @@ namespace JetBrains.Annotations
         /// Gets enumerations of specified base types
         /// </summary>
         [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays")]
+// ReSharper disable once MemberCanBePrivate.Global
+// ReSharper disable once UnusedAutoPropertyAccessor.Global
         public Type[] BaseTypes { get; private set; }
     }
 
@@ -399,6 +409,7 @@ namespace JetBrains.Annotations
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Flags")]
         [UsedImplicitly]
         public UsedImplicitlyAttribute(ImplicitUseKindFlags useKindFlags)
+// ReSharper disable once IntroduceOptionalParameters.Global
             : this(useKindFlags, ImplicitUseTargetFlags.Default)
         {
         }
@@ -446,6 +457,7 @@ namespace JetBrains.Annotations
         [SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Flags")]
         [UsedImplicitly]
         public MeansImplicitUseAttribute(ImplicitUseKindFlags useKindFlags)
+// ReSharper disable once IntroduceOptionalParameters.Global
             : this(useKindFlags, ImplicitUseTargetFlags.Default)
         {
         }
@@ -526,6 +538,7 @@ namespace JetBrains.Annotations
     [SuppressMessage("Microsoft.Design", "CA1018:MarkAttributesWithAttributeUsage")]
     [SuppressMessage("Microsoft.Design", "CA1019:DefineAccessorsForAttributeArguments")]
     [MeansImplicitUse]
+// ReSharper disable once InconsistentNaming
     public sealed class PublicAPIAttribute : Attribute
     {
         public PublicAPIAttribute()
@@ -533,6 +546,7 @@ namespace JetBrains.Annotations
         }
 
         [SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "comment")]
+// ReSharper disable once UnusedParameter.Local
         public PublicAPIAttribute(string comment)
         {
         }

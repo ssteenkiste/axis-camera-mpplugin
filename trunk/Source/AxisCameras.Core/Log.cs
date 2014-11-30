@@ -34,6 +34,7 @@ namespace AxisCameras.Core
         /// <summary>
         /// Sets the logger responsible for logging all messages in the plugin.
         /// </summary>
+// ReSharper disable once ParameterHidesMember
         public static void SetLog(ILog log)
         {
             Requires.NotNull(log);
