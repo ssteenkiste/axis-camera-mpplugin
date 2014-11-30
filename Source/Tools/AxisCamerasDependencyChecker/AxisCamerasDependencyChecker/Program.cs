@@ -4,7 +4,7 @@ namespace AxisCamerasDependencyChecker
 {
     internal class Program
     {
-        private static readonly Printer Printer = new Printer();
+        private static readonly Logger Logger = new Logger();
 
         /// <summary>
         /// Entry method for console application.
@@ -13,13 +13,13 @@ namespace AxisCamerasDependencyChecker
         {
             // Check RTP source filter
             IDependency axisRtpSourceFilter = new AxisRtpSourceFilter();
-            Printer.Print(axisRtpSourceFilter.Run());
+            Logger.Log(axisRtpSourceFilter.Run());
 
             // Check embedded source filter
             IDependency embeddedAxisRtpSourceFilter = new EmbeddedAxisRtpSourceFilter();
-            Printer.Print(embeddedAxisRtpSourceFilter.Run());
+            Logger.Log(embeddedAxisRtpSourceFilter.Run());
 
-            Printer.Pause();
+            Logger.Pause();
         }
     }
 }
