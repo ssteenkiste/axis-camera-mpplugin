@@ -79,6 +79,8 @@ namespace AxisCameras.Player
         public void PlayLiveVideo(IEnumerable<Camera> cameras)
         {
             Requires.NotNull(cameras);
+
+            cameras = cameras.ToArray();
             Requires.True(cameras.Any());
 
             if (cameras.Count() == 1)

@@ -22,6 +22,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using AxisCameras.Core.Contracts;
 
+// ReSharper disable once CheckNamespace
 namespace MediaPortal.Dialogs
 {
     /// <summary>
@@ -31,6 +32,7 @@ namespace MediaPortal.Dialogs
         Justification = "MediaPortal has named the control like this.")]
     [SuppressMessage("Microsoft.Naming", "CA1709:IdentifiersShouldBeCasedCorrectly", MessageId = "OK",
         Justification = "MediaPortal has named the control like this.")]
+// ReSharper disable once InconsistentNaming
     public static class GUIDialogOKExtensions
     {
         /// <summary>
