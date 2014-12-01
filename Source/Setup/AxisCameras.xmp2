@@ -85,16 +85,9 @@
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\Externals\Autofac\Autofac.dll</LocalFileName>
+              <LocalFileName>..\AxisCameras\bin\Release\Autofac.dll</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{24d522a9-daf1-4c67-8dfd-1d722d13a806}-Autofac.dll</ZipFileName>
               <DestinationFilename>%Plugins%\Windows\Autofac.dll</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
-              <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\Externals\Reactive Extensions\System.Threading.dll</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{b900e8e0-9c8a-4fca-b9a3-13e81091e56e}-System.Threading.dll</ZipFileName>
-              <DestinationFilename>%Plugins%\Windows\System.Threading.dll</DestinationFilename>
             </FileItem>
           </Items>
         </Files>
@@ -712,10 +705,10 @@ public class Script
         </CompatibleVersion>
         <SubSystemsUsed>
           <Items>
-            <SubSystemItem Name="MP.SkinEngine.Dialogs" />
-            <SubSystemItem Name="MP.SkinEngine.Controls" />
-            <SubSystemItem Name="MP.Players.Video" />
             <SubSystemItem Name="MP.Config" />
+            <SubSystemItem Name="MP.Players.Video" />
+            <SubSystemItem Name="MP.SkinEngine.Controls" />
+            <SubSystemItem Name="MP.SkinEngine.Dialogs" />
           </Items>
         </SubSystemsUsed>
       </PluginDependencyItem>
