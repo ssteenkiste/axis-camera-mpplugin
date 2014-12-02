@@ -28,8 +28,10 @@ namespace AxisCameras.Configuration.Starter
         {
             base.OnStartup(e);
 
-            var setupForm = new SetupForm(new TraceLog());
-            setupForm.ShowPlugin();
+            using (var setupForm = new SetupForm(new TraceLog()))
+            {
+                setupForm.ShowPlugin();
+            }
         }
     }
 }
