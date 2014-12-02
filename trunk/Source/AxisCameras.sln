@@ -45,6 +45,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{D865B6CC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCamerasDependencyChecker", "Tools\AxisCamerasDependencyChecker\AxisCamerasDependencyChecker\AxisCamerasDependencyChecker.csproj", "{82694B46-6234-4BDC-BEAC-67DACF83CA5F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup", "Setup", "{360003F7-6628-48CC-9BD6-A8A45BC8F6F7}"
+	ProjectSection(SolutionItems) = preProject
+		Setup\AxisCameras.xmp2 = Setup\AxisCameras.xmp2
+		Setup\Build instructions.txt = Setup\Build instructions.txt
+		Setup\Build.proj = Setup\Build.proj
+		Setup\BuildSetup.bat = Setup\BuildSetup.bat
+		Setup\changelog.txt = Setup\changelog.txt
+		Setup\update.xml = Setup\update.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
