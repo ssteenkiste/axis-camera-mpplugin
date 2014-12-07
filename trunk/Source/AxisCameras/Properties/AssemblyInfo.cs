@@ -56,7 +56,9 @@ using MediaPortal.Common.Utils;
 // The attribute can be applied to either the assemblies or classes. When applied to an assembly it
 // will affect all contained classes that do not have the same attribute applied upon them.
 
-[assembly: CompatibleVersion("1.1.6.27733", "1.1.6.27644")]
+// Plugin is designed for MediaPortal 1.7 - the MP dlls have been slightly restructured and it's
+// using .net 4 now, so not backward compatible
+[assembly: CompatibleVersion("1.6.100.27733", "1.1.6.27644")]
 
 // This attribute is used to specify which subsystems the plugin is using. This information
 // combined with the CompatibleVersion attribute information allows the Compatibility Manager to
@@ -67,8 +69,7 @@ using MediaPortal.Common.Utils;
 // will effectively be applied to all contained classes. If some of the contained classes are also
 // tagged with the same subsystem(s) the attribute applied to the classes takes precedence.
 
-[assembly: UsesSubsystem("MP.SkinEngine.Controls")]
-[assembly: UsesSubsystem("MP.SkinEngine.Dialogs")]
+[assembly: UsesSubsystem("MP.SkinEngine")]
 [assembly: UsesSubsystem("MP.Players.Video")]
 [assembly: UsesSubsystem("MP.Config")]
 

@@ -687,8 +687,27 @@ public class Script
           <Revision>27644</Revision>
         </MaxVersion>
         <WarnOnly>false</WarnOnly>
-        <Message>requires MediaPortal version 1.1.6.27644 to 1.1.6.27644.</Message>
+        <Message>This version of Axis Cameras requires MediaPortal version 1.7 or newer!</Message>
         <Name>MediaPortal</Name>
+      </DependencyItem>
+      <DependencyItem>
+        <Type>Installer</Type>
+        <Id />
+        <MinVersion>
+          <Major>1</Major>
+          <Minor>3</Minor>
+          <Build>0</Build>
+          <Revision>0</Revision>
+        </MinVersion>
+        <MaxVersion>
+          <Major>9</Major>
+          <Minor>9</Minor>
+          <Build>9</Build>
+          <Revision>9</Revision>
+        </MaxVersion>
+        <WarnOnly>false</WarnOnly>
+        <Message>This installer of Axis Cameras requires MediaPortal version 1.3 Final or newer!</Message>
+        <Name>Installer</Name>
       </DependencyItem>
     </Items>
   </Dependencies>
@@ -699,7 +718,7 @@ public class Script
           <Items>
             <CompatibleVersionItem>
               <MinRequiredVersion>1.1.6.27644</MinRequiredVersion>
-              <DesignedForVersion>1.1.6.27733</DesignedForVersion>
+              <DesignedForVersion>1.6.100.27733</DesignedForVersion>
             </CompatibleVersionItem>
           </Items>
         </CompatibleVersion>
@@ -707,8 +726,7 @@ public class Script
           <Items>
             <SubSystemItem Name="MP.Config" />
             <SubSystemItem Name="MP.Players.Video" />
-            <SubSystemItem Name="MP.SkinEngine.Controls" />
-            <SubSystemItem Name="MP.SkinEngine.Dialogs" />
+            <SubSystemItem Name="MP.SkinEngine" />
           </Items>
         </SubSystemsUsed>
       </PluginDependencyItem>
@@ -840,16 +858,9 @@ public class Script
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\Externals\Autofac\Autofac.dll</LocalFileName>
+        <LocalFileName>..\AxisCameras\bin\Release\Autofac.dll</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{24d522a9-daf1-4c67-8dfd-1d722d13a806}-Autofac.dll</ZipFileName>
         <DestinationFilename>%Plugins%\Windows\Autofac.dll</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
-        <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\Externals\Reactive Extensions\System.Threading.dll</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{b900e8e0-9c8a-4fca-b9a3-13e81091e56e}-System.Threading.dll</ZipFileName>
-        <DestinationFilename>%Plugins%\Windows\System.Threading.dll</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
@@ -932,14 +943,14 @@ public class Script
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{7188d6e0-34bc-4df9-adba-27ed4cdad9c5}-Welcome_left.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{6725f1c5-6852-42fb-b8c7-16663a1b08cc}-Welcome_left.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{52686b38-8bdc-40de-898f-0a5e7f67e0b1}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{fd43c2ae-5dec-4dca-b426-368257e41735}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>

@@ -64,13 +64,20 @@ namespace AxisCameras
         /// <summary>
         /// Initializes a new instance of the <see cref="SetupForm"/> class.
         /// </summary>
-        /// <param name="log">
-        /// The logger to be used in the plugin. If none is specified a
-        /// <see cref="MediaPortalLog"/> is used.
-        /// </param>
-        public SetupForm(ILog log = null)
+        public SetupForm()
+            : this(new MediaPortalLog())
         {
-            Log.SetLog(log ?? new MediaPortalLog());
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SetupForm"/> class.
+        /// </summary>
+        /// <param name="log">The logger to be used in the plugin.</param>
+        public SetupForm(ILog log)
+        {
+            Requires.NotNull(log);
+
+            Log.SetLog(log);
             Log.Info("Version: {0}", new ProductInformation().Version);
         }
 
