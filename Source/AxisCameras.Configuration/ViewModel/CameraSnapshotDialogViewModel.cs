@@ -61,8 +61,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public byte[] Snapshot
         {
-            get { return Property(() => Snapshot); }
-            private set { Property(() => Snapshot, value); }
+            get { return GetValue<byte[]>(); }
+            private set { SetValue(value); }
         }
 
         /// <summary>

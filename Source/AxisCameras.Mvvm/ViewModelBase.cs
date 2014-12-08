@@ -25,6 +25,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using AxisCameras.Core.Contracts;
 using AxisCameras.Mvvm.Extensions.System.Linq.Expressions;
 using AxisCameras.Mvvm.Validation;
@@ -36,7 +37,7 @@ namespace AxisCameras.Mvvm
     /// </summary>
     public abstract class ViewModelBase : IViewModelBase, IDataErrorInfo
     {
-        private readonly Dictionary<string, PropertyItem> properties;
+        private readonly PropertyCache propertyCache;
         private Validator validator;
 
         /// <summary>
@@ -44,7 +45,7 @@ namespace AxisCameras.Mvvm
         /// </summary>
         protected ViewModelBase()
         {
-            properties = new Dictionary<string, PropertyItem>();
+            propertyCache = new PropertyCache();
         }
 
         /// <summary>
@@ -150,6 +151,15 @@ namespace AxisCameras.Mvvm
         }
 
         /// <summary>
+        /// Sends a property changed notification on specified property of this view model.
+        /// </summary>
+        /// <param name="propertyName">The name of the property.</param>
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
+        }
+
+        /// <summary>
         /// Sends a property changed notification on specified properties of this view model.
         /// </summary>
         /// <param name="propertyNames">The properties to send notifications on.</param>
@@ -172,66 +182,38 @@ namespace AxisCameras.Mvvm
         }
 
         /// <summary>
-        /// Gets the value of a property matching the given expression.
+        /// Returns the value of specified property.
         /// </summary>
-        /// <typeparam name="T">The property type.</typeparam>
-        /// <param name="nameExpression">The expression pointing to the property.</param>
-        /// <returns>The property value if existing; otherwise default.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
-        protected T Property<T>(Expression<Func<T>> nameExpression)
+        /// <typeparam name="T">The property value type.</typeparam>
+        /// <param name="propertyName">The name of the property.</param>
+        /// <returns>The value of specified property.</returns>
+        protected T GetValue<T>([CallerMemberName] string propertyName = "")
         {
-            Requires.NotNull(nameExpression);
+            VerifyPropertyName(propertyName);
 
-            PropertyItem p;
-            if (properties.TryGetValue(nameExpression.ToString(), out p))
-            {
-                return (T)p.Value;
-            }
-
-            return default(T);
+            return propertyCache.GetValue<T>(propertyName);
         }
 
         /// <summary>
-        /// Sets the value of a property matching the given expression.
+        /// Sets the value of specified property.
         /// </summary>
-        /// <typeparam name="T">The property type.</typeparam>
-        /// <param name="nameExpression">The expression pointing to the property.</param>
-        /// <param name="value">The value to set.</param>
-        [SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures")]
-        protected void Property<T>(Expression<Func<T>> nameExpression, T value)
+        /// <typeparam name="T">The property value type.</typeparam>
+        /// <param name="value">The new value.</param>
+        /// <param name="propertyName">
+        /// Is not used since it is marked with <see cref="CallerMemberNameAttribute"/>.
+        /// </param>
+        /// <returns>true if property value was changed; otherwise false.</returns>
+        protected bool SetValue<T>(T value, [CallerMemberName] string propertyName = "")
         {
-            Requires.NotNull(nameExpression);
+            VerifyPropertyName(propertyName);
 
-            // Get the key of the property
-            string key = nameExpression.ToString();
-
-            PropertyItem p;
-            if (properties.TryGetValue(key, out p))
+            bool isChanged = propertyCache.SetValue(propertyName, value);
+            if (isChanged)
             {
-                // Make sure the property value has changed
-                if ((p.Value == null && value == null) || (p.Value != null && p.Value.Equals(value)))
-                {
-                    return;
-                }
-
-                // Set the new value
-                p.Value = value;
-            }
-            else
-            {
-                // Create the new property item
-                p = new PropertyItem
-                {
-                    Name = nameExpression.GetName(),
-                    Value = value
-                };
-
-                // Add the new property item
-                properties.Add(key, p);
+                OnPropertyChanged(propertyName);
             }
 
-            // Raise property changed event
-            OnPropertyChanged(new PropertyChangedEventArgs(p.Name));
+            return isChanged;
         }
 
         /// <summary>
@@ -247,22 +229,6 @@ namespace AxisCameras.Mvvm
             {
                 throw new ArgumentException("Not a property.", propertyName);
             }
-        }
-
-        /// <summary>
-        /// Class wrapping up the essential parts of a property.
-        /// </summary>
-        private class PropertyItem
-        {
-            /// <summary>
-            /// Gets or sets the name.
-            /// </summary>
-            public string Name { get; set; }
-
-            /// <summary>
-            /// Gets or sets the value.
-            /// </summary>
-            public object Value { get; set; }
         }
     }
 }

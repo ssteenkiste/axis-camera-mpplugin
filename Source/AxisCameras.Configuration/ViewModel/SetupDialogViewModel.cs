@@ -90,8 +90,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public string Title
         {
-            get { return Property(() => Title); }
-            private set { Property(() => Title, value); }
+            get { return GetValue<string>(); }
+            private set { SetValue(value); }
         }
 
         /// <summary>
@@ -99,8 +99,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ObservableCollection<ICameraViewModel> Cameras
         {
-            get { return Property(() => Cameras); }
-            private set { Property(() => Cameras, value); }
+            get { return GetValue<ObservableCollection<ICameraViewModel>>(); }
+            private set { SetValue(value); }
         }
 
         /// <summary>
@@ -108,8 +108,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ObservableCollection<object> SelectedItems
         {
-            get { return Property(() => SelectedItems); }
-            private set { Property(() => SelectedItems, value); }
+            get { return GetValue<ObservableCollection<object>>(); }
+            private set { SetValue(value); }
         }
 
         /// <summary>
@@ -117,8 +117,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ICommand AddCommand
         {
-            get { return Property(() => AddCommand); }
-            private set { Property(() => AddCommand, value); }
+            get { return GetValue<ICommand>(); }
+            private set { SetValue(value); }
         }
 
         /// <summary>
@@ -126,8 +126,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ICommand EditCommand
         {
-            get { return Property(() => EditCommand); }
-            private set { Property(() => EditCommand, value); }
+            get { return GetValue<ICommand>(); }
+            private set { SetValue(value); ; }
         }
 
         /// <summary>
@@ -135,8 +135,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ICommand RemoveCommand
         {
-            get { return Property(() => RemoveCommand); }
-            private set { Property(() => RemoveCommand, value); }
+            get { return GetValue<ICommand>(); }
+            private set { SetValue(value); }
         }
 
         /// <summary>

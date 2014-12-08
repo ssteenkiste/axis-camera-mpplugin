@@ -85,8 +85,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public string Name
         {
-            get { return Property(() => Name); }
-            set { Property(() => Name, value); }
+            get { return GetValue<string>(); }
+            set { SetValue(value); }
         }
 
         /// <summary>
@@ -94,8 +94,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public IEnumerable<byte> Snapshot
         {
-            get { return Property(() => Snapshot); }
-            private set { Property(() => Snapshot, value); }
+            get { return GetValue<IEnumerable<byte>>(); }
+            private set { SetValue(value); }
         }
 
         /// <summary>
@@ -103,8 +103,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ICommand LoadedCommand
         {
-            get { return Property(() => LoadedCommand); }
-            private set { Property(() => LoadedCommand, value); }
+            get { return GetValue<ICommand>(); }
+            private set { SetValue(value); }
         }
 
         /// <summary>
@@ -112,8 +112,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ICommand RefreshCommand
         {
-            get { return Property(() => RefreshCommand); }
-            private set { Property(() => RefreshCommand, value); }
+            get { return GetValue<ICommand>(); }
+            private set { SetValue(value); }
         }
 
         /// <summary>

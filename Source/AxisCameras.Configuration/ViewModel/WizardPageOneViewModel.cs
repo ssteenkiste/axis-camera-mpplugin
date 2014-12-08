@@ -74,8 +74,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public string Address
         {
-            get { return Property(() => Address); }
-            set { Property(() => Address, value); }
+            get { return GetValue<string>(); }
+            set { SetValue(value); }
         }
 
         /// <summary>
@@ -83,8 +83,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public string Port
         {
-            get { return Property(() => Port); }
-            set { Property(() => Port, value); }
+            get { return GetValue<string>(); }
+            set { SetValue(value); }
         }
 
         /// <summary>
@@ -92,8 +92,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public string UserName
         {
-            get { return Property(() => UserName); }
-            set { Property(() => UserName, value); }
+            get { return GetValue<string>(); }
+            set { SetValue(value); }
         }
 
         /// <summary>
@@ -101,8 +101,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public string Password
         {
-            get { return Property(() => Password); }
-            set { Property(() => Password, value); }
+            get { return GetValue<string>(); }
+            set { SetValue(value); }
         }
 
         /// <summary>

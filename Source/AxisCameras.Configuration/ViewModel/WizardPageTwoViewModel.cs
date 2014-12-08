@@ -36,8 +36,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ReadOnlyObservableCollection<int> VideoSources
         {
-            get { return Property(() => VideoSources); }
-            private set { Property(() => VideoSources, value); }
+            get { return GetValue<ReadOnlyObservableCollection<int>>(); }
+            private set { SetValue(value); }
         }
 
         /// <summary>
@@ -45,8 +45,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public int SelectedVideoSource
         {
-            get { return Property(() => SelectedVideoSource); }
-            set { Property(() => SelectedVideoSource, value); }
+            get { return GetValue<int>(); }
+            set { SetValue(value); }
         }
 
         /// <summary>

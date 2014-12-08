@@ -75,8 +75,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ICommand BrowseCommand
         {
-            get { return Property(() => BrowseCommand); }
-            private set { Property(() => BrowseCommand, value); }
+            get { return GetValue<ICommand>(); }
+            private set { SetValue(value); }
         }
 
         /// <summary>
@@ -84,11 +84,13 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ConfigurableCamera Camera
         {
-            get { return Property(() => Camera); }
+            get { return GetValue<ConfigurableCamera>(); }
             set
             {
-                Property(() => Camera, value);
-                OnAllPropertiesChanged();
+                if (SetValue(value))
+                {
+                    OnAllPropertiesChanged();
+                }
             }
         }
 
