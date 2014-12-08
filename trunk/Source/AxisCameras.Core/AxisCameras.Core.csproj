@@ -54,7 +54,7 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Contracts\MicrosoftAnnotations.cs" />
+    <Compile Include="Annotations\MicrosoftAnnotations.cs" />
     <Compile Include="Contracts\Requires.cs" />
     <Compile Include="Contracts\RequiresException.cs" />
     <Compile Include="Contracts\ResharperAnnotations.cs" />

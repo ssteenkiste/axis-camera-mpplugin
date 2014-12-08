@@ -48,8 +48,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ICommand LoadedCommand
         {
-            get { return Property(() => LoadedCommand); }
-            private set { Property(() => LoadedCommand, value); }
+            get { return GetValue<ICommand>(); }
+            private set { SetValue(value); }
         }
 
         /// <summary>
@@ -57,8 +57,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ICommand CancelCommand
         {
-            get { return Property(() => CancelCommand); }
-            private set { Property(() => CancelCommand, value); }
+            get { return GetValue<ICommand>(); }
+            private set { SetValue(value); }
         }
 
         /// <summary>

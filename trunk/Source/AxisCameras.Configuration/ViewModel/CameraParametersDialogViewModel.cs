@@ -57,8 +57,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public string FriendlyName
         {
-            get { return Property(() => FriendlyName); }
-            private set { Property(() => FriendlyName, value); }
+            get { return GetValue<string>(); }
+            private set { SetValue(value); }
         }
 
         /// <summary>
@@ -66,8 +66,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public string FirmwareVersion
         {
-            get { return Property(() => FirmwareVersion); }
-            private set { Property(() => FirmwareVersion, value); }
+            get { return GetValue<string>(); }
+            private set { SetValue(value); }
         }
 
         /// <summary>
@@ -76,8 +76,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public int VideoSourceCount
         {
-            get { return Property(() => VideoSourceCount); }
-            private set { Property(() => VideoSourceCount, value); }
+            get { return GetValue<int>(); }
+            private set { SetValue(value); }
         }
 
         /// <summary>
@@ -85,8 +85,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public VideoCapabilities VideoCapabilities
         {
-            get { return Property(() => VideoCapabilities); }
-            private set { Property(() => VideoCapabilities, value); }
+            get { return GetValue<VideoCapabilities>(); }
+            private set { SetValue(value); }
         }
 
         /// <summary>

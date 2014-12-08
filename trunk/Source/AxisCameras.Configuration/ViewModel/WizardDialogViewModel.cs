@@ -66,8 +66,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public string Title
         {
-            get { return Property(() => Title); }
-            private set { Property(() => Title, value); }
+            get { return GetValue<string>(); }
+            private set { SetValue(value); }
         }
 
         /// <summary>
@@ -75,12 +75,14 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public IWizardPageViewModel CurrentWizardPage
         {
-            get { return Property(() => CurrentWizardPage); }
+            get { return GetValue<IWizardPageViewModel>(); }
             private set
             {
-                Property(() => CurrentWizardPage, value);
-                OnPropertyChanged(() => Header);
-                OnPropertyChanged(() => Description);
+                if (SetValue(value))
+                {
+                    OnPropertyChanged(() => Header);
+                    OnPropertyChanged(() => Description);
+                }
             }
         }
 
@@ -105,8 +107,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ICommand PreviousCommand
         {
-            get { return Property(() => PreviousCommand); }
-            private set { Property(() => PreviousCommand, value); }
+            get { return GetValue<ICommand>(); }
+            private set { SetValue(value); }
         }
 
         /// <summary>
@@ -114,8 +116,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ICommand NextCommand
         {
-            get { return Property(() => NextCommand); }
-            private set { Property(() => NextCommand, value); }
+            get { return GetValue<ICommand>(); }
+            private set { SetValue(value); }
         }
 
         /// <summary>
@@ -123,8 +125,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ICommand FinishCommand
         {
-            get { return Property(() => FinishCommand); }
-            private set { Property(() => FinishCommand, value); }
+            get { return GetValue<ICommand>(); }
+            private set { SetValue(value); }
         }
 
         /// <summary>
@@ -132,8 +134,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ConfigurableCamera Camera
         {
-            get { return Property(() => Camera); }
-            private set { Property(() => Camera, value); }
+            get { return GetValue<ConfigurableCamera>(); }
+            private set { SetValue(value); }
         }
 
         /// <summary>
