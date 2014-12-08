@@ -37,6 +37,7 @@ namespace AxisCameras.ConfigurationTest.ViewModel.Data
         [Test]
         public void Clone()
         {
+            // ARRANGE
             var camera = new ConfigurableCamera(Guid.NewGuid())
             {
                 Name = "Name",
@@ -58,9 +59,11 @@ namespace AxisCameras.ConfigurationTest.ViewModel.Data
             // a new property
             foreach (var propertyInfo in GetProperties(typeof(ConfigurableCamera)))
             {
+                // ACT
                 var cameraValue = propertyInfo.GetValue(camera, null);
                 var defaultValue = GetDefault(propertyInfo.PropertyType);
 
+                // ASSERT
                 Assert.That(cameraValue, Is.Not.EqualTo(defaultValue));
             }
 
@@ -68,9 +71,11 @@ namespace AxisCameras.ConfigurationTest.ViewModel.Data
             ConfigurableCamera clone = camera.Clone();
             foreach (var propertyInfo in GetProperties(typeof(ConfigurableCamera)))
             {
+                // ACT
                 var clonedValue = propertyInfo.GetValue(clone, null);
                 var originalValue = propertyInfo.GetValue(camera, null);
 
+                // ARRANGE
                 Assert.That(clonedValue, Is.EqualTo(originalValue));
             }
         }

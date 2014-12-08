@@ -29,8 +29,10 @@ namespace AxisCameras.ConfigurationTest.ViewModel.ValidationRule
         [Test]
         public void ValidationSuccessful()
         {
+            // ARRANGE
             var validationRule = new NotEmptyStringValidationRule();
 
+            // ASSERT
             Assert.That(validationRule.Validate("some text"), Is.True);
             Assert.That(validationRule.Validate("123"), Is.True);
         }
@@ -38,8 +40,10 @@ namespace AxisCameras.ConfigurationTest.ViewModel.ValidationRule
         [Test]
         public void ValidationFailed()
         {
+            // ARRANGE
             var validationRule = new NotEmptyStringValidationRule();
 
+            // ASSERT
             Assert.That(validationRule.Validate(null), Is.False);
             Assert.That(validationRule.Validate(string.Empty), Is.False);
             Assert.That(validationRule.Validate(new object()), Is.False);

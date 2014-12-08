@@ -29,8 +29,10 @@ namespace AxisCameras.ConfigurationTest.ViewModel.ValidationRule
         [Test]
         public void ValidationSuccessful()
         {
+            // ARRANGE
             var validationRule = new PortValidationRule();
 
+            // ASSERT
             Assert.That(validationRule.Validate("1"), Is.True);
             Assert.That(validationRule.Validate("2"), Is.True);
             Assert.That(validationRule.Validate("65534"), Is.True);
@@ -40,8 +42,10 @@ namespace AxisCameras.ConfigurationTest.ViewModel.ValidationRule
         [Test]
         public void ValidationFailed()
         {
+            // ARRANGE
             var validationRule = new PortValidationRule();
 
+            // ASSERT
             Assert.That(validationRule.Validate("-1"), Is.False);
             Assert.That(validationRule.Validate("0"), Is.False);
             Assert.That(validationRule.Validate("65536"), Is.False);

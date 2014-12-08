@@ -28,147 +28,85 @@ namespace AxisCameras.DataTest
     public class FirmwareVersionTest
     {
         [Test]
-        public void Ctor()
+        public void Ctor_Invalid()
         {
+            // ASSERT
             Assert.Throws<RequiresException>(() => new FirmwareVersion(null));
             Assert.Throws<RequiresException>(() => new FirmwareVersion(string.Empty));
             Assert.Throws<RequiresException>(() => new FirmwareVersion("4"));
             Assert.Throws<RequiresException>(() => new FirmwareVersion("text"));
             Assert.Throws<RequiresException>(() => new FirmwareVersion("text4.40"));
             Assert.Throws<RequiresException>(() => new FirmwareVersion("text 4.40"));
-
-            var firmwareVersion = new FirmwareVersion("4.1");
-            Assert.That(firmwareVersion.Major, Is.EqualTo(4));
-            Assert.That(firmwareVersion.Minor, Is.EqualTo(1));
-            Assert.That(firmwareVersion.Build, Is.EqualTo(0));
-            Assert.That(firmwareVersion.Revision, Is.EqualTo(0));
-
-            firmwareVersion = new FirmwareVersion("4.01");
-            Assert.That(firmwareVersion.Major, Is.EqualTo(4));
-            Assert.That(firmwareVersion.Minor, Is.EqualTo(1));
-            Assert.That(firmwareVersion.Build, Is.EqualTo(0));
-            Assert.That(firmwareVersion.Revision, Is.EqualTo(0));
-
-            firmwareVersion = new FirmwareVersion("4.01.10");
-            Assert.That(firmwareVersion.Major, Is.EqualTo(4));
-            Assert.That(firmwareVersion.Minor, Is.EqualTo(1));
-            Assert.That(firmwareVersion.Build, Is.EqualTo(10));
-            Assert.That(firmwareVersion.Revision, Is.EqualTo(0));
-
-            firmwareVersion = new FirmwareVersion("4.01.10.2");
-            Assert.That(firmwareVersion.Major, Is.EqualTo(4));
-            Assert.That(firmwareVersion.Minor, Is.EqualTo(1));
-            Assert.That(firmwareVersion.Build, Is.EqualTo(10));
-            Assert.That(firmwareVersion.Revision, Is.EqualTo(2));
-
-            firmwareVersion = new FirmwareVersion("4.01.10.2.3");
-            Assert.That(firmwareVersion.Major, Is.EqualTo(4));
-            Assert.That(firmwareVersion.Minor, Is.EqualTo(1));
-            Assert.That(firmwareVersion.Build, Is.EqualTo(10));
-            Assert.That(firmwareVersion.Revision, Is.EqualTo(2));
-
-            firmwareVersion = new FirmwareVersion("4.01.10.2.text");
-            Assert.That(firmwareVersion.Major, Is.EqualTo(4));
-            Assert.That(firmwareVersion.Minor, Is.EqualTo(1));
-            Assert.That(firmwareVersion.Build, Is.EqualTo(10));
-            Assert.That(firmwareVersion.Revision, Is.EqualTo(2));
-
-            firmwareVersion = new FirmwareVersion("4.01.10.2text");
-            Assert.That(firmwareVersion.Major, Is.EqualTo(4));
-            Assert.That(firmwareVersion.Minor, Is.EqualTo(1));
-            Assert.That(firmwareVersion.Build, Is.EqualTo(10));
-            Assert.That(firmwareVersion.Revision, Is.EqualTo(2));
-
-            firmwareVersion = new FirmwareVersion("4.01.10.2_text");
-            Assert.That(firmwareVersion.Major, Is.EqualTo(4));
-            Assert.That(firmwareVersion.Minor, Is.EqualTo(1));
-            Assert.That(firmwareVersion.Build, Is.EqualTo(10));
-            Assert.That(firmwareVersion.Revision, Is.EqualTo(2));
-
-            firmwareVersion = new FirmwareVersion("4.01.10.2-text");
-            Assert.That(firmwareVersion.Major, Is.EqualTo(4));
-            Assert.That(firmwareVersion.Minor, Is.EqualTo(1));
-            Assert.That(firmwareVersion.Build, Is.EqualTo(10));
-            Assert.That(firmwareVersion.Revision, Is.EqualTo(2));
-
-            firmwareVersion = new FirmwareVersion("4.01.10.2 text");
-            Assert.That(firmwareVersion.Major, Is.EqualTo(4));
-            Assert.That(firmwareVersion.Minor, Is.EqualTo(1));
-            Assert.That(firmwareVersion.Build, Is.EqualTo(10));
-            Assert.That(firmwareVersion.Revision, Is.EqualTo(2));
         }
 
-        [Test]
-        public void TryParse()
+        [TestCase("4.1", 4, 1, 0, 0)]
+        [TestCase("4.01", 4, 1, 0, 0)]
+        [TestCase("4.01.10", 4, 1, 10, 0)]
+        [TestCase("4.01.10.2", 4, 1, 10, 2)]
+        [TestCase("4.01.10.2.3", 4, 1, 10, 2)]
+        [TestCase("4.01.10.2.text", 4, 1, 10, 2)]
+        [TestCase("4.01.10.2text", 4, 1, 10, 2)]
+        [TestCase("4.01.10.2_text", 4, 1, 10, 2)]
+        [TestCase("4.01.10.2-text", 4, 1, 10, 2)]
+        [TestCase("4.01.10.2 text", 4, 1, 10, 2)]
+        public void Ctor_Valid(
+            string version,
+            int expectedMajor,
+            int expectedMinor,
+            int expectedBuild,
+            int expectedRevision)
         {
+            // ACT
+            var firmwareVersion = new FirmwareVersion(version);
+            
+            // ASSERT
+            Assert.That(firmwareVersion.Major, Is.EqualTo(expectedMajor));
+            Assert.That(firmwareVersion.Minor, Is.EqualTo(expectedMinor));
+            Assert.That(firmwareVersion.Build, Is.EqualTo(expectedBuild));
+            Assert.That(firmwareVersion.Revision, Is.EqualTo(expectedRevision));
+        }
+
+        [TestCase(null)]
+        [TestCase("")]
+        [TestCase("4")]
+        [TestCase("text")]
+        [TestCase("text4.40")]
+        [TestCase("text 4.40")]
+        public void TryParse_Failure(string input)
+        {
+            // ARRANGE
             FirmwareVersion firmwareVersion;
 
-            Assert.That(FirmwareVersion.TryParse(null, out firmwareVersion), Is.False);
-            Assert.That(FirmwareVersion.TryParse(string.Empty, out firmwareVersion), Is.False);
-            Assert.That(FirmwareVersion.TryParse("4", out firmwareVersion), Is.False);
-            Assert.That(FirmwareVersion.TryParse("text", out firmwareVersion), Is.False);
-            Assert.That(FirmwareVersion.TryParse("text4.40", out firmwareVersion), Is.False);
-            Assert.That(FirmwareVersion.TryParse("text 4.40", out firmwareVersion), Is.False);
+            // ASSERT
+            Assert.That(FirmwareVersion.TryParse(input, out firmwareVersion), Is.False);
+        }
 
-            Assert.That(FirmwareVersion.TryParse("4.1", out firmwareVersion), Is.True);
-            Assert.That(firmwareVersion.Major, Is.EqualTo(4));
-            Assert.That(firmwareVersion.Minor, Is.EqualTo(1));
-            Assert.That(firmwareVersion.Build, Is.EqualTo(0));
-            Assert.That(firmwareVersion.Revision, Is.EqualTo(0));
+        [TestCase("4.1", 4, 1, 0, 0)]
+        [TestCase("4.01", 4, 1, 0, 0)]
+        [TestCase("4.01.10", 4, 1, 10, 0)]
+        [TestCase("4.01.10.2", 4, 1, 10, 2)]
+        [TestCase("4.01.10.2.3", 4, 1, 10, 2)]
+        [TestCase("4.01.10.2.text", 4, 1, 10, 2)]
+        [TestCase("4.01.10.2text", 4, 1, 10, 2)]
+        [TestCase("4.01.10.2_text", 4, 1, 10, 2)]
+        [TestCase("4.01.10.2-text", 4, 1, 10, 2)]
+        [TestCase("4.01.10.2 text", 4, 1, 10, 2)]
+        public void TryParse_Success(
+            string input,
+            int expectedMajor,
+            int expectedMinor,
+            int expectedBuild,
+            int expectedRevision)
+        {
+            // ARRANGE
+            FirmwareVersion firmwareVersion;
 
-            Assert.That(FirmwareVersion.TryParse("4.01", out firmwareVersion), Is.True);
-            Assert.That(firmwareVersion.Major, Is.EqualTo(4));
-            Assert.That(firmwareVersion.Minor, Is.EqualTo(1));
-            Assert.That(firmwareVersion.Build, Is.EqualTo(0));
-            Assert.That(firmwareVersion.Revision, Is.EqualTo(0));
-
-            Assert.That(FirmwareVersion.TryParse("4.01.10", out firmwareVersion), Is.True);
-            Assert.That(firmwareVersion.Major, Is.EqualTo(4));
-            Assert.That(firmwareVersion.Minor, Is.EqualTo(1));
-            Assert.That(firmwareVersion.Build, Is.EqualTo(10));
-            Assert.That(firmwareVersion.Revision, Is.EqualTo(0));
-
-            Assert.That(FirmwareVersion.TryParse("4.01.10.2", out firmwareVersion), Is.True);
-            Assert.That(firmwareVersion.Major, Is.EqualTo(4));
-            Assert.That(firmwareVersion.Minor, Is.EqualTo(1));
-            Assert.That(firmwareVersion.Build, Is.EqualTo(10));
-            Assert.That(firmwareVersion.Revision, Is.EqualTo(2));
-
-            Assert.That(FirmwareVersion.TryParse("4.01.10.2.3", out firmwareVersion), Is.True);
-            Assert.That(firmwareVersion.Major, Is.EqualTo(4));
-            Assert.That(firmwareVersion.Minor, Is.EqualTo(1));
-            Assert.That(firmwareVersion.Build, Is.EqualTo(10));
-            Assert.That(firmwareVersion.Revision, Is.EqualTo(2));
-
-            Assert.That(FirmwareVersion.TryParse("4.01.10.2.text", out firmwareVersion), Is.True);
-            Assert.That(firmwareVersion.Major, Is.EqualTo(4));
-            Assert.That(firmwareVersion.Minor, Is.EqualTo(1));
-            Assert.That(firmwareVersion.Build, Is.EqualTo(10));
-            Assert.That(firmwareVersion.Revision, Is.EqualTo(2));
-
-            Assert.That(FirmwareVersion.TryParse("4.01.10.2text", out firmwareVersion), Is.True);
-            Assert.That(firmwareVersion.Major, Is.EqualTo(4));
-            Assert.That(firmwareVersion.Minor, Is.EqualTo(1));
-            Assert.That(firmwareVersion.Build, Is.EqualTo(10));
-            Assert.That(firmwareVersion.Revision, Is.EqualTo(2));
-
-            Assert.That(FirmwareVersion.TryParse("4.01.10.2_text", out firmwareVersion), Is.True);
-            Assert.That(firmwareVersion.Major, Is.EqualTo(4));
-            Assert.That(firmwareVersion.Minor, Is.EqualTo(1));
-            Assert.That(firmwareVersion.Build, Is.EqualTo(10));
-            Assert.That(firmwareVersion.Revision, Is.EqualTo(2));
-
-            Assert.That(FirmwareVersion.TryParse("4.01.10.2-text", out firmwareVersion), Is.True);
-            Assert.That(firmwareVersion.Major, Is.EqualTo(4));
-            Assert.That(firmwareVersion.Minor, Is.EqualTo(1));
-            Assert.That(firmwareVersion.Build, Is.EqualTo(10));
-            Assert.That(firmwareVersion.Revision, Is.EqualTo(2));
-
-            Assert.That(FirmwareVersion.TryParse("4.01.10.2 text", out firmwareVersion), Is.True);
-            Assert.That(firmwareVersion.Major, Is.EqualTo(4));
-            Assert.That(firmwareVersion.Minor, Is.EqualTo(1));
-            Assert.That(firmwareVersion.Build, Is.EqualTo(10));
-            Assert.That(firmwareVersion.Revision, Is.EqualTo(2));
+            // ASSERT
+            Assert.That(FirmwareVersion.TryParse(input, out firmwareVersion), Is.True);
+            Assert.That(firmwareVersion.Major, Is.EqualTo(expectedMajor));
+            Assert.That(firmwareVersion.Minor, Is.EqualTo(expectedMinor));
+            Assert.That(firmwareVersion.Build, Is.EqualTo(expectedBuild));
+            Assert.That(firmwareVersion.Revision, Is.EqualTo(expectedRevision));
         }
     }
 }

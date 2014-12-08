@@ -76,10 +76,12 @@ namespace AxisCameras.DataTest
         [Test]
         public void IsUpgradeRequiredWhenNeverInstalled()
         {
+            // ARRANGE
             ioService
                 .Setup(ios => ios.FileExists(DataPersistenceInformation.FileName))
                 .Returns(false);
 
+            // ACT
             IUpgradeData upgradeData = new UpgradeData(
                 settings.Object,
                 new[]
@@ -88,12 +90,14 @@ namespace AxisCameras.DataTest
                 },
                 ioService.Object);
 
+            // ASSERT
             Assert.That(upgradeData.IsUpgradeRequired, Is.False);
         }
 
         [Test]
         public void IsUpgradeRequiredWhenOnSameVersion()
         {
+            // ARRANGE
             int currentVersion = 3;
 
             ioService
@@ -108,6 +112,7 @@ namespace AxisCameras.DataTest
                         1))
                 .Returns(currentVersion);
 
+            // ACT
             IUpgradeData upgradeData = new UpgradeData(
                 settings.Object,
                 new[]
@@ -116,12 +121,14 @@ namespace AxisCameras.DataTest
                 },
                 ioService.Object);
 
+            // ASSERT
             Assert.That(upgradeData.IsUpgradeRequired, Is.False);
         }
 
         [Test]
         public void IsUpgradeRequiredOnOlderVersion()
         {
+            // ARRANGE
             int currentVersion = 2;
 
             ioService
@@ -136,6 +143,7 @@ namespace AxisCameras.DataTest
                         1))
                 .Returns(currentVersion);
 
+            // ACT
             IUpgradeData upgradeData = new UpgradeData(
                 settings.Object,
                 new[]
@@ -144,12 +152,14 @@ namespace AxisCameras.DataTest
                 },
                 ioService.Object);
 
+            // ASSERT
             Assert.That(upgradeData.IsUpgradeRequired, Is.True);
         }
 
         [Test]
         public void UpgradeFromVersion1To3()
         {
+            // ARRANGE
             int currentVersion = 1;
 
             settings
@@ -168,8 +178,10 @@ namespace AxisCameras.DataTest
                 },
                 ioService.Object);
 
+            // ACT
             bool success = upgradeData.Upgrade();
 
+            // ASSERT
             Assert.That(success, Is.True);
             upgradeToSecondVersion.Verify(pu => pu.Upgrade(), Times.Once());
             upgradeToThirdVersion.Verify(pu => pu.Upgrade(), Times.Once());
@@ -190,6 +202,7 @@ namespace AxisCameras.DataTest
         [Test]
         public void UpgradeFromVersion2To3()
         {
+            // ARRANGE
             int currentVersion = 2;
 
             settings
@@ -208,8 +221,10 @@ namespace AxisCameras.DataTest
                 },
                 ioService.Object);
 
+            // ACT
             bool success = upgradeData.Upgrade();
 
+            // ASSERT
             Assert.That(success, Is.True);
             upgradeToSecondVersion.Verify(pu => pu.Upgrade(), Times.Never());
             upgradeToThirdVersion.Verify(pu => pu.Upgrade(), Times.Once());
@@ -224,6 +239,7 @@ namespace AxisCameras.DataTest
         [Test]
         public void UpgradeFromVersion3To3()
         {
+            // ARRANGE
             int currentVersion = 3;
 
             settings
@@ -242,8 +258,10 @@ namespace AxisCameras.DataTest
                 },
                 ioService.Object);
 
+            // ACT
             bool success = upgradeData.Upgrade();
 
+            // ASSERT
             Assert.That(success, Is.True);
             upgradeToSecondVersion.Verify(pu => pu.Upgrade(), Times.Never());
             upgradeToThirdVersion.Verify(pu => pu.Upgrade(), Times.Never());
@@ -258,6 +276,7 @@ namespace AxisCameras.DataTest
         [Test]
         public void NoPartialUpgradeForCurrentVersion()
         {
+            // ARRANGE
             int currentVersion = 1;
 
             settings
@@ -278,12 +297,14 @@ namespace AxisCameras.DataTest
                 },
                 ioService.Object);
 
+            // ASSERT
             Assert.Throws<UpgradeChainException>(() => upgradeData.Upgrade());
         }
 
         [Test]
         public void PartialUpgradesDoesNotChain()
         {
+            // ARRANGE
             int currentVersion = 1;
 
             settings
@@ -309,12 +330,14 @@ namespace AxisCameras.DataTest
                 },
                 ioService.Object);
 
+            // ASSERT
             Assert.Throws<UpgradeChainException>(() => upgradeData.Upgrade());
         }
 
         [Test]
         public void PartialUpgradeFails()
         {
+            // ARRANGE
             int currentVersion = 1;
 
             settings
@@ -338,8 +361,10 @@ namespace AxisCameras.DataTest
                 },
                 ioService.Object);
 
+            // ACT
             bool success = upgradeData.Upgrade();
 
+            // ASSERT
             Assert.That(success, Is.False);
             upgradeToSecondVersion.Verify(pu => pu.Upgrade(), Times.Once());
             upgradeToThirdVersion.Verify(pu => pu.Upgrade(), Times.Once());
@@ -360,6 +385,7 @@ namespace AxisCameras.DataTest
         [Test]
         public void BackupIfNoBackupExists()
         {
+            // ARRANGE
             int currentVersion = 1;
 
             settings
@@ -383,8 +409,10 @@ namespace AxisCameras.DataTest
                 },
                 ioService.Object);
 
+            // ACT
             bool success = upgradeData.Upgrade();
 
+            // ASSERT
             Assert.That(success, Is.True);
             ioService.Verify(
                 ios => ios.FileExists(DataPersistenceInformation.FileName + ".bak"),
@@ -402,6 +430,7 @@ namespace AxisCameras.DataTest
         [Test]
         public void BackupIfBackupExists()
         {
+            // ARRANGE
             int currentVersion = 1;
 
             settings
@@ -425,8 +454,10 @@ namespace AxisCameras.DataTest
                 },
                 ioService.Object);
 
+            // ACT
             bool success = upgradeData.Upgrade();
 
+            // ASSERT
             Assert.That(success, Is.True);
             ioService.Verify(
                 ios => ios.FileExists(DataPersistenceInformation.FileName + ".bak"),
