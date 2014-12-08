@@ -32,6 +32,7 @@ namespace AxisCameras.CoreTest.Contracts
         [Test]
         public void True()
         {
+            // ASSERT
             Requires.True(true);
 // ReSharper disable once RedundantArgumentDefaultValue
             Requires.True(true, null);
@@ -46,6 +47,7 @@ namespace AxisCameras.CoreTest.Contracts
         [Test]
         public void NotNullOrEmpty()
         {
+            // ASSERT
             Requires.NotNullOrEmpty("t");
             Requires.NotNullOrEmpty("text");
 
@@ -56,6 +58,7 @@ namespace AxisCameras.CoreTest.Contracts
         [Test]
         public void NotNull()
         {
+            // ASSERT
             Requires.NotNull("t");
             Requires.NotNull(new object());
 
@@ -67,6 +70,7 @@ namespace AxisCameras.CoreTest.Contracts
         [Test]
         public void Fail()
         {
+            // ASSERT
             Assert.Throws<RequiresException>(() => Requires.Fail());
             Assert.Throws<RequiresException>(() => Requires.Fail("Error message"));
         }

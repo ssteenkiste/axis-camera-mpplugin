@@ -65,6 +65,7 @@ namespace AxisCameras.DataTest
         [Test]
         public void UpgradeFromVersion1To3()
         {
+            // ARRANGE
             string version1FileName = Path.Combine(OutputPath, @"Versions\Version1\AxisCameras.xml");
             string version3FileName = Path.Combine(OutputPath, @"Versions\Version3\AxisCameras.xml");
 
@@ -78,9 +79,11 @@ namespace AxisCameras.DataTest
             Assert.That(upgradeData.IsUpgradeRequired, Is.True);
             Assert.That(upgradeData.Upgrade(), Is.True);
 
+            // ACT
             // Save settings to disk
             settings.Save();
 
+            // ASSERT
             // Upgrade is now finished, validate with file known to be correct
             Assert.That(
                 File.ReadAllText(DataPersistenceInformation.FileName),
@@ -90,6 +93,7 @@ namespace AxisCameras.DataTest
         [Test]
         public void UpgradeFromVersion2To3()
         {
+            // ARRANGE
             string version2FileName = Path.Combine(OutputPath, @"Versions\Version2\AxisCameras.xml");
             string version3FileName = Path.Combine(OutputPath, @"Versions\Version3\AxisCameras.xml");
 
@@ -103,9 +107,11 @@ namespace AxisCameras.DataTest
             Assert.That(upgradeData.IsUpgradeRequired, Is.True);
             Assert.That(upgradeData.Upgrade(), Is.True);
 
+            // ACT
             // Save settings to disk
             settings.Save();
 
+            // ASSERT
             // Upgrade is now finished, validate with file known to be correct
             Assert.That(
                 File.ReadAllText(DataPersistenceInformation.FileName),

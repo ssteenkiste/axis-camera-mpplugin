@@ -29,9 +29,13 @@ namespace AxisCameras.ConfigurationTest.Service
         [Test]
         public void SingleParameter()
         {
+            // ARRANGE
             var parser = new ParameterParser();
+            
+            // ACT
             var result = parser.Parse("Network.UPnP.FriendlyName=AXIS 210 - 00408C6D796F\n");
 
+            // ASSERT
             Assert.That(result.Count, Is.EqualTo(1));
             Assert.That(result.ContainsKey("Network.UPnP.FriendlyName"), Is.True);
             Assert.That(result["Network.UPnP.FriendlyName"], Is.EqualTo("AXIS 210 - 00408C6D796F"));
@@ -40,7 +44,10 @@ namespace AxisCameras.ConfigurationTest.Service
         [Test]
         public void ParameterGroup()
         {
+            // ARRANGE
             var parser = new ParameterParser();
+
+            // ACT
             var result = parser.Parse(
                 "Network.UPnP.Enabled=yes\n" +
                 "Network.UPnP.FriendlyName=AXIS 210 - 00408C6D796F\n" +
@@ -51,6 +58,7 @@ namespace AxisCameras.ConfigurationTest.Service
                 "Network.UPnP.NATTraversal.MinPort=32768\n" +
                 "Network.UPnP.NATTraversal.MaxPort=65535\n");
 
+            // ASSERT
             Assert.That(result.Count, Is.EqualTo(8));
             Assert.That(result.ContainsKey("Network.UPnP.Enabled"), Is.True);
             Assert.That(result.ContainsKey("Network.UPnP.FriendlyName"), Is.True);
@@ -74,9 +82,13 @@ namespace AxisCameras.ConfigurationTest.Service
         [Test]
         public void EqualSign()
         {
+            // ARRANGE
             var parser = new ParameterParser();
+
+            // ACT
             var result = parser.Parse("name=val=ue\n");
 
+            // ASSERT
             Assert.That(result.Count, Is.EqualTo(1));
             Assert.That(result.ContainsKey("name"), Is.True);
             Assert.That(result["name"], Is.EqualTo("val=ue"));
@@ -85,9 +97,13 @@ namespace AxisCameras.ConfigurationTest.Service
         [Test]
         public void WhiteSpaces()
         {
+            // ARRANGE
             var parser = new ParameterParser();
+
+            // ACT
             var result = parser.Parse(" name = value \n ");
 
+            // ASSERT
             Assert.That(result.Count, Is.EqualTo(1));
             Assert.That(result.ContainsKey("name"), Is.True);
             Assert.That(result["name"], Is.EqualTo("value"));

@@ -29,8 +29,10 @@ namespace AxisCameras.ConfigurationTest.ViewModel.ValidationRule
         [Test]
         public void ValidationSuccessful()
         {
+            // ARRANGE
             var validationRule = new RelayValidationRule(() => true);
 
+            // ASSERT
             Assert.That(validationRule.Validate(null), Is.True);
             Assert.That(validationRule.Validate("some text"), Is.True);
             Assert.That(validationRule.Validate(new object()), Is.True);
@@ -39,8 +41,10 @@ namespace AxisCameras.ConfigurationTest.ViewModel.ValidationRule
         [Test]
         public void ValidationFailed()
         {
+            // ARRANGE
             var validationRule = new RelayValidationRule(() => false);
 
+            // ASSERT
             Assert.That(validationRule.Validate(null), Is.False);
             Assert.That(validationRule.Validate("some text"), Is.False);
             Assert.That(validationRule.Validate(new object()), Is.False);
