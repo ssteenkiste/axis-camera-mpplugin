@@ -2,12 +2,12 @@
 	x:Class="AxisCameras.Configuration.View.ProgressDialog"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:mvvm="clr-namespace:AxisCameras.Mvvm;assembly=AxisCameras.Mvvm"
+	xmlns:behaviors="clr-namespace:AxisCameras.Mvvm.Behaviors;assembly=AxisCameras.Mvvm"
 	Title="Camera Communication"
 	Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
 	Style="{DynamicResource DialogWindow}"
 	WindowStartupLocation="CenterOwner"
-	mvvm:LifetimeBehaviors.Loaded="{Binding LoadedCommand}"
+	behaviors:LifetimeBehaviors.Loaded="{Binding LoadedCommand}"
 	Closing="Window_Closing">
 	
 	<!-- Resources -->

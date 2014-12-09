@@ -23,7 +23,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace AxisCameras.Mvvm
+namespace AxisCameras.Mvvm.Behaviors
 {
     /// <summary>
     /// Attached behavior giving ListBox some expanded features.
