@@ -23,7 +23,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 
-namespace AxisCameras.Mvvm
+namespace AxisCameras.Mvvm.Behaviors
 {
     /// <summary>
     /// This class is used to attach the Window lifetime events to ICommand implementations.
