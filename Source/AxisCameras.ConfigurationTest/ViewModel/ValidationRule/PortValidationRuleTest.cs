@@ -26,33 +26,35 @@ namespace AxisCameras.ConfigurationTest.ViewModel.ValidationRule
     [TestFixture]
     public class PortValidationRuleTest
     {
+        private PortValidationRule rule;
+
+        [SetUp]
+        public void SetUp()
+        {
+            rule = new PortValidationRule();
+        }
+
         [Test]
         public void ValidationSuccessful()
         {
-            // ARRANGE
-            var validationRule = new PortValidationRule();
-
             // ASSERT
-            Assert.That(validationRule.Validate("1"), Is.True);
-            Assert.That(validationRule.Validate("2"), Is.True);
-            Assert.That(validationRule.Validate("65534"), Is.True);
-            Assert.That(validationRule.Validate("65535"), Is.True);
+            Assert.That(rule.Validate("1"), Is.True);
+            Assert.That(rule.Validate("2"), Is.True);
+            Assert.That(rule.Validate("65534"), Is.True);
+            Assert.That(rule.Validate("65535"), Is.True);
         }
 
         [Test]
         public void ValidationFailed()
         {
-            // ARRANGE
-            var validationRule = new PortValidationRule();
-
             // ASSERT
-            Assert.That(validationRule.Validate("-1"), Is.False);
-            Assert.That(validationRule.Validate("0"), Is.False);
-            Assert.That(validationRule.Validate("65536"), Is.False);
-            Assert.That(validationRule.Validate("65537"), Is.False);
-            Assert.That(validationRule.Validate(null), Is.False);
-            Assert.That(validationRule.Validate(string.Empty), Is.False);
-            Assert.That(validationRule.Validate(new object()), Is.False);
+            Assert.That(rule.Validate("-1"), Is.False);
+            Assert.That(rule.Validate("0"), Is.False);
+            Assert.That(rule.Validate("65536"), Is.False);
+            Assert.That(rule.Validate("65537"), Is.False);
+            Assert.That(rule.Validate(null), Is.False);
+            Assert.That(rule.Validate(string.Empty), Is.False);
+            Assert.That(rule.Validate(new object()), Is.False);
         }
     }
 }

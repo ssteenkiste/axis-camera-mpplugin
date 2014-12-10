@@ -28,7 +28,7 @@ namespace AxisCameras.DataTest
     public class FirmwareVersionTest
     {
         [Test]
-        public void Ctor_Invalid()
+        public void InvalidConstructor()
         {
             // ASSERT
             Assert.Throws<RequiresException>(() => new FirmwareVersion(null));
@@ -49,7 +49,7 @@ namespace AxisCameras.DataTest
         [TestCase("4.01.10.2_text", 4, 1, 10, 2)]
         [TestCase("4.01.10.2-text", 4, 1, 10, 2)]
         [TestCase("4.01.10.2 text", 4, 1, 10, 2)]
-        public void Ctor_Valid(
+        public void ValidConstructor(
             string version,
             int expectedMajor,
             int expectedMinor,
@@ -72,7 +72,7 @@ namespace AxisCameras.DataTest
         [TestCase("text")]
         [TestCase("text4.40")]
         [TestCase("text 4.40")]
-        public void TryParse_Failure(string input)
+        public void TryParseFailure(string input)
         {
             // ARRANGE
             FirmwareVersion firmwareVersion;
@@ -91,7 +91,7 @@ namespace AxisCameras.DataTest
         [TestCase("4.01.10.2_text", 4, 1, 10, 2)]
         [TestCase("4.01.10.2-text", 4, 1, 10, 2)]
         [TestCase("4.01.10.2 text", 4, 1, 10, 2)]
-        public void TryParse_Success(
+        public void TryParseSuccess(
             string input,
             int expectedMajor,
             int expectedMinor,

@@ -26,12 +26,17 @@ namespace AxisCameras.ConfigurationTest.Service
     [TestFixture]
     public class ParameterParserTest
     {
+        private ParameterParser parser;
+
+        [SetUp]
+        public void SetUp()
+        {
+            parser = new ParameterParser();
+        }
+
         [Test]
         public void SingleParameter()
         {
-            // ARRANGE
-            var parser = new ParameterParser();
-            
             // ACT
             var result = parser.Parse("Network.UPnP.FriendlyName=AXIS 210 - 00408C6D796F\n");
 
@@ -44,9 +49,6 @@ namespace AxisCameras.ConfigurationTest.Service
         [Test]
         public void ParameterGroup()
         {
-            // ARRANGE
-            var parser = new ParameterParser();
-
             // ACT
             var result = parser.Parse(
                 "Network.UPnP.Enabled=yes\n" +
@@ -82,9 +84,6 @@ namespace AxisCameras.ConfigurationTest.Service
         [Test]
         public void EqualSign()
         {
-            // ARRANGE
-            var parser = new ParameterParser();
-
             // ACT
             var result = parser.Parse("name=val=ue\n");
 
@@ -97,9 +96,6 @@ namespace AxisCameras.ConfigurationTest.Service
         [Test]
         public void WhiteSpaces()
         {
-            // ARRANGE
-            var parser = new ParameterParser();
-
             // ACT
             var result = parser.Parse(" name = value \n ");
 

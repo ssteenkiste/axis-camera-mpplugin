@@ -57,6 +57,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup", "Setup", "{360003F7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCameras.MvvmTest", "AxisCameras.MvvmTest\AxisCameras.MvvmTest.csproj", "{00818784-A9D7-42AC-B85E-B5ED5FA216BF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{F4F94A15-1D29-4510-AAA9-4894D671DD7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -111,6 +113,10 @@ Global
 		{00818784-A9D7-42AC-B85E-B5ED5FA216BF}.Debug|x86.Build.0 = Debug|x86
 		{00818784-A9D7-42AC-B85E-B5ED5FA216BF}.Release|x86.ActiveCfg = Release|x86
 		{00818784-A9D7-42AC-B85E-B5ED5FA216BF}.Release|x86.Build.0 = Release|x86
+		{F4F94A15-1D29-4510-AAA9-4894D671DD7D}.Debug|x86.ActiveCfg = Debug|x86
+		{F4F94A15-1D29-4510-AAA9-4894D671DD7D}.Debug|x86.Build.0 = Debug|x86
+		{F4F94A15-1D29-4510-AAA9-4894D671DD7D}.Release|x86.ActiveCfg = Release|x86
+		{F4F94A15-1D29-4510-AAA9-4894D671DD7D}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

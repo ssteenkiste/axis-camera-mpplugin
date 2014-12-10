@@ -53,11 +53,16 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyCacheTest.cs" />
+    <Compile Include="ViewModelBaseTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AxisCameras.Mvvm\AxisCameras.Mvvm.csproj">
       <Project>{442c117d-98d8-41a8-843b-716b66d60b97}</Project>
       <Name>AxisCameras.Mvvm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Test\Test.csproj">
+      <Project>{f4f94a15-1d29-4510-aaa9-4894d671dd7d}</Project>
+      <Name>Test</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

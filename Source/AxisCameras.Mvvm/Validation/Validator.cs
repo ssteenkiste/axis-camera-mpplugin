@@ -127,9 +127,9 @@ namespace AxisCameras.Mvvm.Validation
             {
                 return
                     (from rule in rules
-                        where !rule.IsValid
-                        select rule.Name)
-                        .Distinct();
+                     where !rule.IsValid
+                     select rule.Name)
+                    .Distinct();
             }
         }
 

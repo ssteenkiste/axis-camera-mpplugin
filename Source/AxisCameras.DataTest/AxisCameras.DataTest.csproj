@@ -69,6 +69,10 @@
       <Project>{CCBED050-F912-4D87-8702-0CE8864293E3}</Project>
       <Name>AxisCameras.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Test\Test.csproj">
+      <Project>{f4f94a15-1d29-4510-aaa9-4894d671dd7d}</Project>
+      <Name>Test</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.nuget\NuGet.Config">
