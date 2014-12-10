@@ -27,7 +27,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using AxisCameras.Core.Contracts;
-using AxisCameras.Mvvm.Extensions.System.Linq.Expressions;
 using AxisCameras.Mvvm.Validation;
 
 namespace AxisCameras.Mvvm

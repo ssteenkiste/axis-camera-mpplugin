@@ -18,14 +18,13 @@
 
 #endregion
 
-using System.Linq.Expressions;
-
-namespace AxisCameras.Mvvm.Extensions.System.Linq.Expressions
+// ReSharper disable once CheckNamespace
+namespace System.Linq.Expressions
 {
     /// <summary>
     /// Class containing Expression extensions.
     /// </summary>
-    internal static class ExpressionExtensions
+    public static class ExpressionExtensions
     {
         /// <summary>
         /// Gets the name of the expression.
