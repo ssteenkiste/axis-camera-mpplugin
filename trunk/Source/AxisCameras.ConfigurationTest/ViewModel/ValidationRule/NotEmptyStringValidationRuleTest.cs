@@ -26,27 +26,29 @@ namespace AxisCameras.ConfigurationTest.ViewModel.ValidationRule
     [TestFixture]
     public class NotEmptyStringValidationRuleTest
     {
+        private NotEmptyStringValidationRule rule;
+
+        [SetUp]
+        public void SetUp()
+        {
+            rule = new NotEmptyStringValidationRule();
+        }
+
         [Test]
         public void ValidationSuccessful()
         {
-            // ARRANGE
-            var validationRule = new NotEmptyStringValidationRule();
-
             // ASSERT
-            Assert.That(validationRule.Validate("some text"), Is.True);
-            Assert.That(validationRule.Validate("123"), Is.True);
+            Assert.That(rule.Validate("some text"), Is.True);
+            Assert.That(rule.Validate("123"), Is.True);
         }
 
         [Test]
         public void ValidationFailed()
         {
-            // ARRANGE
-            var validationRule = new NotEmptyStringValidationRule();
-
             // ASSERT
-            Assert.That(validationRule.Validate(null), Is.False);
-            Assert.That(validationRule.Validate(string.Empty), Is.False);
-            Assert.That(validationRule.Validate(new object()), Is.False);
+            Assert.That(rule.Validate(null), Is.False);
+            Assert.That(rule.Validate(string.Empty), Is.False);
+            Assert.That(rule.Validate(new object()), Is.False);
         }
     }
 }

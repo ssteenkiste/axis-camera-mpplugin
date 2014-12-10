@@ -75,7 +75,7 @@ namespace AxisCameras.ConfigurationTest.ViewModel.Data
                 var clonedValue = propertyInfo.GetValue(clone, null);
                 var originalValue = propertyInfo.GetValue(camera, null);
 
-                // ARRANGE
+                // ASSERT
                 Assert.That(clonedValue, Is.EqualTo(originalValue));
             }
         }

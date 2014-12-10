@@ -80,11 +80,9 @@ namespace AxisCameras.DataTest
             Assert.That(upgradeData.Upgrade(), Is.True);
 
             // ACT
-            // Save settings to disk
             settings.Save();
 
             // ASSERT
-            // Upgrade is now finished, validate with file known to be correct
             Assert.That(
                 File.ReadAllText(DataPersistenceInformation.FileName),
                 Is.EqualTo(File.ReadAllText(version3FileName)));
@@ -108,11 +106,9 @@ namespace AxisCameras.DataTest
             Assert.That(upgradeData.Upgrade(), Is.True);
 
             // ACT
-            // Save settings to disk
             settings.Save();
 
             // ASSERT
-            // Upgrade is now finished, validate with file known to be correct
             Assert.That(
                 File.ReadAllText(DataPersistenceInformation.FileName),
                 Is.EqualTo(File.ReadAllText(version3FileName)));

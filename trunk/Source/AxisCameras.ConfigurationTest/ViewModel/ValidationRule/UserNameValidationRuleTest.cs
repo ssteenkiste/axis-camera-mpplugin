@@ -26,37 +26,39 @@ namespace AxisCameras.ConfigurationTest.ViewModel.ValidationRule
     [TestFixture]
     public class UserNameValidationRuleTest
     {
+        private UserNameValidationRule rule;
+
+        [SetUp]
+        public void SetUp()
+        {
+            rule = new UserNameValidationRule();
+        }
+
         [Test]
         public void ValidationSuccessful()
         {
-            // ARRANGE
-            var validationRule = new UserNameValidationRule();
-
             // ASSERT
-            Assert.That(validationRule.Validate("a"), Is.True);
-            Assert.That(validationRule.Validate("z"), Is.True);
-            Assert.That(validationRule.Validate("A"), Is.True);
-            Assert.That(validationRule.Validate("Z"), Is.True);
-            Assert.That(validationRule.Validate("azAZ09_"), Is.True);
-            Assert.That(validationRule.Validate("abcdefghijklmn"), Is.True);
+            Assert.That(rule.Validate("a"), Is.True);
+            Assert.That(rule.Validate("z"), Is.True);
+            Assert.That(rule.Validate("A"), Is.True);
+            Assert.That(rule.Validate("Z"), Is.True);
+            Assert.That(rule.Validate("azAZ09_"), Is.True);
+            Assert.That(rule.Validate("abcdefghijklmn"), Is.True);
         }
 
         [Test]
         public void ValidationFailed()
         {
-            // ARRANGE
-            var validationRule = new UserNameValidationRule();
-
             // ASSERT
-            Assert.That(validationRule.Validate("1"), Is.False);
-            Assert.That(validationRule.Validate("1user"), Is.False);
-            Assert.That(validationRule.Validate("9"), Is.False);
-            Assert.That(validationRule.Validate("9user"), Is.False);
-            Assert.That(validationRule.Validate("1"), Is.False);
-            Assert.That(validationRule.Validate("abcdefghijklmno"), Is.False);
-            Assert.That(validationRule.Validate(null), Is.False);
-            Assert.That(validationRule.Validate(string.Empty), Is.False);
-            Assert.That(validationRule.Validate(new object()), Is.False);
+            Assert.That(rule.Validate("1"), Is.False);
+            Assert.That(rule.Validate("1user"), Is.False);
+            Assert.That(rule.Validate("9"), Is.False);
+            Assert.That(rule.Validate("9user"), Is.False);
+            Assert.That(rule.Validate("1"), Is.False);
+            Assert.That(rule.Validate("abcdefghijklmno"), Is.False);
+            Assert.That(rule.Validate(null), Is.False);
+            Assert.That(rule.Validate(string.Empty), Is.False);
+            Assert.That(rule.Validate(new object()), Is.False);
         }
     }
 }
