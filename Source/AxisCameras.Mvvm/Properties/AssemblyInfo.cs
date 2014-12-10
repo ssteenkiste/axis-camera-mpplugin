@@ -20,6 +20,7 @@
 
 using System;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
@@ -40,3 +41,5 @@ using System.Runtime.InteropServices;
 
 [assembly: Guid("51a6872c-2b44-490e-a309-8ff28c3a0c1d")]
 [assembly: CLSCompliant(true)]
+
+[assembly: InternalsVisibleTo("AxisCameras.MvvmTest")]
