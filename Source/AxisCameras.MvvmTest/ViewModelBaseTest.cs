@@ -1,7 +1,6 @@
 ﻿using AxisCameras.Mvvm;
 using AxisCameras.Mvvm.Validation;
 using NUnit.Framework;
-using Test;
 
 namespace AxisCameras.MvvmTest
 {
