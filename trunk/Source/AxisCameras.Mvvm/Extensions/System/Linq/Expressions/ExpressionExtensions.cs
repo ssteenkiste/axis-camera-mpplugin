@@ -24,7 +24,7 @@ namespace System.Linq.Expressions
     /// <summary>
     /// Class containing Expression extensions.
     /// </summary>
-    public static class ExpressionExtensions
+    internal static class ExpressionExtensions
     {
         /// <summary>
         /// Gets the name of the expression.
