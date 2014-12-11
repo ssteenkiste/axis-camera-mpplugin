@@ -54,6 +54,7 @@
     <Compile Include="Extensions\System\Linq\Expressions\ExpressionExtensionsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyCacheTest.cs" />
+    <Compile Include="Validation\ValidatorTest.cs" />
     <Compile Include="ViewModelBaseTest.cs" />
   </ItemGroup>
   <ItemGroup>

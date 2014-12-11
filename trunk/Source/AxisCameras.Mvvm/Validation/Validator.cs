@@ -60,52 +60,41 @@ namespace AxisCameras.Mvvm.Validation
         /// Validates a specific property on a ViewModel.
         /// </summary>
         /// <param name="propertyName">The property to validate.</param>
-        /// <returns>The error message for the property. The default is an empty string ("").</returns>
-        public string Validate(string propertyName)
+        /// <returns>
+        /// The error messages for the property. If not errors are found, a empty sequence is
+        /// returned.
+        /// </returns>
+        public IEnumerable<string> GetErrorMessagesFor(string propertyName)
         {
             Requires.NotNullOrEmpty(propertyName);
 
             ValidationData[] relevantRules = rules
-                .Where(r => r.Name == propertyName)
+                .Where(rule => rule.PropertyName == propertyName)
                 .ToArray();
 
-            // Default error message indicating valid property
-            string errorMessage = string.Empty;
-
+            // Validate
             foreach (ValidationData relevantRule in relevantRules)
             {
-                // Prevent the first validation, it is triggered by the view when loaded
-                if (!relevantRule.IsFirstValidation)
-                {
-                    relevantRule.IsValid = relevantRule.Rule.Validate(relevantRule.Property());
-
-                    if (!relevantRule.IsValid)
-                    {
-                        errorMessage = relevantRule.Rule.ErrorMessage;
-                        break;
-                    }
-                }
+                relevantRule.IsValid = relevantRule.Rule.Validate(relevantRule.Property());
             }
 
-            // Mark the validators as having validated the property once, i.e. it is not the first
-            // validation anymore
-            foreach (ValidationData relevantRule in relevantRules)
-            {
-                relevantRule.IsFirstValidation = false;
-            }
-
-            return errorMessage;
+            return relevantRules
+                .Where(relevantRule => !relevantRule.IsValid)
+                .Select(relevantRule => relevantRule.Rule.ErrorMessage)
+                .ToArray();
         }
 
         /// <summary>
         /// Validates all added validation rules.
         /// </summary>
         /// <returns>true if validation succeeds; otherwise false.</returns>
-        public bool ValidateAll()
+        public bool Validate()
         {
+            // Using Aggregate instead of All since we wish to run through all validators and not
+            // stop on the first one failing
             return rules.Aggregate(
                 true,
-                (success, rule) => success && string.IsNullOrEmpty(Validate(rule.Name)));
+                (success, rule) => success && !GetErrorMessagesFor(rule.PropertyName).Any());
         }
 
         /// <summary>
@@ -124,11 +113,11 @@ namespace AxisCameras.Mvvm.Validation
         {
             get
             {
-                return
-                    (from rule in rules
-                     where !rule.IsValid
-                     select rule.Name)
-                    .Distinct();
+                return rules
+                    .Where(rule => !rule.IsValid)
+                    .Select(rule => rule.PropertyName)
+                    .Distinct()
+                    .ToArray();
             }
         }
 
@@ -137,6 +126,10 @@ namespace AxisCameras.Mvvm.Validation
         /// </summary>
         private class ValidationData
         {
+            private readonly string propertyName;
+            private readonly Func<object> property;
+            private readonly IValidationRule rule;
+
             /// <summary>
             /// Initializes a new instance of the <see cref="Validator"/> class.
             /// </summary>
@@ -144,32 +137,35 @@ namespace AxisCameras.Mvvm.Validation
             /// <param name="rule">The rule.</param>
             public ValidationData(Expression<Func<object>> nameExpression, IValidationRule rule)
             {
-                Name = nameExpression.GetName();
-                Property = nameExpression.Compile();
-                Rule = rule;
-                IsFirstValidation = true;
+                propertyName = nameExpression.GetName();
+                property = nameExpression.Compile();
+                this.rule = rule;
             }
 
             /// <summary>
             /// Gets the name of the property.
             /// </summary>
-            public string Name { get; private set; }
+            public string PropertyName
+            {
+                get { return propertyName; }
+            }
 
             /// <summary>
             /// Gets the name expression to validate.
             /// </summary>
-            public Func<object> Property { get; private set; }
+            public Func<object> Property
+            {
+                get { return property; }
+            }
 
             /// <summary>
             /// Gets the rule.
             /// </summary>
-            public IValidationRule Rule { get; private set; }
-
-            /// <summary>
-            /// Gets or sets a value indicating whether this property has been validated before.
-            /// </summary>
-            public bool IsFirstValidation { get; set; }
-
+            public IValidationRule Rule
+            {
+                get { return rule; }
+            }
+            
             /// <summary>
             /// Gets or sets a value indicating whether this rule is valid.
             /// </summary>
