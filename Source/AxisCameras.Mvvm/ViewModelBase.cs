@@ -69,7 +69,17 @@ namespace AxisCameras.Mvvm
         /// <returns>The error message for the property. The default is an empty string ("").</returns>
         public string this[string columnName]
         {
-            get { return validator != null ? validator.Validate(columnName) : string.Empty; }
+            get
+            {
+                if (validator == null)
+                {
+                    // If no validator exist, no error exists
+                    return string.Empty;
+                }
+
+                IEnumerable<string> errorMessages = validator.GetErrorMessagesFor(columnName);
+                return string.Join(Environment.NewLine, errorMessages);
+            }
         }
 
         #endregion
