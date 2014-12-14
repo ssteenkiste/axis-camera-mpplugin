@@ -10,7 +10,7 @@ namespace Test
     /// </summary>
     public class EventAsserter
     {
-        private const int DefaultMillisecondsTimeout = 250;
+        private const int DefaultMillisecondsTimeout = 50;
 
         private readonly ConcurrentQueue<EventArgs> payloadQueue;
         private readonly AutoResetEvent autoResetEvent;
