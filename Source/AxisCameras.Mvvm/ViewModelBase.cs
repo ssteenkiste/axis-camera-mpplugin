@@ -95,13 +95,15 @@ namespace AxisCameras.Mvvm
                 return true;
             }
 
+            bool isValid = validator.Validate();
+
             // Get invalid properties
             string[] propertyNamesWithErrors = validator.InvalidPropertyNames.ToArray();
 
             // Send events about invalid properties
             OnPropertiesChanged(propertyNamesWithErrors);
 
-            return !propertyNamesWithErrors.Any();
+            return isValid;
         }
 
         /// <summary>

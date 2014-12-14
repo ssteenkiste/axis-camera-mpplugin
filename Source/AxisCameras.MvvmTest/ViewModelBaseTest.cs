@@ -18,33 +18,220 @@
 
 #endregion
 
+using System.Collections.Generic;
+using System.ComponentModel;
 using AxisCameras.Mvvm;
 using AxisCameras.Mvvm.Validation;
 using NUnit.Framework;
+using Test;
 
 namespace AxisCameras.MvvmTest
 {
     [TestFixture]
     public class ViewModelBaseTest
     {
+        private PersonViewModel personViewModel;
+
+        [SetUp]
+        public void SetUp()
+        {
+            personViewModel = new PersonViewModel();
+        }
+
         [Test]
-        public void AddMoreTests()
+        public void SetNewValueOnProperty()
         {
             // ARRANGE
-
+            var eventAsserter = new EventAsserter();
+            personViewModel.PropertyChanged += eventAsserter.Handler;
+            
             // ACT
+            personViewModel.Username = "John Doe";
 
             // ASSERT
-            Assert.Fail();
+            eventAsserter.AssertEventReceived();
+            Assert.That(eventAsserter.Count, Is.EqualTo(1));
+            
+            var propertyChangedEventArgs = eventAsserter.Dequeue<PropertyChangedEventArgs>();
+            Assert.That(propertyChangedEventArgs.PropertyName, Is.EqualTo("Username"));
+        }
+
+        [Test]
+        public void SetSameValueOnProperty()
+        {
+            // ARRANGE
+            personViewModel.Username = "John Doe";
+
+            var eventAsserter = new EventAsserter();
+            personViewModel.PropertyChanged += eventAsserter.Handler;
+
+            // ACT
+            personViewModel.Username = "John Doe";
+
+            // ASSERT
+            eventAsserter.AssertNoEventReceived();
+            Assert.That(eventAsserter.IsEmpty, Is.True);
+        }
+
+        [Test]
+        public void Valid()
+        {
+            // ARRANGE
+            personViewModel.Username = "John Doe";
+            personViewModel.Password = "secure";
+
+            // ACT
+            bool isValid = personViewModel.Validate();
+
+            // ASSERT
+            Assert.That(isValid, Is.True);
+
+            Assert.That(personViewModel.IsValid, Is.True);
+            Assert.That(personViewModel.Error, Is.EqualTo(string.Empty));
+            Assert.That(personViewModel["Username"], Is.EqualTo(string.Empty));
+            Assert.That(personViewModel["Password"], Is.EqualTo(string.Empty));
+        }
+
+        [Test]
+        public void Invalid()
+        {
+            // ARRANGE
+            personViewModel.Username = string.Empty;
+            personViewModel.Password = string.Empty;
+
+            // ACT
+            bool isValid = personViewModel.Validate();
+
+            // ASSERT
+            Assert.That(isValid, Is.False);
+
+            Assert.That(personViewModel.IsValid, Is.False);
+            Assert.That(personViewModel.Error, Is.EqualTo(string.Empty));
+            Assert.That(personViewModel["Username"], Is.EqualTo(NotEmptyOrNullValidationRule.DefaultErrorMessage));
+            Assert.That(personViewModel["Password"], Is.EqualTo(NotEmptyOrNullValidationRule.DefaultErrorMessage));
+        }
+
+        [Test]
+        public void ValidWhenNoValidators()
+        {
+            // ARRANGE
+            var viewModelWithNoValidators = new ViewModelWithNoValidators();
+
+            // ACT
+            bool isValid = viewModelWithNoValidators.Validate();
+
+            // ASSERT
+            Assert.That(isValid, Is.True);
+
+            Assert.That(viewModelWithNoValidators.IsValid, Is.True);
+            Assert.That(viewModelWithNoValidators.Error, Is.EqualTo(string.Empty));
+        }
+
+        [Test]
+        public void PropertyChangedUsingPropertyChangedEventArgs()
+        {
+            // ARRANGE
+            var eventAsserter = new EventAsserter();
+            personViewModel.PropertyChanged += eventAsserter.Handler;
+
+            // ACT
+            personViewModel.FirePropertyChanged(new PropertyChangedEventArgs("Username"));
+
+            // ASSERT
+            eventAsserter.AssertEventReceived();
+            Assert.That(eventAsserter.Count, Is.EqualTo(1));
+
+            var propertyChangedEventArgs = eventAsserter.Dequeue<PropertyChangedEventArgs>();
+            Assert.That(propertyChangedEventArgs.PropertyName, Is.EqualTo("Username"));
+        }
+
+        [Test]
+        public void PropertyChangedUsingExpression()
+        {
+            // ARRANGE
+            var eventAsserter = new EventAsserter();
+            personViewModel.PropertyChanged += eventAsserter.Handler;
+
+            // ACT
+            personViewModel.FireUsernamePropertyChanged();
+
+            // ASSERT
+            eventAsserter.AssertEventReceived();
+            Assert.That(eventAsserter.Count, Is.EqualTo(1));
+
+            var propertyChangedEventArgs = eventAsserter.Dequeue<PropertyChangedEventArgs>();
+            Assert.That(propertyChangedEventArgs.PropertyName, Is.EqualTo("Username"));
+        }
+
+        [Test]
+        public void PropertyChangedUsingString()
+        {
+            // ARRANGE
+            var eventAsserter = new EventAsserter();
+            personViewModel.PropertyChanged += eventAsserter.Handler;
+
+            // ACT
+            personViewModel.FirePropertyChanged("Username");
+
+            // ASSERT
+            eventAsserter.AssertEventReceived();
+            Assert.That(eventAsserter.Count, Is.EqualTo(1));
+
+            var propertyChangedEventArgs = eventAsserter.Dequeue<PropertyChangedEventArgs>();
+            Assert.That(propertyChangedEventArgs.PropertyName, Is.EqualTo("Username"));
+        }
+
+        [Test]
+        public void PropertiesChanged()
+        {
+            // ARRANGE
+            var eventAsserter = new EventAsserter();
+            personViewModel.PropertyChanged += eventAsserter.Handler;
+
+            // ACT
+            personViewModel.FirePropertiesChanged(new[] { "Username", "Password" });
+
+            // ASSERT
+            eventAsserter.AssertEventReceived();
+            Assert.That(eventAsserter.Count, Is.EqualTo(2));
+
+            var propertyChangedEventArgs = eventAsserter.Dequeue<PropertyChangedEventArgs>();
+            Assert.That(propertyChangedEventArgs.PropertyName, Is.EqualTo("Username"));
+
+            propertyChangedEventArgs = eventAsserter.Dequeue<PropertyChangedEventArgs>();
+            Assert.That(propertyChangedEventArgs.PropertyName, Is.EqualTo("Password"));
+        }
+
+        [Test]
+        public void AllPropertiesChanged()
+        {
+            // ARRANGE
+            var eventAsserter = new EventAsserter();
+            personViewModel.PropertyChanged += eventAsserter.Handler;
+
+            // ACT
+            personViewModel.FireAllPropertiesChanged();
+
+            // ASSERT
+            eventAsserter.AssertEventReceived();
+            Assert.That(eventAsserter.Count, Is.EqualTo(1));
+
+            var propertyChangedEventArgs = eventAsserter.Dequeue<PropertyChangedEventArgs>();
+            Assert.That(propertyChangedEventArgs.PropertyName, Is.EqualTo(string.Empty));
         }
 
         #region Helper classes and methods
 
-        private class ViewModel : ViewModelBase
+        private class ViewModelWithNoValidators : ViewModelBase
         {
-            public ViewModel()
+        }
+
+        private class PersonViewModel : ViewModelBase
+        {
+            public PersonViewModel()
             {
                 AddValidator(() => Username, new NotEmptyOrNullValidationRule());
+                AddValidator(() => Password, new NotEmptyOrNullValidationRule());
             }
 
             public string Username
@@ -52,13 +239,46 @@ namespace AxisCameras.MvvmTest
                 get { return GetValue<string>(); }
                 set { SetValue(value); }
             }
+
+            public string Password
+            {
+                get { return GetValue<string>(); }
+                set { SetValue(value); }
+            }
+
+            public void FirePropertyChanged(PropertyChangedEventArgs e)
+            {
+                OnPropertyChanged(e);
+            }
+
+            public void FireUsernamePropertyChanged()
+            {
+                OnPropertyChanged(() => Username);
+            }
+
+            public void FirePropertyChanged(string propertyName)
+            {
+                OnPropertyChanged(propertyName);
+            }
+
+            public void FirePropertiesChanged(IEnumerable<string> propertyNames)
+            {
+                OnPropertiesChanged(propertyNames);
+            }
+
+            public void FireAllPropertiesChanged()
+            {
+                OnAllPropertiesChanged();
+            }
         }
 
         private class NotEmptyOrNullValidationRule : IValidationRule
         {
+            public const string DefaultErrorMessage = "Validation failed!";
+
             public string ErrorMessage
             {
-                get { return "Validation failed!"; }
+                get { return DefaultErrorMessage; }
             }
 
             public bool Validate(object value)
