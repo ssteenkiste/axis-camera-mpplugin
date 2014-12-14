@@ -121,14 +121,54 @@ namespace AxisCameras.MvvmTest.Validation
         }
 
         [Test]
-        public void AddMoreTests()
+        public void TwoValidProperties()
         {
             // ARRANGE
+            validator.Add(() => Username, new SucceedingValidationRule());
+            validator.Add(() => Password, new SucceedingValidationRule());
 
             // ACT
+            bool isValid = validator.Validate();
+            
+            // ASSERT
+            Assert.That(isValid, Is.True);
+
+            Assert.That(validator.IsValid, Is.True);
+            Assert.That(validator.InvalidPropertyNames, Is.Empty);
+        }
+
+        [Test]
+        public void TwoInvalidProperties()
+        {
+            // ARRANGE
+            validator.Add(() => Username, new FailingValidationRule());
+            validator.Add(() => Password, new FailingValidationRule());
+
+            // ACT
+            bool isValid = validator.Validate();
 
             // ASSERT
-            Assert.Fail();
+            Assert.That(isValid, Is.False);
+
+            Assert.That(validator.IsValid, Is.False);
+            CollectionAssert.AreEqual(new[] { "Username", "Password" }, validator.InvalidPropertyNames);
+        }
+
+        [Test]
+        public void OneValidAndOneInvalidProperty()
+        {
+            // ARRANGE
+            validator.Add(() => Username, new SucceedingValidationRule());
+            validator.Add(() => Password, new FailingValidationRule());
+
+            // ACT
+            bool isValid = validator.Validate();
+
+            // ASSERT
+            Assert.That(isValid, Is.False);
+
+            Assert.That(validator.IsValid, Is.False);
+            CollectionAssert.AreEqual(new[] { "Password" }, validator.InvalidPropertyNames);
         }
 
         #region Helper properties and classes
