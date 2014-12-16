@@ -61,7 +61,7 @@ namespace AxisCameras.Mvvm
         /// <param name="parameter">The command parameter</param>
         private void Ok(object parameter)
         {
-            if (Validate() && OnOk())
+            if (Validate() && OnOk() && DialogResultCommand != null)
             {
                 DialogResultCommand.Execute(true);
             }
