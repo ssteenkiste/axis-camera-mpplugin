@@ -17,7 +17,10 @@
 	<local:ImageBytesConverter x:Key="ImageBytesConverter"/>
 
 	<!-- A collection of sorted cameras -->
-	<CollectionViewSource x:Key="SortedCameras" Source="{Binding Cameras}">
+	<CollectionViewSource
+		x:Key="SortedCameras"
+		d:DataContext="{d:DesignInstance viewmodel:SetupDialogViewModel}"
+		Source="{Binding Cameras}">
 		<CollectionViewSource.SortDescriptions>
 			<scm:SortDescription PropertyName="Name"/>
 		</CollectionViewSource.SortDescriptions>
