@@ -8,7 +8,7 @@
 	xmlns:viewmodel="clr-namespace:AxisCameras.Configuration.ViewModel"
 	mc:Ignorable="d"
 	d:DataContext="{d:DesignInstance viewmodel:ProgressDialogViewModel}"
-	behaviors:LifetimeBehaviors.Loaded="{Binding LoadedCommand}"
+	behaviors:WindowLifetimeBehaviors.Loaded="{Binding LoadedCommand}"
 	Title="Camera Communication"
 	Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"
 	Style="{DynamicResource DialogWindow}"
