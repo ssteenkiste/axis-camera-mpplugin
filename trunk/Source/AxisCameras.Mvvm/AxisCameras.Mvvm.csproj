@@ -51,6 +51,7 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Behaviors\LifetimeBehaviors.cs" />
     <Compile Include="Behaviors\WindowLifetimeBehaviors.cs" />
     <Compile Include="Behaviors\ListBoxBehaviors.cs" />
     <Compile Include="Behaviors\PasswordBoxBehaviors.cs" />

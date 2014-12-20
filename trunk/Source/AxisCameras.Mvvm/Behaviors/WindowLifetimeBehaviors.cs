@@ -36,7 +36,7 @@ namespace AxisCameras.Mvvm.Behaviors
     /// http://cinch.codeplex.com/
     /// </summary>
     /// <example>
-    /// <![CDATA[  <Window Cinch:LifetimeEvent.Close="{Binding CloseCommand}" />  ]]>
+    /// <![CDATA[  <Window Cinch:WindowLifetimeEvent.Close="{Binding CloseCommand}" />  ]]>
     /// </example>
     public static class WindowLifetimeBehaviors
     {
