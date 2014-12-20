@@ -39,17 +39,7 @@ namespace AxisCameras.Configuration.ViewModel
         {
             cancellationTokenSource = new CancellationTokenSource();
 
-            LoadedCommand = new RelayCommand(Loaded);
             CancelCommand = new RelayCommand(Cancel);
-        }
-
-        /// <summary>
-        /// Gets the loaded command.
-        /// </summary>
-        public ICommand LoadedCommand
-        {
-            get { return GetValue<ICommand>(); }
-            private set { SetValue(value); }
         }
 
         /// <summary>
@@ -68,11 +58,6 @@ namespace AxisCameras.Configuration.ViewModel
         {
             get { return cancellationTokenSource.Token; }
         }
-
-        /// <summary>
-        /// Executes the Loaded command.
-        /// </summary>
-        protected abstract void Loaded(object parameter);
 
         /// <summary>
         /// Executes the Cancel command.

@@ -23,6 +23,7 @@ using AxisCameras.Configuration.Service;
 using AxisCameras.Core;
 using AxisCameras.Core.Contracts;
 using AxisCameras.Data;
+using AxisCameras.Mvvm.Behaviors;
 
 namespace AxisCameras.Configuration.ViewModel
 {
@@ -90,10 +91,17 @@ namespace AxisCameras.Configuration.ViewModel
         }
 
         /// <summary>
-        /// Executes the Loaded command.
+        /// Called when view is loaded.
         /// </summary>
-        protected override void Loaded(object parameter)
+        /// <remarks>
+        /// Make sure view binds <see cref="WindowLifetimeBehaviors.LoadedProperty" /> or
+        /// <see cref="LifetimeBehaviors.LoadedProperty" /> to <see cref="LoadedCommand" />
+        /// in order for this method to be called.
+        /// </remarks>
+        protected override void OnLoaded()
         {
+            base.OnLoaded();
+
             Task<CameraParameters> task = cameraCommunicationService.GetCameraParametersAsync(
                 cameraEndpoint,
                 CancellationToken);

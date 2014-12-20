@@ -31,6 +31,7 @@ using AxisCameras.Configuration.ViewModel.ValidationRule;
 using AxisCameras.Core;
 using AxisCameras.Core.Contracts;
 using AxisCameras.Mvvm;
+using AxisCameras.Mvvm.Behaviors;
 using AxisCameras.Mvvm.Services;
 
 namespace AxisCameras.Configuration.ViewModel
@@ -74,7 +75,6 @@ namespace AxisCameras.Configuration.ViewModel
             this.cameraSnapshotProvider = cameraSnapshotProvider;
             this.ioService = ioService;
 
-            LoadedCommand = new RelayCommand(Loaded);
             RefreshCommand = new RelayCommand(Refresh);
 
             AddValidators();
@@ -95,15 +95,6 @@ namespace AxisCameras.Configuration.ViewModel
         public IEnumerable<byte> Snapshot
         {
             get { return GetValue<IEnumerable<byte>>(); }
-            private set { SetValue(value); }
-        }
-
-        /// <summary>
-        /// Gets the loaded command.
-        /// </summary>
-        public ICommand LoadedCommand
-        {
-            get { return GetValue<ICommand>(); }
             private set { SetValue(value); }
         }
 
@@ -164,10 +155,17 @@ namespace AxisCameras.Configuration.ViewModel
         }
 
         /// <summary>
-        /// Method executed when view is loaded.
+        /// Called when view is loaded.
         /// </summary>
-        private void Loaded(object parameter)
+        /// <remarks>
+        /// Make sure view binds <see cref="WindowLifetimeBehaviors.LoadedProperty" /> or
+        /// <see cref="LifetimeBehaviors.LoadedProperty" /> to <see cref="LoadedCommand" />
+        /// in order for this method to be called.
+        /// </remarks>
+        protected override void OnLoaded()
         {
+            base.OnLoaded();
+
             // We got a little bit of synchronization problem here. This code cannot run before the view
             // has been registered, because then the progress dialog wouldn't be centered on the owner.
             // The problem we are facing is that both this method and the registering process in the
