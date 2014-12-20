@@ -38,7 +38,7 @@ namespace AxisCameras.Mvvm.Behaviors
     /// <example>
     /// <![CDATA[  <Window Cinch:LifetimeEvent.Close="{Binding CloseCommand}" />  ]]>
     /// </example>
-    public static class LifetimeBehaviors
+    public static class WindowLifetimeBehaviors
     {
         #region Loaded
 
@@ -49,7 +49,7 @@ namespace AxisCameras.Mvvm.Behaviors
             DependencyProperty.RegisterAttached(
                 "Loaded",
                 typeof(ICommand),
-                typeof(LifetimeBehaviors),
+                typeof(WindowLifetimeBehaviors),
                 new UIPropertyMetadata(null, OnLoadedEventInfoChanged));
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace AxisCameras.Mvvm.Behaviors
             DependencyProperty.RegisterAttached(
                 "Activated",
                 typeof(ICommand),
-                typeof(LifetimeBehaviors),
+                typeof(WindowLifetimeBehaviors),
                 new UIPropertyMetadata(null, OnActivatedEventInfoChanged));
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace AxisCameras.Mvvm.Behaviors
             DependencyProperty.RegisterAttached(
                 "Deactivated",
                 typeof(ICommand),
-                typeof(LifetimeBehaviors),
+                typeof(WindowLifetimeBehaviors),
                 new UIPropertyMetadata(null, OnDeactivatedEventInfoChanged));
 
         /// <summary>
@@ -251,7 +251,7 @@ namespace AxisCameras.Mvvm.Behaviors
             DependencyProperty.RegisterAttached(
                 "Close",
                 typeof(ICommand),
-                typeof(LifetimeBehaviors),
+                typeof(WindowLifetimeBehaviors),
                 new UIPropertyMetadata(null, OnCloseEventInfoChanged));
 
         /// <summary>
@@ -337,7 +337,7 @@ namespace AxisCameras.Mvvm.Behaviors
             DependencyProperty.RegisterAttached(
                 "Unloaded",
                 typeof(ICommand),
-                typeof(LifetimeBehaviors),
+                typeof(WindowLifetimeBehaviors),
                 new UIPropertyMetadata(null, OnUnloadedEventInfoChanged));
 
         /// <summary>
@@ -403,7 +403,7 @@ namespace AxisCameras.Mvvm.Behaviors
             DependencyProperty.RegisterAttached(
                 "CommandParameter",
                 typeof(object),
-                typeof(LifetimeBehaviors),
+                typeof(WindowLifetimeBehaviors),
                 new UIPropertyMetadata(null));
 
         /// <summary>

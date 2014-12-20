@@ -10,7 +10,7 @@
 	mc:Ignorable="d"
 	d:DataContext="{d:DesignInstance viewmodel:WizardPageThreeViewModel}"
 	services:WindowServiceBehaviors.IsRegisteredView="True"
-	behaviors:LifetimeBehaviors.Loaded="{Binding LoadedCommand}">
+	behaviors:WindowLifetimeBehaviors.Loaded="{Binding LoadedCommand}">
 
 	<!-- Resources -->
 	<UserControl.Resources>
