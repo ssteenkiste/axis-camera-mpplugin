@@ -116,7 +116,7 @@ namespace AxisCameras.MvvmTest
         {
             // ARRANGE
             var viewModelWithNoValidators = new ViewModelWithNoValidators();
-
+            
             // ACT
             bool isValid = viewModelWithNoValidators.Validate();
 
@@ -218,6 +218,42 @@ namespace AxisCameras.MvvmTest
 
             var propertyChangedEventArgs = eventAsserter.Dequeue<PropertyChangedEventArgs>();
             Assert.That(propertyChangedEventArgs.PropertyName, Is.EqualTo(string.Empty));
+        }
+
+        [Test]
+        public void IsLoadedUndertermined()
+        {
+            // ACT
+            bool? isLoaded = personViewModel.IsLoaded;
+
+            // ASSERT
+            Assert.That(isLoaded, Is.Null);
+        }
+
+        [Test]
+        public void IsLoaded()
+        {
+            // ARRANGE
+            personViewModel.LoadedCommand.Execute(null);
+
+            // ACT
+            bool? isLoaded = personViewModel.IsLoaded;
+
+            // ASSERT
+            Assert.That(isLoaded, Is.True);
+        }
+
+        [Test]
+        public void IsNotLoaded()
+        {
+            // ARRANGE
+            personViewModel.UnloadedCommand.Execute(null);
+
+            // ACT
+            bool? isLoaded = personViewModel.IsLoaded;
+
+            // ASSERT
+            Assert.That(isLoaded, Is.False);
         }
 
         #region Helper classes and methods

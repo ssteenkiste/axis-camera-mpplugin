@@ -26,7 +26,9 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using AxisCameras.Core.Contracts;
+using AxisCameras.Mvvm.Behaviors;
 using AxisCameras.Mvvm.Validation;
 
 namespace AxisCameras.Mvvm
@@ -37,6 +39,8 @@ namespace AxisCameras.Mvvm
     public abstract class ViewModelBase : IViewModelBase, IDataErrorInfo
     {
         private readonly PropertyCache propertyCache;
+        private readonly Lazy<ICommand> lazyLoadedCommand;
+        private readonly Lazy<ICommand> lazyUnloadedCommand;
         private Validator validator;
 
         /// <summary>
@@ -45,12 +49,42 @@ namespace AxisCameras.Mvvm
         protected ViewModelBase()
         {
             propertyCache = new PropertyCache();
+            lazyLoadedCommand = new Lazy<ICommand>(() => new RelayCommand(_ => OnLoaded()));
+            lazyUnloadedCommand = new Lazy<ICommand>(() => new RelayCommand(_ => OnUnloaded()));
         }
 
         /// <summary>
         /// Occurs when a property value changes.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Gets value indicating whether view is loaded.
+        /// </summary>
+        /// <value>
+        /// true if view is loaded, false is view is unloaded or null if indetermined.
+        /// </value>
+        public bool? IsLoaded
+        {
+            get { return GetValue<bool?>(); }
+            private set { SetValue(value); }
+        }
+
+        /// <summary>
+        /// Gets the command executed when view is loaded.
+        /// </summary>
+        public ICommand LoadedCommand
+        {
+            get { return lazyLoadedCommand.Value; }
+        }
+
+        /// <summary>
+        /// Gets the command executed when view is unloaded.
+        /// </summary>
+        public ICommand UnloadedCommand
+        {
+            get { return lazyUnloadedCommand.Value; }
+        }
 
         #region IDataErrorInfo Members
 
@@ -74,6 +108,12 @@ namespace AxisCameras.Mvvm
                 if (validator == null)
                 {
                     // If no validator exist, no error exists
+                    return string.Empty;
+                }
+
+                if (lazyLoadedCommand.IsValueCreated && IsLoaded != true)
+                {
+                    // If view isn't loaded, no need to display errors
                     return string.Empty;
                 }
 
@@ -225,6 +265,32 @@ namespace AxisCameras.Mvvm
             }
 
             return isChanged;
+        }
+
+        /// <summary>
+        /// Called when view is loaded.
+        /// </summary>
+        /// <remarks>
+        /// Make sure view binds <see cref="WindowLifetimeBehaviors.LoadedProperty"/> or
+        /// <see cref="LifetimeBehaviors.LoadedProperty"/> to <see cref="LoadedCommand"/>
+        /// in order for this method to be called.
+        /// </remarks>
+        protected virtual void OnLoaded()
+        {
+            IsLoaded = true;
+        }
+
+        /// <summary>
+        /// Called when view is unloaded.
+        /// </summary>
+        /// <remarks>
+        /// Make sure view binds <see cref="WindowLifetimeBehaviors.UnloadedProperty"/> or
+        /// <see cref="LifetimeBehaviors.UnloadedProperty"/> to <see cref="UnloadedCommand"/>
+        /// in order for this method to be called.
+        /// </remarks>
+        protected virtual void OnUnloaded()
+        {
+            IsLoaded = false;
         }
 
         /// <summary>

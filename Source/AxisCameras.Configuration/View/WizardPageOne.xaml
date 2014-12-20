@@ -9,6 +9,7 @@
 	xmlns:viewmodel="clr-namespace:AxisCameras.Configuration.ViewModel"
 	mc:Ignorable="d"
 	d:DataContext="{d:DesignInstance viewmodel:WizardPageOneViewModel}"
+	behaviors:LifetimeBehaviors.Loaded="{Binding LoadedCommand}"
 	services:WindowServiceBehaviors.IsRegisteredView="True">
 	
 	<!-- Resources -->
