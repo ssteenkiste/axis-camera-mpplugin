@@ -22,7 +22,7 @@
         <FxCopWarnings>0</FxCopWarnings>
         
         <!-- NUnit -->
-        <NUnitToolPath>$(SolutionPath)\packages\NUnit.2.6.3</NUnitToolPath>
+        <NUnitToolPath>$(SolutionPath)\packages\NUnit.Runners.2.6.4\tools</NUnitToolPath>
         <NUnitResults>$(SolutionPath)\Setup\NUnitResults.xml</NUnitResults>
         
         <!-- MSBuild community tasks -->
