@@ -48,7 +48,7 @@
             <Output TaskParameter="Include" ItemName="Libraries" />
         </CreateItem>
         
-        <Exec Command="&quot;$(FxCopToolPath)\FxCopCmd.exe&quot; @(Applications->'/file:&quot;%(FullPath)&quot;', ' ') @(Libraries->'/file:&quot;%(FullPath)&quot;', ' ') /out:&quot;$(FxCopResults)&quot; /ruleset:=&quot;$(SolutionPath)\AxisCameras.ruleset&quot; /dictionary:&quot;$(SolutionPath)\CustomDictionary.xml&quot; /ignoregeneratedcode /forceoutput /gac" />
+        <Exec Command="&quot;$(FxCopToolPath)\FxCopCmd.exe&quot; @(Applications->'/file:&quot;%(FullPath)&quot;', ' ') @(Libraries->'/file:&quot;%(FullPath)&quot;', ' ') /out:&quot;$(FxCopResults)&quot; /ruleset:=&quot;$(SolutionPath)\AxisCameras.ruleset&quot; /dictionary:&quot;$(SolutionPath)\CustomDictionary.xml&quot; /summary /verbose /ignoregeneratedcode /forceoutput /gac" />
     </Target>
     
     <!-- Is parsing the FxCop result file and terminates the build process if errors or warnings are found -->
