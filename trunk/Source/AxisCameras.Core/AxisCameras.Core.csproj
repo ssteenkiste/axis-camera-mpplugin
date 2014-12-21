@@ -57,7 +57,7 @@
     <Compile Include="Annotations\MicrosoftAnnotations.cs" />
     <Compile Include="Contracts\Requires.cs" />
     <Compile Include="Contracts\RequiresException.cs" />
-    <Compile Include="Contracts\ResharperAnnotations.cs" />
+    <Compile Include="Annotations\ResharperAnnotations.cs" />
     <Compile Include="Extensions\System\StringExtensions.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="ILog.cs" />
