@@ -37,18 +37,27 @@ namespace AxisCameras.Configuration.ViewModel
         private const string CameraUrl = "http://{0}:{1}";
 
         private readonly IBrowserService browserService;
+        private readonly Func<ICommand> editCommandProvider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CameraViewModel"/> class.
         /// </summary>
         /// <param name="camera">The camera.</param>
         /// <param name="browserService">The browser service.</param>
-        public CameraViewModel(ConfigurableCamera camera, IBrowserService browserService)
+        /// <param name="editCommandProvider">
+        /// A provider for the command editing the camera.
+        /// </param>
+        public CameraViewModel(
+            ConfigurableCamera camera,
+            IBrowserService browserService,
+            Func<ICommand> editCommandProvider)
         {
             Requires.NotNull(camera);
             Requires.NotNull(browserService);
+            Requires.NotNull(editCommandProvider);
 
             this.browserService = browserService;
+            this.editCommandProvider = editCommandProvider;
 
             BrowseCommand = new RelayCommand(Browse);
             Camera = camera;
@@ -77,6 +86,14 @@ namespace AxisCameras.Configuration.ViewModel
         {
             get { return GetValue<ICommand>(); }
             private set { SetValue(value); }
+        }
+
+        /// <summary>
+        /// Gets the edit command.
+        /// </summary>
+        public ICommand EditCommand
+        {
+            get { return editCommandProvider(); }
         }
 
         /// <summary>

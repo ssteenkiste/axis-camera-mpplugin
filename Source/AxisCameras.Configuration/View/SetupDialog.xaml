@@ -43,10 +43,11 @@
 				<!-- List with cameras -->
 				<ListBox
 					ItemsSource="{Binding Source={StaticResource SortedCameras}}"
+					ItemContainerStyle="{StaticResource CameraContainerStyle}"
 					ItemTemplate="{StaticResource CameraTemplate}"
 					ItemsPanel="{StaticResource CamerasPanel}"
 					ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-					behaviors:ListBoxBehaviors.SelectedItems="{Binding SelectedItems}"/>
+					behaviors:ListBoxBehaviors.SelectedItems="{Binding SelectedItems}" />
 
 				<!-- List buttons -->
 				<StackPanel

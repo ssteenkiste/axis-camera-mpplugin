@@ -26,6 +26,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
+using System.Windows.Markup;
 
 [assembly: AssemblyTitle("Axis Cameras MVVM Framework")]
 [assembly: AssemblyDescription("Assembly containing the MVVM framework used by the plugin.")]
@@ -43,3 +44,6 @@ using System.Runtime.InteropServices;
 [assembly: CLSCompliant(true)]
 
 [assembly: InternalsVisibleTo("AxisCameras.MvvmTest")]
+
+[assembly: XmlnsDefinition("http://schemas.microsoft.com/expression/2010/interactivity", "System.Windows.Interactivity")]
+[assembly: XmlnsPrefix("http://schemas.microsoft.com/expression/2010/interactivity", "i")]

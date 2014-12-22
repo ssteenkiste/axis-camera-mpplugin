@@ -3,8 +3,10 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:local="clr-namespace:AxisCameras.Configuration.View"
+	xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
 	xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+	xmlns:local="clr-namespace:AxisCameras.Configuration.View"
+	xmlns:behaviors="clr-namespace:AxisCameras.Mvvm.Behaviors;assembly=AxisCameras.Mvvm"
 	xmlns:viewmodel="clr-namespace:AxisCameras.Configuration.ViewModel"
 	mc:Ignorable="d">
 	
@@ -25,7 +27,17 @@
 			<scm:SortDescription PropertyName="Name"/>
 		</CollectionViewSource.SortDescriptions>
 	</CollectionViewSource>
-	
+
+	<i:Triggers x:Key="CameraTriggers" x:Shared="False">
+		<i:EventTrigger EventName="MouseDoubleClick">
+			<behaviors:EventToCommand Command="{Binding EditCommand}" />
+		</i:EventTrigger>
+	</i:Triggers>
+
+	<Style x:Key="CameraContainerStyle" TargetType="{x:Type ListBoxItem}">
+		<Setter Property="i:StyleInteraction.Triggers" Value="{StaticResource CameraTriggers}" />
+	</Style>
+
 	<!-- A camera template -->
 	<DataTemplate x:Key="CameraTemplate">
 		<Grid
