@@ -18,6 +18,8 @@
 
 #endregion
 
+using System;
+using System.Windows.Input;
 using AxisCameras.Configuration.ViewModel;
 using AxisCameras.Configuration.ViewModel.Data;
 
@@ -32,6 +34,9 @@ namespace AxisCameras.Configuration.Provider
         /// Returns a ICameraViewModel created from a ConfigurableCamera.
         /// </summary>
         /// <param name="camera">The camera to turn into a ICameraViewModel.</param>
-        ICameraViewModel Provide(ConfigurableCamera camera);
+        /// <param name="editCommandProvider">
+        /// A provider for the command editing the camera.
+        /// </param>
+        ICameraViewModel Provide(ConfigurableCamera camera, Func<ICommand> editCommandProvider);
     }
 }

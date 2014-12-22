@@ -89,13 +89,15 @@ namespace AxisCameras.Configuration
 
             using (Owned<IPluginSettings> pluginSettings = pluginSettingsProvider())
             {
+                ISetupDialogViewModel setup = null;
+                
                 IEnumerable<ICameraViewModel> cameraViewModels =
                     from camera in pluginSettings.Value.Cameras
                     let configurableCamera = cameraConverter.ToConfigurableCamera(camera)
-                    select cameraViewModelProvider.Provide(configurableCamera);
+                    select cameraViewModelProvider.Provide(configurableCamera, () => setup.EditCommand);
 
-                ISetupDialogViewModel setup = setupProvider.Provide(cameraViewModels);
-
+                setup = setupProvider.Provide(cameraViewModels);
+                
                 // Getting the window handle of the current process is a workaround since the owning window
                 // is WinForms and we wish to open a WPF window
                 windowService.ShowDialog<SetupDialog>(

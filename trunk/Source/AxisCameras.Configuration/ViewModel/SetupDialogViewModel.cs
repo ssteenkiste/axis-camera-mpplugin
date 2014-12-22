@@ -159,7 +159,7 @@ namespace AxisCameras.Configuration.ViewModel
             {
                 Log.Debug("Added camera {0}", wizard.Camera.Name);
 
-                Cameras.Add(cameraProvider.Provide(wizard.Camera));
+                Cameras.Add(cameraProvider.Provide(wizard.Camera, () => EditCommand));
             }
         }
 

@@ -19,6 +19,7 @@
 #endregion
 
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using AxisCameras.Mvvm;
 
 namespace AxisCameras.Configuration.ViewModel
@@ -32,5 +33,10 @@ namespace AxisCameras.Configuration.ViewModel
         /// Gets the cameras.
         /// </summary>
         ObservableCollection<ICameraViewModel> Cameras { get; }
+
+        /// <summary>
+        /// Gets the command editing a camera.
+        /// </summary>
+        ICommand EditCommand { get; }
     }
 }
