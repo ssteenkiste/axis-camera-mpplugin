@@ -28,11 +28,11 @@
 		</CollectionViewSource.SortDescriptions>
 	</CollectionViewSource>
 
-	<i:Triggers x:Key="CameraTriggers" x:Shared="False">
+	<i:StyleTriggerCollection x:Key="CameraTriggers" x:Shared="False">
 		<i:EventTrigger EventName="MouseDoubleClick">
 			<behaviors:EventToCommand Command="{Binding EditCommand}" />
 		</i:EventTrigger>
-	</i:Triggers>
+	</i:StyleTriggerCollection>
 
 	<Style x:Key="CameraContainerStyle" TargetType="{x:Type ListBoxItem}">
 		<Setter Property="i:StyleInteraction.Triggers" Value="{StaticResource CameraTriggers}" />

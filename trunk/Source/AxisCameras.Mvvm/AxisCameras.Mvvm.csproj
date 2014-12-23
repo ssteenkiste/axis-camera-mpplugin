@@ -67,9 +67,9 @@
     <Compile Include="Behaviors\PasswordBoxBehaviors.cs" />
     <Compile Include="DialogViewModelBase.cs" />
     <Compile Include="Extensions\System\Linq\Expressions\ExpressionExtensions.cs" />
-    <Compile Include="Extensions\System\Windows\Interactivity\Behaviors.cs" />
+    <Compile Include="Extensions\System\Windows\Interactivity\StyleBehaviorCollection.cs" />
     <Compile Include="Extensions\System\Windows\Interactivity\StyleInteraction.cs" />
-    <Compile Include="Extensions\System\Windows\Interactivity\Triggers.cs" />
+    <Compile Include="Extensions\System\Windows\Interactivity\StyleTriggerCollection.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IDialogViewModelBase.cs" />
     <Compile Include="IViewModelBase.cs" />

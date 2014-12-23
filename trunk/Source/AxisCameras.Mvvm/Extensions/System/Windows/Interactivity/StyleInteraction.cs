@@ -14,22 +14,22 @@ namespace System.Windows.Interactivity
         /// </summary>
         public static readonly DependencyProperty BehaviorsProperty = DependencyProperty.RegisterAttached(
             "Behaviors",
-            typeof(Behaviors),
+            typeof(StyleBehaviorCollection),
             typeof(StyleInteraction),
             new UIPropertyMetadata(null, OnPropertyBehaviorsChanged));
 
         /// <summary>
         /// Gets the behaviors.
         /// </summary>
-        public static Behaviors GetBehaviors(DependencyObject target)
+        public static StyleBehaviorCollection GetBehaviors(DependencyObject target)
         {
-            return (Behaviors)target.GetValue(BehaviorsProperty);
+            return (StyleBehaviorCollection)target.GetValue(BehaviorsProperty);
         }
 
         /// <summary>
         /// Sets the behaviors.
         /// </summary>
-        public static void SetBehaviors(DependencyObject target, Behaviors value)
+        public static void SetBehaviors(DependencyObject target, StyleBehaviorCollection value)
         {
             target.SetValue(BehaviorsProperty, value);
         }
@@ -40,7 +40,7 @@ namespace System.Windows.Interactivity
         {
             var behaviors = Interaction.GetBehaviors(target);
             
-            foreach (var behavior in (Behaviors)e.NewValue)
+            foreach (var behavior in (StyleBehaviorCollection)e.NewValue)
             {
                 behaviors.Add(behavior);
             }
@@ -55,22 +55,22 @@ namespace System.Windows.Interactivity
         /// </summary>
         public static readonly DependencyProperty TriggersProperty = DependencyProperty.RegisterAttached(
             "Triggers",
-            typeof(Triggers),
+            typeof(StyleTriggerCollection),
             typeof(StyleInteraction),
             new UIPropertyMetadata(null, OnPropertyTriggersChanged));
 
         /// <summary>
         /// Gets the triggers.
         /// </summary>
-        public static Triggers GetTriggers(DependencyObject target)
+        public static StyleTriggerCollection GetTriggers(DependencyObject target)
         {
-            return (Triggers)target.GetValue(TriggersProperty);
+            return (StyleTriggerCollection)target.GetValue(TriggersProperty);
         }
 
         /// <summary>
         /// Sets the triggers.
         /// </summary>
-        public static void SetTriggers(DependencyObject target, Triggers value)
+        public static void SetTriggers(DependencyObject target, StyleTriggerCollection value)
         {
             target.SetValue(TriggersProperty, value);
         }
@@ -81,7 +81,7 @@ namespace System.Windows.Interactivity
         {
             var triggers = Interaction.GetTriggers(target);
 
-            foreach (var trigger in (Triggers)e.NewValue)
+            foreach (var trigger in (StyleTriggerCollection)e.NewValue)
             {
                 triggers.Add(trigger);
             }
