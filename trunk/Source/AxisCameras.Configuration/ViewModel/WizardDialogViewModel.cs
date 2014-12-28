@@ -34,7 +34,12 @@ namespace AxisCameras.Configuration.ViewModel
     /// </summary>
     internal class WizardDialogViewModel : DialogViewModelBase, IWizardDialogViewModel
     {
+        private readonly ConfigurableCamera camera;
+        private readonly string title;
         private readonly IList<IWizardPageViewModel> pages;
+        private readonly ICommand previousCommand;
+        private readonly ICommand nextCommand;
+        private readonly ICommand finishCommand;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WizardDialogViewModel"/> class.
@@ -51,14 +56,15 @@ namespace AxisCameras.Configuration.ViewModel
             Requires.NotNull(camera);
             Requires.NotNull(wizardPagesProvider);
 
-            pages = new List<IWizardPageViewModel>(wizardPagesProvider.Provide());
+            this.title = title;
+            this.camera = camera;
 
-            Title = title;
-            Camera = camera;
+            pages = new List<IWizardPageViewModel>(wizardPagesProvider.Provide());
+            previousCommand = new RelayCommand(Previous, CanPrevious);
+            nextCommand = new RelayCommand(Next, CanNext);
+            finishCommand = new RelayCommand(Finish, CanFinish);
+
             LoadAndShowPage(pages.First());
-            PreviousCommand = new RelayCommand(Previous, CanPrevious);
-            NextCommand = new RelayCommand(Next, CanNext);
-            FinishCommand = new RelayCommand(Finish, CanFinish);
         }
 
         /// <summary>
@@ -66,8 +72,7 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public string Title
         {
-            get { return GetValue<string>(); }
-            private set { SetValue(value); }
+            get { return title; }
         }
 
         /// <summary>
@@ -107,8 +112,7 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ICommand PreviousCommand
         {
-            get { return GetValue<ICommand>(); }
-            private set { SetValue(value); }
+            get { return previousCommand; }
         }
 
         /// <summary>
@@ -116,8 +120,7 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ICommand NextCommand
         {
-            get { return GetValue<ICommand>(); }
-            private set { SetValue(value); }
+            get { return nextCommand; }
         }
 
         /// <summary>
@@ -125,8 +128,7 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ICommand FinishCommand
         {
-            get { return GetValue<ICommand>(); }
-            private set { SetValue(value); }
+            get { return finishCommand; }
         }
 
         /// <summary>
@@ -134,8 +136,7 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ConfigurableCamera Camera
         {
-            get { return GetValue<ConfigurableCamera>(); }
-            private set { SetValue(value); }
+            get { return camera; }
         }
 
         /// <summary>

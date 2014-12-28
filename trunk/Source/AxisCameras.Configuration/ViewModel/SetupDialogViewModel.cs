@@ -45,6 +45,12 @@ namespace AxisCameras.Configuration.ViewModel
         private readonly IIOService ioService;
         private readonly ICameraViewModelProvider cameraProvider;
         private readonly IWizardDialogViewModelProvider wizardProvider;
+        private readonly string title;
+        private readonly ObservableCollection<ICameraViewModel> cameras;
+        private readonly ObservableCollection<object> selectedItems;
+        private readonly ICommand addCommand;
+        private readonly ICommand editCommand;
+        private readonly ICommand removeCommand;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SetupDialogViewModel"/> class.
@@ -74,15 +80,14 @@ namespace AxisCameras.Configuration.ViewModel
             this.ioService = ioService;
             this.cameraProvider = cameraProvider;
             this.wizardProvider = wizardProvider;
+            this.cameras = new ObservableCollection<ICameraViewModel>(cameras);
 
-            Title = Resources.SetupDialogViewModel_Title.CurrentFormat(productInformation.Version);
+            title = Resources.SetupDialogViewModel_Title.CurrentFormat(productInformation.Version);
+            selectedItems = new ObservableCollection<object>();
 
-            Cameras = new ObservableCollection<ICameraViewModel>(cameras);
-            SelectedItems = new ObservableCollection<object>();
-
-            AddCommand = new RelayCommand(Add);
-            EditCommand = new RelayCommand(Edit, CanEdit);
-            RemoveCommand = new RelayCommand(Remove, CanRemove);
+            addCommand = new RelayCommand(Add);
+            editCommand = new RelayCommand(Edit, CanEdit);
+            removeCommand = new RelayCommand(Remove, CanRemove);
         }
 
         /// <summary>
@@ -90,8 +95,7 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public string Title
         {
-            get { return GetValue<string>(); }
-            private set { SetValue(value); }
+            get { return title; }
         }
 
         /// <summary>
@@ -99,17 +103,15 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ObservableCollection<ICameraViewModel> Cameras
         {
-            get { return GetValue<ObservableCollection<ICameraViewModel>>(); }
-            private set { SetValue(value); }
+            get { return cameras; }
         }
 
         /// <summary>
-        /// Gets the selected items .
+        /// Gets the selected items.
         /// </summary>
         public ObservableCollection<object> SelectedItems
         {
-            get { return GetValue<ObservableCollection<object>>(); }
-            private set { SetValue(value); }
+            get { return selectedItems; }
         }
 
         /// <summary>
@@ -117,8 +119,7 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ICommand AddCommand
         {
-            get { return GetValue<ICommand>(); }
-            private set { SetValue(value); }
+            get { return addCommand; }
         }
 
         /// <summary>
@@ -126,8 +127,7 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ICommand EditCommand
         {
-            get { return GetValue<ICommand>(); }
-            private set { SetValue(value); ; }
+            get { return editCommand; }
         }
 
         /// <summary>
@@ -135,8 +135,7 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ICommand RemoveCommand
         {
-            get { return GetValue<ICommand>(); }
-            private set { SetValue(value); }
+            get { return removeCommand; }
         }
 
         /// <summary>

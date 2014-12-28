@@ -45,6 +45,7 @@ namespace AxisCameras.Configuration.ViewModel
         private readonly IDispatcherService dispatcherService;
         private readonly ICameraSnapshotDialogViewModelProvider cameraSnapshotProvider;
         private readonly IIOService ioService;
+        private readonly ICommand refreshCommand;
 
         private NetworkEndpoint cameraEndpoint;
         private int videoSource;
@@ -75,7 +76,7 @@ namespace AxisCameras.Configuration.ViewModel
             this.cameraSnapshotProvider = cameraSnapshotProvider;
             this.ioService = ioService;
 
-            RefreshCommand = new RelayCommand(Refresh);
+            refreshCommand = new RelayCommand(Refresh);
 
             AddValidators();
         }
@@ -103,8 +104,7 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ICommand RefreshCommand
         {
-            get { return GetValue<ICommand>(); }
-            private set { SetValue(value); }
+            get { return refreshCommand; }
         }
 
         /// <summary>

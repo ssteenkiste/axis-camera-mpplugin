@@ -38,6 +38,7 @@ namespace AxisCameras.Configuration.ViewModel
 
         private readonly IBrowserService browserService;
         private readonly Func<ICommand> editCommandProvider;
+        private readonly ICommand browseCommand;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CameraViewModel"/> class.
@@ -59,7 +60,7 @@ namespace AxisCameras.Configuration.ViewModel
             this.browserService = browserService;
             this.editCommandProvider = editCommandProvider;
 
-            BrowseCommand = new RelayCommand(Browse);
+            browseCommand = new RelayCommand(Browse);
             Camera = camera;
         }
 
@@ -84,8 +85,7 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ICommand BrowseCommand
         {
-            get { return GetValue<ICommand>(); }
-            private set { SetValue(value); }
+            get { return browseCommand; }
         }
 
         /// <summary>
