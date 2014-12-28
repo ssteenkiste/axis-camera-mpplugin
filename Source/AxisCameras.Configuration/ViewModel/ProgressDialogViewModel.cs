@@ -30,7 +30,8 @@ namespace AxisCameras.Configuration.ViewModel
     /// </summary>
     internal abstract class ProgressDialogViewModel : DialogViewModelBase, IDisposable
     {
-        private CancellationTokenSource cancellationTokenSource;
+        private readonly CancellationTokenSource cancellationTokenSource;
+        private readonly ICommand cancelCommand;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProgressDialogViewModel"/> class.
@@ -38,8 +39,7 @@ namespace AxisCameras.Configuration.ViewModel
         protected ProgressDialogViewModel()
         {
             cancellationTokenSource = new CancellationTokenSource();
-
-            CancelCommand = new RelayCommand(Cancel);
+            cancelCommand = new RelayCommand(Cancel);
         }
 
         /// <summary>
@@ -47,8 +47,7 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         public ICommand CancelCommand
         {
-            get { return GetValue<ICommand>(); }
-            private set { SetValue(value); }
+            get { return cancelCommand; }
         }
 
         /// <summary>
@@ -103,7 +102,6 @@ namespace AxisCameras.Configuration.ViewModel
                 if (cancellationTokenSource != null)
                 {
                     cancellationTokenSource.Dispose();
-                    cancellationTokenSource = null;
                 }
             }
         }
