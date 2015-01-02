@@ -169,8 +169,6 @@
     <None Include="Skin\Default\axiscameras.xml" />
     <None Include="Skin\Default\Media\AxisCameras_logo.png" />
     <None Include="Skin\Default\Media\hover_AxisCameras.png" />
-    <None Include="Skin\StreamedMP\axiscameras.xml" />
-    <None Include="Skin\StreamedMP\Media\hoover_AxisCameras.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Thumbs\AxisCameras\CameraPortrait.png" />
