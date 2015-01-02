@@ -89,6 +89,20 @@
               <ZipFileName>Installer{CopyFile}\{24d522a9-daf1-4c67-8dfd-1d722d13a806}-Autofac.dll</ZipFileName>
               <DestinationFilename>%Plugins%\Windows\Autofac.dll</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras.Configuration\bin\Release\Microsoft.Expression.Interactions.dll</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{9829abc4-ef00-4a90-ab45-8a585ac39359}-Microsoft.Expression.Interactions.dll</ZipFileName>
+              <DestinationFilename>%Plugins%\Windows\Microsoft.Expression.Interactions.dll</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras.Configuration\bin\Release\System.Windows.Interactivity.dll</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{fa2a7f4a-492a-43eb-b022-141cfe1ae601}-System.Windows.Interactivity.dll</ZipFileName>
+              <DestinationFilename>%Plugins%\Windows\System.Windows.Interactivity.dll</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -861,6 +875,20 @@ public class Script
         <LocalFileName>..\AxisCameras\bin\Release\Autofac.dll</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{24d522a9-daf1-4c67-8dfd-1d722d13a806}-Autofac.dll</ZipFileName>
         <DestinationFilename>%Plugins%\Windows\Autofac.dll</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras.Configuration\bin\Release\Microsoft.Expression.Interactions.dll</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{9829abc4-ef00-4a90-ab45-8a585ac39359}-Microsoft.Expression.Interactions.dll</ZipFileName>
+        <DestinationFilename>%Plugins%\Windows\Microsoft.Expression.Interactions.dll</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras.Configuration\bin\Release\System.Windows.Interactivity.dll</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{fa2a7f4a-492a-43eb-b022-141cfe1ae601}-System.Windows.Interactivity.dll</ZipFileName>
+        <DestinationFilename>%Plugins%\Windows\System.Windows.Interactivity.dll</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
