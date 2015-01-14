@@ -91,7 +91,7 @@
         <CreateItem Include="$(SolutionPath)\*Test\bin\Release\*Test.dll">
             <Output TaskParameter="Include" ItemName="TestAssemblies" />
         </CreateItem>
-        <NUnit ToolPath="$(NUnitToolPath)" Assemblies="@(TestAssemblies)" OutputXmlFile="$(NUnitResults)" DisableShadowCopy="True" />
+        <NUnit ToolPath="$(NUnitToolPath)" Assemblies="@(TestAssemblies)" OutputXmlFile="$(NUnitResults)" Force32Bit="True" DisableShadowCopy="True" />
     </Target>
     
     <!-- Is building a setup -->
