@@ -320,6 +320,9 @@ namespace AxisCameras
             {
                 var selectedCamera = (Camera)item.MusicTag;
                 selectedCameraGuid = selectedCamera.Id;
+
+                GUIPropertyManager.SetProperty("#AxisCameras.Camera.Name", selectedCamera.Name);
+                GUIPropertyManager.SetProperty("#AxisCameras.Camera.Address", selectedCamera.Address);
             };
 
             return listItem;

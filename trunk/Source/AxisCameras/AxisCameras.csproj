@@ -166,7 +166,9 @@
     <None Include="Skin\DefaultWide\axiscameras.xml" />
     <None Include="Skin\DefaultWide\Media\AxisCameras_logo.png" />
     <None Include="Skin\DefaultWide\Media\hover_AxisCameras.png" />
-    <None Include="Skin\Default\axiscameras.xml" />
+    <None Include="Skin\Default\axiscameras.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Skin\Default\Media\AxisCameras_logo.png" />
     <None Include="Skin\Default\Media\hover_AxisCameras.png" />
   </ItemGroup>
