@@ -93,10 +93,10 @@
             <description>Actual cover/image</description>
             <id>500</id>
             <type>image</type>
-            <posX>795</posX>
+            <posX>546</posX>
             <posY>200</posY>
-            <width>135</width>
-            <height>194</height>
+            <width>384</width>
+            <height>216</height>
             <texture mask="videothumbmask.png">#selectedthumb</texture>
         </control>
 
@@ -104,10 +104,10 @@
         <control>
             <type>image</type>
             <id>1</id>
-            <posX>795</posX>
+            <posX>546</posX>
             <posY>200</posY>
-            <width>135</width>
-            <height>194</height>
+            <width>384</width>
+            <height>216</height>
             <texture>Videothumbframe.png</texture>
         </control>
 
@@ -117,7 +117,7 @@
             <type>label</type>
             <id>1</id>
             <posX>547</posX>
-            <posY>187</posY>
+            <posY>430</posY>
             <label>Name:</label>
             <font>font10</font>
             <align>left</align>
@@ -130,8 +130,8 @@
             <type>fadelabel</type>
             <id>1</id>
             <posX>547</posX>
-            <posY>206</posY>
-            <width>210</width>
+            <posY>449</posY>
+            <width>382</width>
             <label>#AxisCameras.Camera.Name</label>
             <font>font12</font>
             <textcolor>ivory</textcolor>
@@ -143,7 +143,7 @@
             <type>label</type>
             <id>1</id>
             <posX>547</posX>
-            <posY>231</posY>
+            <posY>474</posY>
             <label>Address:</label>
             <font>font10</font>
             <align>left</align>
@@ -156,10 +156,10 @@
             <type>fadelabel</type>
             <id>1</id>
             <posX>547</posX>
-            <posY>250</posY>
+            <posY>493</posY>
             <label>#AxisCameras.Camera.Address</label>
             <font>font12</font>
-            <width>210</width>
+            <width>382</width>
             <textcolor>ivory</textcolor>
         </control>
     </controls>
