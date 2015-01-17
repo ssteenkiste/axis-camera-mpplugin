@@ -3,94 +3,164 @@
 <!-- This view is stripped down version of MediaPortal's myvideo.xml -->
 <window>
 
-	<!-- Definitions -->
-	<define>#header.image:AxisCameras_logo.png</define>
+    <!-- Window properties -->
+    <id>9548</id>
+    <defaultcontrol>50</defaultcontrol>
+    <allowoverlay>yes</allowoverlay>
 
-	<!-- Window properties -->
-	<id>9548</id>
-	<defaultcontrol>50</defaultcontrol>
-	<allowoverlay>yes</allowoverlay>
+    <!-- Controls -->
+    <controls>
 
-	<!-- Controls -->
-	<controls>
+        <!-- Background -->
+        <control>
+            <description>BG</description>
+            <type>image</type>
+            <id>1</id>
+            <texture>BH AxisCameras.jpg</texture>
+            <posX>-160</posX>
+            <posY>0</posY>
+            <width>1280</width>
+            <height>720</height>
+            <colordiffuse>90ffffff</colordiffuse>
+        </control>
 
-		<!-- Imports -->
-		<import>common.window.roundedges.xml</import>
-		<import>common.time.xml</import>
+        <!-- Imports -->
+        <import>common.window.xml</import>
+        <import>common.time.xml</import>
 
-		<!-- List of cameras -->
-		<control>
-			<type>group</type>
-			<visible>!Control.HasFocus(50)</visible>
-			<animation effect="fade" time="250">WindowOpen</animation>
-			<animation effect="fade" time="250">WindowClose</animation>
-			<animation effect="slide" time="150" start="0,-300">WindowOpen</animation>
-			<animation effect="slide" time="250" end="800,0">WindowClose</animation>
-			<animation effect="rotatey" start="20" end="0" center="525,0" tween="back" ease="easeout" time="500" reversible="false">hidden</animation>
-			<animation effect="rotatey" start="0" end="20" center="525,0"  tween="back" ease="easeout" time="500" reversible="false">visible</animation>
-			<control>
-				<description>Facade view visualizing a list of cameras</description>
-				<type>facadeview</type>
-				<id>50</id>
-				<control>
-					<description>listcontrol</description>
-					<type>listcontrol</type>
-					<id>50</id>
-					<scrollOffset>2</scrollOffset>
-				</control>
-			</control>
-		</control>
+        <!-- General overlay -->
+        <control>
+            <description>General Overlay</description>
+            <id>0</id>
+            <type>image</type>
+            <posX>0</posX>
+            <posY>30</posY>
+            <width>960</width>
+            <height>720</height>
+            <texture>general_overlay.png</texture>
+        </control>
 
-		<!-- Image displaying a snapshot of the selected camera -->
-		<control>
-			<type>image</type>
-			<id>500</id>
-			<posX>44</posX>
-			<posY>153</posY>
-			<width>138</width>
-			<height>138</height>
-			<texture flipY="true" diffuse="Thumb_Mask.png">#selectedthumb</texture>
-			<visible>Control.HasFocus(50)</visible>
-			<animation effect="fade" time="450" reversible="false">visible</animation>
-		</control>
+        <!-- List of cameras -->
+        <control>
+            <description>group element</description>
+            <type>group</type>
+            <visible>!Control.HasFocus(50)</visible>
+            <animation effect="fade" start="0" end="100" time="200">WindowOpen</animation>
+            <animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
+            <control>
+                <description>composite control consisting of a list control and a thumbnail panel</description>
+                <type>facadeview</type>
+                <id>50</id>
+                <control>
+                    <description>listcontrol</description>
+                    <type>listcontrol</type>
+                    <id>50</id>
+                    <width>412</width>
+                    <playedColor>ffffffff</playedColor>
+                    <playedColor2>ffffffff</playedColor2>
+                    <textcolor>ff99f9ff</textcolor>
+                    <textcolorNoFocus>ff99f9ff</textcolorNoFocus>
+                    <textXOff2>412</textXOff2>
+                    <textYOff2>2</textYOff2>
+                    <textXOff3>1908</textXOff3>
+                    <textYOff3>8</textYOff3>
+                    <textalign3>right</textalign3>
+                    <font3>font9</font3>
+                    <scrollOffset>2</scrollOffset>
+                    <spinCanFocus>yes</spinCanFocus>
+                    <unfocusedAlpha>160</unfocusedAlpha>
+                    <folderPrefix />
+                    <folderSuffix />
+                </control>
+            </control>
+        </control>
 
-		<!-- Frame around the selected camera snapshot -->
-		<control>
-			<type>image</type>
-			<id>1</id>
-			<posX>40</posX>
-			<posY>150</posY>
-			<width>148</width>
-			<height>144</height>
-			<texture flipY="true" diffuse="Thumb_Mask.png">Picture_cover.png</texture>
-			<visible>Control.HasThumb(500)+Control.HasFocus(50)</visible>
-			<animation effect="fade" time="450" reversible="false">visible</animation>
-		</control>
+        <!-- Image background -->
+        <control>
+            <description>Overlay text right</description>
+            <id>0</id>
+            <type>image</type>
+            <posX>532</posX>
+            <posY>156</posY>
+            <width>412</width>
+            <height>466</height>
+            <texture mask="picturethumbmask.png">black.png</texture>
+            <colordiffuse>60ffffff</colordiffuse>
+        </control>
 
-		<!-- Label stating "Info:" -->
-		<control>
-			<type>fadelabel</type>
-			<id>1</id>
-			<posX>50</posX>
-			<posY>330</posY>
-			<width>200</width>
-			<label>Info:</label>
-			<font>font14</font>
-			<visible>Control.HasThumb(500)+Control.HasFocus(50)</visible>
-			<animation effect="fade" time="450" reversible="false">visible</animation>
-		</control>
+        <!-- Image -->
+        <control>
+            <description>Actual cover/image</description>
+            <id>500</id>
+            <type>image</type>
+            <posX>795</posX>
+            <posY>200</posY>
+            <width>135</width>
+            <height>194</height>
+            <texture mask="videothumbmask.png">#selectedthumb</texture>
+        </control>
 
-		<!-- Row of information about the selected camera  -->
-		<control>
-			<type>fadelabel</type>
-			<id>1</id>
-			<posX>50</posX>
-			<posY>354</posY>
-			<width>200</width>
-			<label>#selecteditem</label>
-			<font>font14</font>
-			<visible>Control.HasFocus(50)</visible>
-			<animation effect="fade" time="450" reversible="false">visible</animation>
-		</control>
-	</controls>
+        <!-- Image glow -->
+        <control>
+            <type>image</type>
+            <id>1</id>
+            <posX>795</posX>
+            <posY>200</posY>
+            <width>135</width>
+            <height>194</height>
+            <texture>Videothumbframe.png</texture>
+        </control>
+
+        <!-- Name text -->
+        <control>
+            <description>Name txt</description>
+            <type>label</type>
+            <id>1</id>
+            <posX>547</posX>
+            <posY>187</posY>
+            <label>Name:</label>
+            <font>font10</font>
+            <align>left</align>
+            <textcolor>ff6FAFE1</textcolor>
+        </control>
+
+        <!-- Name value -->
+        <control>
+            <description>Name value</description>
+            <type>fadelabel</type>
+            <id>1</id>
+            <posX>547</posX>
+            <posY>206</posY>
+            <width>210</width>
+            <label>#AxisCameras.Camera.Name</label>
+            <font>font12</font>
+            <textcolor>ivory</textcolor>
+        </control>
+
+        <!-- Address text -->
+        <control>
+            <description>Address txt</description>
+            <type>label</type>
+            <id>1</id>
+            <posX>547</posX>
+            <posY>231</posY>
+            <label>Address:</label>
+            <font>font10</font>
+            <align>left</align>
+            <textcolor>ff6FAFE1</textcolor>
+        </control>
+
+        <!-- Address value -->
+        <control>
+            <description>Address value</description>
+            <type>fadelabel</type>
+            <id>1</id>
+            <posX>547</posX>
+            <posY>250</posY>
+            <label>#AxisCameras.Camera.Address</label>
+            <font>font12</font>
+            <width>210</width>
+            <textcolor>ivory</textcolor>
+        </control>
+    </controls>
 </window>
