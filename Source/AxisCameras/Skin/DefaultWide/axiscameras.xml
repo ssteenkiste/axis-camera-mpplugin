@@ -94,7 +94,7 @@
             <posX>730</posX>
             <posY>200</posY>
             <width>510</width>
-            <height>250</height>
+            <height>287</height>
             <texture mask="videothumbmask.png">#selectedthumb</texture>
         </control>
 
@@ -105,7 +105,7 @@
             <posX>730</posX>
             <posY>200</posY>
             <width>510</width>
-            <height>250</height>
+            <height>287</height>
             <texture>Videothumbframe.png</texture>
         </control>
 
@@ -115,7 +115,7 @@
             <type>label</type>
             <id>1</id>
             <posX>731</posX>
-            <posY>464</posY>
+            <posY>501</posY>
             <label>Name:</label>
             <font>font10</font>
             <align>left</align>
@@ -128,7 +128,7 @@
             <type>fadelabel</type>
             <id>1</id>
             <posX>731</posX>
-            <posY>483</posY>
+            <posY>520</posY>
             <width>508</width>
             <label>#AxisCameras.Camera.Name</label>
             <font>font12</font>
@@ -141,7 +141,7 @@
             <type>label</type>
             <id>1</id>
             <posX>731</posX>
-            <posY>508</posY>
+            <posY>545</posY>
             <label>Address:</label>
             <font>font10</font>
             <align>left</align>
@@ -154,7 +154,7 @@
             <type>fadelabel</type>
             <id>1</id>
             <posX>731</posX>
-            <posY>527</posY>
+            <posY>564</posY>
             <label>#AxisCameras.Camera.Address</label>
             <font>font12</font>
             <width>508</width>
