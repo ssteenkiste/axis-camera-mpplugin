@@ -1,6 +1,6 @@
-﻿#region Copyright (C) 2005-2014 Team MediaPortal
+﻿#region Copyright (C) 2005-2015 Team MediaPortal
 
-// Copyright (C) 2005-2014 Team MediaPortal
+// Copyright (C) 2005-2015 Team MediaPortal
 // http://www.team-mediaportal.com
 // 
 // MediaPortal is free software: you can redistribute it and/or modify
