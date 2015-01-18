@@ -3,43 +3,6 @@
   <Version>2.0</Version>
   <Groups>
     <Items>
-      <GroupItem Name="Default">
-        <DisplayName>Default</DisplayName>
-        <DefaulChecked>true</DefaulChecked>
-        <Description>Default</Description>
-        <Files>
-          <Items>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameras\Skin\Default\axiscameras.xml</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{730472e5-0179-489f-a90e-6c26655bb213}-axiscameras.xml</ZipFileName>
-              <DestinationFilename>%Skin%\Default\axiscameras.xml</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameras\Skin\Default\Media\AxisCameras_logo.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{9005a636-0e43-4d96-b204-49eb87700f16}-AxisCameras_logo.png</ZipFileName>
-              <DestinationFilename>%Skin%\Default\Media\AxisCameras_logo.png</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameras\Skin\Default\Media\hover_AxisCameras.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{be4c67ca-8ac6-4f64-98a0-b80943908dcc}-hover_AxisCameras.png</ZipFileName>
-              <DestinationFilename>%Skin%\Default\Media\hover_AxisCameras.png</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameras\Skin\Default\Media\BH AxisCameras.jpg</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{0d2a2e9e-a1bd-44b6-b988-5f8e48ef9b29}-BH AxisCameras.jpg</ZipFileName>
-              <DestinationFilename>%Skin%\Default\Media\BH AxisCameras.jpg</DestinationFilename>
-            </FileItem>
-          </Items>
-        </Files>
-      </GroupItem>
       <GroupItem Name="Binaries">
         <ParentGroup />
         <DisplayName>Binaries</DisplayName>
@@ -147,9 +110,23 @@
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras\Skin\Default\axiscameras.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{cd4411db-f77e-46fd-96b6-d46292927b46}-axiscameras.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Default\axiscameras.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras\Skin\Default\Media\hover_AxisCameras.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{4ef80173-c2b1-4a25-a5de-e112b4c538b4}-hover_AxisCameras.png</ZipFileName>
+              <DestinationFilename>%Skin%\Default\Media\hover_AxisCameras.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
               <LocalFileName>..\AxisCameras\Skin\Default\Media\BH AxisCameras.jpg</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{918e0293-6168-43d8-9ea2-d89590378d05}-BH AxisCameras.jpg</ZipFileName>
-              <DestinationFilename>%Skin%\Default\BH AxisCameras.jpg</DestinationFilename>
+              <DestinationFilename>%Skin%\Default\Media\BH AxisCameras.jpg</DestinationFilename>
             </FileItem>
           </Items>
         </Files>
@@ -171,16 +148,16 @@
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameras\Skin\DefaultWide\Media\AxisCameras_logo.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{16c035a8-af60-4eae-9bb9-8797f1ca0b01}-AxisCameras_logo.png</ZipFileName>
-              <DestinationFilename>%Skin%\DefaultWide\Media\AxisCameras_logo.png</DestinationFilename>
+              <LocalFileName>..\AxisCameras\Skin\DefaultWide\Media\hover_AxisCameras.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{8f715f02-0028-4fca-8201-67d13d8d4e48}-hover_AxisCameras.png</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Media\hover_AxisCameras.png</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameras\Skin\DefaultWide\Media\hover_AxisCameras.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{8f715f02-0028-4fca-8201-67d13d8d4e48}-hover_AxisCameras.png</ZipFileName>
-              <DestinationFilename>%Skin%\DefaultWide\Media\hover_AxisCameras.png</DestinationFilename>
+              <LocalFileName>..\AxisCameras\Skin\DefaultWide\Media\BH AxisCameras.jpg</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{7752b37b-4631-4a06-98f5-a7e32ada7ce6}-BH AxisCameras.jpg</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Media\BH AxisCameras.jpg</DestinationFilename>
             </FileItem>
           </Items>
         </Files>
@@ -761,34 +738,6 @@ public class Script
   </GeneralInfo>
   <UniqueFileList>
     <Items>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameras\Skin\Default\axiscameras.xml</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{730472e5-0179-489f-a90e-6c26655bb213}-axiscameras.xml</ZipFileName>
-        <DestinationFilename>%Skin%\Default\axiscameras.xml</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameras\Skin\Default\Media\AxisCameras_logo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{9005a636-0e43-4d96-b204-49eb87700f16}-AxisCameras_logo.png</ZipFileName>
-        <DestinationFilename>%Skin%\Default\Media\AxisCameras_logo.png</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameras\Skin\Default\Media\hover_AxisCameras.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{be4c67ca-8ac6-4f64-98a0-b80943908dcc}-hover_AxisCameras.png</ZipFileName>
-        <DestinationFilename>%Skin%\Default\Media\hover_AxisCameras.png</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameras\Skin\Default\Media\BH AxisCameras.jpg</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{0d2a2e9e-a1bd-44b6-b988-5f8e48ef9b29}-BH AxisCameras.jpg</ZipFileName>
-        <DestinationFilename>%Skin%\Default\Media\BH AxisCameras.jpg</DestinationFilename>
-      </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
@@ -866,6 +815,27 @@ public class Script
         <ZipFileName>Installer{CopyFile}\{7d06173f-a64f-4eac-8115-bb1bffcd8e8a}-DefaultSnapshot.png</ZipFileName>
         <DestinationFilename>%Thumbs%\AxisCameras\DefaultSnapshot.png</DestinationFilename>
       </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras\Skin\Default\axiscameras.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{cd4411db-f77e-46fd-96b6-d46292927b46}-axiscameras.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Default\axiscameras.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras\Skin\Default\Media\hover_AxisCameras.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{4ef80173-c2b1-4a25-a5de-e112b4c538b4}-hover_AxisCameras.png</ZipFileName>
+        <DestinationFilename>%Skin%\Default\Media\hover_AxisCameras.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras\Skin\Default\Media\BH AxisCameras.jpg</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{918e0293-6168-43d8-9ea2-d89590378d05}-BH AxisCameras.jpg</ZipFileName>
+        <DestinationFilename>%Skin%\Default\Media\BH AxisCameras.jpg</DestinationFilename>
+      </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
@@ -876,16 +846,16 @@ public class Script
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameras\Skin\DefaultWide\Media\AxisCameras_logo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{16c035a8-af60-4eae-9bb9-8797f1ca0b01}-AxisCameras_logo.png</ZipFileName>
-        <DestinationFilename>%Skin%\DefaultWide\Media\AxisCameras_logo.png</DestinationFilename>
+        <LocalFileName>..\AxisCameras\Skin\DefaultWide\Media\hover_AxisCameras.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{8f715f02-0028-4fca-8201-67d13d8d4e48}-hover_AxisCameras.png</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Media\hover_AxisCameras.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameras\Skin\DefaultWide\Media\hover_AxisCameras.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{8f715f02-0028-4fca-8201-67d13d8d4e48}-hover_AxisCameras.png</ZipFileName>
-        <DestinationFilename>%Skin%\DefaultWide\Media\hover_AxisCameras.png</DestinationFilename>
+        <LocalFileName>..\AxisCameras\Skin\DefaultWide\Media\BH AxisCameras.jpg</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{7752b37b-4631-4a06-98f5-a7e32ada7ce6}-BH AxisCameras.jpg</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Media\BH AxisCameras.jpg</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
@@ -933,16 +903,6 @@ public class Script
   </UniqueFileList>
   <ProjectSettings>
     <FolderGroups>
-      <FolderGroup InstallType="CopyFile" SystemFile="false" Modified="true">
-        <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName />
-        <ZipFileName>Installer{CopyFile}\{4042f6b1-d6d5-4a32-8459-83321f4be5ba}-</ZipFileName>
-        <DestinationFilename>%Skin%\Default</DestinationFilename>
-        <Folder>..\AxisCameras\Skin\Default</Folder>
-        <Group>Default</Group>
-        <Recursive>true</Recursive>
-      </FolderGroup>
       <FolderGroup InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>

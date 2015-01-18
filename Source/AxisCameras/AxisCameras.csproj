@@ -164,7 +164,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Skin\DefaultWide\axiscameras.xml" />
-    <None Include="Skin\DefaultWide\Media\AxisCameras_logo.png" />
     <None Include="Skin\DefaultWide\Media\hover_AxisCameras.png" />
     <None Include="Skin\Default\axiscameras.xml">
       <SubType>Designer</SubType>
@@ -181,6 +180,10 @@
     <CodeAnalysisDictionary Include="..\CustomDictionary.xml">
       <Link>CustomDictionary.xml</Link>
     </CodeAnalysisDictionary>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Skin\DefaultWide\Media\BH AxisCameras.jpg" />
+    <Content Include="Skin\Default\Media\BH AxisCameras.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
