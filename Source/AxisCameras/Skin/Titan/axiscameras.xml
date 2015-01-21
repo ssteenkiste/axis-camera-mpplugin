@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+
+<!-- This view is stripped down version of MediaPortal's myvideo.xml -->
+<window>
+    
+    <!-- Window properties -->
+    <id>9548</id>
+    <defaultcontrol>50</defaultcontrol>
+    <allowoverlay>yes</allowoverlay>
+
+    <!-- Controls -->
+    <controls>
+    </controls>
+
+</window>
