@@ -182,9 +182,13 @@
     </CodeAnalysisDictionary>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Skin\DefaultWide\Media\BH AxisCameras.jpg" />
-    <Content Include="Skin\Default\Media\BH AxisCameras.jpg" />
+    <None Include="Skin\DefaultWide\Media\BH AxisCameras.jpg" />
+    <None Include="Skin\Default\Media\BH AxisCameras.jpg" />
+    <None Include="Skin\Titan\axiscameras.xml" />
+    <None Include="Skin\Titan\Media\hover_AxisCameras.png" />
+    <None Include="Skin\Titan\Media\icon_axiscameras.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

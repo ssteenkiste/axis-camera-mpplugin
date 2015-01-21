@@ -162,6 +162,37 @@
           </Items>
         </Files>
       </GroupItem>
+      <GroupItem Name="Titan">
+        <ParentGroup />
+        <DisplayName>Titan skin support</DisplayName>
+        <DefaulChecked>true</DefaulChecked>
+        <Description>Skin support for Titan.</Description>
+        <Files>
+          <Items>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras\Skin\Titan\axiscameras.xml</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{6fdc3914-a189-4c50-ba86-daf3575f887c}-axiscameras.xml</ZipFileName>
+              <DestinationFilename>%Skin%\Titan\axiscameras.xml</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras\Skin\Titan\Media\hover_AxisCameras.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{5ce2a76c-1154-43a4-8c6f-8f0af796e8de}-hover_AxisCameras.png</ZipFileName>
+              <DestinationFilename>%Skin%\Titan\Media\hover_AxisCameras.png</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras\Skin\Titan\Media\icon_axiscameras.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{1176d261-bcfc-400a-87ec-71b374c6b39c}-icon_axiscameras.png</ZipFileName>
+              <DestinationFilename>%Skin%\Titan\Media\icon_axiscameras.png</DestinationFilename>
+            </FileItem>
+          </Items>
+        </Files>
+      </GroupItem>
       <GroupItem Name="Axis binaries">
         <ParentGroup />
         <DisplayName>Axis binaries</DisplayName>
@@ -856,6 +887,27 @@ public class Script
         <LocalFileName>..\AxisCameras\Skin\DefaultWide\Media\BH AxisCameras.jpg</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{7752b37b-4631-4a06-98f5-a7e32ada7ce6}-BH AxisCameras.jpg</ZipFileName>
         <DestinationFilename>%Skin%\DefaultWide\Media\BH AxisCameras.jpg</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras\Skin\Titan\axiscameras.xml</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{6fdc3914-a189-4c50-ba86-daf3575f887c}-axiscameras.xml</ZipFileName>
+        <DestinationFilename>%Skin%\Titan\axiscameras.xml</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras\Skin\Titan\Media\hover_AxisCameras.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{5ce2a76c-1154-43a4-8c6f-8f0af796e8de}-hover_AxisCameras.png</ZipFileName>
+        <DestinationFilename>%Skin%\Titan\Media\hover_AxisCameras.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras\Skin\Titan\Media\icon_axiscameras.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{1176d261-bcfc-400a-87ec-71b374c6b39c}-icon_axiscameras.png</ZipFileName>
+        <DestinationFilename>%Skin%\Titan\Media\icon_axiscameras.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
