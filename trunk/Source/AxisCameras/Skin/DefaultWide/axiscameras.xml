@@ -13,7 +13,6 @@
 
         <!-- Background -->
         <control>
-            <description>BG</description>
             <type>image</type>
             <id>1</id>
             <texture>BH AxisCameras.jpg</texture>
@@ -28,7 +27,6 @@
 
         <!-- General overlay -->
         <control>
-            <description>General Overlay</description>
             <id>0</id>
             <type>image</type>
             <posX>0</posX>
@@ -40,17 +38,14 @@
 
         <!-- List of cameras -->
         <control>
-            <description>group element</description>
             <type>group</type>
             <visible>!Control.HasFocus(50)</visible>
             <animation effect="fade" start="0" end="100" time="200">WindowOpen</animation>
             <animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
             <control>
-                <description>composite control consisting of a list control and a thumbnail panel</description>
                 <type>facadeview</type>
                 <id>50</id>
                 <control>
-                    <description>listcontrol</description>
                     <type>listcontrol</type>
                     <id>50</id>
                     <width>550</width>
@@ -75,7 +70,6 @@
 
         <!-- Info background -->
         <control>
-            <description>Info background</description>
             <id>0</id>
             <type>image</type>
             <posX>710</posX>
@@ -88,7 +82,6 @@
 
         <!-- Default image -->
         <control>
-            <description>Default image</description>
             <id>0</id>
             <type>image</type>
             <posX>730</posX>
@@ -100,7 +93,6 @@
 
         <!-- Image -->
         <control>
-            <description>Actual cover/image</description>
             <id>500</id>
             <type>image</type>
             <posX>730</posX>
@@ -123,7 +115,6 @@
 
         <!-- Name text -->
         <control>
-            <description>Name txt</description>
             <type>label</type>
             <id>1</id>
             <posX>731</posX>
@@ -136,7 +127,6 @@
 
         <!-- Name value -->
         <control>
-            <description>Name value</description>
             <type>fadelabel</type>
             <id>1</id>
             <posX>731</posX>
@@ -149,7 +139,6 @@
 
         <!-- Address text -->
         <control>
-            <description>Address txt</description>
             <type>label</type>
             <id>1</id>
             <posX>731</posX>
@@ -162,7 +151,6 @@
 
         <!-- Address value -->
         <control>
-            <description>Address value</description>
             <type>fadelabel</type>
             <id>1</id>
             <posX>731</posX>
