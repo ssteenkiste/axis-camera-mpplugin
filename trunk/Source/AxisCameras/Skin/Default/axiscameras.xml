@@ -75,9 +75,9 @@
             </control>
         </control>
 
-        <!-- Image background -->
+        <!-- Info background -->
         <control>
-            <description>Overlay text right</description>
+            <description>Info background</description>
             <id>0</id>
             <type>image</type>
             <posX>532</posX>
@@ -86,6 +86,18 @@
             <height>466</height>
             <texture mask="picturethumbmask.png">black.png</texture>
             <colordiffuse>60ffffff</colordiffuse>
+        </control>
+
+        <!-- Default image -->
+        <control>
+            <description>Default image</description>
+            <id>0</id>
+            <type>image</type>
+            <posX>546</posX>
+            <posY>200</posY>
+            <width>384</width>
+            <height>216</height>
+            <texture mask="videothumbmask.png">DefaultSnapshot_AxisCameras.png</texture>
         </control>
 
         <!-- Image -->

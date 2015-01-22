@@ -188,7 +188,12 @@
     <None Include="Skin\Titan\Media\hover_AxisCameras.png" />
     <None Include="Skin\Titan\Media\icon_axiscameras.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Skin\Default\Media\DefaultSnapshot_AxisCameras.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Skin\DefaultWide\Media\DefaultSnapshot_AxisCameras.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

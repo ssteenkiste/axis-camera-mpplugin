@@ -128,6 +128,13 @@
               <ZipFileName>Installer{CopyFile}\{918e0293-6168-43d8-9ea2-d89590378d05}-BH AxisCameras.jpg</ZipFileName>
               <DestinationFilename>%Skin%\Default\Media\BH AxisCameras.jpg</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras\Skin\Default\Media\DefaultSnapshot_AxisCameras.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{8465cd80-43f5-4f6a-9f28-1e1c5d17187d}-DefaultSnapshot_AxisCameras.png</ZipFileName>
+              <DestinationFilename>%Skin%\Default\Media\DefaultSnapshot_AxisCameras.png</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -158,6 +165,13 @@
               <LocalFileName>..\AxisCameras\Skin\DefaultWide\Media\BH AxisCameras.jpg</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{7752b37b-4631-4a06-98f5-a7e32ada7ce6}-BH AxisCameras.jpg</ZipFileName>
               <DestinationFilename>%Skin%\DefaultWide\Media\BH AxisCameras.jpg</DestinationFilename>
+            </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras\Skin\DefaultWide\Media\DefaultSnapshot_AxisCameras.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{3589d8ce-c926-41a3-bfd7-95b5cb17716b}-DefaultSnapshot_AxisCameras.png</ZipFileName>
+              <DestinationFilename>%Skin%\DefaultWide\Media\DefaultSnapshot_AxisCameras.png</DestinationFilename>
             </FileItem>
           </Items>
         </Files>
@@ -867,6 +881,13 @@ public class Script
         <ZipFileName>Installer{CopyFile}\{918e0293-6168-43d8-9ea2-d89590378d05}-BH AxisCameras.jpg</ZipFileName>
         <DestinationFilename>%Skin%\Default\Media\BH AxisCameras.jpg</DestinationFilename>
       </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras\Skin\Default\Media\DefaultSnapshot_AxisCameras.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{8465cd80-43f5-4f6a-9f28-1e1c5d17187d}-DefaultSnapshot_AxisCameras.png</ZipFileName>
+        <DestinationFilename>%Skin%\Default\Media\DefaultSnapshot_AxisCameras.png</DestinationFilename>
+      </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
@@ -887,6 +908,13 @@ public class Script
         <LocalFileName>..\AxisCameras\Skin\DefaultWide\Media\BH AxisCameras.jpg</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{7752b37b-4631-4a06-98f5-a7e32ada7ce6}-BH AxisCameras.jpg</ZipFileName>
         <DestinationFilename>%Skin%\DefaultWide\Media\BH AxisCameras.jpg</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras\Skin\DefaultWide\Media\DefaultSnapshot_AxisCameras.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{3589d8ce-c926-41a3-bfd7-95b5cb17716b}-DefaultSnapshot_AxisCameras.png</ZipFileName>
+        <DestinationFilename>%Skin%\DefaultWide\Media\DefaultSnapshot_AxisCameras.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
