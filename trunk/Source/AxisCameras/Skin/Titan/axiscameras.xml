@@ -100,8 +100,7 @@
             <posY>360</posY>
             <width>379</width>
             <height>563</height>
-            <!--TODO: Replace-->
-            <texture>defaultVideoBig.png</texture>
+            <texture>DefaultSnapshot_AxisCameras.png</texture>
             <animation effect="fade" time="250">WindowOpen</animation>
             <animation effect="fade" time="250">WindowClose</animation>
         </control>
