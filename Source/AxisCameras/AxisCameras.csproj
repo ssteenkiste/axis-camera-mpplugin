@@ -116,14 +116,8 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Resources\BoxShot\axiscameras_logo.pspimage" />
-    <None Include="Resources\BoxShot\front.pspimage" />
-    <None Include="Resources\BoxShot\side.pspimage" />
-    <None Include="Resources\DefaultSnapshot.pspimage" />
+    <None Include="Resources\BoxShot\box-shot.box3d" />
     <None Include="Resources\surveillance-camera.ico" />
-    <None Include="Resources\surveillance-camera_24x24.png" />
-    <Resource Include="Resources\surveillance-camera_32x32.png" />
-    <None Include="Resources\surveillance-camera_48x48.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -156,7 +150,6 @@
   <ItemGroup>
     <None Include="Skin\readme.txt" />
     <None Include="Thumbs\readme.txt" />
-    <None Include="Resources\BoxShot\Axis M1054.png" />
     <None Include="Resources\BoxShot\background.jpg" />
     <None Include="Resources\BoxShot\front.png" />
     <None Include="Resources\BoxShot\side.png" />
@@ -184,7 +177,9 @@
   <ItemGroup>
     <None Include="Skin\DefaultWide\Media\BH AxisCameras.jpg" />
     <None Include="Skin\Default\Media\BH AxisCameras.jpg" />
-    <None Include="Skin\Titan\axiscameras.xml" />
+    <None Include="Skin\Titan\axiscameras.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Skin\Titan\Media\hover_AxisCameras.png" />
     <None Include="Skin\Titan\Media\icon_axiscameras.png" />
   </ItemGroup>
@@ -196,6 +191,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Skin\Titan\Media\DefaultSnapshot_AxisCameras.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BoxShot\front_banner.png" />
+    <None Include="Resources\BoxShot\front_smoke.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Original\Axis M1054.png" />
+    <None Include="Resources\Original\surveillance-camera_24x24.png" />
+    <None Include="Resources\Original\surveillance-camera_32x32.png" />
+    <None Include="Resources\Original\surveillance-camera_48x48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
