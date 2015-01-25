@@ -83,10 +83,10 @@
         <control>
             <type>image</type>
             <id>1</id>
-            <posX>191</posX>
-            <posY>330</posY>
-            <width>864</width>
-            <height>486</height>
+            <posX>195</posX>
+            <posY>332</posY>
+            <width>851</width>
+            <height>459</height>
             <texture>list_poster_shadow.png</texture>
             <animation effect="fade" time="250">WindowOpen</animation>
             <animation effect="fade" time="250">WindowClose</animation>
@@ -96,10 +96,10 @@
         <control>
             <type>image</type>
             <id>0</id>
-            <posX>228</posX>
-            <posY>341</posY>
-            <width>761</width>
-            <height>446</height>
+            <posX>231</posX>
+            <posY>342</posY>
+            <width>752</width>
+            <height>423</height>
             <texture>DefaultSnapshot_AxisCameras.png</texture>
             <animation effect="fade" time="250">WindowOpen</animation>
             <animation effect="fade" time="250">WindowClose</animation>
@@ -109,58 +109,60 @@
         <control>
             <type>image</type>
             <id>60</id>
-            <posX>228</posX>
-            <posY>341</posY>
-            <width>761</width>
-            <height>446</height>
+            <posX>231</posX>
+            <posY>342</posY>
+            <width>752</width>
+            <height>423</height>
             <texture>#selectedthumb</texture>
             <animation effect="fade" time="250">WindowOpen</animation>
             <animation effect="fade" time="250">WindowClose</animation>
         </control>
 
         <!-- Name text -->
-        <!--<control Style="InfoLabel">
+        <control Style="InfoLabel">
             <type>label</type>
             <id>0</id>
-            <posX>565</posX>
-            <posY>387</posY>
-            <label>Name:</label>
+            <posX>232</posX>
+            <posY>790</posY>
+            <label>Name</label>
             <animation effect="fade" time="250">WindowOpen</animation>
             <animation effect="fade" time="250">WindowClose</animation>
-        </control>-->
+        </control>
 
         <!-- Name value -->
-        <!--<control Style="InfoValueSmall">
+        <control Style="InfoValueSmall">
             <type>label</type>
             <id>0</id>
-            <posX>798</posX>
-            <posY>387</posY>
+            <posX>400</posX>
+            <posY>790</posY>
+            <width>590</width>
             <label>#AxisCameras.Camera.Name</label>
             <animation effect="fade" time="250">WindowOpen</animation>
             <animation effect="fade" time="250">WindowClose</animation>
-        </control>-->
+        </control>
 
         <!-- Address text -->
-        <!--<control Style="InfoLabel">
+        <control Style="InfoLabel">
             <type>label</type>
             <id>0</id>
-            <posX>565</posX>
-            <posY>419</posY>
-            <label>Address:</label>
+            <posX>232</posX>
+            <posY>822</posY>
+            <label>Address</label>
             <animation effect="fade" time="250">WindowOpen</animation>
             <animation effect="fade" time="250">WindowClose</animation>
-        </control>-->
+        </control>
 
         <!-- Address value -->
-        <!--<control Style="InfoValueSmall">
+        <control Style="InfoValueSmall">
             <type>label</type>
             <id>0</id>
-            <posX>798</posX>
-            <posY>419</posY>
+            <posX>400</posX>
+            <posY>822</posY>
+            <width>590</width>
             <label>#AxisCameras.Camera.Address</label>
             <animation effect="fade" time="250">WindowOpen</animation>
             <animation effect="fade" time="250">WindowClose</animation>
-        </control>-->
+        </control>
 
         <!-- Number of cameras -->
         <control>
