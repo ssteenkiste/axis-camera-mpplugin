@@ -44,12 +44,10 @@ namespace AxisCameras.Configuration.ViewModel
         private readonly IWindowService windowService;
         private readonly IDispatcherService dispatcherService;
         private readonly ICameraSnapshotDialogViewModelProvider cameraSnapshotProvider;
-        private readonly IIOService ioService;
         private readonly ICommand refreshCommand;
 
         private NetworkEndpoint cameraEndpoint;
         private int videoSource;
-        private byte[] defaultSnapshot;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WizardPageThreeViewModel"/> class.
@@ -59,22 +57,18 @@ namespace AxisCameras.Configuration.ViewModel
         /// <param name="cameraSnapshotProvider">
         /// The camera snapshot dialog view model provider.
         /// </param>
-        /// <param name="ioService">The I/O service.</param>
         public WizardPageThreeViewModel(
             IWindowService windowService,
             IDispatcherService dispatcherService,
-            ICameraSnapshotDialogViewModelProvider cameraSnapshotProvider,
-            IIOService ioService)
+            ICameraSnapshotDialogViewModelProvider cameraSnapshotProvider)
         {
             Requires.NotNull(windowService);
             Requires.NotNull(dispatcherService);
             Requires.NotNull(cameraSnapshotProvider);
-            Requires.NotNull(ioService);
 
             this.windowService = windowService;
             this.dispatcherService = dispatcherService;
             this.cameraSnapshotProvider = cameraSnapshotProvider;
-            this.ioService = ioService;
 
             refreshCommand = new RelayCommand(Refresh);
 
@@ -159,8 +153,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         /// <remarks>
         /// Make sure view binds <see cref="WindowLifetimeBehaviors.LoadedProperty" /> or
-        /// <see cref="LifetimeBehaviors.LoadedProperty" /> to <see cref="LoadedCommand" />
-        /// in order for this method to be called.
+        /// <see cref="LifetimeBehaviors.LoadedProperty" /> to
+        /// <see cref="ViewModelBase.LoadedCommand" /> in order for this method to be called.
         /// </remarks>
         protected override void OnLoaded()
         {
@@ -179,9 +173,6 @@ namespace AxisCameras.Configuration.ViewModel
                     {
                         if (Snapshot == null)
                         {
-                            // Set default snapshot while getting snapshot from camera
-                            Snapshot = DefaultSnapshot;
-
                             Log.Debug("Start getting snapshot from camera.");
                             RefreshCommand.Execute(null);
                         }
@@ -210,30 +201,12 @@ namespace AxisCameras.Configuration.ViewModel
                 }
                 else
                 {
-                    Snapshot = DefaultSnapshot;
-
                     windowService.ShowMessageBox(
                         this,
                         Resources.CameraCommunicationError,
                         Resources.CameraCommunicationError_Title,
                         icon: MessageBoxImage.Error);
                 }
-            }
-        }
-
-        /// <summary>
-        /// Gets the default snapshot.
-        /// </summary>
-        private IEnumerable<byte> DefaultSnapshot
-        {
-            get
-            {
-                if (defaultSnapshot == null)
-                {
-                    defaultSnapshot = ioService.GetDefaultThumb();
-                }
-
-                return defaultSnapshot;
             }
         }
 

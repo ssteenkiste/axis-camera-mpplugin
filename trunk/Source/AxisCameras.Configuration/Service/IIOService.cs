@@ -34,31 +34,19 @@ namespace AxisCameras.Configuration.Service
         string CameraIconFileName { get; }
 
         /// <summary>
-        /// Gets the file name of the default thumb.
-        /// </summary>
-        /// <returns>The file name of the default thumb.</returns>
-        string DefaultThumbFileName { get; }
-
-        /// <summary>
         /// Gets the file name of the thumb for specified camera.
         /// </summary>
         /// <param name="cameraId">The camera id.</param>
         /// <returns>
-        /// The file name of the thumb if existing on disk, otherwise the generic thumb.
+        /// The file name of the thumb if existing on disk, otherwise null.
         /// </returns>
         string GetThumbFileName(Guid cameraId);
-
-        /// <summary>
-        /// Gets the default thumb.
-        /// </summary>
-        /// <returns>The default thumb.</returns>
-        byte[] GetDefaultThumb();
 
         /// <summary>
         /// Gets the thumb for specified camera.
         /// </summary>
         /// <param name="cameraId">The camera id.</param>
-        /// <returns>The thumb if existing; otherwise the default thumb.</returns>
+        /// <returns>The thumb if existing; otherwise null.</returns>
         byte[] GetThumb(Guid cameraId);
 
         /// <summary>

@@ -23,6 +23,7 @@ using AxisCameras.Configuration.Service;
 using AxisCameras.Core;
 using AxisCameras.Core.Contracts;
 using AxisCameras.Data;
+using AxisCameras.Mvvm;
 using AxisCameras.Mvvm.Behaviors;
 
 namespace AxisCameras.Configuration.ViewModel
@@ -95,8 +96,8 @@ namespace AxisCameras.Configuration.ViewModel
         /// </summary>
         /// <remarks>
         /// Make sure view binds <see cref="WindowLifetimeBehaviors.LoadedProperty" /> or
-        /// <see cref="LifetimeBehaviors.LoadedProperty" /> to <see cref="LoadedCommand" />
-        /// in order for this method to be called.
+        /// <see cref="LifetimeBehaviors.LoadedProperty" /> to
+        /// <see cref="ViewModelBase.LoadedCommand" /> in order for this method to be called.
         /// </remarks>
         protected override void OnLoaded()
         {

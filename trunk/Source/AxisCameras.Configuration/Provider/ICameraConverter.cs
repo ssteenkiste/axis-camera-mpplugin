@@ -24,20 +24,25 @@ using AxisCameras.Data;
 namespace AxisCameras.Configuration.Provider
 {
     /// <summary>
-    /// Interface describing a converter that converts between a Camera and a ConfigurableCamera.
+    /// Interface describing a converter that converts between a <see cref="Camera"/> and a
+    /// <see cref="ConfigurableCamera"/>.
     /// </summary>
     public interface ICameraConverter
     {
         /// <summary>
-        /// Returns a ConfigurableCamera created from a Camera.
+        /// Returns a <see cref="ConfigurableCamera"/> created from a <see cref="Camera"/>.
         /// </summary>
-        /// <param name="camera">The camera to turn into a ConfigurableCamera.</param>
+        /// <param name="camera">
+        /// The <see cref="Camera"/> to turn into a <see cref="ConfigurableCamera"/>.
+        /// </param>
         ConfigurableCamera ToConfigurableCamera(Camera camera);
 
         /// <summary>
-        /// Returns a Camera created from a ConfigurableCamera.
+        /// Returns a <see cref="Camera"/> created from a <see cref="ConfigurableCamera"/>.
         /// </summary>
-        /// <param name="configurableCamera">The configurable camera to turn into a Camera.</param>
+        /// <param name="configurableCamera">
+        /// The <see cref="ConfigurableCamera"/> camera to turn into a <see cref="Camera"/>.
+        /// </param>
         Camera ToCamera(ConfigurableCamera configurableCamera);
     }
 }

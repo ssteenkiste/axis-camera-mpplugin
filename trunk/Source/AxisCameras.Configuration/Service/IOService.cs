@@ -33,7 +33,6 @@ namespace AxisCameras.Configuration.Service
     {
         private const string PluginFolderName = "AxisCameras";
         private const string CameraIcon = "CameraPortrait.png";
-        private const string DefaultThumb = "DefaultSnapshot.png";
 
         /// <summary>
         /// Gets the file name of the camera icon.
@@ -45,20 +44,11 @@ namespace AxisCameras.Configuration.Service
         }
 
         /// <summary>
-        /// Gets the file name of the default thumb.
-        /// </summary>
-        /// <returns>The file name of the default thumb.</returns>
-        public string DefaultThumbFileName
-        {
-            get { return Config.GetFile(Config.Dir.Thumbs, PluginFolderName, DefaultThumb); }
-        }
-
-        /// <summary>
         /// Gets the file name of the thumb for specified camera.
         /// </summary>
         /// <param name="cameraId">The camera id.</param>
         /// <returns>
-        /// The file name of the thumb if existing on disk, otherwise the default thumb.
+        /// The file name of the thumb if existing on disk, otherwise null.
         /// </returns>
         public string GetThumbFileName(Guid cameraId)
         {
@@ -74,26 +64,17 @@ namespace AxisCameras.Configuration.Service
             }
 
             Log.Warn(
-                "Snapshot of camera with ID {0} has been removed from disk, returning default.",
+                "Snapshot of camera with ID {0} has been removed from disk.",
                 cameraId);
 
-            return DefaultThumbFileName;
-        }
-
-        /// <summary>
-        /// Gets the default thumb.
-        /// </summary>
-        /// <returns>The default thumb.</returns>
-        public byte[] GetDefaultThumb()
-        {
-            return File.ReadAllBytes(DefaultThumbFileName);
+            return null;
         }
 
         /// <summary>
         /// Gets the thumb for specified camera.
         /// </summary>
         /// <param name="cameraId">The camera id.</param>
-        /// <returns>The thumb if existing; otherwise the default thumb.</returns>
+        /// <returns>The thumb if existing; otherwise null.</returns>
         public byte[] GetThumb(Guid cameraId)
         {
             Requires.True(cameraId != Guid.Empty, "ID cannot be Guid.Empty");
@@ -102,7 +83,9 @@ namespace AxisCameras.Configuration.Service
 
             string thumbFileName = GetThumbFileName(cameraId);
 
-            return File.ReadAllBytes(thumbFileName);
+            return thumbFileName != null ?
+                File.ReadAllBytes(thumbFileName) :
+                null;
         }
 
         /// <summary>

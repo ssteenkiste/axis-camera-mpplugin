@@ -52,8 +52,7 @@
 			<Grid HorizontalAlignment="Center">
 
 				<!-- Snapshot image -->
-				<Image
-					Source="{Binding Snapshot, Converter={StaticResource ImageBytesConverter}}">
+				<Image Source="{Binding Snapshot, Converter={StaticResource ImageBytesConverter}, FallbackValue={StaticResource DefaultSnapshot}}">
 
 					<!-- Image effect -->
 					<Image.Effect>

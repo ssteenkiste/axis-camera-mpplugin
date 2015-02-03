@@ -38,6 +38,9 @@
 		<Setter Property="i:StyleInteraction.Triggers" Value="{StaticResource CameraTriggers}" />
 	</Style>
 
+	<!-- Default snapshot -->
+	<BitmapImage x:Key="DefaultSnapshot" UriSource="/AxisCameras.Configuration;component/Resources/DefaultSnapshot.png" />
+
 	<!-- A camera template -->
 	<DataTemplate x:Key="CameraTemplate">
 		<Grid
@@ -55,7 +58,7 @@
 			<!-- Snapshot -->
 			<Image
 				HorizontalAlignment="Center"
-				Source="{Binding Snapshot, Converter={StaticResource ImageBytesConverter}}"
+				Source="{Binding Snapshot, Converter={StaticResource ImageBytesConverter}, FallbackValue={StaticResource DefaultSnapshot}}"
 				ToolTip="{Binding Name}">
 				
 				<!-- Image effect -->

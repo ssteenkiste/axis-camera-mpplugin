@@ -100,7 +100,7 @@ namespace AxisCameras.Player
                     };
 
                 mediaPortalPlayer.PlayVideoStreamsInFullScreen(
-                    playlistItems.ToList(),
+                    playlistItems.ToArray(),
                     Resources.Playlist_DefaultName);
             }
         }

@@ -167,9 +167,6 @@
     <None Include="Thumbs\AxisCameras\CameraPortrait.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Thumbs\AxisCameras\DefaultSnapshot.png" />
-  </ItemGroup>
-  <ItemGroup>
     <CodeAnalysisDictionary Include="..\CustomDictionary.xml">
       <Link>CustomDictionary.xml</Link>
     </CodeAnalysisDictionary>

@@ -35,7 +35,6 @@ namespace AxisCameras.Configuration.Provider
         private readonly IWindowService windowService;
         private readonly ICameraParametersDialogViewModelProvider cameraParametersProvider;
         private readonly ICameraSnapshotDialogViewModelProvider cameraSnapshotProvider;
-        private readonly IIOService ioService;
         private readonly IDispatcherService dispatcherService;
 
         /// <summary>
@@ -48,25 +47,21 @@ namespace AxisCameras.Configuration.Provider
         /// <param name="cameraSnapshotProvider">
         /// The camera snapshot dialog view model provider.
         /// </param>
-        /// <param name="ioService">The I/O service.</param>
         /// <param name="dispatcherService">The dispatcher service.</param>
         public WizardPageViewModelsProvider(
             IWindowService windowService,
             ICameraParametersDialogViewModelProvider cameraParametersProvider,
             ICameraSnapshotDialogViewModelProvider cameraSnapshotProvider,
-            IIOService ioService,
             IDispatcherService dispatcherService)
         {
             Requires.NotNull(windowService);
             Requires.NotNull(cameraParametersProvider);
             Requires.NotNull(cameraSnapshotProvider);
-            Requires.NotNull(ioService);
             Requires.NotNull(dispatcherService);
 
             this.windowService = windowService;
             this.cameraParametersProvider = cameraParametersProvider;
             this.cameraSnapshotProvider = cameraSnapshotProvider;
-            this.ioService = ioService;
             this.dispatcherService = dispatcherService;
         }
 
@@ -84,8 +79,7 @@ namespace AxisCameras.Configuration.Provider
             IWizardPageViewModel pageThree = new WizardPageThreeViewModel(
                 windowService,
                 dispatcherService,
-                cameraSnapshotProvider,
-                ioService);
+                cameraSnapshotProvider);
 
             Log.Debug("Provide a sequence of IWizardPageViewModels");
 

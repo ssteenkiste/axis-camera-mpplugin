@@ -107,6 +107,10 @@ namespace AxisCameras.Configuration.ViewModel.Data
         /// </returns>
         public ConfigurableCamera Clone()
         {
+            byte[] snapshot = Snapshot != null ?
+                Snapshot.ToArray() :
+                null;
+
             return new ConfigurableCamera(Id)
             {
                 Name = Name,
@@ -118,10 +122,7 @@ namespace AxisCameras.Configuration.ViewModel.Data
                 UserName = UserName,
                 Password = Password,
                 FirmwareVersion = FirmwareVersion,
-                // Use ToList() to evaluate the Linq expression now, rather than when it is used for the
-                // first time. One expects the clone method to clone the data when the method is executed,
-                // not anytime later.
-                Snapshot = Snapshot.Select(data => data).ToList()
+                Snapshot = snapshot
             };
         }
     }

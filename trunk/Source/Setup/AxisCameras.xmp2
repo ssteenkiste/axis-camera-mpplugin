@@ -90,13 +90,6 @@
               <ZipFileName>Installer{CopyFile}\{63d869a0-63e2-4bd6-be9b-130d4dbd80d5}-CameraPortrait.png</ZipFileName>
               <DestinationFilename>%Thumbs%\AxisCameras\CameraPortrait.png</DestinationFilename>
             </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\AxisCameras\Thumbs\AxisCameras\DefaultSnapshot.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{7d06173f-a64f-4eac-8115-bb1bffcd8e8a}-DefaultSnapshot.png</ZipFileName>
-              <DestinationFilename>%Thumbs%\AxisCameras\DefaultSnapshot.png</DestinationFilename>
-            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -852,13 +845,6 @@ public class Script
         <LocalFileName>..\AxisCameras\Thumbs\AxisCameras\CameraPortrait.png</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{63d869a0-63e2-4bd6-be9b-130d4dbd80d5}-CameraPortrait.png</ZipFileName>
         <DestinationFilename>%Thumbs%\AxisCameras\CameraPortrait.png</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\AxisCameras\Thumbs\AxisCameras\DefaultSnapshot.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{7d06173f-a64f-4eac-8115-bb1bffcd8e8a}-DefaultSnapshot.png</ZipFileName>
-        <DestinationFilename>%Thumbs%\AxisCameras\DefaultSnapshot.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
