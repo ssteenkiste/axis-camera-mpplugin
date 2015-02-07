@@ -242,6 +242,9 @@ namespace AxisCameras
         {
             Log.Info("Page loaded");
 
+            GUIPropertyManager.SetProperty("#AxisCameras.Camera.Name", string.Empty);
+            GUIPropertyManager.SetProperty("#AxisCameras.Camera.Address", string.Empty);
+
             // Make sure any cameras have been added
             if (cameras.Value.Any())
             {
