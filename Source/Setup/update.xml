@@ -96,7 +96,7 @@
         <ExtensionDescription>Plugin making it possible to watch live video from any Axis network camera in MediaPortal.</ExtensionDescription>
         <VersionDescription>[FEATURE]: Show live video streams from Axis network cameras</VersionDescription>
         <DevelopmentStatus>Stable</DevelopmentStatus>
-        <OnlineLocation>https://drive.google.com/uc?export=download&id=0B0opfJpdbO8fUnpmakJpejN3aWM</OnlineLocation>
+        <OnlineLocation>https://drive.google.com/uc?export=download&amp;id=0B0opfJpdbO8fUnpmakJpejN3aWM</OnlineLocation>
         <ReleaseDate>2011-02-23T21:00:06</ReleaseDate>
         <Tags>axis,cameras,camera,live,video</Tags>
         <Location>.\AxisCameras_[Version].mpe1</Location>
@@ -235,7 +235,7 @@
         <ExtensionDescription>Plugin making it possible to watch live video from any Axis network camera in MediaPortal.</ExtensionDescription>
         <VersionDescription>[FEATURE]: Show live video streams from Axis network video servers</VersionDescription>
         <DevelopmentStatus>Stable</DevelopmentStatus>
-        <OnlineLocation>https://drive.google.com/uc?export=download&id=0B0opfJpdbO8fMVg0dmNreXh1YnM</OnlineLocation>
+        <OnlineLocation>https://drive.google.com/uc?export=download&amp;id=0B0opfJpdbO8fMVg0dmNreXh1YnM</OnlineLocation>
         <ReleaseDate>2011-03-21T21:00:06</ReleaseDate>
         <Tags>axis,cameras,camera,live,video</Tags>
         <Location>.\AxisCameras_[Version].mpe1</Location>
@@ -419,7 +419,7 @@
 
 [BUGFIX]: Fixed problem showing live video when embedded RTP source filter was registered after plugin was installed</VersionDescription>
         <DevelopmentStatus>Stable</DevelopmentStatus>
-        <OnlineLocation>https://drive.google.com/uc?export=download&id=0B0opfJpdbO8fWjBKdV85aE5JLUk</OnlineLocation>
+        <OnlineLocation>https://drive.google.com/uc?export=download&amp;id=0B0opfJpdbO8fWjBKdV85aE5JLUk</OnlineLocation>
         <ReleaseDate>2011-09-11T21:00:06</ReleaseDate>
         <Tags>axis,cameras,camera,live,video</Tags>
         <Location>.\AxisCameras_[Version].mpe1</Location>
@@ -604,7 +604,7 @@
 
 [SKIN]: StreamedMP is no longer officially supported.</VersionDescription>
         <DevelopmentStatus>Stable</DevelopmentStatus>
-        <OnlineLocation>https://drive.google.com/uc?export=download&id=0B0opfJpdbO8fTTRkdXBvY0VwNzA</OnlineLocation>
+        <OnlineLocation>https://drive.google.com/uc?export=download&amp;id=0B0opfJpdbO8fTTRkdXBvY0VwNzA</OnlineLocation>
         <ReleaseDate>2015-02-07T21:00:06</ReleaseDate>
         <Tags>axis,cameras,camera,live,video</Tags>
         <Location>.\AxisCameras_[Version].mpe1</Location>
