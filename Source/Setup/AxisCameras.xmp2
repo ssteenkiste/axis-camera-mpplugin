@@ -726,20 +726,16 @@ public class Script
     <Version>
       <Major>1</Major>
       <Minor>1</Minor>
-      <Build>2</Build>
+      <Build>3</Build>
       <Revision>0</Revision>
     </Version>
     <ExtensionDescription>Plugin making it possible to watch live video from any Axis network camera in MediaPortal.</ExtensionDescription>
-    <VersionDescription>[MEDIAPORTAL]: Plugin is now compatible with MediaPortal 1.2.0. DUE TO BREAKING CHANGES IN MEDIAPORTAL, THIS VERSION OF THE PLUGIN IS NOT COMPATIBLE WITH OLDER VERSIONS OF MEDIAPORTAL
+    <VersionDescription>[MEDIAPORTAL]: Plugin is now compatible with MediaPortal 1.9.0. DUE TO BREAKING CHANGES IN MEDIAPORTAL, THIS VERSION OF THE PLUGIN IS NOT COMPATIBLE WITH OLDER VERSIONS OF MEDIAPORTAL
 
-[FEATURE]: Navigate between cameras while watching live video without having to go back to the camera list by selecting the previous/next chapter on the remote control or pressing F7/F8 on the keyboard
-
-[BUGFIX]: Fixed problem displaying H.264 live video streams
-
-[BUGFIX]: Fixed problem showing live video when embedded RTP source filter was registered after plugin was installed</VersionDescription>
+[SKIN]: StreamedMP is no longer officially supported.</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
     <OnlineLocation>http://axis-camera-mpplugin.googlecode.com/files/AxisCameras_1.1.1.0.mpe1</OnlineLocation>
-    <ReleaseDate>2011-09-11T21:00:06</ReleaseDate>
+    <ReleaseDate>2015-02-07T21:00:06</ReleaseDate>
     <Tags>axis,cameras,camera,live,video</Tags>
     <Location>.\AxisCameras_[Version].mpe1</Location>
     <Params>
@@ -955,14 +951,14 @@ public class Script
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{39079bc3-2d0c-4a41-bd0b-3ad4bf069986}-Welcome_left.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{448326e9-394c-4139-aa1e-cb5e4a89e027}-Welcome_left.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{b5179c50-7aa7-43bb-9841-46a0f233b428}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{2f004757-5fb4-4b23-9109-ae30568be0f7}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
