@@ -734,7 +734,7 @@ public class Script
 
 [SKIN]: StreamedMP is no longer officially supported.</VersionDescription>
     <DevelopmentStatus>Stable</DevelopmentStatus>
-    <OnlineLocation>http://axis-camera-mpplugin.googlecode.com/files/AxisCameras_1.1.1.0.mpe1</OnlineLocation>
+    <OnlineLocation>https://drive.google.com/open?id=0B0opfJpdbO8fTTRkdXBvY0VwNzA&amp;authuser=0</OnlineLocation>
     <ReleaseDate>2015-02-07T21:00:06</ReleaseDate>
     <Tags>axis,cameras,camera,live,video</Tags>
     <Location>.\AxisCameras_[Version].mpe1</Location>
@@ -951,14 +951,14 @@ public class Script
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Welcome_left.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{448326e9-394c-4139-aa1e-cb5e4a89e027}-Welcome_left.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{91636ca4-10f1-420b-b785-28ba59e27d0f}-Welcome_left.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>Icons\Setup_icon.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{2f004757-5fb4-4b23-9109-ae30568be0f7}-Setup_icon.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{a344bdce-fa43-4274-9e7c-9aa386239274}-Setup_icon.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
