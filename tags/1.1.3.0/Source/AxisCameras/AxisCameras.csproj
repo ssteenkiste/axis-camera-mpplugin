@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A2B1464E-D965-4DE3-8EA2-5E4463E40262}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AxisCameras</RootNamespace>
+    <AssemblyName>AxisCameras</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\surveillance-camera.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\AxisCameras.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>CODE_ANALYSIS;TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>..\AxisCameras.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Utils, Version=1.2.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Externals\MediaPortal\Common.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="Core, Version=1.2.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Externals\MediaPortal\Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Dialogs, Version=1.2.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Externals\MediaPortal\Dialogs.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Utils, Version=1.2.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Externals\MediaPortal\Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Extensions\MediaPortal\Dialogs\GUIDialogOKExtensions.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="MediaPortalLog.cs" />
+    <Compile Include="NetworkConfiguration.cs" />
+    <Compile Include="Player\CameraPlayer.cs" />
+    <Compile Include="Player\ICameraPlayer.cs">
+      <DependentUpon>CameraPlayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Player\IMediaPortalPlayer.cs">
+      <DependentUpon>MediaPortalPlayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Player\IVideoUrlBuilder.cs">
+      <DependentUpon>VideoUrlBuilder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Player\MediaPortalPlayer.cs" />
+    <Compile Include="Player\Vapix.cs" />
+    <Compile Include="Player\VideoUrlBuilder.cs" />
+    <Compile Include="PluginModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="SetupForm.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\.nuget\NuGet.Config">
+      <Link>NuGet.Config</Link>
+    </None>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\BoxShot\box-shot.box3d" />
+    <None Include="Resources\surveillance-camera.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AxisCameras.Configuration\AxisCameras.Configuration.csproj">
+      <Project>{A9EB29F7-45D9-4528-AD57-98CCECFC5E51}</Project>
+      <Name>AxisCameras.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AxisCameras.Core\AxisCameras.Core.csproj">
+      <Project>{BA65EA0C-E460-437E-A56C-CCF118D3DBE0}</Project>
+      <Name>AxisCameras.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AxisCameras.Data\AxisCameras.Data.csproj">
+      <Project>{CCBED050-F912-4D87-8702-0CE8864293E3}</Project>
+      <Name>AxisCameras.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AxisCameras.Mvvm\AxisCameras.Mvvm.csproj">
+      <Project>{442C117D-98D8-41A8-843B-716B66D60B97}</Project>
+      <Name>AxisCameras.Mvvm</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Setup_icon.png" />
+    <EmbeddedResource Include="Resources\Setup_icon_disabled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Skin\readme.txt" />
+    <None Include="Thumbs\readme.txt" />
+    <None Include="Resources\BoxShot\background.jpg" />
+    <None Include="Resources\BoxShot\front.png" />
+    <None Include="Resources\BoxShot\side.png" />
+    <None Include="Resources\BoxShot\swoosh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Skin\DefaultWide\axiscameras.xml" />
+    <None Include="Skin\DefaultWide\Media\hover_AxisCameras.png" />
+    <None Include="Skin\Default\axiscameras.xml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Skin\Default\Media\hover_AxisCameras.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Thumbs\AxisCameras\CameraPortrait.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\CustomDictionary.xml">
+      <Link>CustomDictionary.xml</Link>
+    </CodeAnalysisDictionary>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Skin\DefaultWide\Media\BH AxisCameras.jpg" />
+    <None Include="Skin\Default\Media\BH AxisCameras.jpg" />
+    <None Include="Skin\Titan\axiscameras.xml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Skin\Titan\Media\hover_AxisCameras.png" />
+    <None Include="Skin\Titan\Media\icon_axiscameras.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Skin\Default\Media\DefaultSnapshot_AxisCameras.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Skin\DefaultWide\Media\DefaultSnapshot_AxisCameras.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Skin\Titan\Media\DefaultSnapshot_AxisCameras.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BoxShot\front_banner.png" />
+    <None Include="Resources\BoxShot\front_smoke.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Original\Axis M1054.png" />
+    <None Include="Resources\Original\surveillance-camera_24x24.png" />
+    <None Include="Resources\Original\surveillance-camera_32x32.png" />
+    <None Include="Resources\Original\surveillance-camera_48x48.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

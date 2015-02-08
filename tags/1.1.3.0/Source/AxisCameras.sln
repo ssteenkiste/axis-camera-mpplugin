@@ -1,0 +1,128 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCameras", "AxisCameras\AxisCameras.csproj", "{A2B1464E-D965-4DE3-8EA2-5E4463E40262}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCameras.Configuration", "AxisCameras.Configuration\AxisCameras.Configuration.csproj", "{A9EB29F7-45D9-4528-AD57-98CCECFC5E51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCameras.Mvvm", "AxisCameras.Mvvm\AxisCameras.Mvvm.csproj", "{442C117D-98D8-41A8-843B-716B66D60B97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCameras.Data", "AxisCameras.Data\AxisCameras.Data.csproj", "{CCBED050-F912-4D87-8702-0CE8864293E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCameras.Core", "AxisCameras.Core\AxisCameras.Core.csproj", "{BA65EA0C-E460-437E-A56C-CCF118D3DBE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCameras.ConfigurationTest", "AxisCameras.ConfigurationTest\AxisCameras.ConfigurationTest.csproj", "{77DE00E0-2830-4148-AC09-4172D4D71FDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCamerasTest", "AxisCamerasTest\AxisCamerasTest.csproj", "{8B4B11CB-6CC0-40BB-875E-D29E4613BE2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCameras.Configuration.Starter", "AxisCameras.Configuration.Starter\AxisCameras.Configuration.Starter.csproj", "{67B2C614-6B13-4577-BDBC-0F9C7487FB9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCameras.DataTest", "AxisCameras.DataTest\AxisCameras.DataTest.csproj", "{3EDF16AB-0ED4-4C8C-BB1E-28FAF6B469D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCameras.CoreTest", "AxisCameras.CoreTest\AxisCameras.CoreTest.csproj", "{DD578397-5A1A-48B7-B3A6-5C27C93A94BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C4DEC253-62B4-4AD0-A1B4-8FB747E661DE}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{55A4ED67-EF45-4431-8061-3FF8B5666873}"
+	ProjectSection(SolutionItems) = preProject
+		GlobalAssemblyInfo.cs = GlobalAssemblyInfo.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FxCop", "FxCop", "{4A6FC938-CCC6-4D63-8577-3AB84EF239AB}"
+	ProjectSection(SolutionItems) = preProject
+		AxisCameras.ruleset = AxisCameras.ruleset
+		CustomDictionary.xml = CustomDictionary.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{D865B6CC-748A-4039-936B-5E00BD795C89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCamerasDependencyChecker", "Tools\AxisCamerasDependencyChecker\AxisCamerasDependencyChecker\AxisCamerasDependencyChecker.csproj", "{82694B46-6234-4BDC-BEAC-67DACF83CA5F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Setup", "Setup", "{360003F7-6628-48CC-9BD6-A8A45BC8F6F7}"
+	ProjectSection(SolutionItems) = preProject
+		Setup\AxisCameras.xmp2 = Setup\AxisCameras.xmp2
+		Setup\Build instructions.txt = Setup\Build instructions.txt
+		Setup\Build.proj = Setup\Build.proj
+		Setup\BuildSetup.bat = Setup\BuildSetup.bat
+		Setup\changelog.txt = Setup\changelog.txt
+		Setup\update.xml = Setup\update.xml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AxisCameras.MvvmTest", "AxisCameras.MvvmTest\AxisCameras.MvvmTest.csproj", "{00818784-A9D7-42AC-B85E-B5ED5FA216BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{F4F94A15-1D29-4510-AAA9-4894D671DD7D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2B1464E-D965-4DE3-8EA2-5E4463E40262}.Debug|x86.ActiveCfg = Debug|x86
+		{A2B1464E-D965-4DE3-8EA2-5E4463E40262}.Debug|x86.Build.0 = Debug|x86
+		{A2B1464E-D965-4DE3-8EA2-5E4463E40262}.Release|x86.ActiveCfg = Release|x86
+		{A2B1464E-D965-4DE3-8EA2-5E4463E40262}.Release|x86.Build.0 = Release|x86
+		{A9EB29F7-45D9-4528-AD57-98CCECFC5E51}.Debug|x86.ActiveCfg = Debug|x86
+		{A9EB29F7-45D9-4528-AD57-98CCECFC5E51}.Debug|x86.Build.0 = Debug|x86
+		{A9EB29F7-45D9-4528-AD57-98CCECFC5E51}.Release|x86.ActiveCfg = Release|x86
+		{A9EB29F7-45D9-4528-AD57-98CCECFC5E51}.Release|x86.Build.0 = Release|x86
+		{442C117D-98D8-41A8-843B-716B66D60B97}.Debug|x86.ActiveCfg = Debug|x86
+		{442C117D-98D8-41A8-843B-716B66D60B97}.Debug|x86.Build.0 = Debug|x86
+		{442C117D-98D8-41A8-843B-716B66D60B97}.Release|x86.ActiveCfg = Release|x86
+		{442C117D-98D8-41A8-843B-716B66D60B97}.Release|x86.Build.0 = Release|x86
+		{CCBED050-F912-4D87-8702-0CE8864293E3}.Debug|x86.ActiveCfg = Debug|x86
+		{CCBED050-F912-4D87-8702-0CE8864293E3}.Debug|x86.Build.0 = Debug|x86
+		{CCBED050-F912-4D87-8702-0CE8864293E3}.Release|x86.ActiveCfg = Release|x86
+		{CCBED050-F912-4D87-8702-0CE8864293E3}.Release|x86.Build.0 = Release|x86
+		{BA65EA0C-E460-437E-A56C-CCF118D3DBE0}.Debug|x86.ActiveCfg = Debug|x86
+		{BA65EA0C-E460-437E-A56C-CCF118D3DBE0}.Debug|x86.Build.0 = Debug|x86
+		{BA65EA0C-E460-437E-A56C-CCF118D3DBE0}.Release|x86.ActiveCfg = Release|x86
+		{BA65EA0C-E460-437E-A56C-CCF118D3DBE0}.Release|x86.Build.0 = Release|x86
+		{77DE00E0-2830-4148-AC09-4172D4D71FDC}.Debug|x86.ActiveCfg = Debug|x86
+		{77DE00E0-2830-4148-AC09-4172D4D71FDC}.Debug|x86.Build.0 = Debug|x86
+		{77DE00E0-2830-4148-AC09-4172D4D71FDC}.Release|x86.ActiveCfg = Release|x86
+		{77DE00E0-2830-4148-AC09-4172D4D71FDC}.Release|x86.Build.0 = Release|x86
+		{8B4B11CB-6CC0-40BB-875E-D29E4613BE2A}.Debug|x86.ActiveCfg = Debug|x86
+		{8B4B11CB-6CC0-40BB-875E-D29E4613BE2A}.Debug|x86.Build.0 = Debug|x86
+		{8B4B11CB-6CC0-40BB-875E-D29E4613BE2A}.Release|x86.ActiveCfg = Release|x86
+		{8B4B11CB-6CC0-40BB-875E-D29E4613BE2A}.Release|x86.Build.0 = Release|x86
+		{67B2C614-6B13-4577-BDBC-0F9C7487FB9B}.Debug|x86.ActiveCfg = Debug|x86
+		{67B2C614-6B13-4577-BDBC-0F9C7487FB9B}.Debug|x86.Build.0 = Debug|x86
+		{67B2C614-6B13-4577-BDBC-0F9C7487FB9B}.Release|x86.ActiveCfg = Release|x86
+		{67B2C614-6B13-4577-BDBC-0F9C7487FB9B}.Release|x86.Build.0 = Release|x86
+		{3EDF16AB-0ED4-4C8C-BB1E-28FAF6B469D7}.Debug|x86.ActiveCfg = Debug|x86
+		{3EDF16AB-0ED4-4C8C-BB1E-28FAF6B469D7}.Debug|x86.Build.0 = Debug|x86
+		{3EDF16AB-0ED4-4C8C-BB1E-28FAF6B469D7}.Release|x86.ActiveCfg = Release|x86
+		{3EDF16AB-0ED4-4C8C-BB1E-28FAF6B469D7}.Release|x86.Build.0 = Release|x86
+		{DD578397-5A1A-48B7-B3A6-5C27C93A94BD}.Debug|x86.ActiveCfg = Debug|x86
+		{DD578397-5A1A-48B7-B3A6-5C27C93A94BD}.Debug|x86.Build.0 = Debug|x86
+		{DD578397-5A1A-48B7-B3A6-5C27C93A94BD}.Release|x86.ActiveCfg = Release|x86
+		{DD578397-5A1A-48B7-B3A6-5C27C93A94BD}.Release|x86.Build.0 = Release|x86
+		{82694B46-6234-4BDC-BEAC-67DACF83CA5F}.Debug|x86.ActiveCfg = Debug|x86
+		{82694B46-6234-4BDC-BEAC-67DACF83CA5F}.Debug|x86.Build.0 = Debug|x86
+		{82694B46-6234-4BDC-BEAC-67DACF83CA5F}.Release|x86.ActiveCfg = Release|x86
+		{82694B46-6234-4BDC-BEAC-67DACF83CA5F}.Release|x86.Build.0 = Release|x86
+		{00818784-A9D7-42AC-B85E-B5ED5FA216BF}.Debug|x86.ActiveCfg = Debug|x86
+		{00818784-A9D7-42AC-B85E-B5ED5FA216BF}.Debug|x86.Build.0 = Debug|x86
+		{00818784-A9D7-42AC-B85E-B5ED5FA216BF}.Release|x86.ActiveCfg = Release|x86
+		{00818784-A9D7-42AC-B85E-B5ED5FA216BF}.Release|x86.Build.0 = Release|x86
+		{F4F94A15-1D29-4510-AAA9-4894D671DD7D}.Debug|x86.ActiveCfg = Debug|x86
+		{F4F94A15-1D29-4510-AAA9-4894D671DD7D}.Debug|x86.Build.0 = Debug|x86
+		{F4F94A15-1D29-4510-AAA9-4894D671DD7D}.Release|x86.ActiveCfg = Release|x86
+		{F4F94A15-1D29-4510-AAA9-4894D671DD7D}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{82694B46-6234-4BDC-BEAC-67DACF83CA5F} = {D865B6CC-748A-4039-936B-5E00BD795C89}
+	EndGlobalSection
+EndGlobal

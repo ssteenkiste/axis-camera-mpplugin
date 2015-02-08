@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    
+    <!-- Properties -->
+    <PropertyGroup>
+        <!-- Solution -->
+        <SolutionPath>$(MSBuildProjectDirectory)\..</SolutionPath>
+        <SolutionName>AxisCameras</SolutionName>
+        <SolutionFile>$(SolutionPath)\$(SolutionName).sln</SolutionFile>
+        
+        <!-- MPE Maker -->
+        <SetupScriptFile>AxisCameras.xmp2</SetupScriptFile>
+        <MpeMakerFile Condition="$(PROCESSOR_ARCHITECTURE) == 'x86'">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\MediaPortal@InstallPath)\MpeMaker.exe</MpeMakerFile>
+        <MpeMakerFile Condition="$(PROCESSOR_ARCHITECTURE) == 'x64'">$(Registry:HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\MediaPortal@InstallPath)\MpeMaker.exe</MpeMakerFile>
+        
+        <!-- FxCop -->
+        <FxCopToolPath>$(SolutionPath)\Externals\Microsoft Visual Studio 12.0 FxCop</FxCopToolPath>
+        <FxCopResults>$(SolutionPath)\Setup\FxCopResults.xml</FxCopResults>
+        <FxCopCriticalErrors>0</FxCopCriticalErrors>
+        <FxCopErrors>0</FxCopErrors>
+        <FxCopCriticalWarnings>0</FxCopCriticalWarnings>
+        <FxCopWarnings>0</FxCopWarnings>
+        
+        <!-- NUnit -->
+        <NUnitToolPath>$(SolutionPath)\packages\NUnit.Runners.2.6.4\tools</NUnitToolPath>
+        <NUnitResults>$(SolutionPath)\Setup\NUnitResults.xml</NUnitResults>
+        
+        <!-- MSBuild community tasks -->
+        <MSBuildCommunityTasksPath>$(SolutionPath)\Externals\MSBuild.Community.Tasks.v1.4.0.78</MSBuildCommunityTasksPath>	
+    </PropertyGroup>
+    
+    <!-- Imports -->
+    <Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.Targets" />
+    
+    <!-- Is building the solution in release mode -->
+    <Target Name="BuildRelease">
+        <Message Text="Start building $(SolutionName) in release mode" />
+        <MSBuild Projects="$(SolutionFile)" Targets="Clean;Rebuild" Properties="Configuration=Release" />
+        <Message Text="Finished building $(SolutionName) in release mode" />
+    </Target>
+    
+    <!-- FxCop -->
+    <Target Name="FxCop">
+        <CreateItem Include="$(SolutionPath)\AxisCameras\bin\Release\AxisCameras*.exe">
+            <Output TaskParameter="Include" ItemName="Applications" />
+        </CreateItem>
+        <CreateItem Include="$(SolutionPath)\AxisCameras\bin\Release\AxisCameras*.dll">
+            <Output TaskParameter="Include" ItemName="Libraries" />
+        </CreateItem>
+        
+        <Exec Command="&quot;$(FxCopToolPath)\FxCopCmd.exe&quot; @(Applications->'/file:&quot;%(FullPath)&quot;', ' ') @(Libraries->'/file:&quot;%(FullPath)&quot;', ' ') /out:&quot;$(FxCopResults)&quot; /ruleset:=&quot;$(SolutionPath)\AxisCameras.ruleset&quot; /dictionary:&quot;$(SolutionPath)\CustomDictionary.xml&quot; /summary /verbose /ignoregeneratedcode /forceoutput /gac" />
+    </Target>
+    
+    <!-- Is parsing the FxCop result file and terminates the build process if errors or warnings are found -->
+    <Target Name="ParseFxCopResult">
+        <XmlRead
+            ContinueOnError="True"
+            Condition="Exists('$(FxCopResults)')"
+            XmlFileName="$(FxCopResults)"
+            XPath="string(count(//Issue[@Level='CriticalError']))">
+            <Output TaskParameter="Value" PropertyName="FxCopCriticalErrors" />
+        </XmlRead>
+        <XmlRead
+            ContinueOnError="True"
+            Condition="Exists('$(FxCopResults)')"
+            XmlFileName="$(FxCopResults)"
+            XPath="string(count(//Issue[@Level='Error']))">
+            <Output TaskParameter="Value" PropertyName="FxCopErrors" />
+        </XmlRead>
+        <XmlRead
+            ContinueOnError="True"
+            Condition="Exists('$(FxCopResults)')"
+            XmlFileName="$(FxCopResults)"
+            XPath="string(count(//Issue[@Level='CriticalWarning']))">
+            <Output TaskParameter="Value" PropertyName="FxCopCriticalWarnings" />
+        </XmlRead>
+        <XmlRead
+            ContinueOnError="True"
+            Condition="Exists('$(FxCopResults)')"
+            XmlFileName="$(FxCopResults)"
+            XPath="string(count(//Issue[@Level='Warning']))">
+            <Output TaskParameter="Value" PropertyName="FxCopWarnings" />
+        </XmlRead>
+        <Error
+            Text="FxCop encountered rule violations"
+            Condition="$(FxCopCriticalErrors) &gt; 0 or $(FxCopErrors) &gt; 0 or $(FxCopCriticalWarnings) &gt; 0 or $(FxCopWarnings) &gt; 0" />
+    </Target>
+    
+    <!-- Unit tests -->
+    <Target Name="UnitTests">
+        <CreateItem Include="$(SolutionPath)\*Test\bin\Release\*Test.dll">
+            <Output TaskParameter="Include" ItemName="TestAssemblies" />
+        </CreateItem>
+        <NUnit ToolPath="$(NUnitToolPath)" Assemblies="@(TestAssemblies)" OutputXmlFile="$(NUnitResults)" Force32Bit="True" DisableShadowCopy="True" />
+    </Target>
+    
+    <!-- Is building a setup -->
+    <Target Name="BuildSetup" DependsOnTargets="BuildRelease;FxCop;ParseFxCopResult;UnitTests">
+        <Message Text="Start building setup" />
+        <Exec Command="&quot;$(MpeMakerFile)&quot; $(SetupScriptFile)" />
+        <Message Text="Finished building setup" />
+    </Target>
+</Project>

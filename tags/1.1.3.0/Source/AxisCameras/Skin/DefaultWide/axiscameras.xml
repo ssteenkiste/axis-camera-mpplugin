@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- This view is stripped down version of MediaPortal's myvideo.xml -->
+<window>
+
+    <!-- Window properties -->
+    <id>9548</id>
+    <defaultcontrol>50</defaultcontrol>
+    <allowoverlay>yes</allowoverlay>
+
+    <!-- Controls -->
+    <controls>
+
+        <!-- Background -->
+        <control>
+            <type>image</type>
+            <id>1</id>
+            <texture>BH AxisCameras.jpg</texture>
+            <width>1280</width>
+            <height>720</height>
+            <colordiffuse>90ffffff</colordiffuse>
+        </control>
+
+        <!-- Imports -->
+        <import>common.window.xml</import>
+        <import>common.time.xml</import>
+
+        <!-- General overlay -->
+        <control>
+            <id>0</id>
+            <type>image</type>
+            <posX>0</posX>
+            <posY>30</posY>
+            <width>1280</width>
+            <height>720</height>
+            <texture>general_overlay.png</texture>
+        </control>
+
+        <!-- List of cameras -->
+        <control>
+            <type>group</type>
+            <visible>!Control.HasFocus(50)</visible>
+            <animation effect="fade" start="0" end="100" time="200">WindowOpen</animation>
+            <animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
+            <control>
+                <type>facadeview</type>
+                <id>50</id>
+                <control>
+                    <type>listcontrol</type>
+                    <id>50</id>
+                    <width>550</width>
+                    <playedColor>ffffffff</playedColor>
+                    <playedColor2>ffffffff</playedColor2>
+                    <textcolor>ff99f9ff</textcolor>
+                    <textcolorNoFocus>ff99f9ff</textcolorNoFocus>
+                    <textXOff2>550</textXOff2>
+                    <textYOff2>2</textYOff2>
+                    <textXOff3>2545</textXOff3>
+                    <textYOff3>8</textYOff3>
+                    <textalign3>right</textalign3>
+                    <font3>font9</font3>
+                    <scrollOffset>2</scrollOffset>
+                    <spinCanFocus>yes</spinCanFocus>
+                    <unfocusedAlpha>160</unfocusedAlpha>
+                    <folderPrefix />
+                    <folderSuffix />
+                </control>
+            </control>
+        </control>
+
+        <!-- Info background -->
+        <control>
+            <id>0</id>
+            <type>image</type>
+            <posX>710</posX>
+            <posY>156</posY>
+            <width>550</width>
+            <height>466</height>
+            <texture mask="picturethumbmask.png">black.png</texture>
+            <colordiffuse>60ffffff</colordiffuse>
+        </control>
+
+        <!-- Default image -->
+        <control>
+            <id>0</id>
+            <type>image</type>
+            <posX>730</posX>
+            <posY>200</posY>
+            <width>510</width>
+            <height>287</height>
+            <texture mask="videothumbmask.png">DefaultSnapshot_AxisCameras.png</texture>
+        </control>
+
+        <!-- Image -->
+        <control>
+            <id>500</id>
+            <type>image</type>
+            <posX>730</posX>
+            <posY>200</posY>
+            <width>510</width>
+            <height>287</height>
+            <texture mask="videothumbmask.png">#selectedthumb</texture>
+        </control>
+
+        <!-- Image glow -->
+        <control>
+            <type>image</type>
+            <id>1</id>
+            <posX>730</posX>
+            <posY>200</posY>
+            <width>510</width>
+            <height>287</height>
+            <texture>Videothumbframe.png</texture>
+        </control>
+
+        <!-- Name text -->
+        <control>
+            <type>label</type>
+            <id>1</id>
+            <posX>731</posX>
+            <posY>501</posY>
+            <label>Name:</label>
+            <font>font10</font>
+            <align>left</align>
+            <textcolor>ff6FAFE1</textcolor>
+        </control>
+
+        <!-- Name value -->
+        <control>
+            <type>fadelabel</type>
+            <id>1</id>
+            <posX>731</posX>
+            <posY>520</posY>
+            <width>508</width>
+            <label>#AxisCameras.Camera.Name</label>
+            <font>font12</font>
+            <textcolor>ivory</textcolor>
+        </control>
+
+        <!-- Address text -->
+        <control>
+            <type>label</type>
+            <id>1</id>
+            <posX>731</posX>
+            <posY>545</posY>
+            <label>Address:</label>
+            <font>font10</font>
+            <align>left</align>
+            <textcolor>ff6FAFE1</textcolor>
+        </control>
+
+        <!-- Address value -->
+        <control>
+            <type>fadelabel</type>
+            <id>1</id>
+            <posX>731</posX>
+            <posY>564</posY>
+            <label>#AxisCameras.Camera.Address</label>
+            <font>font12</font>
+            <width>508</width>
+            <textcolor>ivory</textcolor>
+        </control>
+    </controls>
+</window>

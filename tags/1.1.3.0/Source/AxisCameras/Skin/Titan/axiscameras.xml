@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+
+<!-- This view is stripped down version of MediaPortal's myvideo.xml -->
+<window>
+
+    <!-- Window properties -->
+    <id>9548</id>
+    <defaultcontrol>50</defaultcontrol>
+    <allowoverlay>yes</allowoverlay>
+
+    <!-- Defines -->
+    <define>#header.label:Axis Cameras</define>
+
+    <!-- Controls -->
+    <controls>
+
+        <!-- Background -->
+        <control>
+            <type>image</type>
+            <id>0</id>
+            <posX>0</posX>
+            <posY>0</posY>
+            <width>1920</width>
+            <height>1080</height>
+            <texture>background.png</texture>
+            <shouldCache>true</shouldCache>
+        </control>
+
+        <!-- General overlay -->
+        <control>
+            <type>image</type>
+            <id>0</id>
+            <posX>0</posX>
+            <posY>0</posY>
+            <width>1920</width>
+            <height>1080</height>
+            <texture>fanart_overlay.png</texture>
+            <animation effect="fade" time="250">WindowOpen</animation>
+            <animation effect="fade" time="250">WindowClose</animation>
+        </control>
+
+        <!-- List and info background -->
+        <control>
+            <type>image</type>
+            <id>0</id>
+            <posX>10</posX>
+            <posY>252</posY>
+            <width>1903</width>
+            <height>790</height>
+            <texture>panel_list.png</texture>
+            <animation effect="fade" time="250">WindowOpen</animation>
+            <animation effect="fade" time="250">WindowClose</animation>
+        </control>
+
+        <!-- Icon -->
+        <control>
+            <id>0</id>
+            <type>image</type>
+            <posX>60</posX>
+            <posY>34</posY>
+            <width>68</width>
+            <height>60</height>
+            <texture>icon_axiscameras.png</texture>
+            <animation effect="fade" time="250">WindowOpen</animation>
+            <animation effect="fade" time="250">WindowClose</animation>
+        </control>
+
+        <!-- Imports -->
+        <import>common.time.xml</import>
+
+        <!-- Selected item -->
+        <control Style="smallTitle">
+            <type>fadelabel</type>
+            <id>1</id>
+            <posX>510</posX>
+            <posY>1015</posY>
+            <label>#selecteditem</label>
+            <animation effect="fade" time="250">WindowOpen</animation>
+            <animation effect="fade" time="250">WindowClose</animation>
+        </control>
+
+        <!-- Image shadow -->
+        <control>
+            <type>image</type>
+            <id>1</id>
+            <posX>195</posX>
+            <posY>332</posY>
+            <width>851</width>
+            <height>459</height>
+            <texture>list_poster_shadow.png</texture>
+            <animation effect="fade" time="250">WindowOpen</animation>
+            <animation effect="fade" time="250">WindowClose</animation>
+        </control>
+
+        <!-- Default image -->
+        <control>
+            <type>image</type>
+            <id>0</id>
+            <posX>231</posX>
+            <posY>342</posY>
+            <width>752</width>
+            <height>423</height>
+            <texture>DefaultSnapshot_AxisCameras.png</texture>
+            <animation effect="fade" time="250">WindowOpen</animation>
+            <animation effect="fade" time="250">WindowClose</animation>
+        </control>
+
+        <!-- Image -->
+        <control>
+            <type>image</type>
+            <id>60</id>
+            <posX>231</posX>
+            <posY>342</posY>
+            <width>752</width>
+            <height>423</height>
+            <texture>#selectedthumb</texture>
+            <animation effect="fade" time="250">WindowOpen</animation>
+            <animation effect="fade" time="250">WindowClose</animation>
+        </control>
+
+        <!-- Name text -->
+        <control Style="InfoLabel">
+            <type>label</type>
+            <id>0</id>
+            <posX>232</posX>
+            <posY>790</posY>
+            <label>Name</label>
+            <animation effect="fade" time="250">WindowOpen</animation>
+            <animation effect="fade" time="250">WindowClose</animation>
+        </control>
+
+        <!-- Name value -->
+        <control Style="InfoValueSmall">
+            <type>label</type>
+            <id>0</id>
+            <posX>400</posX>
+            <posY>790</posY>
+            <width>590</width>
+            <label>#AxisCameras.Camera.Name</label>
+            <animation effect="fade" time="250">WindowOpen</animation>
+            <animation effect="fade" time="250">WindowClose</animation>
+        </control>
+
+        <!-- Address text -->
+        <control Style="InfoLabel">
+            <type>label</type>
+            <id>0</id>
+            <posX>232</posX>
+            <posY>822</posY>
+            <label>Address</label>
+            <animation effect="fade" time="250">WindowOpen</animation>
+            <animation effect="fade" time="250">WindowClose</animation>
+        </control>
+
+        <!-- Address value -->
+        <control Style="InfoValueSmall">
+            <type>label</type>
+            <id>0</id>
+            <posX>400</posX>
+            <posY>822</posY>
+            <width>590</width>
+            <label>#AxisCameras.Camera.Address</label>
+            <animation effect="fade" time="250">WindowOpen</animation>
+            <animation effect="fade" time="250">WindowClose</animation>
+        </control>
+
+        <!-- Number of cameras -->
+        <control>
+            <type>label</type>
+            <label>Cameras: #itemcount</label>
+            <id>0</id>
+            <posX>96</posX>
+            <posY>998</posY>
+            <align>left</align>
+            <font>TitanLight12</font>
+            <textcolor>000000</textcolor>
+            <animation effect="fade" time="250">WindowOpen</animation>
+            <animation effect="fade" time="250">WindowClose</animation>
+        </control>
+
+        <!-- Lines between list rows -->
+        <control>
+            <type>image</type>
+            <id>1</id>
+            <posX>1222</posX>
+            <posY>385</posY>
+            <width>607</width>
+            <height>506</height>
+            <texture>list_lines.png</texture>
+            <animation effect="fade" time="250">WindowOpen</animation>
+            <animation effect="fade" time="250">WindowClose</animation>
+        </control>
+
+        <!-- List of cameras -->
+        <control>
+            <type>group</type>
+            <control>
+                <animation effect="fade" time="250">WindowOpen</animation>
+                <animation effect="fade" time="250">WindowClose</animation>
+                <type>facadeview</type>
+                <id>50</id>
+                <control>
+                    <type>listcontrol</type>
+                    <id>50</id>
+                    <onleft>2</onleft>
+                    <onright>2</onright>
+                    <scrollOffset>1</scrollOffset>
+                    <posX>1165</posX>
+                    <posY>331</posY>
+                    <height>700</height>
+                    <width>698</width>
+                    <textXOff>44</textXOff>
+                    <textXOff2>650</textXOff2>
+                    <textXOff3>2000</textXOff3>
+                    <textYOff3>10</textYOff3>
+                    <textureHeight>54</textureHeight>
+                    <textureFocus>listcontrol_item_selected.png</textureFocus>
+                    <textureNoFocus>-</textureNoFocus>
+                    <dimColor>ffffffff</dimColor>
+                    <spinPosX>1828</spinPosX>
+                    <spinPosY>1000</spinPosY>
+                </control>
+            </control>
+        </control>
+
+        <!-- Imports -->
+        <import>common.overlay.xml</import>
+    </controls>
+
+</window>

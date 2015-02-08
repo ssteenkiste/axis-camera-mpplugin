@@ -1,0 +1,96 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+	xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+	xmlns:local="clr-namespace:AxisCameras.Configuration.View"
+	xmlns:behaviors="clr-namespace:AxisCameras.Mvvm.Behaviors;assembly=AxisCameras.Mvvm"
+	xmlns:viewmodel="clr-namespace:AxisCameras.Configuration.ViewModel"
+	mc:Ignorable="d">
+	
+	<!-- Merged resources -->
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="/AxisCameras.Configuration;Component/VisualStyle/Styles.xaml"/>
+	</ResourceDictionary.MergedDictionaries>
+
+	<!-- Image bytes converter -->
+	<local:ImageBytesConverter x:Key="ImageBytesConverter"/>
+
+	<!-- A collection of sorted cameras -->
+	<CollectionViewSource
+		x:Key="SortedCameras"
+		d:DataContext="{d:DesignInstance viewmodel:SetupDialogViewModel}"
+		Source="{Binding Cameras}">
+		<CollectionViewSource.SortDescriptions>
+			<scm:SortDescription PropertyName="Name"/>
+		</CollectionViewSource.SortDescriptions>
+	</CollectionViewSource>
+
+	<i:StyleTriggerCollection x:Key="CameraTriggers" x:Shared="False">
+		<i:EventTrigger EventName="MouseDoubleClick">
+			<behaviors:EventToCommand Command="{Binding EditCommand}" />
+		</i:EventTrigger>
+	</i:StyleTriggerCollection>
+
+	<Style x:Key="CameraContainerStyle" TargetType="{x:Type ListBoxItem}">
+		<Setter Property="i:StyleInteraction.Triggers" Value="{StaticResource CameraTriggers}" />
+	</Style>
+
+	<!-- Default snapshot -->
+	<BitmapImage x:Key="DefaultSnapshot" UriSource="/AxisCameras.Configuration;component/Resources/DefaultSnapshot.png" />
+
+	<!-- A camera template -->
+	<DataTemplate x:Key="CameraTemplate">
+		<Grid
+			d:DataContext="{d:DesignInstance Type=viewmodel:CameraViewModel}"
+			Margin="3"
+			Height="120"
+			Width="160">
+			
+			<!-- Row definitions -->
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+			
+			<!-- Snapshot -->
+			<Image
+				HorizontalAlignment="Center"
+				Source="{Binding Snapshot, Converter={StaticResource ImageBytesConverter}, FallbackValue={StaticResource DefaultSnapshot}}"
+				ToolTip="{Binding Name}">
+				
+				<!-- Image effect -->
+				<Image.Effect>
+					<DropShadowEffect Opacity="0.5"/>
+				</Image.Effect>
+			</Image>
+
+			<!-- Name -->
+			<TextBlock
+				Grid.Row="1"
+				HorizontalAlignment="Center"
+				Margin="0,3,0,0">
+				<Hyperlink Command="{Binding BrowseCommand}">
+					<TextBlock
+						Text="{Binding Name}"
+						TextTrimming="CharacterEllipsis"/>
+				</Hyperlink>
+			</TextBlock>
+		</Grid>
+	</DataTemplate>
+
+	<!-- The cameras panel -->
+	<ItemsPanelTemplate x:Key="CamerasPanel">
+		<WrapPanel IsItemsHost="True" />
+	</ItemsPanelTemplate>
+	
+	<!-- Generic style for Image -->
+	<Style TargetType="Image">
+		<Setter Property="Width" Value="16"/>
+		<Setter Property="Height" Value="16"/>
+		<Setter Property="Margin" Value="0,0,3,0"/>
+	</Style>
+
+</ResourceDictionary>
