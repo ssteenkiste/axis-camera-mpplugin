@@ -197,6 +197,13 @@
               <ZipFileName>Installer{CopyFile}\{1176d261-bcfc-400a-87ec-71b374c6b39c}-icon_axiscameras.png</ZipFileName>
               <DestinationFilename>%Skin%\Titan\Media\icon_axiscameras.png</DestinationFilename>
             </FileItem>
+            <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+              <Param1 />
+              <UpdateOption>OverwriteIfOlder</UpdateOption>
+              <LocalFileName>..\AxisCameras\Skin\Titan\Media\DefaultSnapshot_AxisCameras.png</LocalFileName>
+              <ZipFileName>Installer{CopyFile}\{1d927d70-4422-4810-9711-527bd4ac7c14}-DefaultSnapshot_AxisCameras.png</ZipFileName>
+              <DestinationFilename>%Skin%\Titan\Media\DefaultSnapshot_AxisCameras.png</DestinationFilename>
+            </FileItem>
           </Items>
         </Files>
       </GroupItem>
@@ -918,6 +925,13 @@ public class Script
         <LocalFileName>..\AxisCameras\Skin\Titan\Media\icon_axiscameras.png</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{1176d261-bcfc-400a-87ec-71b374c6b39c}-icon_axiscameras.png</ZipFileName>
         <DestinationFilename>%Skin%\Titan\Media\icon_axiscameras.png</DestinationFilename>
+      </FileItem>
+      <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
+        <Param1 />
+        <UpdateOption>OverwriteIfOlder</UpdateOption>
+        <LocalFileName>..\AxisCameras\Skin\Titan\Media\DefaultSnapshot_AxisCameras.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{1d927d70-4422-4810-9711-527bd4ac7c14}-DefaultSnapshot_AxisCameras.png</ZipFileName>
+        <DestinationFilename>%Skin%\Titan\Media\DefaultSnapshot_AxisCameras.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />

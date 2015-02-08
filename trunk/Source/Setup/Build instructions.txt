@@ -15,7 +15,8 @@ BUILD SETUP INSTRUCTIONS
   2.3 Upload the setup to Google Drive
   2.4 Update
     - Extension Informations
-      - Online location (make sure '&' is replaced with '&amp;'
+      - Online location (make sure '&' is replaced with '&amp;') and the URL matches
+        the other links to Google Drive
   2.5 Generate update xml
   2.6 Save
 3. Update changelog.txt
